@@ -17,9 +17,9 @@
                   <button class="btn-find-dropdown dropdown-toggle" type="button" data-toggle="dropdown">All
                   <span class="glyphicon glyphicon-triangle-bottom"></span></button>
                   <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="{{ URL::route('team.detail') }}">Team 1</a></li>
+                    <li><a href="{{ URL::route('team.detail') }}">Team 2</a></li>
+                    <li><a href="{{ URL::route('team.detail') }}">Team 3</a></li>
                   </ul>
                 </div> 
               </div>
@@ -29,9 +29,9 @@
                   <button class="btn-find-dropdown dropdown-toggle" type="button" data-toggle="dropdown">All
                   <span class="glyphicon glyphicon-triangle-bottom"></span></button>
                   <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="{{ URL::route('team.detail') }}">Team 4</a></li>
+                    <li><a href="{{ URL::route('team.detail') }}">Team 5</a></li>
+                    <li><a href="{{ URL::route('team.detail') }}">Team 6</a></li>
                   </ul>
                 </div> 
               </div>

@@ -24,7 +24,7 @@ Route::get('/team/create', function () {
 Route::get('/team/find', function () {
     return view('team.find');
 })->name('team.find');
-Route::get('/team/detail', function () {
+Route::get('/team/find/detail', function () {
     return view('team.detail');
 })->name('team.detail');
 
