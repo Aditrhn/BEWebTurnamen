@@ -1,4 +1,3 @@
-<!-- NAVBAR -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="brand">
     <a href="index.html"><img src="{{ asset('assets/img/LOGO.png') }}" alt="Klorofil Logo" class="img-responsive logo"></a>
@@ -38,16 +37,15 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('assets/img/1x1.jpg') }}" class="img-circle" alt="Avatar"> <span>Fadhil Rahmat</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('images/avatar/default.png') }}" class="img-circle" alt="Avatar"> <span>Fadhil Rahmat</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
           <ul class="dropdown-menu">
             <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
             <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
             <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-            <li><a href="{{ url('/') }}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
+            <li><a href="{{URL::route('logout')}}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<!-- END NAVBAR -->
