@@ -14,9 +14,10 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::query()->orderBy('id', 'ASC')->get();
-        return \json_decode($games);
-        // return \view('game.index');
+        $game = Game::orderBy('created_at', 'ASC')->get();
+        // return \response()->json($game);
+        // \dd($game);
+        return \view('admin.game.index', \compact('game'));
     }
 
     /**
@@ -26,7 +27,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        return \view('game.create');
+        return \view('admin.game.create');
     }
 
     /**
@@ -37,62 +38,68 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        // $game = new Game;
+        // $game->name = $request->name;
+        // $game->platform = $request->platform;
+        // $game->save();
         $request->validate([
             'name' => 'required',
             'platform' => 'required',
         ]);
         Game::create($request->all());
-        return \redirect('/game')->with('status', 'Game successfully created!!');
+        return \redirect('/game')->with(['success' => 'Game created successfully']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Game  $game
+     * @param  \App\Model\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
     {
-        return \view('game.show', \compact('game'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Game  $game
+     * @param  \App\Model\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function edit(Game $game)
     {
-        return \view('game.edit', \compact('game'));
+        return view('admin.game.edit', \compact('game'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Game  $game
+     * @param  \App\Model\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Game $game)
     {
-        Game::where('id', $game->id)
-            ->update([
+        Game::where('id', $game->id)->update(
+            [
                 'name' => $request->name,
-                'platform' => $request->platform
-            ]);
-        return \redirect('/game')->with('status', 'Game Successfully Updated!!');
+                'platform' => $request->platform,
+            ]
+        );
+
+        return \redirect('/game')->with(['success' => 'Game updated successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Game  $game
+     * @param  \App\Model\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function destroy(Game $game)
     {
         Game::destroy($game->id);
-        return \redirect('/game')->with('status', 'Game Successfully deleted!!');
+        return \redirect()->back()->with(['success' => 'Game deleted successfully']);
     }
 }

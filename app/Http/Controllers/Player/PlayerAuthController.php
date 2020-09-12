@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Player;
 
 use App\Http\Controllers\Controller;
+use App\Model\Game;
 use App\Model\Player;
+use App\Model\PlayerGame;
 use Illuminate\Http\Request;
 use Validator, Redirect, Response;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
@@ -32,13 +35,19 @@ class PlayerAuthController extends Controller
             'password' => 'required',
         ]);
         $player = Player::where('email', $request->email)->first();
-        // dd(Hash::check($request->password, $player->password));
+        // // dd(Hash::check($request->password, $player->password));
+        // if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        //   // return \response()->json($player);
+        //   return \view('player.dashboard');
+        // } else {
+        //   return Redirect::to("login") //routing login jika user tidak ada
+        //     ->withSuccess('Oppes! You have entered invalid credentials');
+        // }
+
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return \view('player.dashboard');
-            // return \response()->json($player);
+            return \redirect('dashboard'); //redirect to url link dashboard
         } else {
-            return Redirect::to("login") //routing login jika user tidak ada
-                ->withSuccess('Oppes! You have entered invalid credentials');
+            return Redirect::to("login"); //routing login jika user tidak ada
         }
     }
     public function postRegister(Request $request)
@@ -51,14 +60,13 @@ class PlayerAuthController extends Controller
             // 'contact' => 'required|max:15',
             // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        /* maybe its work
-         $player = Auth::user();
-         $ava_name = $player->id . '_avatar' . time() . '.' . \request()->ava_url->getClientOriginalExtension();
-         $ava_url = \request()->file('ava_url');
-         $ava_name = $ava_url->getClientOriginalName() . '_avatar' . \time();
-         $ava_folder = \storage_path('ava_player');
-         $ava_url->move($ava_folder, $ava_name);
-        */
+
+        // $player = Auth::user();
+        // $ava_name = $player->id . '_avatar' . time() . '.' . \request()->ava_url->getClientOriginalExtension();
+        // $ava_url = \request()->file('ava_url');
+        // $ava_name = $ava_url->getClientOriginalName() . '_avatar' . \time();
+        // $ava_folder = \storage_path('ava_player');
+        // $ava_url->move($ava_folder, $ava_name);
 
         $data = $request->all();
         $check = $this->create($data);
@@ -66,7 +74,7 @@ class PlayerAuthController extends Controller
     }
     public function dashboard()
     {
-        if (Auth::check()) {
+        if (Auth::guard('player')->check()) {
             return view('player.dashboard'); //view dashboard
         }
         return Redirect::to("login")->withSuccess('Opps! You do not have access'); //routing login
@@ -90,5 +98,19 @@ class PlayerAuthController extends Controller
     }
     public function profile()
     {
+        if (Auth::guard('player')->check()) {
+            // $player_game = PlayerGame::all()->join('games','player_games.players_id');
+            // $game = Game::select('name', 'platform')->get();
+            $game = DB::table('players')
+                ->join('player_games', 'player_games.players_id', '=', 'players.id')
+                ->select('players.*', 'player_games.*')
+                ->get();
+            // $game = DB::table('players')->get();
+
+            // \dd($game);
+            return \view('player.profile', \compact('game'));
+        } else {
+            \dd('hahah');
+        }
     }
 }

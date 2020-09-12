@@ -2,58 +2,43 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->name('dashboard');
-// Route::get('/profile', function () {
-//     return view('profile.index');
-// })->name('profile');
-// Route::get('/tournament', function () {
-//     return view('tournament.index');
-// })->name('tournament');
-// Route::get('/tournament/overview', function () {
-//     return view('tournament.overview');
-// })->name('tournament.overview');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-// Route::get('/team', function () {
-//     return view('team.index');
-// })->name('team');
-// Route::get('/team/create', function () {
-//     return view('team.create');
-// })->name('team.create');
-// Route::get('/team/find', function () {
-//     return view('team.find');
-// })->name('team.find');
-// Route::get('/team/find/detail', function () {
-//     return view('team.detail');
-// })->name('team.detail');
-
-// Route::get('/help', function () {
-//     return view('help.index');
-// })->name('help');
-
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
+// Route::middleware(['auth:player'])->group(function () {
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('player.index');
 // });
-// Route::get('/signup', function () {
-//     return view('player.signup');
-// })->name('signup');
+// });
+Route::group(['auth', 'players'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::namespace('Player')->group(function () {
+        //Auth Player
+        Route::get('login', 'PlayerAuthController@index')->name('login');
+        Route::post('player-login', 'PlayerAuthController@postLogin')->name('post.login');
+        Route::get('register', 'PlayerAuthController@register')->name('register');
+        Route::post('player-register', 'PlayerAuthController@postRegister')->name('post.register');
+        Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
+        Route::get('logout', 'PlayerAuthController@logout')->name('logout');
 
-Route::resource('game', 'GameController');
-// Route::get('game', 'GameController@index');
-// Route::group(['auth', 'players'], function () {
-Route::get('/welcome', function () {
-    return view('welcome');
+        //Profile
+        Route::get('profile', 'PlayerAuthController@profile')->name('profile');
+    });
 });
-Route::namespace('Player')->group(function () {
-    Route::get('login', 'PlayerAuthController@index')->name('login');
-    Route::post('post-login', 'PlayerAuthController@postLogin')->name('post.login');
-    Route::get('register', 'PlayerAuthController@register')->name('register');
-    Route::post('post-register', 'PlayerAuthController@postRegister')->name('post.register');
-    Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
-    Route::get('logout', 'PlayerAuthController@logout')->name('logout');
-});
-// });
+
+Route::get('game', 'GameController@index');
+Route::get('game/create', 'GameController@create')->name('game.create');
+Route::post('game', 'GameController@store')->name('game.store');
+Route::get('game/{game}/edit', 'GameController@edit')->name('game.edit');
+Route::put('game/{game}', 'GameController@update')->name('game.update');
+Route::delete('game/{game}', 'GameController@destroy')->name('game.destroy');
