@@ -19,9 +19,13 @@ class CreatePlayersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('address');
-            $table->string('contact', 15);
-            $table->string('ava_url');
+            $table->string('address')->nullable();
+            $table->string('contact', 15)->nullable();
+            $table->string('gender')->nullable();
+            $table->string('ava_url')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class FK extends Migration
+class Constraints extends Migration
 {
     /**
      * Run the migrations.
@@ -24,7 +24,8 @@ class FK extends Migration
             $table->foreignId('players_id')->constrained('players');
         });
         Schema::table('events', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->foreignId('admin_id')->nullable()->constrained('games');
+            $table->foreignId('game_id')->nullable()->constrained('games');
         });
         Schema::table('contracts', function (Blueprint $table) {
             $table->foreignId('teams_id')->nullable()->constrained('teams');

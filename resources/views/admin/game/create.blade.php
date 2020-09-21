@@ -1,4 +1,4 @@
-@extends('admin.game.main')
+@extends('admin.main')
 @section('main')
 <div class="container" style="padding-top: 10px">
   <div class="card text-center">

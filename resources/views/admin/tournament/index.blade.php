@@ -36,25 +36,28 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Platform</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Title</th>
+          <th scope="col">Status</th>
+          <th scope="col">Winner</th>
+          <th scope="col">Participant</th>
         </tr>
       </thead>
       <tbody>
-        @forelse ($game as $games)
+        @forelse ($event as $events)
         <tr>
           <td scope="row">{{ $loop->iteration }}</td>
-          <td>{{ $games->name }}</td>
-          <td>{{ $games->platform }}</td>
+          <td>{{ $events->title }}</td>
+          <td>{{ $events->status }}</td>
+          <td>{{ $events->winner_id }}</td>
+          <td>{{ $events->participant }}</td>
           <td>
             <a href="#" class="badge">
               <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="Detail"></i>
             </a>
-            <a href="{{ URL::route('game.edit',$games->id) }}" class="badge">
+            <a href="{{ URL::route('event.edit',$events->id) }}" class="badge">
               <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
             </a>            
-            <form action="{{ URL::route('game.destroy',$games->id) }}" method="POST" class="badge">
+            <form action="{{ URL::route('event.destroy',$events->id) }}" method="POST" class="badge">
               @method('delete')
               @csrf
               <button class="badge badge-outline-danger">
@@ -77,7 +80,7 @@
       </div> --}}
     
     <div class="card-body text-center">
-      <a href="{{ URL::route('game.create') }}" class="btn btn-primary">Go to make a data!!</a>
+      <a href="{{ URL::route('event.create') }}" class="btn btn-primary">Go to make a data!!</a>
     </div>
     <div class="card-footer text-muted text-center">
       2 days ago

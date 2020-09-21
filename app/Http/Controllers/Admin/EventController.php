@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Model\Game;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Event;
 
-class GameController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $game = Game::orderBy('created_at', 'ASC')->get();
-        // return \response()->json($game);
-        // \dd($game);
-        return \view('admin.game.index', \compact('game'));
+        $event = Event::orderBy('created_at', 'ASC')->get();
+        return \view('admin.tournament.index', \compact('event'));
     }
 
     /**
@@ -27,7 +27,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        return \view('admin.game.create');
+        return \view('admin.tournament.create');
     }
 
     /**
@@ -38,25 +38,21 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        // $game = new Game;
-        // $game->name = $request->name;
-        // $game->platform = $request->platform;
-        // $game->save();
         $request->validate([
             'name' => 'required',
             'platform' => 'required',
         ]);
-        Game::create($request->all());
-        return \redirect('/game')->with(['success' => 'Game created successfully']);
+        Event::create($request->all());
+        return \redirect('/event')->with(['success' => 'Event created successfully']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Game  $game
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show($id)
     {
         //
     }
@@ -64,26 +60,26 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Game  $game
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Game $game)
+    public function edit($event)
     {
-        return view('admin.game.edit', \compact('game'));
+        return view('admin.event.edit', \compact('event'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Game  $game
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(Request $request, Event $event)
     {
-        Game::where('id', $game->id)->update(
+        Event::where('id', $event->id)->update(
             [
-                'name' => $request->name,
+                'name' => $request->title,
                 'platform' => $request->platform,
             ]
         );
@@ -94,12 +90,11 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Game  $game
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy($id)
     {
-        Game::destroy($game->id);
-        return \redirect()->back()->with(['success' => 'Game deleted successfully']);
+        //
     }
 }
