@@ -18,11 +18,19 @@ class CreateTemporaryEventsTable extends Migration
             $table->string('title');
             $table->bigInteger('games_id');
             $table->enum('status', ['0','1'])->default('0');
-            $table->unsignedInteger('participant');
+            $table->unsignedInteger('participant')->nullable();
             $table->string('banner_url')->nullable();
             $table->dateTime('start_date', 0);
             $table->dateTime('end_date', 0)->nullable();
             $table->string('description');
+            $table->integer('fee')->default(0);
+            $table->integer('prize_pool')->nullable();
+            $table->string('rules')->nullable();
+            $table->integer('bracket_size')->nullable();
+            $table->string('bracket_type')->nullable();
+            $table->dateTime('registration_open')->nullable();
+            $table->dateTime('registration_close')->nullable();
+            $table->string('form_message')->nullable();
             $table->timestamps();
         });
     }

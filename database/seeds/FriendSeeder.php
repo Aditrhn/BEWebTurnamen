@@ -16,21 +16,29 @@ class FriendSeeder extends Seeder
             'player_one' => 1,
             'player_two' => 2,
             'status' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('friends')->insert([
             'player_one' => 1,
             'player_two' => 3,
             'status' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('friends')->insert([
             'player_one' => 2,
             'player_two' => 4,
             'status' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('friends')->insert([
             'player_one' => 3,
             'player_two' => 4,
             'status' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

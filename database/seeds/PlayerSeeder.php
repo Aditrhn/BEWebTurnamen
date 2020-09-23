@@ -20,7 +20,9 @@ class PlayerSeeder extends Seeder
             DB::table('players')->insert([
                 'name' => strtolower($name),
                 'email' => strtolower($name).'@mail.com',
-                'password' => Hash::make('qwerty1234'),
+                'password' => Hash::make('qwerty1234'),    
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }

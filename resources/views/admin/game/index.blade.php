@@ -12,12 +12,22 @@
       </div>
   </div>
 </div>
+<!-- alert -->
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show position-fixed ml-4" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ session('success') }}
+    </div>
+    @endif
+
 <div class="content">
   <div style="background-color: white;" class="rounded">
       <label for="table-stat" class="pb-4 pt-3 ml-2"><strong>Game list</strong></label>
       <div class="table-stats order-table ov-h" id="table-stat">
           <table class="table ">
-              <thead>
+              <thead class="thead-light">
                   <tr>
                       
                       <th class="Avatar">Game</th>
@@ -41,13 +51,13 @@
                       <td>
                           
                           <a href="{{ URL::route('game.edit',$games->id) }}" class="badge">
-                            <span class="badge badge-complete">Edit</span>
+                            <span class="badge badge-warning">Edit</span>
                           </a>            
                           <form action="{{ URL::route('game.destroy',$games->id) }}" method="POST" class="badge">
                             @method('delete')
                             @csrf
                             <button class="badge badge-outline-danger">
-                              <span class="badge badge-complete">Delete</span>
+                              <span class="badge badge-danger">Delete</span>
                             </button>
                           </form>
                       </td>
@@ -60,25 +70,6 @@
       </div>
   </div>
 </div><!-- .content -->
-
-<!-- alert -->
-<div class="card">
-  <div class="card-header text-center">
-    Alert Notification
-  </div>
-  <div class="card-body">
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <div type="button" class="close" data-dismiss="alert">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-        </svg>
-      </div>
-      {{ session('success') }}
-    </div>
-    @endif
-  </div>
-</div>
 
 @endsection
 @push('tooltip')

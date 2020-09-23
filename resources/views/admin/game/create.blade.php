@@ -19,14 +19,10 @@
             <input type="text" placeholder="Input name of game" class="form-control @error('name') is-invalid @enderror" id="name" name="name" name="name" value="{{ old('name')}}">
             @error('name')
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {{-- <strong>{{ $message }}</strong> --}}
               {{ $message }}
-              <div type="button" class="close" data-dismiss="alert">
-                {{-- <span aria-hidden="true">&times;</span>               --}}
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-              </svg>
-            </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
               {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
             @enderror
@@ -35,22 +31,16 @@
         <label for="platform" class=" form-control-label">Select Platform</label>
         <div class="mb-3">
               <select name="platform" id="platform" class="form-control">
-                  <option value="0">Select game Platform</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
+                  <option value="mobile">Mobile</option>
+                  <option value="pc">PC</option>
               </select>
             </div>
             @error('platform')
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{-- <strong>{{ $message }}</strong> --}}
                 {{ $message }}
-                <div type="button" class="close" data-dismiss="alert">
-                  {{-- <span aria-hidden="true">&times;</span>               --}}
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-                </svg>
-              </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
                 {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
               @enderror
@@ -61,14 +51,10 @@
           </div>
           @error('banner')
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{-- <strong>{{ $message }}</strong> --}}
                 {{ $message }}
-                <div type="button" class="close" data-dismiss="alert">
-                  {{-- <span aria-hidden="true">&times;</span>               --}}
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-                </svg>
-              </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
                 {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
               @enderror
@@ -81,7 +67,7 @@
       </form>
   </div>
   <div class="card-footer text-muted">
-    <a href="{{ url('game') }}" class="btn btn-outline-primary">Go back</a>
+    <a href="{{ url('super/game') }}" class="btn btn-outline-primary">Go back</a>
   </div>
 </div><!-- .content -->
 

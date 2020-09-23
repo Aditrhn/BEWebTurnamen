@@ -48,7 +48,7 @@ class GameController extends Controller
             'platform' => 'required',
         ]);
         Game::create($request->all());
-        return \redirect('/game')->with(['success' => 'Game created successfully']);
+        return \redirect('super/game')->with(['success' => 'Game created successfully']);
     }
 
     /**
@@ -82,6 +82,10 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
+        $request->validate([
+            'name' => 'required',
+            'platform' => 'required',
+        ]);
         Game::where('id', $game->id)->update(
             [
                 'name' => $request->name,
@@ -89,7 +93,7 @@ class GameController extends Controller
             ]
         );
 
-        return \redirect('/game')->with(['success' => 'Game updated successfully']);
+        return \redirect('super/game')->with(['success' => 'Game updated successfully']);
     }
 
     /**

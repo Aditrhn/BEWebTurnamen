@@ -1,57 +1,158 @@
 @extends('admin.main')
 @section('main')
-<div class="container" style="padding-top: 10px">
-  <div class="card text-center">
-    <div class="card-header">
-      Create new Game!!
-    </div>
-    <div class="card-body">
-      <form action="{{ URL::route('event.store') }}" method="post">
-        {{ csrf_field() }}
-        <div class="col-md-4">
-          <label for="name" class="form-label">Name Game</label>
-          <input type="text" placeholder="Input name of game" class="form-control @error('name') is-invalid @enderror" id="platform" id="name" name="name" value="{{ old('name')}}">
-          @error('name')
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{-- <strong>{{ $message }}</strong> --}}
-            {{ $message }}
-            <div type="button" class="close" data-dismiss="alert">
-              {{-- <span aria-hidden="true">&times;</span>               --}}
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-            </svg>
+<div class="row m-0">
+  <div class="col-sm-12">
+      <div class="float-left">
+          <div class="page-title">
+              <h3 class="pt-2">Create Tournament</h3>
           </div>
-          </div>
-            {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
-          @enderror
-        </div>
-        
-        <div class="col-md-4">
-          <label for="platform" class="form-label">Platform Game</label>
-          <input type="text" placeholder="Input game of game" class="form-control @error('platform') is-invalid @enderror" id="platform" name="platform" value="{{ old('platform')}}">
-          @error('platform')
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{-- <strong>{{ $message }}</strong> --}}
-            {{ $message }}
-            <div type="button" class="close" data-dismiss="alert">
-              {{-- <span aria-hidden="true">&times;</span>               --}}
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-            </svg>
-          </div>
-          </div>
-            {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
-          @enderror
-        </div>
-        <div class="col-12">
-          <button class="btn btn-primary" type="submit">Submit form</button>
-        </div>
-      </form>
-      {{-- <a href="{{ url('game') }}" class="btn btn-primary">Go somewhere</a> --}}
-    </div>
-    <div class="card-footer text-muted">
-      <a href="{{ url('event') }}" class="btn btn-outline-primary">Go back</a>
-    </div>
+      </div>
   </div>
 </div>
+
+<div class="content">
+  <div class="animated fadeIn">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card">
+                  <div class="card-body card-block p-5">
+                    <form action="{{ URL::route('temporary-event.store') }}" method="post">
+                      {{ csrf_field() }}
+                      <div class="form-group">
+                        <label for="title" class=" form-control-label">Tournament Name</label>
+                        <input type="text" name="title" id="company" placeholder="Enter your tournament name" class="form-control">
+                        @error('title')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          {{ $message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                          {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                        @enderror
+                      </div>
+                      <div class="row form-group">
+                          <div class="col col-md-3"><label for="select" class=" form-control-label">Select a Games</label></div>
+                          <div class="col-12 col-md-12">
+                              <select name="games_id" id="select" class="form-control">
+                                @foreach ($games as $game)
+                                <option value="{{$game->id}}">{{$game->name}}</option>
+                                @endforeach
+                              </select>
+                          </div>
+                      </div>
+                      <div class="row form-group">
+                          <div class="col-6">
+                              <div class="form-group">
+                                <label for="participant" class=" form-control-label">Size Teams</label>
+                                <input type="number" name="participant" id="city" placeholder="Enter your size team" class="form-control">
+                                @error('participant')
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  {{ $message }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                  {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                                @enderror
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="form-group">
+                                  <div class="col col-md-3">
+                                    <label for="banner" class=" form-control-label">Banner</label>
+                                  </div>
+                                  <div class="col-12 col-md-9">
+                                    <input type="file" id="file-input" name="banner" class="form-control-file">
+                                  </div>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row form-group">
+                          <div class="col-6">
+                              <div class="form-group">
+                                  <label class=" form-control-label">Start Date</label>
+                                  <div class="input-group">
+                                    <div class="input-group date" id="datetimepicker1">
+                                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                      <input type="text" class="form-control" name="start_date">
+                                    </div>
+                                      @error('start_date')
+                                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                                      @enderror
+                                  </div>
+                                  <small class="form-text text-muted">(MM/DD/YYYY)</small>
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="form-group">
+                                  <label class=" form-control-label">End Date</label>
+                                  <div class="input-group date" id="datetimepicker2">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" class="form-control" name="end_date">
+                                  </div>
+                                  <small class="form-text text-muted">(MM/DD/YYYY)</small>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row form-group">
+                          <div class="col col-md-12">
+                            <label for="textarea-input" class=" form-control-label">Description</label>
+                          </div>
+                          <div class="col-12 col-md-12">
+                            <textarea name="description" id="textarea-input" rows="9" placeholder="Enter your description..." class="form-control"></textarea>
+                          </div>
+                          @error('description')
+                          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ $message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                          @enderror
+                      </div>
+                      <div class="card-right float-right text-right">
+                        <input class="btn btn-primary" type="submit" value="Save and Continue" style="width: 100%;">
+                      </div><!-- /.card-right -->
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div><!-- .animated -->
+</div><!-- .content -->
 @endsection
+@push('tooltip')
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.en-CA.min.js"></script>
+<script >
+  $('#datetimepicker1').datepicker({
+      format: 'yyyy-mm-dd',
+      weekStart: 0,
+      todayBtn: "linked",
+      language: "es",
+      orientation: "bottom auto",
+      keyboardNavigation: false,
+      autoclose: true
+  });
+  $('#datetimepicker2').datepicker({
+      format: 'yyyy-mm-dd',
+      weekStart: 0,
+      todayBtn: "linked",
+      language: "es",
+      orientation: "bottom auto",
+      keyboardNavigation: false,
+      autoclose: true
+  });
+</script>
+<script src="assets/js/main.js"></script>
+@endpush
