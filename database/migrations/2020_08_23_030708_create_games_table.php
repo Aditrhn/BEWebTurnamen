@@ -17,6 +17,7 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('platform');
+            $table->string('icon_url')->nullable();
             $table->timestamps();
         });
     }

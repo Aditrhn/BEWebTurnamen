@@ -18,7 +18,6 @@ class CreateFriendsTable extends Migration
             $table->unsignedInteger('player_one');
             $table->unsignedInteger('player_two');
             $table->enum('status', ['0', '1']);
-            $table->date('date');
             $table->timestamps();
         });
     }

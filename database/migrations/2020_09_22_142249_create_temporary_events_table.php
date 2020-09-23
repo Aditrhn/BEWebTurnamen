@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventsTable extends Migration
+class CreateTemporaryEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,16 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('temporary_events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->bigInteger('games_id');
             $table->enum('status', ['0','1'])->default('0');
             $table->unsignedInteger('participant');
             $table->string('banner_url')->nullable();
             $table->dateTime('start_date', 0);
             $table->dateTime('end_date', 0)->nullable();
             $table->string('description');
-            $table->integer('fee')->default(0);
-            $table->integer('prize_pool')->nullable();
-            $table->string('rules');
-            $table->integer('bracket_size');
-            $table->string('bracket_type');
-            $table->dateTime('registration_open');
-            $table->dateTime('registration_close');
-            $table->string('form_message');
             $table->timestamps();
         });
     }
@@ -41,7 +34,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
-
+        Schema::dropIfExists('temporary_event');
     }
 }

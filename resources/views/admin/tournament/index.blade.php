@@ -1,92 +1,48 @@
 @extends('admin.main')
 @section('main')
-<div class="container" style="padding-top: 10px">
-  {{-- @if (session('status'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ session('status') }}
-      <div type="button" class="close" data-dismiss="alert">
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-      </svg>
-    </div>
-  @endif --}}
-  <div class="card">
-    <div class="card-header text-center">
-      Alert Notification
-    </div>
-    <div class="card-body">
-      @if (session('success'))
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <div type="button" class="close" data-dismiss="alert">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
-          </svg>
-        </div>
-        {{ session('success') }}
+<div class="row m-0">
+  <div class="col-sm-4">
+      <div class="float-left">
+          <div class="page-title">
+              <h3 class="pt-2">My Tournament</h3>
+          </div>
       </div>
-      @endif
-    </div>
   </div>
-
-  <div class="card">
-    <div class="card-header text-center">
-      Featured
-    </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Status</th>
-          <th scope="col">Winner</th>
-          <th scope="col">Participant</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($event as $events)
-        <tr>
-          <td scope="row">{{ $loop->iteration }}</td>
-          <td>{{ $events->title }}</td>
-          <td>{{ $events->status }}</td>
-          <td>{{ $events->winner_id }}</td>
-          <td>{{ $events->participant }}</td>
-          <td>
-            <a href="#" class="badge">
-              <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="Detail"></i>
-            </a>
-            <a href="{{ URL::route('event.edit',$events->id) }}" class="badge">
-              <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
-            </a>            
-            <form action="{{ URL::route('event.destroy',$events->id) }}" method="POST" class="badge">
-              @method('delete')
-              @csrf
-              <button class="badge badge-outline-danger">
-                <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i>
-              </button>
-            </form>
-          </td>
-        </tr>
-        @empty
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        @endforelse
-      </tbody>
-    </table>
-      {{-- <div class="card-body">
-        <h5 class="card-title">{{ $games->name }}</h5>
-        <p class="card-text">{{ $games->platform }}.</p>          
-      </div> --}}
-    
-    <div class="card-body text-center">
-      <a href="{{ URL::route('event.create') }}" class="btn btn-primary">Go to make a data!!</a>
-    </div>
-    <div class="card-footer text-muted text-center">
-      2 days ago
-    </div>
+  <div class="col-sm-8">
+      <div class="float-right">
+          <div class="page-title">
+              <ol class="text-right">
+                  <a class="btn btn-success mr-3" href="#"><i class="pe-7s-plus pe-2x pe-va"></i> Create</a>
+                  <a class="btn btn-primary" href="#"><i class="pe-7s-folder pe-2x pe-va"></i> Archive</a>
+              </ol>
+          </div>
+      </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-12 col-lg-4">
+      <div class="card text-white bg-flat-color-1">
+          <div class="card-body">
+              <div class="card-center pt-1">
+                  <i class="pe-7s-monitor pe-5x m-5 d-flex justify-content-center"></i>
+              </div><!-- /.card-left -->
+
+              <div class="card-right float-right text-right">
+                  <a class="btn btn-success" href="#">Publised</a>
+              </div><!-- /.card-right -->
+          </div>
+          <div class="card-text bg-light">
+              <div class="text-dark pl-5 pr-5">
+                  <h3 class="text-center m-3">Nongski MLBB Tournament</h3>
+                  <h4 class="ml-4 mb-3"><i class="pe-3x pe-7s-joy pe-va mr-4"></i>Mobile Legends</h4>
+                  <h4 class="ml-4 mb-3"><i class="pe-3x pe-7s-users pe-va mr-4"></i>16 Teams</h4>
+                  <h4 class="ml-4 mb-3"><i class="pe-3x pe-7s-date pe-va mr-4"></i>September 05, 2020</h4>
+                  <button class="col-sm-12 col-lg-12 btn btn-success text-center mb-5" href="#">VIEW</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div><!-- .row -->
 @endsection
 @push('tooltip')
 <script>
