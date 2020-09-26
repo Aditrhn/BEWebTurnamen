@@ -43,11 +43,21 @@ class GameController extends Controller
         // $game->name = $request->name;
         // $game->platform = $request->platform;
         // $game->save();
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required',
             'platform' => 'required',
+            'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-        Game::create($request->all());
+        $file = $request->file('icon_url');
+        $name_icon = \time() . "_" . $file->getClientOriginalName();
+        $tujuan_upload = 'images/game_icon';
+        $file->move($tujuan_upload, $name_icon);
+        // Game::create($request->all());
+        Game::create([
+            'name' => $request->name,
+            'platform' => $request->platform,
+            'icon_url' => $name_icon
+        ]);
         return \redirect('super/game')->with(['success' => 'Game created successfully']);
     }
 
