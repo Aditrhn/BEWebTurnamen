@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Event;
 use App\Model\Game;
 use App\Model\TemporaryEvent;
-use Illuminate\Support\Facades\Input as Input;
+use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
 {
@@ -55,9 +55,10 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        if(Input::get('save')) {
+        if($request->input('action') == 'save') {
             $tempevent = TemporaryEvent::find($request->id);
-            $tempevent->name = $request->title;
+            dd($request);
+            $tempevent->title = $request->title;
             $tempevent->game_id = $request->game;
             $tempevent->participant = $request->participant;
             $tempevent->banner_url = $request->banner;
@@ -73,7 +74,7 @@ class EventController extends Controller
             $tempevent->form_message = $request->form_message;
             $tempevent->save();
             return back(); //save and go back to card
-        }else if(Input::get('publish')){
+        }else if($request->input('action') == 'publish'){
             $request->validate([
                 'title' => 'required',
                 'game' => 'required',
