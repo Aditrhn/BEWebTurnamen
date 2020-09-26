@@ -31,13 +31,13 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                   <li class="">
-                      <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Overview</a>
+                      <a href="{{ URL::route('overview.index') }}"><i class="{{ Request::segment(1) === 'super/overview' ? 'active' :null }} menu-icon fa fa-laptop"></i>Overview</a>
                   </li>
-                  <li class="active">
-                      <a href="{{ URL::route('event.index') }}"><i class="menu-icon fa fa-laptop"></i>Tournaments</a>
+                  <li class="">
+                      <a href="{{ URL::route('event.index') }}"><i class="{{ Request::segment(1) === 'super/event' ? 'active' :null }} menu-icon fa fa-laptop"></i>Tournaments</a>
                   </li>
-                  <li class="active">
-                    <a href="{{ URL::route('game.index') }}"><i class="menu-icon fa fa-laptop"></i>Games</a>
+                  <li class="">
+                    <a href="{{ URL::route('game.index') }}"><i class="{{ Request::segment(1) === 'super/game' ? 'active' :null }} menu-icon fa fa-laptop"></i>Games</a>
                   </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
