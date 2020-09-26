@@ -38,29 +38,32 @@ Route::group(['auth', 'players'], function () {
 
 
 //admin
-Route::namespace('Admin')->group(function () {
-    //login
-    Route::get('super-login', 'AdminAuthController@login');
-    Route::post('super-login/post', 'AdminAuthController@postLogin')->name('super.postlogin');
-    Route::get('super-dashboard', 'AdminAuthController@dashboard')->name('super.dashboard');
-    Route::get('createadmin', 'AdminAuthController@createAdmin');
+Route::group(['auth', 'admins'], function () {
+    Route::namespace('Admin')->group(function () {
+        //login
+        Route::get('super-login', 'AdminAuthController@login');
+        Route::post('super-login/post', 'AdminAuthController@postLogin')->name('super.postlogin');
+        Route::get('super-dashboard', 'AdminAuthController@dashboard')->name('super.dashboard');
+        Route::get('createadmin', 'AdminAuthController@createAdmin');
 
-    //game
-    Route::get('super/game', 'GameController@index')->name('game.index');
-    Route::get('super/game/create', 'GameController@create')->name('game.create');
-    Route::post('super/game', 'GameController@store')->name('game.store');
-    Route::get('super/game/{game}/edit', 'GameController@edit')->name('game.edit');
-    Route::put('super/game/{game}', 'GameController@update')->name('game.update');
-    Route::delete('super/game/{game}', 'GameController@destroy')->name('game.destroy');
+        //game
+        Route::get('super/game', 'GameController@index')->name('game.index');
+        Route::get('super/game/create', 'GameController@create')->name('game.create');
+        Route::post('super/game', 'GameController@store')->name('game.store');
+        Route::get('super/game/{game}/edit', 'GameController@edit')->name('game.edit');
+        Route::put('super/game/{game}', 'GameController@update')->name('game.update');
+        Route::delete('super/game/{game}', 'GameController@destroy')->name('game.destroy');
 
-    //event
-    Route::get('super/event', 'EventController@index')->name('event.index');
-    Route::get('super/event/create', 'EventController@create')->name('event.create');
-    Route::post('super/event', 'EventController@updateAndStore')->name('event.update-and-store');
-    Route::post('super/tempevent', 'EventController@tempStore')->name('temporary-event.store');
-    Route::get('super/event/{tempevent}/edit', 'EventController@edit')->name('temporary-event.edit');
-    Route::put('super/event/{event}', 'EventController@update')->name('event.update');
-    Route::delete('super/event/{event}', 'EventController@destroy')->name('event.destroy');
+        //event
+        Route::get('super/event', 'EventController@index')->name('event.index');
+        Route::get('super/event/create', 'EventController@create')->name('event.create');
+        Route::post('super/event', 'EventController@store')->name('event.store');
+        Route::post('super/tempevent', 'EventController@tempStore')->name('temporary-event.store');
+        Route::get('super/event/{tempevent}/edit', 'EventController@edit')->name('temporary-event.edit');
+        Route::put('super/event/{event}', 'EventController@update')->name('event.update');
+        Route::delete('super/event/{event}', 'EventController@destroy')->name('event.destroy');
 
-    
+        //overview
+        Route::get('super/overview', 'OverviewController@index')->name('overview.index');
+    });
 });

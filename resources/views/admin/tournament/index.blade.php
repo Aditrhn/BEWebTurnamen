@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Tournament')
 @section('main')
 <div class="row m-0">
   <div class="col-sm-4">
@@ -32,11 +33,20 @@
           </div>
           <div class="card-text bg-light">
               <div class="text-dark pl-5 pr-5">
-                  <h4 class="text-center m-3">Nongski MLBB Tournament</h4>
+                  @forelse ($myTournament as $myTournaments)
+                  <h4 class="text-center m-3">{{ $myTournaments->judul }}</h4>
+                  <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-joy pe-va mr-4"></i>{{ $myTournaments->nama }}</h5>
+                  <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-users pe-va mr-4"></i>{{ $myTournaments->peserta }} Teams</h5>
+                  <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-date pe-va mr-4"></i>{{\Carbon\Carbon::parse($myTournaments->tgl_mulai)->translatedFormat('M d, Y') }}</h5>
+                  {{-- <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-date pe-va mr-4"></i>September 05, 2020</h5> --}}
+                  <button class="col-sm-12 col-lg-12 btn btn-success text-center mb-5" href="#">VIEW</button>
+                  @empty
+                  <h4 class="text-center m-3">Null!!</h4>
                   <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-joy pe-va mr-4"></i>Mobile Legends</h5>
                   <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-users pe-va mr-4"></i>16 Teams</h5>
                   <h5 class="ml-4 mb-3"><i class="pe-2x pe-7s-date pe-va mr-4"></i>September 05, 2020</h5>
                   <button class="col-sm-12 col-lg-12 btn btn-success text-center mb-5" href="#">VIEW</button>
+                  @endforelse                  
               </div>
           </div>
       </div>

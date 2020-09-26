@@ -37,7 +37,7 @@
                         <a href="index.html"><i class="menu-icon fa fa-2x fa-pie-chart"></i>Overview </a>
                     </li>
                     <li class="">
-                        <a href="tournament.html"><i class="menu-icon fa fa-2x fa-trophy"></i>Tournament</a>
+                        <a href="{{ URL::route('overview.index') }}"><i class="menu-icon fa fa-laptop"></i>Overview</a>
                     </li>
                     <li class="">
                         <a href="games.html"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>

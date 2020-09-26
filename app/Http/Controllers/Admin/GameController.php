@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Game;
+use File;
 
 class GameController extends Controller
 {
@@ -43,11 +44,21 @@ class GameController extends Controller
         // $game->name = $request->name;
         // $game->platform = $request->platform;
         // $game->save();
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required',
             'platform' => 'required',
+            'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-        Game::create($request->all());
+        $file = $request->file('icon_url');
+        $name_icon = \time() . "_" . $file->getClientOriginalName();
+        $tujuan_upload = 'images/game_icon/';
+        $file->move($tujuan_upload, $name_icon);
+        // Game::create($request->all());
+        Game::create([
+            'name' => $request->name,
+            'platform' => $request->platform,
+            'icon_url' => $name_icon
+        ]);
         return \redirect('super/game')->with(['success' => 'Game created successfully']);
     }
 
@@ -82,17 +93,31 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required',
             'platform' => 'required',
+            'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-        Game::where('id', $game->id)->update(
-            [
-                'name' => $request->name,
-                'platform' => $request->platform,
-            ]
-        );
-
+        // Game::where('id', $game->id)->update(
+        //     [
+        //         'name' => $request->name,
+        //         'platform' => $request->platform,
+        //     ]
+        // );
+        $game = Game::find($game);
+        $name_icon = $game->icon_url;
+        if ($request->hasFile('icon_url')) {
+            $file = $request->file('icon_url');
+            $name_icon = \time() . "_" . $file->getClientOriginalName();
+            $tujuan_upload = 'images/game_icon/';
+            $file->move($tujuan_upload, $name_icon);
+            File::delete('images/game_icon/' . $game->icon_url);
+        }
+        $game->update([
+            'name' => $request->name,
+            'platform' => $request->platform,
+            'icon_url' => $name_icon
+        ]);
         return \redirect('super/game')->with(['success' => 'Game updated successfully']);
     }
 
