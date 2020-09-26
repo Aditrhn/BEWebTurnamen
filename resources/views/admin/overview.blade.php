@@ -99,19 +99,19 @@
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->participant }} Teams</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->jml_peserta }} Teams</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>  <span class="name">Date</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->start_date }}</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->tgl_mulai }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>  <span class="name">Mode</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">GSC Mode</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->mode }} Mode</span>
                                                             </td>
                                                         </tr>
                                                         @empty
@@ -151,8 +151,8 @@
                                             <div class="card-body p-5">
                                                 <div class="card-left pt-1 float-left">
                                                     @forelse ($status_1 as $finished)
-                                                    <h3 class="mb-0 fw-r">{{ $finished->title }}</h3>
-                                                    <p class="text-light mt-1 m-0">{{ $finished->description }}</p>
+                                                    <h3 class="mb-0 fw-r">{{ $finished->judul }}</h3>
+                                                    <p class="text-light mt-1 m-0">{{ $finished->nama }}</p>
                                                     @empty
                                                     <h3 class="mb-0 fw-r">Null!!</h3>
                                                     <p class="text-light mt-1 m-0">Null!!</p>
@@ -174,19 +174,19 @@
                                                             <tr>
                                                                 <td>  <span class="name">Participant</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">{{ $finished->participant }} Teams</span>
+                                                                    <span class="badges text-secondary">{{ $finished->jml_peserta }} Teams</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>  <span class="name">Date</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">{{ $finished->start_date }}</span>
+                                                                    <span class="badges text-secondary">{{ $finished->tgl_mulai }}</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>  <span class="name">Mode</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">GSC Mode</span>
+                                                                    <span class="badges text-secondary">{{ $finished->mode }} Mode</span>
                                                                 </td>
                                                             </tr>
                                                             @empty

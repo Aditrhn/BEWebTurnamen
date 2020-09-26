@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Event;
 use App\Model\Game;
 use App\Model\TemporaryEvent;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
@@ -19,8 +20,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event = Event::orderBy('created_at', 'ASC')->get();
-        return \view('admin.tournament.index', \compact('event'));
+        //SELECT events.title as judul,events.participant as peserta,events.start_date as tgl_mulai,games.name as nama FROM `events` JOIN games ON events.game_id=games.id
+        // $event = Event::orderBy('created_at', 'ASC')->get();
+        $myTournament = DB::table('events')
+            ->join('games', 'events.game_id', '=', 'games.id')
+            ->select('events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
+        // \dd($myTournament);
+        return \view('admin.tournament.index', \compact('myTournament'));
     }
 
     /**
@@ -50,12 +56,12 @@ class EventController extends Controller
             'description' => 'required'
         ]);
         $tempevent = TemporaryEvent::create($request->all());
-        return redirect()->route('temporary-event.edit',[$tempevent->id]);
+        return redirect()->route('temporary-event.edit', [$tempevent->id]);
     }
 
     public function store(Request $request)
     {
-        if($request->input('action') == 'save') {
+        if ($request->input('action') == 'save') {
             $tempevent = TemporaryEvent::find($request->id);
             dd($request);
             $tempevent->title = $request->title;
@@ -74,7 +80,7 @@ class EventController extends Controller
             $tempevent->form_message = $request->form_message;
             $tempevent->save();
             return back(); //save and go back to card
-        }else if($request->input('action') == 'publish'){
+        } else if ($request->input('action') == 'publish') {
             $request->validate([
                 'title' => 'required',
                 'game' => 'required',
@@ -107,7 +113,7 @@ class EventController extends Controller
     public function edit(TemporaryEvent $tempevent)
     {
         $games = Game::orderBy('created_at', 'ASC')->get();
-        return view('admin.tournament.edit', \compact('tempevent','games'));
+        return view('admin.tournament.edit', \compact('tempevent', 'games'));
     }
 
     /**
