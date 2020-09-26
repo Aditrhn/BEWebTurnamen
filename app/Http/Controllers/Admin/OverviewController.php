@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Event;
+use App\Model\TemporaryEvent;
 use Illuminate\Http\Request;
 
 class OverviewController extends Controller
@@ -14,7 +16,13 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        return \view('admin.overview');
+        $event = Event::OrderBy('id', 'ASC')->count();
+        $temporaryEvent = TemporaryEvent::OrderBy('id', 'ASC')->count();
+        $count = $event + $temporaryEvent;
+        $onGoing = Event::where('status', 0)->count();
+        $finished = Event::where('status', 1)->count();
+        // \dd($temporaryEvent);
+        return \view('admin.overview', \compact('count', 'onGoing', 'finished'));
     }
 
     /**
