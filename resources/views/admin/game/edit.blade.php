@@ -13,7 +13,7 @@
 
 <div class="content">
     <div class="col-md-12 pt-3 pb-3" style="background-color: white; border-radius: 10px;">
-        <form action="{{ URL::route('game.update',$game->id ) }}" method="post">
+        <form action="{{ URL::route('game.update',$game->id ) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             @method('put')
             <div class="form-group">
@@ -47,22 +47,13 @@
                     </div>
                 @enderror
             </div>
-            <div class="form-group">
-                <div class="col-md-6">
-                    <div class=" form-group">
-                        <label for="file-multiple-input" class=" form-control-label">Banner</label>
-                        <div><input type="file" id="banner" name="banner" multiple=""
-                                class="form-control-file border rounded">
-                        </div>
-                    </div>
-                    @error('banner')
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ $message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @enderror
+            <div class=" form-group">
+                <label for="icon_url" class=" form-control-label">Banner</label>
+                <div>
+                    <img src="{{ asset('images/game_icon/' . $game->icon_url) }}" width="100px" height="100px" alt="{{ $game->icon_url }}">
+                    <input type="file" id="icon_url" name="icon_url" class="form-control-file border rounded">
+                    <p><strong>Biarkan kosong jika tidak ingin mengganti gambar</strong></p>
+                    <p class="text-danger">{{ $errors->first('icon_url') }}</p>
                 </div>
             </div>
             <div class="row">

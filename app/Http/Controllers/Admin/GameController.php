@@ -40,10 +40,6 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        // $game = new Game;
-        // $game->name = $request->name;
-        // $game->platform = $request->platform;
-        // $game->save();
         $this->validate($request, [
             'name' => 'required',
             'platform' => 'required',
@@ -104,7 +100,7 @@ class GameController extends Controller
         //         'platform' => $request->platform,
         //     ]
         // );
-        $game = Game::find($game);
+        $game = Game::find($game->id);
         $name_icon = $game->icon_url;
         if ($request->hasFile('icon_url')) {
             $file = $request->file('icon_url');
@@ -118,6 +114,14 @@ class GameController extends Controller
             'platform' => $request->platform,
             'icon_url' => $name_icon
         ]);
+
+        // $tujuan_upload = 'img_Dekan';
+        // $file->move($tujuan_upload, $nama_file);
+        // $DekanUpdate =  DekanModel::find($dekanModel->id);
+        // $DekanUpdate->nama_Dekan = $request->nama_Dekan;
+        // $DekanUpdate->nik = $request->nik;
+        // $DekanUpdate->ttd_Dekan = $nama_file;
+        // $DekanUpdate->save();
         return \redirect('super/game')->with(['success' => 'Game updated successfully']);
     }
 
