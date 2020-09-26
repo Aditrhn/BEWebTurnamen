@@ -17,8 +17,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body card-block p-5">
-                        <form action="{{ URL::route('event.store') }}" method="post">
+                        <form action="{{ URL::route('event.update-and-store') }}" method="post">
                             {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{$tempevent->id}}">
                             <div class="form-group">
                                 <label for="title" class=" form-control-label">Tournament Name</label>
                                 <input type="text" name="title" id="company" placeholder="Enter your tournament name"
@@ -82,8 +83,8 @@
                             <div class="input-group">
                                 <div class="input-group date" id="datetimepicker1">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" class="form-control" name="start_date"
-                                        value="{{ $tempevent->start_date }}">
+                                        <input type="text" id="start-date" class="form-control datepicker-here" name="start_date" 
+                                        data-language="en" data-date-format="yyyy-mm-dd" value="{{ $tempevent->start_date }}"/>
                                 </div>
                                 @error('start_date')
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -104,8 +105,8 @@
                         <label class=" form-control-label">End Date</label>
                         <div class="input-group date" id="datetimepicker2">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" name="end_date"
-                                value="{{ $tempevent->end_date }}">
+                            <input type="text" id="end-date" class="form-control datepicker-here" name="end_date" 
+                            data-language="en" data-date-format="yyyy-mm-dd" value="{{ $tempevent->end_date }}"/>
                         </div>
                         <small class="form-text text-muted">(MM/DD/YYYY)</small>
                     </div>
@@ -142,22 +143,22 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" id="fee" name="fee" class="form-control" placeholder="fee">
+                    <input type="text" id="fee" name="fee" class="form-control" placeholder="fee" value="{{$tempevent->fee}}">
                         <span class="help-block"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="prizepool" class=" form-control-label">Prizepool</label>
-                <input type="text" id="prizepool" name="prizepool" class="form-control">
+                <input type="text" id="prizepool" name="prizepool" class="form-control" value="{{$tempevent->prize_pool}}">
                 <span class="help-block"></span>
             </div>
             <div class="row form-group pb-4">
                 <div class="col col-md-12">
                     <label for="rules" class=" form-control-label">Rules</label>
                 </div>
-                <div class="col-12 col-md-12    ">
-                    <textarea name="rules" id="rules" rows="5" class="form-control"></textarea>
+                <div class="col-12 col-md-12">
+                    <textarea name="rules" id="rules" rows="5" class="form-control">{{$tempevent->rules}}</textarea>
                 </div>
             </div>
 
@@ -168,7 +169,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="size" class=" form-control-label">Size</label>
-                        <input type="text" id="bracket_size" name="size" class="form-control">
+                        <input type="text" id="bracket_size" name="bracket_size" class="form-control" value="{{$tempevent->bracket_size}}">
                         <span class="help-block"></span></div>
                 </div>
                 <div class="col-md-6">
@@ -192,9 +193,10 @@
                         <label class=" form-control-label">Registration Opening</label>
                         <div class="input-group date" id="datetimepicker3">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="date" class="form-control" name="registration_open">
+                            <input type="text" id="reg-open" class="form-control datepicker-here" name="registration_open" 
+                            data-language="en" data-date-format="yyyy-mm-dd" value="{{ $tempevent->registration_open }}"/>        
                         </div>
-                        <small class="form-text text-muted">ex. 99/99/9999</small>
+                        <small class="form-text text-muted">ex. 2020-12-21</small>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -202,9 +204,10 @@
                         <label class=" form-control-label">Registration Closing</label>
                         <div class="input-group date" id="datetimepicker4">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="date" class="form-control" name="registration_close">
+                            <input type="text" id="reg-close" class="form-control datepicker-here" name="registration_close" 
+                            data-language="en" data-date-format="yyyy-mm-dd" value="{{ $tempevent->registration_close }}"/>
                         </div>
-                        <small class="form-text text-muted">ex. 99/99/9999</small>
+                        <small class="form-text text-muted">ex. 2020-12-21</small>
                     </div>
                 </div>
             </div>
@@ -212,7 +215,7 @@
                 <div class="col col-md-12"><label for="form_message" class=" form-control-label">Terms and
                         Agreement</label></div>
                 <div class="col-12 col-md-12"><textarea name="form_message" id="form_message" rows="5"
-                        class="form-control"></textarea></div>
+                        class="form-control">{{$tempevent->form_message}}</textarea></div>
             </div>
         </div>
         <div class="col-md-12">
@@ -230,45 +233,28 @@
 @endsection
 @push('tooltip')
 
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.en-CA.min.js">
-    </script>
+    <!-- Date Picker -->
+    <script src="{{ URL::asset('js/admin/lib/date-picker/datepicker.min.js')}}"></script>
+    <script src="{{ URL::asset('js/admin/lib/date-picker/i18n/datepicker.en.js')}}"></script>
+    <script src="js/admin/lib/date-picker/datepicker.min.js"></script>
+    <script src="js/admin/lib/date-picker/i18n/datepicker.en.js"></script>
     <script>
-        $('#datetimepicker1').datepicker({
-            weekStart: 0,
-            todayBtn: "linked",
-            language: "es",
-            orientation: "bottom auto",
-            keyboardNavigation: false,
-            autoclose: true
+        $('#start-date').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
         });
-        $('#datetimepicker2').datepicker({
-            weekStart: 0,
-            todayBtn: "linked",
-            language: "es",
-            orientation: "bottom auto",
-            keyboardNavigation: false,
-            autoclose: true
+        $('#end-date').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
         });
-        $('#datetimepicker3').datepicker({
-            weekStart: 0,
-            todayBtn: "linked",
-            language: "es",
-            orientation: "bottom auto",
-            keyboardNavigation: false,
-            autoclose: true
+        $('#reg-open').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
         });
-        $('#datetimepicker4').datepicker({
-            weekStart: 0,
-            todayBtn: "linked",
-            language: "es",
-            orientation: "bottom auto",
-            keyboardNavigation: false,
-            autoclose: true
+        $('#reg-close').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
         });
-
     </script>
     <script src="assets/js/main.js"></script>
 @endpush

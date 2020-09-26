@@ -59,13 +59,12 @@ class EventController extends Controller
         return redirect()->route('temporary-event.edit', [$tempevent->id]);
     }
 
-    public function store(Request $request)
+    public function updateAndStore(Request $request)
     {
         if ($request->input('action') == 'save') {
             $tempevent = TemporaryEvent::find($request->id);
-            dd($request);
             $tempevent->title = $request->title;
-            $tempevent->game_id = $request->game;
+            $tempevent->games_id = $request->game;
             $tempevent->participant = $request->participant;
             $tempevent->banner_url = $request->banner;
             $tempevent->start_date = $request->start_date;
