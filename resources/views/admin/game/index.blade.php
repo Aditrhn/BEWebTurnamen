@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Game')
 @section('main')
 <div class="row m-0">
   <div class="col-sm-12">

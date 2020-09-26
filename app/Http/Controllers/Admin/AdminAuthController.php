@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin;
 use App\Http\Controllers\Controller;
+use App\Model\Game;
 use Illuminate\Http\Request;
 use Validator, Redirect, Response;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,12 @@ class AdminAuthController extends Controller
     }
     public function dashboard()
     {
-        return \view('admin.game.index');
+        if (Auth::guard('admin')->check()) {
+            $game = Game::all();
+            return \view('admin.game.index', \compact('game'));
+        } else {
+            // return view('admin.atuh.login'); //view dashboard
+            return Redirect::to("login")->withSuccess('Opps! You do not have access'); //routing login
+        }
     }
 }
