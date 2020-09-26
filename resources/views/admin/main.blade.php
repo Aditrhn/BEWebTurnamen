@@ -32,17 +32,6 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-<<<<<<< HEAD
-                  <li class="">
-                      <a href="{{ URL::route('overview.index') }}"><i class="{{ Request::segment(1) === 'super/overview' ? 'active' :null }} menu-icon fa fa-laptop"></i>Overview</a>
-                  </li>
-                  <li class="">
-                      <a href="{{ URL::route('event.index') }}"><i class="{{ Request::segment(1) === 'super/event' ? 'active' :null }} menu-icon fa fa-laptop"></i>Tournaments</a>
-                  </li>
-                  <li class="">
-                    <a href="{{ URL::route('game.index') }}"><i class="{{ Request::segment(1) === 'super/game' ? 'active' :null }} menu-icon fa fa-laptop"></i>Games</a>
-                  </li>
-=======
                     <li class="">
                         <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Overview</a>
                     </li>
@@ -54,7 +43,6 @@
                         <a href="{{ URL::route('game.index') }}"><i
                                 class="menu-icon fa fa-laptop"></i>Games</a>
                     </li>
->>>>>>> 14c71be77a0a56e6fb859cd65419d2816e4623d5
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
