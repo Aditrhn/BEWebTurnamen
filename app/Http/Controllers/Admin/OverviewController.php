@@ -16,13 +16,15 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        $event = Event::OrderBy('id', 'ASC')->count();
-        $temporaryEvent = TemporaryEvent::OrderBy('id', 'ASC')->count();
-        $count = $event + $temporaryEvent;
+        // $event = Event::all();
+        // $temporaryEvent = TemporaryEvent::all();
+        $count =  Event::count() + TemporaryEvent::count();
         $onGoing = Event::where('status', 0)->count();
         $finished = Event::where('status', 1)->count();
+        $status_0 = Event::where('status', 0)->get();
+        $status_1 = Event::where('status', 1)->get();
         // \dd($temporaryEvent);
-        return \view('admin.overview', \compact('count', 'onGoing', 'finished'));
+        return \view('admin.overview', \compact('count', 'onGoing', 'finished', 'status_0', 'status_1'));
     }
 
     /**

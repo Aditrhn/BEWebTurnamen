@@ -33,7 +33,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="">
-                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Overview</a>
+                        <a href="{{ URL::route('overview.index') }}"><i class="menu-icon fa fa-laptop"></i>Overview</a>
                     </li>
                     <li class="active">
                         <a href="{{ URL::route('event.index') }}"><i

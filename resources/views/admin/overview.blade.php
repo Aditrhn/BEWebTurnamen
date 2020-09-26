@@ -1,5 +1,5 @@
 @extends('admin.main')
-@section('title','- Overview')
+@section('title','Overview')
 @section('main')
 <h2 class="mb-5">Overview</h2>
 <!-- Widgets  -->
@@ -75,8 +75,13 @@
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
                                             <div class="card-left pt-1 float-left">
-                                                <h3 class="mb-0 fw-r">Nongski MLBB Tournament</h3>
-                                                <p class="text-light mt-1 m-0">Valorant</p>
+                                                @forelse ($status_0 as $onGoing)
+                                                <h3 class="mb-0 fw-r">{{ $onGoing->title }}</h3>
+                                                <p class="text-light mt-1 m-0">{{ $onGoing->description }}</p>
+                                                @empty
+                                                <h3 class="mb-0 fw-r">Null!!</h3>
+                                                <p class="text-light mt-1 m-0">Null!!</p>
+                                                @endforelse                                             
                                             </div><!-- /.card-left -->
             
                                             <div class="card-right float-right text-right">
@@ -90,16 +95,17 @@
                                                     <thead>
                                                     </thead>
                                                     <tbody>
+                                                        @forelse ($status_0 as $onGoing)
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">16 Teams</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->participant }} Teams</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>  <span class="name">Date</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">10/19/2020</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->start_date }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -108,57 +114,32 @@
                                                                 <span class="badges text-secondary">GSC Mode</span>
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div> <!-- /.table-stats -->
-                                        </div>
-                                    </div>
-                                </div>
-            
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="card text-white bg-flat-color-3">
-                                        <div class="card-body p-5">
-                                            <div class="card-left pt-1 float-left">
-                                                <h3 class="mb-0 fw-r">Nongski MLBB Tournament</h3>
-                                                <p class="text-light mt-1 m-0">PUBG</p>
-                                            </div><!-- /.card-left -->
-            
-                                            <div class="card-right float-right text-right">
-                                                <a class="btn btn-primary" href="#">On Going</a>
-                                            </div><!-- /.card-right -->
-            
-                                        </div>
-                                        <div class="card-text bg-light">
-                                            <div class="table-stats order-table ov-h">
-                                                <table class="table">
-                                                    <thead>
-                                                    </thead>
-                                                    <tbody>
+                                                        @empty
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">16 Teams</span>
+                                                                <span class="badges text-secondary">Null!! Teams</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>  <span class="name">Date</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">10/19/2020</span>
+                                                                <span class="badges text-secondary">Null!!</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>  <span class="name">Mode</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">GSC Mode</span>
+                                                                <span class="badges text-secondary">Null!! Mode</span>
                                                             </td>
                                                         </tr>
+                                                        @endforelse
                                                     </tbody>
                                                 </table>
                                             </div> <!-- /.table-stats -->
                                         </div>
                                     </div>
-                                </div>
-                                
+                                </div>                                
                             </div><!-- /# column -->
                             
                         </div>
@@ -169,8 +150,13 @@
                                         <div class="card text-white bg-flat-color-1">
                                             <div class="card-body p-5">
                                                 <div class="card-left pt-1 float-left">
+                                                    @forelse ($status_1 as $finished)
+                                                    <h3 class="mb-0 fw-r">{{ $finished->title }}</h3>
+                                                    <p class="text-light mt-1 m-0">{{ $finished->description }}</p>
+                                                    @empty
                                                     <h3 class="mb-0 fw-r">Nongski MLBB Tournament</h3>
                                                     <p class="text-light mt-1 m-0">Mobile Legends</p>
+                                                    @endforelse                                                    
                                                 </div><!-- /.card-left -->
                 
                                                 <div class="card-right float-right text-right">
@@ -184,16 +170,17 @@
                                                         <thead>
                                                         </thead>
                                                         <tbody>
+                                                            @forelse ($status_1 as $finished))
                                                             <tr>
                                                                 <td>  <span class="name">Participant</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">16 Teams</span>
+                                                                    <span class="badges text-secondary">{{ $finished->participant }} Teams</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>  <span class="name">Date</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">10/19/2020</span>
+                                                                    <span class="badges text-secondary">{{ $finished->start_date }}</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -202,42 +189,17 @@
                                                                     <span class="badges text-secondary">GSC Mode</span>
                                                                 </td>
                                                             </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div> <!-- /.table-stats -->
-                                            </div>
-                                        </div>
-                                    </div>
-                
-                                    <div class="col-sm-12 col-lg-6">
-                                        <div class="card text-white bg-flat-color-1">
-                                            <div class="card-body p-5">
-                                                <div class="card-left pt-1 float-left">
-                                                    <h3 class="mb-0 fw-r">Nongski MLBB Tournament</h3>
-                                                    <p class="text-light mt-1 m-0">Apex</p>
-                                                </div><!-- /.card-left -->
-                
-                                                <div class="card-right float-right text-right">
-                                                    <a class="btn btn-success" href="#">Finished</a>
-                                                </div><!-- /.card-right -->
-                
-                                            </div>
-                                            <div class="card-text bg-light">
-                                                <div class="table-stats order-table ov-h">
-                                                    <table class="table">
-                                                        <thead>
-                                                        </thead>
-                                                        <tbody>
+                                                            @empty
                                                             <tr>
                                                                 <td>  <span class="name">Participant</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">16 Teams</span>
+                                                                    <span class="badges text-secondary">Null!! Teams</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>  <span class="name">Date</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">10/19/2020</span>
+                                                                    <span class="badges text-secondary">Null!!</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -246,13 +208,13 @@
                                                                     <span class="badges text-secondary">GSC Mode</span>
                                                                 </td>
                                                             </tr>
+                                                            @endforelse
                                                         </tbody>
                                                     </table>
                                                 </div> <!-- /.table-stats -->
                                             </div>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div><!-- /# column -->
                                 
                             </div>
