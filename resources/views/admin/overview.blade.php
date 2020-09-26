@@ -154,8 +154,8 @@
                                                     <h3 class="mb-0 fw-r">{{ $finished->title }}</h3>
                                                     <p class="text-light mt-1 m-0">{{ $finished->description }}</p>
                                                     @empty
-                                                    <h3 class="mb-0 fw-r">Nongski MLBB Tournament</h3>
-                                                    <p class="text-light mt-1 m-0">Mobile Legends</p>
+                                                    <h3 class="mb-0 fw-r">Null!!</h3>
+                                                    <p class="text-light mt-1 m-0">Null!!</p>
                                                     @endforelse                                                    
                                                 </div><!-- /.card-left -->
                 
