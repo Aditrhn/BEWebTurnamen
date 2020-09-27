@@ -1,7 +1,16 @@
 @extends('admin.main')
 @section('title','Overview')
 @section('main')
-<h2 class="mb-5">Overview</h2>
+<div class="row m-0">
+    <div class="col-sm-4">
+        <div class="float-left">
+            <div class="page-title">
+                <h3 class="pt-2">Overview</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
 <!-- Widgets  -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
@@ -216,7 +225,6 @@
                                         </div>
                                     </div>                                    
                                 </div><!-- /# column -->
-                                
                             </div>
                         </div>
                     </div>
@@ -226,5 +234,6 @@
         </div>
     </div>
 </div><!-- .row -->
+</div>
 <!-- /To Do and Live Chat -->
 @endsection
