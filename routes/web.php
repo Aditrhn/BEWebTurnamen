@@ -45,6 +45,7 @@ Route::group(['auth', 'admins'], function () {
         Route::post('super-login/post', 'AdminAuthController@postLogin')->name('super.postlogin');
         Route::get('super-dashboard', 'AdminAuthController@dashboard')->name('super.dashboard');
         Route::get('createadmin', 'AdminAuthController@createAdmin');
+        Route::get('super-logout', 'AdminAuthController@logout')->name('super.logout');
 
         //game
         Route::get('super/game', 'GameController@index')->name('game.index');

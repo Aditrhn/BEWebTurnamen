@@ -43,7 +43,6 @@
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
                     <hr class="bg-white" width="100%">
-
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -113,7 +112,7 @@
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{{ URL::route('super.logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 

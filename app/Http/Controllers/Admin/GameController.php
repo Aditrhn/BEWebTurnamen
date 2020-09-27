@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Game;
@@ -16,10 +17,12 @@ class GameController extends Controller
      */
     public function index()
     {
-        $game = Game::orderBy('created_at', 'ASC')->get();
-        // return \response()->json($game);
-        // \dd($game);
-        return \view('admin.game.index', \compact('game'));
+        if (Auth::guard('admin')->check()) {
+            $game = Game::orderBy('created_at', 'ASC')->get();
+            // return \response()->json($game);
+            // \dd($game);
+            return \view('admin.game.index', \compact('game'));
+        }
     }
 
     /**
