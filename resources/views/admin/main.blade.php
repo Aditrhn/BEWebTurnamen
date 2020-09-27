@@ -33,19 +33,17 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="">
+                    <li class="{{ Request::url() == url('super/overview') ? 'active' : '' }}">
                         <a href="{{URL::route('overview.index')}}"><i class="menu-icon fa fa-2x fa-pie-chart"></i>Overview </a>
                     </li>
-                    <li class="active">
+                    <li class="{{ Request::url() == url('super/event') ? 'active' : '' }}">
                         <a href="{{URL::route('event.index')}}"><i class="menu-icon fa fa-2x fa-trophy"></i>Tournament</a>
                     </li>
-                    <li class="">
+                    <li class="{{ Request::url() == url('super/game') ? 'active' : '' }}">
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
                     <hr class="bg-white" width="100%">
-                    {{-- <li class="">
-                        <a href="{{ URL::route('overview.index') }}" class="settings"><i class="menu-icon fa fa-2x fa-cog"></i>Settings</a>
-                    </li> --}}
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
