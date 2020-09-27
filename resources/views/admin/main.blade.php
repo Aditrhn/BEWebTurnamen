@@ -34,18 +34,21 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-2x fa-pie-chart"></i>Overview </a>
+                        <a href="{{ URL::route('overview.index') }}"><i class="menu-icon fa fa-2x fa-pie-chart"></i>Overviews</a>
                     </li>
-                    <li class="">
+                    {{-- <li class="">
                         <a href="{{ URL::route('overview.index') }}"><i class="menu-icon fa fa-laptop"></i>Overview</a>
+                    </li> --}}
+                    <li class="">
+                        <a href="{{ URL::route('game.index') }}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
                     <li class="">
-                        <a href="games.html"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
+                        <a href="{{ URL::route('event.index') }}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Events</a>
                     </li>
                     <hr class="bg-white" width="100%">
-                    <li class="">
-                        <a href="settings.html" class="settings"><i class="menu-icon fa fa-2x fa-cog"></i>Settings</a>
-                    </li>
+                    {{-- <li class="">
+                        <a href="{{ URL::route('overview.index') }}" class="settings"><i class="menu-icon fa fa-2x fa-cog"></i>Settings</a>
+                    </li> --}}
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

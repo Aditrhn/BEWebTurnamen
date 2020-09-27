@@ -92,7 +92,7 @@ class GameController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'platform' => 'required',
-            'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+            // 'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         // Game::where('id', $game->id)->update(
         //     [
@@ -114,14 +114,6 @@ class GameController extends Controller
             'platform' => $request->platform,
             'icon_url' => $name_icon
         ]);
-
-        // $tujuan_upload = 'img_Dekan';
-        // $file->move($tujuan_upload, $nama_file);
-        // $DekanUpdate =  DekanModel::find($dekanModel->id);
-        // $DekanUpdate->nama_Dekan = $request->nama_Dekan;
-        // $DekanUpdate->nik = $request->nik;
-        // $DekanUpdate->ttd_Dekan = $nama_file;
-        // $DekanUpdate->save();
         return \redirect('super/game')->with(['success' => 'Game updated successfully']);
     }
 

@@ -43,7 +43,7 @@
                   <tr>
                       <td class="avatar">
                           <div class="round-img">
-                              <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
+                              <img class="rounded-circle" src="{{ asset('images/game_icon/'. $games->icon_url) }}" alt="">
                           </div>
                       </td>
                       <td>{{ $games->name }}</td>

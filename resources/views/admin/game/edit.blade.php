@@ -13,7 +13,8 @@
 
 <div class="content">
     <div class="col-md-12 pt-3 pb-3" style="background-color: white; border-radius: 10px;">
-        <form action="{{ URL::route('game.update',$game->id ) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ URL::route('game.update',$game->id ) }}" method="post"
+            enctype="multipart/form-data">
             {{ csrf_field() }}
             @method('put')
             <div class="form-group">
@@ -50,10 +51,17 @@
             <div class=" form-group">
                 <label for="icon_url" class=" form-control-label">Banner</label>
                 <div>
-                    <img src="{{ asset('images/game_icon/' . $game->icon_url) }}" width="100px" height="100px" alt="{{ $game->icon_url }}">
-                    <input type="file" id="icon_url" name="icon_url" class="form-control-file border rounded">
+                    <img src="{{ asset('/images/game_icon/'. $game->icon_url) }}" width="100px" height="100px" alt="{{ $game->name }}">
+                    <input type="file" id="icon_url" name="icon_url" class="form-control-file border rounded" value="{{ asset('/images/game_icon/'. $game->name) }}">
                     <p><strong>Biarkan kosong jika tidak ingin mengganti gambar</strong></p>
-                    <p class="text-danger">{{ $errors->first('icon_url') }}</p>
+                    @error('icon_url')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ $message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @enderror
                 </div>
             </div>
             <div class="row">
