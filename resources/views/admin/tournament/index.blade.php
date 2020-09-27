@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                         @empty
-                                            kosong!!
+                                            <h3>Nothing to see here</h3>
                                         @endforelse
                                         <!--/.col-->
                                     </div><!-- /# column -->
@@ -123,7 +123,7 @@
                                                 </div>
                                             </div>
                                             @empty
-                                                kosong!
+                                                <h3>Nothing to see here</h3>
                                             @endforelse
                                             <!--/.col-->
 

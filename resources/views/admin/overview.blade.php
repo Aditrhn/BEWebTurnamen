@@ -19,7 +19,7 @@
                 <div class="stat-widget-five text-center">
                     <div class="text-left dib m-4" id="text-stat-dashboard">
                         <div class="stat-heading mb-3"><h4>Total Event</h4></div>
-                        <h1 class="text-center text-dark"><span class="count">{{ $count }}</span></h1>
+                        <h1 class="text-center text-dark"><span class="count">{{ $total }}</span></h1>
                     </div>
                 </div>
             </div>
@@ -49,18 +49,18 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-lg-3 col-md-6">
+    <div class="col-lg-3 col-md-6">
         <div class="card">
             <div class="card-body" id="stat-widget-dashboard">
                 <div class="stat-widget-five text-center">
                     <div class="text-left dib m-4" id="text-stat-dashboard">
                         <div class="stat-heading mb-3"><h4>Draft</h4></div>
-                        <h1 class="text-center text-dark"><span class="count">64</span></h1>
+                        <h1 class="text-center text-dark"><span class="count">{{ $draft }}</span></h1>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
 <!-- /Widgets -->
 <!-- To Do and Live Chat -->

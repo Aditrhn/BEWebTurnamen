@@ -82,7 +82,9 @@
                             <div class="input-group">
                                 <div class="input-group date" id="datetimepicker1">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" class="form-control" name="start_date">
+                                    <input type="text" id="start-date" class="form-control datepicker-here" name="start_date"
+                            data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
+                            data-time-format='hh:ii:00' />
                                 </div>
                                 @error('start_date')
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -91,8 +93,6 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    {{-- <div class="alert alert-danger">{{ $message }}
-                            </div> --}}
                             @enderror
                         </div>
                         <small class="form-text text-muted">(MM/DD/YYYY)</small>
@@ -103,7 +103,9 @@
                         <label class=" form-control-label">End Date</label>
                         <div class="input-group date" id="datetimepicker2">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" name="end_date">
+                            <input type="text" id="end-date" class="form-control datepicker-here" name="end_date"
+                            data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
+                            data-time-format='hh:ii:00' />
                         </div>
                         <small class="form-text text-muted">(MM/DD/YYYY)</small>
                     </div>
@@ -140,32 +142,26 @@
 </div><!-- .content -->
 @endsection
 @push('tooltip')
-
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.en-CA.min.js">
-    </script>
+    <!-- Date Picker -->
+    <script src="{{ URL::asset('js/admin/lib/date-picker/datepicker.min.js')}}"></script>
+    <script src="{{ URL::asset('js/admin/lib/date-picker/i18n/datepicker.en.js')}}"></script>
     <script>
-        $('#datetimepicker1').datepicker({
-            format: 'yyyy-mm-dd',
-            weekStart: 0,
-            todayBtn: "linked",
-            language: "es",
-            orientation: "bottom auto",
-            keyboardNavigation: false,
-            autoclose: true
+        $('#start-date').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
         });
-        $('#datetimepicker2').datepicker({
-            format: 'yyyy-mm-dd',
-            weekStart: 0,
-            todayBtn: "linked",
-            language: "es",
-            orientation: "bottom auto",
-            keyboardNavigation: false,
-            autoclose: true
+        $('#end-date').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
         });
-
+        $('#reg-open').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
+        });
+        $('#reg-close').datepicker({
+            language: 'en',
+            minDate: new Date() // Now can select only dates, which goes after today
+        });
     </script>
     <script src="assets/js/main.js"></script>
 @endpush

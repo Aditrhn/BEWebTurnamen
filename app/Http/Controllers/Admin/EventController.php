@@ -70,6 +70,7 @@ class EventController extends Controller
             $tempevent->participant = $request->participant;
             $tempevent->banner_url = $request->banner;
             $tempevent->start_date = $request->start_date;
+            $tempevent->end_date = $request->end_date;
             $tempevent->description = $request->description;
             $tempevent->fee = $request->fee;
             $tempevent->prize_pool = $request->prizepool;
