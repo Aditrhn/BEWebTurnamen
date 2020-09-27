@@ -136,21 +136,20 @@
     <div class="card-body">
         <h4><strong>Details</strong></h4>
         <h5 class="mt-4">Registration Fee</h5>
-        <div class="row mt-3">
-            <div class="col-md-2 pb-2">
-                <button type="button" class="btn btn-outline-primary btn-md" style="width: 100%;">Free</button>
+        <div class="input-group mt-3">
+            <div class="input-group-prepend" id="button-addon3">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active" onclick="myFunction()">
+                      <input type="radio" name="fee-option" id="paid"> free
+                    </label>
+                    <label class="btn btn-secondary" onclick="myFunction1()">
+                      <input type="radio" name="fee-option" id="free" checked> paid
+                    </label>
+                  </div>
             </div>
-            <div class="col-md-2 pb-2">
-                <button type="button" class="btn btn-outline-primary btn-md " style="width: 100%;">Paid</button>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" id="fee" name="fee" class="form-control" placeholder="fee"
-                        value="{{ $tempevent->fee }}">
-                    <span class="help-block"></span>
-                </div>
-            </div>
-        </div>
+            <input type="text" name="fee" id="fee_paid" class="form-control" placeholder="fee" value="{{$tempevent->fee}}">
+          </div>
+
         <div class="form-group">
             <label for="prizepool" class=" form-control-label">Prizepool</label>
             <input type="text" id="prizepool" name="prizepool" class="form-control"
@@ -265,7 +264,15 @@
             language: 'en',
             minDate: new Date() // Now can select only dates, which goes after today
         });
-
+        function myFunction() {
+            var x = document.getElementById("fee_paid");
+            x.disabled = true;
+            x.value = 0;
+        }
+        function myFunction1() {
+            var x = document.getElementById("fee_paid");
+            x.disabled = false;
+        }
     </script>
     <script src="assets/js/main.js"></script>
 @endpush
