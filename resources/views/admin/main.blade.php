@@ -42,6 +42,10 @@
                     <li class="">
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
+                    <hr class="bg-white" width="100%">
+                    {{-- <li class="">
+                        <a href="{{ URL::route('overview.index') }}" class="settings"><i class="menu-icon fa fa-2x fa-cog"></i>Settings</a>
+                    </li> --}}
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
