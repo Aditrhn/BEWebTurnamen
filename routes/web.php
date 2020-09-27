@@ -57,7 +57,7 @@ Route::group(['auth', 'admins'], function () {
         //event
         Route::get('super/event', 'EventController@index')->name('event.index');
         Route::get('super/event/create', 'EventController@create')->name('event.create');
-        Route::post('super/event', 'EventController@store')->name('event.store');
+        Route::post('super/event', 'EventController@updateAndStore')->name('event.update-and-store');
         Route::post('super/tempevent', 'EventController@tempStore')->name('temporary-event.store');
         Route::get('super/event/{tempevent}/edit', 'EventController@edit')->name('temporary-event.edit');
         Route::put('super/event/{event}', 'EventController@update')->name('event.update');
