@@ -126,7 +126,7 @@ class EventController extends Controller
         $json_array2 = \response()->json([
             'status' => \true,
             'respon' => 'Data score!!',
-            'teams' => $matches_score
+            'scores' => $matches_score
         ]);
         // \dd($json_array, $json_array2);
         // $games = Game::orderBy('created_at', 'ASC')->get();
