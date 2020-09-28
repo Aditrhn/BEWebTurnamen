@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Event;
 use App\Model\Game;
+use App\Model\Match;
 use App\Model\TemporaryEvent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -111,8 +112,25 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $games = Game::orderBy('created_at', 'ASC')->get();
-        return view('admin.tournament.detail');
+        //SELECT matches.date,matches.team_a,matches.team_b,matches.score_a,matches.score_b,matches.match_number,events.bracket_type, teams.name FROM `matches` JOIN events on matches.event_id=events.id JOIN teams on events.winner_id=teams.id
+        $matches_team = DB::table('matches')
+            ->join('events', 'matches.event_id', '=', 'events.id')
+            ->join('teams', 'events.winner_id', '=', 'teams.id')
+            ->select('matches.date', 'matches.team_a', 'matches.team_b', 'matches.match_number', 'events.bracket_type', 'teams.name')->first();
+        $matches_score = Match::find($id);
+        $json_array = \response()->json([
+            'status' => \true,
+            'respon' => 'Data team!!',
+            'teams' => $matches_team
+        ]);
+        $json_array2 = \response()->json([
+            'status' => \true,
+            'respon' => 'Data score!!',
+            'teams' => $matches_score
+        ]);
+        // \dd($json_array, $json_array2);
+        // $games = Game::orderBy('created_at', 'ASC')->get();
+        return view('admin.tournament.detail', \compact('json_array', 'json_array2'));
     }
 
     /**
