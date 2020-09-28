@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Validator, Redirect, Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class AdminAuthController extends Controller
 {
@@ -47,5 +48,11 @@ class AdminAuthController extends Controller
             // return view('admin.atuh.login'); //view dashboard
             return Redirect::to("login")->withSuccess('Opps! You do not have access'); //routing login
         }
+    }
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return Redirect('super-login'); //routing login
     }
 }

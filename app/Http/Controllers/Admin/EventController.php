@@ -8,6 +8,7 @@ use App\Model\Event;
 use App\Model\Game;
 use App\Model\TemporaryEvent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
@@ -22,13 +23,16 @@ class EventController extends Controller
     {
         //SELECT events.title as judul,events.participant as peserta,events.start_date as tgl_mulai,games.name as nama FROM `events` JOIN games ON events.game_id=games.id
         // $event = Event::orderBy('created_at', 'ASC')->get();
-        $myEvents = DB::table('events')
-            ->join('games', 'events.game_id', '=', 'games.id')
-            ->select('events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
-        $myTempEvents = DB::table('temporary_events')
-            ->join('games', 'temporary_events.games_id', '=', 'games.id')
-            ->select('temporary_events.id as aidi', 'temporary_events.title as judul', 'temporary_events.participant as peserta', 'temporary_events.start_date as tgl_mulai', 'games.name as nama')->get();
-        return \view('admin.tournament.index', \compact('myEvents','myTempEvents'));
+        if (Auth::guard('admin')->check()) {
+            $myEvents = DB::table('events')
+                ->join('games', 'events.game_id', '=', 'games.id')
+                ->select('events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
+            $myTempEvents = DB::table('temporary_events')
+                ->join('games', 'temporary_events.games_id', '=', 'games.id')
+                ->select('temporary_events.id as aidi', 'temporary_events.title as judul', 'temporary_events.participant as peserta', 'temporary_events.start_date as tgl_mulai', 'games.name as nama')->get();
+            return \view('admin.tournament.index', \compact('myEvents', 'myTempEvents'));
+        }
+        return Redirect('login')->with('msg', 'Anda harus login'); //routing login
     }
 
     /**
