@@ -237,8 +237,8 @@
 @push('tooltip')
 
     <!-- Date Picker -->
-    <script src="{{ URL::asset('js/admin/lib/date-picker/datepicker.min.js') }}"></script>
-    <script src="{{ URL::asset('js/admin/lib/date-picker/i18n/datepicker.en.js') }}">
+    <script src="{{ URL::asset('js/admin/datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('js/admin/i18n/datepicker.en.js') }}">
     </script>
     <script>
         $('#start-date').datepicker({

@@ -83,8 +83,8 @@
                                 <div class="input-group date" id="datetimepicker1">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     <input type="text" id="start-date" class="form-control datepicker-here" name="start_date"
-                            data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
-                            data-time-format='hh:ii:00' />
+                                        data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
+                                        data-time-format='hh:ii:00' />
                                 </div>
                                 @error('start_date')
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -143,22 +143,14 @@
 @endsection
 @push('tooltip')
     <!-- Date Picker -->
-    <script src="{{ URL::asset('js/admin/lib/date-picker/datepicker.min.js')}}"></script>
-    <script src="{{ URL::asset('js/admin/lib/date-picker/i18n/datepicker.en.js')}}"></script>
+    <script src="{{ URL::asset('js/admin/datepicker.min.js')}}"></script>
+    <script src="{{ URL::asset('js/admin/i18n/datepicker.en.js')}}"></script>
     <script>
         $('#start-date').datepicker({
             language: 'en',
             minDate: new Date() // Now can select only dates, which goes after today
         });
         $('#end-date').datepicker({
-            language: 'en',
-            minDate: new Date() // Now can select only dates, which goes after today
-        });
-        $('#reg-open').datepicker({
-            language: 'en',
-            minDate: new Date() // Now can select only dates, which goes after today
-        });
-        $('#reg-close').datepicker({
             language: 'en',
             minDate: new Date() // Now can select only dates, which goes after today
         });
