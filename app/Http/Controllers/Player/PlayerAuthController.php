@@ -110,7 +110,7 @@ class PlayerAuthController extends Controller
             // \dd($game);
             return \view('player.profile', \compact('game'));
         } else {
-            \dd('hahah');
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
 }

@@ -1,7 +1,16 @@
 @extends('admin.main')
 @section('title','Overview')
 @section('main')
-<h2 class="mb-5">Overview</h2>
+<div class="row m-0">
+    <div class="col-sm-4">
+        <div class="float-left">
+            <div class="page-title">
+                <h3 class="pt-2">Overview</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
 <!-- Widgets  -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
@@ -10,7 +19,7 @@
                 <div class="stat-widget-five text-center">
                     <div class="text-left dib m-4" id="text-stat-dashboard">
                         <div class="stat-heading mb-3"><h4>Total Event</h4></div>
-                        <h1 class="text-center text-dark"><span class="count">{{ $count }}</span></h1>
+                        <h1 class="text-center text-dark"><span class="count">{{ $total }}</span></h1>
                     </div>
                 </div>
             </div>
@@ -40,18 +49,18 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-lg-3 col-md-6">
+    <div class="col-lg-3 col-md-6">
         <div class="card">
             <div class="card-body" id="stat-widget-dashboard">
                 <div class="stat-widget-five text-center">
                     <div class="text-left dib m-4" id="text-stat-dashboard">
                         <div class="stat-heading mb-3"><h4>Draft</h4></div>
-                        <h1 class="text-center text-dark"><span class="count">64</span></h1>
+                        <h1 class="text-center text-dark"><span class="count">{{ $draft }}</span></h1>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
 <!-- /Widgets -->
 <!-- To Do and Live Chat -->
@@ -75,9 +84,9 @@
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
                                             <div class="card-left pt-1 float-left">
-                                                @forelse ($status_0 as $onGoing)
-                                                <h3 class="mb-0 fw-r">{{ $onGoing->title }}</h3>
-                                                <p class="text-light mt-1 m-0">{{ $onGoing->description }}</p>
+                                                @forelse ($status_1 as $onGoing)
+                                                <h3 class="mb-0 fw-r">{{ $onGoing->judul }}</h3>
+                                                <p class="text-light mt-1 m-0">{{ $onGoing->nama }}</p>
                                                 @empty
                                                 <h3 class="mb-0 fw-r">Null!!</h3>
                                                 <p class="text-light mt-1 m-0">Null!!</p>
@@ -95,7 +104,7 @@
                                                     <thead>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($status_0 as $onGoing)
+                                                        @forelse ($status_1 as $onGoing)
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
@@ -111,7 +120,7 @@
                                                         <tr>
                                                             <td>  <span class="name">Mode</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->mode }} Mode</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->mode }} Elimination</span>
                                                             </td>
                                                         </tr>
                                                         @empty
@@ -150,7 +159,7 @@
                                         <div class="card text-white bg-flat-color-1">
                                             <div class="card-body p-5">
                                                 <div class="card-left pt-1 float-left">
-                                                    @forelse ($status_1 as $finished)
+                                                    @forelse ($status_0 as $finished)
                                                     <h3 class="mb-0 fw-r">{{ $finished->judul }}</h3>
                                                     <p class="text-light mt-1 m-0">{{ $finished->nama }}</p>
                                                     @empty
@@ -170,7 +179,7 @@
                                                         <thead>
                                                         </thead>
                                                         <tbody>
-                                                            @forelse ($status_1 as $finished))
+                                                            @forelse ($status_0 as $finished))
                                                             <tr>
                                                                 <td>  <span class="name">Participant</span> </td>
                                                                 <td>
@@ -205,7 +214,7 @@
                                                             <tr>
                                                                 <td>  <span class="name">Mode</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">GSC Mode</span>
+                                                                    <span class="badges text-secondary">Null!!</span>
                                                                 </td>
                                                             </tr>
                                                             @endforelse
@@ -216,7 +225,6 @@
                                         </div>
                                     </div>                                    
                                 </div><!-- /# column -->
-                                
                             </div>
                         </div>
                     </div>
@@ -226,5 +234,6 @@
         </div>
     </div>
 </div><!-- .row -->
+</div>
 <!-- /To Do and Live Chat -->
 @endsection

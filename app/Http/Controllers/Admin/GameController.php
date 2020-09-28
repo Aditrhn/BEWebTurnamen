@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Game;
@@ -16,10 +17,18 @@ class GameController extends Controller
      */
     public function index()
     {
-        $game = Game::orderBy('created_at', 'ASC')->get();
-        // return \response()->json($game);
-        // \dd($game);
-        return \view('admin.game.index', \compact('game'));
+        if (Auth::guard('admin')->check()) {
+            $game = Game::orderBy('created_at', 'ASC')->get();
+            // return \response()->json($game);
+            $test = Game::all();
+            $array = \response()->json([
+                'status' => \true,
+                'message' => 'Data Game',
+                'data' => $test
+            ]);
+            // \dd($array, $game);
+            return \view('admin.game.index', \compact('game', 'array'));
+        }
     }
 
     /**
@@ -66,7 +75,10 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        // $game = Game::all();
+        // $array = \response()->json([
+
+        // ])
     }
 
     /**
@@ -92,7 +104,7 @@ class GameController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'platform' => 'required',
-            'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+            // 'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         // Game::where('id', $game->id)->update(
         //     [
@@ -114,14 +126,6 @@ class GameController extends Controller
             'platform' => $request->platform,
             'icon_url' => $name_icon
         ]);
-
-        // $tujuan_upload = 'img_Dekan';
-        // $file->move($tujuan_upload, $nama_file);
-        // $DekanUpdate =  DekanModel::find($dekanModel->id);
-        // $DekanUpdate->nama_Dekan = $request->nama_Dekan;
-        // $DekanUpdate->nik = $request->nik;
-        // $DekanUpdate->ttd_Dekan = $nama_file;
-        // $DekanUpdate->save();
         return \redirect('super/game')->with(['success' => 'Game updated successfully']);
     }
 

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Event;
 use App\Model\Game;
+use App\Model\Match;
 use App\Model\TemporaryEvent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
@@ -22,11 +24,20 @@ class EventController extends Controller
     {
         //SELECT events.title as judul,events.participant as peserta,events.start_date as tgl_mulai,games.name as nama FROM `events` JOIN games ON events.game_id=games.id
         // $event = Event::orderBy('created_at', 'ASC')->get();
-        $myTournament = DB::table('events')
-            ->join('games', 'events.game_id', '=', 'games.id')
-            ->select('events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
-        // \dd($myTournament);
-        return \view('admin.tournament.index', \compact('myTournament'));
+        if (Auth::guard('admin')->check()) {
+            $myEvents = DB::table('events')
+                ->join('games', 'events.game_id', '=', 'games.id')
+                ->select('events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
+            $myTempEvents = DB::table('temporary_events')
+                ->join('games', 'temporary_events.game_id', '=', 'games.id')
+                ->select('temporary_events.id as aidi', 'temporary_events.title as judul', 'temporary_events.participant as peserta', 'temporary_events.start_date as tgl_mulai', 'games.name as nama')->get();
+            // $json_array = \response()->json([
+            //     'status'=> \true,
+            //     'message'=> ''
+            // ])
+            return \view('admin.tournament.index', \compact('myEvents', 'myTempEvents'));
+        }
+        return Redirect('login')->with('msg', 'Anda harus login'); //routing login
     }
 
     /**
@@ -50,7 +61,7 @@ class EventController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'games_id' => 'required',
+            'game_id' => 'required',
             'participant' => 'required',
             'start_date' => 'required',
             'description' => 'required'
@@ -64,15 +75,15 @@ class EventController extends Controller
         if ($request->input('action') == 'save') {
             $tempevent = TemporaryEvent::find($request->id);
             $tempevent->title = $request->title;
-            $tempevent->games_id = $request->game;
+            $tempevent->game_id = $request->game_id;
             $tempevent->participant = $request->participant;
             $tempevent->banner_url = $request->banner;
             $tempevent->start_date = $request->start_date;
+            $tempevent->end_date = $request->end_date;
             $tempevent->description = $request->description;
             $tempevent->fee = $request->fee;
-            $tempevent->prize_pool = $request->prizepool;
+            $tempevent->prize_pool = $request->prize_pool;
             $tempevent->rules = $request->rules;
-            $tempevent->bracket_size = $request->bracket_size;
             $tempevent->bracket_type = $request->bracket_type;
             $tempevent->registration_open = $request->registration_open;
             $tempevent->registration_close = $request->registration_close;
@@ -81,14 +92,22 @@ class EventController extends Controller
             return back(); //save and go back to card
         } else if ($request->input('action') == 'publish') {
             $request->validate([
+                'title' => 'game_id',
                 'title' => 'required',
-                'game' => 'required',
                 'participant' => 'required',
                 'start_date' => 'required',
-                'description' => 'required'
+                'description' => 'required',
+                'fee' => 'required',
+                'prize_pool' => 'required',
+                'rules' => 'required',
+                'bracket_type' => 'required',
+                'registration_open' => 'required',
+                'registration_close' => 'required',
+                'form_message' => 'required',
             ]);
             Event::create($request->all());
-            return back();
+            TemporaryEvent::destroy($request->id);
+            return redirect()->route('event.index');
         }
     }
 
@@ -100,7 +119,25 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        //SELECT matches.date,matches.team_a,matches.team_b,matches.score_a,matches.score_b,matches.match_number,events.bracket_type, teams.name FROM `matches` JOIN events on matches.event_id=events.id JOIN teams on events.winner_id=teams.id
+        $matches_team = DB::table('matches')
+            ->join('events', 'matches.event_id', '=', 'events.id')
+            ->join('teams', 'events.winner_id', '=', 'teams.id')
+            ->select('matches.date', 'matches.team_a', 'matches.team_b', 'matches.match_number', 'events.bracket_type', 'teams.name')->first();
+        $matches_score = Match::find($id);
+        $json_array = \response()->json([
+            'status' => \true,
+            'respon' => 'Data team!!',
+            'teams' => $matches_team
+        ]);
+        $json_array2 = \response()->json([
+            'status' => \true,
+            'respon' => 'Data score!!',
+            'scores' => $matches_score
+        ])  ;
+        \dd($json_array, $json_array2);
+        // $games = Game::orderBy('created_at', 'ASC')->get();
+        return view('admin.tournament.detail', \compact('json_array', 'json_array2'));
     }
 
     /**

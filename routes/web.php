@@ -55,6 +55,7 @@ Route::group(['auth', 'admins'], function () {
         Route::post('super-login/post', 'AdminAuthController@postLogin')->name('super.postlogin');
         Route::get('super-dashboard', 'AdminAuthController@dashboard')->name('super.dashboard');
         Route::get('createadmin', 'AdminAuthController@createAdmin');
+        Route::get('super-logout', 'AdminAuthController@logout')->name('super.logout');
 
         //game
         Route::get('super/game', 'GameController@index')->name('game.index');
@@ -67,13 +68,16 @@ Route::group(['auth', 'admins'], function () {
         //event
         Route::get('super/event', 'EventController@index')->name('event.index');
         Route::get('super/event/create', 'EventController@create')->name('event.create');
-        Route::post('super/event', 'EventController@store')->name('event.store');
+        Route::post('super/event', 'EventController@updateAndStore')->name('event.update-and-store');
         Route::post('super/tempevent', 'EventController@tempStore')->name('temporary-event.store');
         Route::get('super/event/{tempevent}/edit', 'EventController@edit')->name('temporary-event.edit');
         Route::put('super/event/{event}', 'EventController@update')->name('event.update');
+        Route::get('super/event/{event}', 'EventController@show')->name('event.show');
         Route::delete('super/event/{event}', 'EventController@destroy')->name('event.destroy');
 
         //overview
         Route::get('super/overview', 'OverviewController@index')->name('overview.index');
+
+        //bracket
     });
 });

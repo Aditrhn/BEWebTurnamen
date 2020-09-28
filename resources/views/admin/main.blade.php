@@ -24,7 +24,9 @@
     <link rel="stylesheet" href="{{ URL::asset('css/admin/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/admin/style.css') }}">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-    <link rel="stylesheet" href="{{ URL::asset('css/admin/lib/date-picker/datepicker.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/admin/datepicker.min.css') }}" />
+    {{-- jquery bracket --}}
+<link rel="stylesheet" href="{{ URL::asset('css/jquery.bracket.min.css')}}">
 </head>
 
 <body>
@@ -33,19 +35,16 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-2x fa-pie-chart"></i>Overview </a>
+                    <li class="{{ Request::url() == url('super/overview') ? 'active' : '' }}">
+                        <a href="{{URL::route('overview.index')}}"><i class="menu-icon fa fa-2x fa-pie-chart"></i>Overview </a>
                     </li>
-                    <li class="">
-                        <a href="{{ URL::route('overview.index') }}"><i class="menu-icon fa fa-laptop"></i>Overview</a>
+                    <li class="{{ Request::url() == url('super/event') ? 'active' : '' }}">
+                        <a href="{{URL::route('event.index')}}"><i class="menu-icon fa fa-2x fa-trophy"></i>Tournament</a>
                     </li>
-                    <li class="">
-                        <a href="games.html"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
+                    <li class="{{ Request::url() == url('super/game') ? 'active' : '' }}">
+                        <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
                     <hr class="bg-white" width="100%">
-                    <li class="">
-                        <a href="settings.html" class="settings"><i class="menu-icon fa fa-2x fa-cog"></i>Settings</a>
-                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -115,7 +114,7 @@
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{{ URL::route('super.logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
