@@ -20,8 +20,14 @@ class GameController extends Controller
         if (Auth::guard('admin')->check()) {
             $game = Game::orderBy('created_at', 'ASC')->get();
             // return \response()->json($game);
-            // \dd($game);
-            return \view('admin.game.index', \compact('game'));
+            $test = Game::all();
+            $array = \response()->json([
+                'status' => \true,
+                'message' => 'Data Game',
+                'data' => $test
+            ]);
+            // \dd($array, $game);
+            return \view('admin.game.index', \compact('game', 'array'));
         }
     }
 
@@ -69,7 +75,10 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        // $game = Game::all();
+        // $array = \response()->json([
+
+        // ])
     }
 
     /**

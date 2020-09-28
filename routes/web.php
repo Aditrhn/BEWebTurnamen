@@ -66,5 +66,7 @@ Route::group(['auth', 'admins'], function () {
 
         //overview
         Route::get('super/overview', 'OverviewController@index')->name('overview.index');
+
+        //bracket
     });
 });

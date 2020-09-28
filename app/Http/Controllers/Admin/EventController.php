@@ -30,6 +30,10 @@ class EventController extends Controller
             $myTempEvents = DB::table('temporary_events')
                 ->join('games', 'temporary_events.games_id', '=', 'games.id')
                 ->select('temporary_events.id as aidi', 'temporary_events.title as judul', 'temporary_events.participant as peserta', 'temporary_events.start_date as tgl_mulai', 'games.name as nama')->get();
+            // $json_array = \response()->json([
+            //     'status'=> \true,
+            //     'message'=> ''
+            // ])
             return \view('admin.tournament.index', \compact('myEvents', 'myTempEvents'));
         }
         return Redirect('login')->with('msg', 'Anda harus login'); //routing login
