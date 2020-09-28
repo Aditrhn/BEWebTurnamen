@@ -17,8 +17,11 @@ class CreateMatchesTable extends Migration
             $table->id();
             $table->dateTime('date');
             $table->unsignedInteger('event_id');
+            $table->unsignedInteger('match_number');
             $table->unsignedInteger('team_a');
             $table->unsignedInteger('team_b');
+            $table->unsignedInteger('score_a');
+            $table->unsignedInteger('score_b');
             $table->timestamps();
         });
     }
