@@ -26,8 +26,7 @@ class CreateTemporaryEventsTable extends Migration
             $table->integer('fee')->default(0);
             $table->integer('prize_pool')->nullable();
             $table->string('rules')->nullable();
-            $table->integer('bracket_size')->nullable();
-            $table->string('bracket_type')->nullable();
+            $table->enum('bracket_type', ['1','2'])->default('1');
             $table->dateTime('registration_open')->nullable();
             $table->dateTime('registration_close')->nullable();
             $table->string('form_message')->nullable();

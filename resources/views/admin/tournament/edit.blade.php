@@ -170,14 +170,7 @@
     <div class="card-body">
         <h4><strong>Structure</strong></h4>
         <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="size" class=" form-control-label">Size</label>
-                    <input type="text" id="bracket_size" name="bracket_size" class="form-control"
-                        value="{{ $tempevent->bracket_size }}">
-                    <span class="help-block"></span></div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class=""><label for="bracket_type" class=" form-control-label">Format</label></div>
                 <div class="">
                     <select name="bracket_type" id="bracket_type" class="form-control">

@@ -111,7 +111,8 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $games = Game::orderBy('created_at', 'ASC')->get();
+        return view('admin.tournament.detail');
     }
 
     /**

@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ URL::asset('css/admin/style.css') }}">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link rel="stylesheet" href="{{ URL::asset('css/admin/lib/date-picker/datepicker.min.css') }}" />
+    {{-- jquery bracket --}}
+<link rel="stylesheet" href="{{ URL::asset('css/jquery.bracket.min.css')}}">
 </head>
 
 <body>
