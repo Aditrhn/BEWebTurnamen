@@ -16,8 +16,7 @@ class CreateTemporaryEventsTable extends Migration
         Schema::create('temporary_events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->bigInteger('games_id');
-            $table->enum('status', ['0','1'])->default('0');
+            $table->bigInteger('game_id');
             $table->unsignedInteger('participant')->nullable();
             $table->string('banner_url')->nullable();
             $table->dateTime('start_date', 0);
@@ -27,6 +26,7 @@ class CreateTemporaryEventsTable extends Migration
             $table->integer('prize_pool')->nullable();
             $table->string('rules')->nullable();
             $table->enum('bracket_type', ['1','2'])->default('1');
+            $table->enum('comeback', ['0','1'])->default('0');
             $table->dateTime('registration_open')->nullable();
             $table->dateTime('registration_close')->nullable();
             $table->string('form_message')->nullable();

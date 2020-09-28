@@ -38,7 +38,7 @@
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Select a Games</label>
                         </div>
                         <div class="col-12 col-md-12">
-                            <select name="games_id" id="select" class="form-control">
+                            <select name="game_id" id="select" class="form-control">
                                 @foreach($games as $game)
                                     <option value="{{ $game->id }}">{{ $game->name }}</option>
                                 @endforeach

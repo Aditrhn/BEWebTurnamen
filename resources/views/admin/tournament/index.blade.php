@@ -65,7 +65,7 @@
                                                     <div class="text-dark pl-5 pr-5">
                                                         <h4 class="text-center m-3">{{ $myEvent->judul }}</h4>
                                                         <h5 class="ml-4 mb-3"><i
-                                                                class="pe-3x pe-7s-joy pe-va mr-4"></i>{{ $myEvent->name }}
+                                                                class="pe-3x pe-7s-joy pe-va mr-4"></i>{{ $myEvent->nama }}
                                                         </h5>
                                                         <h5 class="ml-4 mb-3"><i
                                                                 class="pe-3x pe-7s-users pe-va mr-4"></i>{{ $myEvent->peserta }} Teams</h5>

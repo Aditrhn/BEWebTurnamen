@@ -36,7 +36,7 @@
             <div class="col col-md-3"><label for="select" class=" form-control-label">Select a Games</label>
             </div>
             <div class="col-12 col-md-12">
-                <select name="game" id="select" class="form-control">
+                <select name="game_id" id="select" class="form-control">
                     @foreach($games as $game)
                         <option value="{{ $game->id }}">{{ $game->name }}</option>
                     @endforeach
@@ -140,19 +140,19 @@
             <div class="input-group-prepend" id="button-addon3">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary active" onclick="myFunction()">
-                      <input type="radio" name="fee-option" id="paid"> free
+                      <input type="radio" name="fee-option" id="paid" checked> free
                     </label>
                     <label class="btn btn-secondary" onclick="myFunction1()">
-                      <input type="radio" name="fee-option" id="free" checked> paid
+                      <input type="radio" name="fee-option" id="free"> paid
                     </label>
                   </div>
             </div>
-            <input type="text" name="fee" id="fee_paid" class="form-control" placeholder="fee" value="{{$tempevent->fee}}">
+            <input type="text" name="fee" id="fee_paid" class="form-control" placeholder="fee" readonly value="{{$tempevent->fee}}">
           </div>
 
         <div class="form-group">
             <label for="prizepool" class=" form-control-label">Prizepool</label>
-            <input type="text" id="prizepool" name="prizepool" class="form-control"
+            <input type="text" id="prize_pool" name="prize_pool" class="form-control"
                 value="{{ $tempevent->prize_pool }}">
             <span class="help-block"></span>
         </div>
@@ -174,10 +174,8 @@
                 <div class=""><label for="bracket_type" class=" form-control-label">Format</label></div>
                 <div class="">
                     <select name="bracket_type" id="bracket_type" class="form-control">
-                        <option value="0">Please select</option>
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
+                        <option value="1">Single Elimination</option>
+                        <option value="2">Double Elimination</option>
                     </select>
                 </div>
             </div>
@@ -259,12 +257,12 @@
         });
         function myFunction() {
             var x = document.getElementById("fee_paid");
-            x.disabled = true;
+            x.readOnly = true;
             x.value = 0;
         }
         function myFunction1() {
             var x = document.getElementById("fee_paid");
-            x.disabled = false;
+            x.readOnly = false;
         }
     </script>
     <script src="assets/js/main.js"></script>

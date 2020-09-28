@@ -84,9 +84,9 @@
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
                                             <div class="card-left pt-1 float-left">
-                                                @forelse ($status_0 as $onGoing)
-                                                <h3 class="mb-0 fw-r">{{ $onGoing->title }}</h3>
-                                                <p class="text-light mt-1 m-0">{{ $onGoing->description }}</p>
+                                                @forelse ($status_1 as $onGoing)
+                                                <h3 class="mb-0 fw-r">{{ $onGoing->judul }}</h3>
+                                                <p class="text-light mt-1 m-0">{{ $onGoing->nama }}</p>
                                                 @empty
                                                 <h3 class="mb-0 fw-r">Null!!</h3>
                                                 <p class="text-light mt-1 m-0">Null!!</p>
@@ -104,7 +104,7 @@
                                                     <thead>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($status_0 as $onGoing)
+                                                        @forelse ($status_1 as $onGoing)
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
@@ -120,7 +120,7 @@
                                                         <tr>
                                                             <td>  <span class="name">Mode</span> </td>
                                                             <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->mode }} Mode</span>
+                                                                <span class="badges text-secondary">{{ $onGoing->mode }} Elimination</span>
                                                             </td>
                                                         </tr>
                                                         @empty
@@ -159,7 +159,7 @@
                                         <div class="card text-white bg-flat-color-1">
                                             <div class="card-body p-5">
                                                 <div class="card-left pt-1 float-left">
-                                                    @forelse ($status_1 as $finished)
+                                                    @forelse ($status_0 as $finished)
                                                     <h3 class="mb-0 fw-r">{{ $finished->judul }}</h3>
                                                     <p class="text-light mt-1 m-0">{{ $finished->nama }}</p>
                                                     @empty
@@ -179,7 +179,7 @@
                                                         <thead>
                                                         </thead>
                                                         <tbody>
-                                                            @forelse ($status_1 as $finished))
+                                                            @forelse ($status_0 as $finished))
                                                             <tr>
                                                                 <td>  <span class="name">Participant</span> </td>
                                                                 <td>
@@ -214,7 +214,7 @@
                                                             <tr>
                                                                 <td>  <span class="name">Mode</span> </td>
                                                                 <td>
-                                                                    <span class="badges text-secondary">GSC Mode</span>
+                                                                    <span class="badges text-secondary">Null!!</span>
                                                                 </td>
                                                             </tr>
                                                             @endforelse
