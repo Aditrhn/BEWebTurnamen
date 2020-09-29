@@ -442,6 +442,81 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 
   
   /*End Matchticker*/
+/* End dashboard Page */
+
+/*Friend Page*/
+
+  .title-friend{
+    color: white;
+    font-size: x-large;
+  }
+
+  .text-friend{
+    color: white;
+    font-size: larger;
+  }
+
+  .friend-page .btnAdd{
+    padding-top: 10px;
+  }
+
+  .btnRquest{
+    padding-top: 20px;
+  }
+
+  .img-friend{
+    width: 60px;
+    border-radius: 50px; 
+    align-items: center;
+  }
+
+  .panel-friend{
+    font-size: 135%;
+  }
+
+  .panel-friend-detail{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    background-color:  #35346D;
+    color: #fff;
+    border-radius: 30px;
+  }
+
+  .img-panel-friend{
+    width: 35%;
+    border-radius: 100%; 
+    align-items: center;
+  }
+
+  .pillsFriend{
+    font-weight: bold; 
+    font-size: 140%;
+  }
+  .pillsOverview{
+    font-weight: bold; 
+    font-size: 140%;
+  }
+  
+  .pillsRequest{
+    margin-left: 40% !important; 
+    margin-bottom: 2%;
+  }
+  .pillsBracket{
+    margin-left: 20% !important; 
+    margin-bottom: 2%;
+  }
+  .pillsRules{
+    margin-left: 20% !important; 
+    margin-bottom: 2%;
+  }
+
+  .marginPils{
+    margin-top: 5%;
+  }
+  
+  /*End Friend Page*/
 
   /*Media Screen*/
 
@@ -631,8 +706,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 
   /*End Media Screen*/
 
-  
-/* End dashboard Page */
 
   /* Team Page */
   .panel-team{
@@ -1596,6 +1669,27 @@ html.fullscreen-bg #wrapper {
 .navbar-nav > li > .dropdown-menu {
   padding: 0;
   min-width: 173px; }
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #745FF8;
+  background-color: transparent;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #fff;
+  border-bottom: solid #745FF8 ;
+  background-color: transparent;
+}
+
+.nav-pills2 > li.active > a,
+.nav-pills2 > li.active > a:hover,
+.nav-pills2 > li.active > a:focus {
+  color: #745FF8;
+  font-weight: bold;
+}
   /* editable */
   /* .navbar-nav > li:hover{
     background-color: #745FF8;
@@ -1947,6 +2041,17 @@ ul.list-justify > li {
 .btn-danger {
   border-radius: 10px;
 }    
+
+.btn-unfriend {
+  background-color: #DC143C;
+  border-radius: 10px;
+  border-color: #DC143C; }
+  .btn-unfriend:hover, .btn-unfriend:focus {
+    border-radius: 10px;
+    background-color: #26244F;
+    border-color: #26244F;
+    color: white;
+  }
 
 .btn-warning {
   background-color: #e4cb10;
