@@ -330,148 +330,309 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 }
 /* END BRACKET */
   
-    /*Carousel Landing Page*/
+    /*Dashboard Page*/
     .team_columns_carousel_control_icons {
-        line-height: 35px;
-        font-size: 25px!important;
-        font-weight: normal!important;
+      line-height: 35px;
+      font-size: 25px!important;
+      font-weight: normal!important;
+  }
+  .team-control-btn{
+    padding-top: 20px;
+  }
+  .carousel-landing{
+    padding-top: 10px;
+  }
+  .case-landing {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: 20px;
+    background-size: cover;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .case-landing__overlay {
+    width: 100%;
+    position: relative;
+    top: 180px;
+    z-index: 50;
+
+  }
+  
+  .case-landing__title {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 10px;
+    height: 50px;
+    position: relative;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 1)), color-stop(1,black));
+  }
+  
+  .case-landing:hover .case-landing__link {
+    top: 0;
+  }
+
+  .case-landing:hover .case-landing__title {
+    background: #745FF8;
+  }
+  .case-landing:hover .case-landing__overlay:after {
+    opacity: .75;
+  }
+
+  .container-fluid .product .product-match {
+    background: #745FF8;
+    flex: 3;
+  }
+
+  .head-text{
+    color: white;
+    font-weight: bold;
+    padding-left: 4%;
+  }
+
+  .head-Machticker{
+    color: white;
+    font-weight: bold;
+  }
+
+  .rowDashboard{
+    text-align: center;
+  }
+
+  /*Landing Image*/
+  .landing1 {
+    height: 250px;
+    width: 260px;
+  }
+  .landing2 {
+    height: 250px;
+    width: 300px;
+  }
+  /* End Landing Image*/
+
+  /*Matchticker*/
+  .panel-matchticker{
+    background-color: transparent !important; 
+    border: none !important;
+  }
+
+  .table-matchticker{
+    background-color:#35346c; 
+    border-radius: 6px; 
+    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.5);
+  }
+  .table-matchticker-img{
+    width: 90px; 
+    height: 80px;
+  }
+
+  .text-versus{
+    padding-top: 20px; 
+    padding-right: 25px;
+  }
+
+  .table-matchticker-content{
+    background-color: #26254f; 
+    margin-top: 20px;
+  }
+
+  
+  /*End Matchticker*/
+
+  /*Media Screen*/
+
+  @media(max-width:812px){
+
+    .panel-friend-detail{
+      width: 45%;
+      margin-left: 25%;
     }
-    .team-control-btn{
-      padding-top: 20px;
+
+    .img-panel-friend{
+      width: 35%;
     }
-    .carousel-landing{
-      padding-top: 10px;
+
+    .friend-page{
+      padding-top: 0px;
     }
+
+    .panel-friend{
+      font-size: 105%;
+    }
+
+    .text-view{
+      font-size: 80%;
+    }
+
     .case-landing {
-      position: relative;
-      display: block;
-      width: 300px;
-      height: 250px;
-      margin: 0 auto 2rem;
-      background-size: cover;
-      border-radius: 10px;
-      box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-      transition: all .4s ease;
-    }
-
-    @media screen and (min-width: 45em) {
-      .case-landing {
-        display: inline-block;
-        width: 300px;
-        margin-left : 50px;
-      }
-    }
-  
-    .case-landing__overlay {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 200px;
-      z-index: 50;
-  
-    }
-    .case-landing__overlay:after {
-      content: '';
-      width: 100%;
-      border-radius: 0;
-      height: 100%;
-      background-color: #202020;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      z-index: -10;
-      left: 0;
-      transition: all .3s ease;
-      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 1)), color-stop(1,black));
-    }
-    
-    .case-landing__title {
-      position: relative;
-      top: 200px;
-      margin-bottom: 2rem;
-      margin-top: 1rem;
-      font-size: 2rem;
-      font-family: 'Oswald';
-      font-weight: 100;
-      color: white;
-      text-align: center;
-      letter-spacing: 1px;
-      transition: all 0.3s cubic-bezier(0.3, 0, 0, 1.3);
-    }
-    
-    .case-landing__link {
-      position: relative;
-      display: block;
-      width: 60%;
-      top: 200px;
-      padding: 10px;
-      margin: 0 auto;
-      font-family: 'Oswald';
-      color: white;
-      letter-spacing: 3px;
-      text-decoration: none;
-      text-align: center;
-      border: 2px solid white;
-      border-radius: 3px;
-      font-size: 1.25em;
-      transition: all 0.3s cubic-bezier(0.3, 0, 0, 1.3);
-    }
-    .case-landing__link:hover {
-      background-color: white;
-      color: #202020;
-    }
-    .case-landing:hover .case-landing__title {
-      top: 0;
-    }
-    .case-landing:hover .case-landing__link {
-      top: 0;
-    }
-    .case-landing:hover .case-landing__overlay:after {
-      opacity: .75;
-    }
-
-    .container-fluid .product .product-match {
-      background: #745FF8;
-      flex: 3;
-    }
-
-    .head-text{
-      color: white;
+      margin-left : 8%;
     }
 
     .landing1 {
-      background-image: url("../img/Apex_legends_landing.jpg");
-      height: 250px;
-      width: 300px;
+      width: 200px;
+      height: 180px;
+    }
+    .landing2 {
+      width: 280px;
+      height: 180px;
+    }
+    
+    .pillsRequest{
+      margin-left: 3% !important; 
+    }
+    .pillsBracket{
+      margin-left: 3% !important; 
+    }
+    .pillsRules{
+      margin-left: 3% !important; 
     }
 
-    .panel-matchticker{
-      background-color: transparent; 
-      border: none;
+    .pillsFriend{
+      font-size: 100%;
+    }
+    .pillsOverview{
+      font-size: 100%;
+    }
+    
+    /* Banner */
+    .prizepool{
+      text-align: start !important;
     }
 
-    .table-matchticker{
-      background-color:#35346c; 
-      border-radius: 6px; 
-      box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.5);
+    .container-fluid .product .product-info .product-content .table{
+      margin-top: -100px;
     }
-    .table-matchticker-img{
-      width: 90px; 
-      height: 80px;
+    /* end */
+
+    /* Team Details */
+    .main .main-content .panel-body .team-overview a{
+      margin-top: 30px !important;
     }
 
-    .table-matchticker-content{
-      background-color: #26254f; 
+    .main .main-content .panel h3{
+      font-size: 18px;
+    }
+    .main .main-content .panel span > a{
+      font-size: 12px;
+    }
+    
+    .main .main-content .panel span > .btn{
+      margin-right: 4px !important;
+      padding: 1px 4px 1px 4px !important;
+    }
+    /* End */
+
+    /* Tournament */
+
+    .container-fluid .product .product-info .product-content .table {
+      margin : 0 !important;
+    }
+    .container-fluid .product{
+      height: 100% !important;
+    }
+
+    .container-fluid .product .product-info .product-content .buttons {
+      margin: 30px 0 20px 0 !important;
+      text-align: start !important;
+    }
+    .container-fluid .product .product-info .product-content .buttons .btn-success{
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+    
+    /* End */
+
+    .case-landing__overlay {
+      top: 112px;
+    }
+
+    .panel-Create{
+      padding-top: 10px;
+    }
+
+    .colPanelTeam{
+      top: 0; 
       margin-top: 20px;
     }
 
-    .text-versus{
-      padding-top: 20px; 
-      padding-right: 25px;
+    .imgPanelteam{
+      width: 35%;
+    }
+
+    .panel-team{
+      height: 250px;
+      width: 300px;
+    }
+  }
+
+  @media(max-width:414px){
+
+    .pillsFriend{
+      font-size: 100%;
+    }
+    .pillsOverview{
+      font-size: 100%;
+    }
+
+    .pillsRequest{
+      margin-left: 4% !important; 
+    }
+    .pillsBracket{
+      margin-left: 4% !important; 
+    }
+
+    .panel-friend-detail{
+      width: 70%;
+      margin-left: 16%;
+    }
+
+    .img-panel-friend{
+      width: 40%;
+    }
+
+    .landing1 {
+      width: 250px;
+      height: 180px;
     }
     
-  /* End Landding Page */
+    .landing2 {
+      width: 250px;
+      height: 180px;
+    }
+
+    .case-landing__overlay {
+      top: 112px;
+    }
+
+    .panel-Create{
+      padding-top: 10px;
+    }
+
+    .colPanelTeam{
+      top: 10px; 
+      margin-top: 20px;
+    }
+
+    .imgPanelteam{
+      width: 35%;
+    }
+
+    .panel-team{
+      height: 220px;
+      width: 200px;
+    }
+  }
+
+
+  /*End Media Screen*/
+
+  
+/* End dashboard Page */
 
   /* Team Page */
   .panel-team{
