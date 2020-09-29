@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Player;
 
+use App\Http\Controllers\Controller;
 use App\Model\Player;
 use App\Model\Friend;
 use Illuminate\Http\Request;
