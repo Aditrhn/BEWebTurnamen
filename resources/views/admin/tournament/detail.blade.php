@@ -31,17 +31,19 @@
     <script>
         var minimalData = {
             teams: [
-                ["Team 1", "Team 2"], /* first matchup */
-                ["Team 3", "Team 4"] /* second matchup */   
+                ["Team 1", "Team 2"],
+                ["Team 3", "Team 4"],
+                ["Team 5", "Team 6"],
+                ["Team 7", "Team 8"] 
             ],
             results: [
                 [
-                    [6, 2],
-                    [3, 4]
+                    [,],
+                    [,],
+                    [,],
+                    [,]
                 ], /* first round */
                 [
-                    [4, ],
-                    [2, 1]
                 ] /* second round */
             ]
         }
