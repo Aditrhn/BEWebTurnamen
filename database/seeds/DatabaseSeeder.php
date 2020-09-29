@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             PlayerSeeder::class,
             AdminSeeder::class,
             GameSeeder::class,
-            FriendSeeder::class
+            FriendSeeder::class,
+            TeamSeeder::class
         ]);
     }
 }

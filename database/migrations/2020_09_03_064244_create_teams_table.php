@@ -18,7 +18,6 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('max_member');
             $table->string('logo_url')->nullable();
-            $table->enum('status', ['0', '1']);
             $table->timestamps();
         });
     }
