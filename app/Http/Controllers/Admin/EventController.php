@@ -120,11 +120,14 @@ class EventController extends Controller
     public function show($id)
     {
         //SELECT matches.date,matches.team_a,matches.team_b,matches.score_a,matches.score_b,matches.match_number,events.bracket_type, teams.name FROM `matches` JOIN events on matches.event_id=events.id JOIN teams on events.winner_id=teams.id
-        $matches_team = DB::table('matches')
+        $events = Event::find($id);
+        $matches = DB::table('matches')
             ->join('events', 'matches.event_id', '=', 'events.id')
-            ->select('events.title', 'matches.match_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
+            ->select('matches.match_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
             ->where('matches.event_id', $id)
-            ->get();
+            ->orderBy('match_number', 'asc')
+            ->get()
+            ->toArray();
         
         // $matches_score = Match::find($id);
         // $json_array = \response()->json([
@@ -137,11 +140,7 @@ class EventController extends Controller
         //     'respon' => 'Data score!!',
         //     'scores' => $matches_score
         // ])  ;
-        foreach ($matches_team as $key) {
-            echo $key->team_a." vs ".$key->team_b."<br>";
-        }
-        die;
-        return view('admin.tournament.detail', \compact('json_array', 'json_array2'));
+        return view('admin.tournament.detail', \compact('matches','events'));
         // return view('admin.tournament.detail');
     }
 

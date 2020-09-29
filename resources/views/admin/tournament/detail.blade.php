@@ -5,7 +5,7 @@
     <div class="col-sm-12">
         <div class="float-left">
             <div class="page-title">
-                <h3 class="pt-2">Tournament</h3>
+                <h3 class="pt-2">{{$events->title}}</h3>
             </div>
         </div>
     </div>
@@ -31,17 +31,17 @@
     <script>
         var minimalData = {
             teams: [
-                ["Team 1", "Team 2"],
-                ["Team 3", "Team 4"],
-                ["Team 5", "Team 6"],
-                ["Team 7", "Team 8"] 
+                // ["Team 1", "Team 2"],
+                // ["Team 3", "Team 4"],
+                // ["Team 5", "Team 6"],
+                // ["Team 7", "Team 8"] 
+                @foreach($matches as $match)
+                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @endforeach
             ],
             results: [
                 [
-                    [,],
-                    [,],
-                    [,],
-                    [,]
+                
                 ], /* first round */
                 [
                 ] /* second round */
