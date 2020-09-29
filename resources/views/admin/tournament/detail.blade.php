@@ -34,17 +34,18 @@
                 // ["Team 1", "Team 2"],
                 // ["Team 3", "Team 4"],
                 // ["Team 5", "Team 6"],
-                // ["Team 7", "Team 8"] 
+                // ["Team 7", "Team 8"]
                 @foreach($matches as $match)
                     ["{{$match->team_a}}", "{{$match->team_b}}"],
                 @endforeach
+                @if(count($matches) % 2 != 0)
+                    [null, null] 
+                @endif
             ],
             results: [
                 [
                 
-                ], /* first round */
-                [
-                ] /* second round */
+                ]
             ]
         }
         var resizeParameters = {

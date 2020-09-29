@@ -140,6 +140,7 @@ class EventController extends Controller
         //     'respon' => 'Data score!!',
         //     'scores' => $matches_score
         // ])  ;
+        // \dd($matches);
         return view('admin.tournament.detail', \compact('matches','events'));
         // return view('admin.tournament.detail');
     }
