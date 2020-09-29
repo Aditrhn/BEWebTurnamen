@@ -515,6 +515,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .marginPils{
     margin-top: 5%;
   }
+
+  .panel-friend.not-found h4{
+    color: #fff;
+  }
   
   /*End Friend Page*/
 
