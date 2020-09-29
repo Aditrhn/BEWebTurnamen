@@ -33,6 +33,16 @@ Route::group(['auth', 'players'], function () {
 
         //Profile
         Route::get('profile', 'PlayerAuthController@profile')->name('profile');
+
+        //Search
+        Route::get('search-result', 'SearchController@index')->name('search');
+
+        //Friend
+        Route::get('friend', 'FriendController@index')->name('friend');
+        Route::post('unfriend', 'FriendController@unfriend')->name('unfriend');
+        Route::post('add-friend', 'FriendController@add_friend')->name('add-friend');
+        Route::post('accept-friend', 'FriendController@accept_friend')->name('accept-friend');
+        Route::post('decline-friend', 'FriendController@decline_friend')->name('decline-friend');
     });
 });
 
