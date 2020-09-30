@@ -2572,4 +2572,31 @@ color: white;
  /********************
  * ENDPAGE:CREATE-TEAM
  ********************/
+
+ /********************
+ * PAGE : EDIT-PROFILE
+ ********************/
+
+ #avatar{
+   color: white;
+ }
+ #upload_avatar{
+  background-color: #35356C;
+  padding: 2%; 
+  border-radius: 10px;
+ }
+#inputGroupavatar{
+  width: 100%;
+}
+#button-editprofile{
+  float: right;
+}
+#btnsubmit_editprofile{
+  float: right;
+  margin: 20px;
+  
+}
+ /********************
+ *ENDPAGE : EDIT-PROFILE
+ ********************/
 /*# sourceMappingURL=main.css.map */

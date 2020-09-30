@@ -32,21 +32,23 @@
                             <label for="exampleInputEmail1">City</label>
                             <input type="user_name" class="form-control" id="exampleInputEmail1">
                         </div>
-                        <label for="upload_avatar"> Avatar</label>
-                        <div class="input-group" id="upload_avatar" style="background-color: #35356C;padding: 2%; border-radius: 10px;">
+                        <label for="upload_avatar" id="avatar" > Avatar</label>
+                        <div class="input-group" id="upload_avatar">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01" style="width: 100%;">
+                                <input type="file" class="custom-file-input" id="inputGroupavatar"
+                                    aria-describedby="inputGroupFileAddon01">
                             </div>
                         </div>
                         <div class="form-group" id="formgroup-teamcreate">
                             <label for="exampleInputEmail1" id="scrollform-teamcreate">Summary</label>
                             <input type="email" class="form-control" id="description-teamcreate">
                         </div>
-                        <div class="col-md-6" style="float: right;">
-                            <a class="btn btn-primary" id="btnsubmitteamcreate" href="#" role="button" style="float: right; margin-left: 10px;" >Save</a>
-                            <a class="btn btn-primary" id="btnsubmitteamcreate" href="#" role="button" style="float: right;" >Cancel</a>
-                        </div>
+                        <div class="col-md-6" id="button-editprofile">
+                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button"
+                            >Save</a>
+                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button"
+                            >Cancel</a>
+                    </div>
                     </div>
                 </div>
 
@@ -63,9 +65,11 @@
                         <label for="exampleInputEmail1">Confirm New Password</label>
                         <input type="password" class="form-control" id="exampleInputEmail1">
                     </div>
-                    <div class="col-md-6" style="float: right;">
-                        <a class="btn btn-primary" id="btnsubmitteamcreate" href="#" role="button" style="float: right;" >Save</a>
-                        <a class="btn btn-primary" id="btnsubmitteamcreate" href="#" role="button" style="float: right;" >Cancel</a>
+                    <div class="col-md-6" id="button-editprofile">
+                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button"
+                            >Save</a>
+                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button"
+                            >Cancel</a>
                     </div>
                 </div>
             </div>
