@@ -47,7 +47,7 @@
                     </div>
                   </div>
                 @empty
-                <div class="panel-friend not-found">
+                <div class="panel-friend thText">
                   <h4>Hasil Tidak Ditemukan.</h4>
                 </div>
               @endforelse
