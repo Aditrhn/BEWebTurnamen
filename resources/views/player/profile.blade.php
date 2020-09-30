@@ -25,8 +25,8 @@
           <!-- Optional: clear the XS cols if their content doesn't match in height -->
           
           <div class="col-xs-6 col-sm-12" id="btnaddfriend">
-								<button type="button" class="btn btn-primary pull-right">Edit Profile</button>
-							</div>
+						<a href="{{ URL::route('edit-profile') }}" type="button" class="btn btn-primary pull-right">Edit Profile</a>
+					</div>
         </div>
       </div>
 
