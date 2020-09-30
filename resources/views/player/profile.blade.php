@@ -24,137 +24,26 @@
           </div>
           <!-- Optional: clear the XS cols if their content doesn't match in height -->
           
-          <div class="col-xs-6 col-sm-4" >
-            <button type="button" class="btn btn-primary" style="margin-top: 35%;margin-bottom: 5%; display:inline-block; text-align:center;">Add Friend</button>
-          </div>
+          <div class="col-xs-6 col-sm-12" id="btnaddfriend">
+								<button type="button" class="btn btn-primary pull-right">Edit Profile</button>
+							</div>
         </div>
       </div>
-      <!-- Collapse -->
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="wrapper_bu" style="position:relative;">
-            <div class="image">
-              <a class="panel-heading accordion-toggle collapsed left" data-toggle="collapse"
-                data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseOne">
-                <div id="bu1">
-                  <img alt="" src="">
-                  <div class="title" id="c1">Overview</div>
-                </div>
-              </a>
-            </div>
-            <div class="image">
-              <a class="panel-heading accordion-toggle collapsed left" data-toggle="collapse"
-              data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseTwo">
-                <div id="bu2">
-                  <img alt="" src="" class="img-responsive imgtransform">
-                  <div class="title" id="c2">Tournament</div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="panel-group" id="accordion1">
-            <!-- PANEL BRACKET -->
-            <div class="panel panel-default">
-              <div id="collapseOne" class="panel-collapse collapse">
-                <div class="col-md-5">
-                  <!-- PANEL HEADLINE -->
-                  <h4>Bio</h4>
-                  <div class="panel panel-headline" style="border-radius: 15px;">
-                    <div class="panel-body">
-                    <div class="row" style="margin-left: 5%;">
-                    <br>
-                    <p>Name Abraham Claire</p>
-                    <br>
-                    <p>Country Indonesia</p>
-                    <br>
-                    <p>Gender Male</p>
-                    <br>
-                    <p>Email nongski@nongski.com</p>
-                    <br>
-                    <p>Phone n/a</p>
-                    <br>
-                    </div>
-                    </div>
-                  </div>
-                  <!-- PANEL HEADLINE -->
-                  </div>
-                  <!-- END PANEL HEADLINE -->
-                  <div class="col-md-7">
-                  <!-- PANEL NO PADDING -->
-                  <div class="row">
-                    <div class="col-md-6">
-                    <h4>Friends</h4>
-                    <div class="panel" style="border-radius: 15px;">
-                    <div class="panel-heading padding-top-30 padding-bottom-30">
-                    <center>
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center; ">
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center; ">
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center; ">
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center; ">
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center;">
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center;">
-                    <img src="{{ asset('assets/img/user3.png') }}" width="20%"  style="border-radius: 50px; align-items: center;">
-                    <img src="{{ asset('assets/img/favicon.png') }}" width="20%"  style="border-radius: 50px; align-items: center;">
-                    </center>
-                    </div>
-                  </div>
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Status</h4>
-                    <div class="panel" style="border-radius: 15px;">
-                    <div class="panel-heading padding-top-30 padding-bottom-30">
-                    <p>It is a long  established fact theme that machine</p>
-                    </div>
-                  </div>
-                  </div>
-                  </div>
-                  <!-- END PANEL NO PADDING -->
-                  <!-- PANEL NO PADDING -->
-                  <h4 style="margin-bottom: -4%;">Teams</h4>
-                  <div class="panel" style="margin-top: 5%; border-radius: 15px;">
-                    <div class="panel-heading padding-top-30 padding-bottom-30">
-                    <div class="row">
-                      <div class="col-md-5" style="background-color: #25254F; margin-left: 5%; border-radius: 15px;">
-                      <div class="row">
-                        <div class="col-md-5">
-                        <img src="assets/img/c9.png" width="70%" height="70%" >
-                        <a class="btn btn-primary" href="#" role="button" style="margin-top: 20%; border-radius: 10px; border: none; color: white;width: 90px;display:inline-block; text-align:center;font-size: 10px">View Team</a>
-                        </div>
-                        <div class="col-md-7">
-                        <b><h4 style="font-weight: bold;">Cloud 9</h4></b>
-                        <h5>It is a long established fact theme that machine</h5>
-                        </div>
-                      </div>			
-                      </div>
-                      &nbsp;
-                      <div class="col-md-5" style="background-color: #25254F; margin-left: 5%; border-radius: 15px;">
-                      <div class="row">
-                        <div class="col-md-5">
-                        <img src="assets/img/navi.png" width="70%" height="70%" >
-                        <a class="btn btn-primary" href="#" role="button" style="margin-top: 20%; border-radius: 10px; border: none; color: white;width: 90px; text-align: center; font-size: 10px;display:inline-block; text-align:center">View Team</a>
-                        </div>
-                        <div class="col-md-7">
-                        <b><h4 style="font-weight: bold;">Cloud 9</h4></b>
-                        <h5>It is a long established fact theme that machine</h5>
-                        </div>
-                      </div>	
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-                  <!-- END PANEL NO PADDING -->
-                  </div>
-                  <!-- END PANEL HEADLINE -->
-              </div>
-            </div>
-            <!-- PANEL OVERVIEW -->
-            <div class="panel panel-default" style="background-color: transparent;">
-              <div id="collapseTwo" class="panel-collapse collapse in">
-                <div class="panel panel-default" style="background-color: transparent; border: none;">
-                  <div id="collapseTwo" class="panel-collapse collapse in">
-                    <div class="container-fluid" >
-                    <div class="table-responsive">          
-                    <table class="table">
+
+      <!--Nav-Pills-->
+        <div class="col-md-12">
+						<ul class="nav nav-pills marginPils">
+							<li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
+							<li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
+						</ul>
+			  </div>
+      <!--Nav-Pills Konten-->
+      <div class="tab-content tabKonten thText">
+						<div id="friendList" class="tab-pane fade in active">
+							<div class="col-md-12">
+                  <div class="container-fluid" >
+									<div class="table-responsive">          
+									<table class="table">
                       <thead>
                         <tr>
                           <th>Game</th>
@@ -187,69 +76,104 @@
                       @endforelse
                       </tbody>
                     </table>
-                    </div>
-                    </div>
-                  </div>
-                  </div>
-              </div>
-            </div>
-            <!-- PANEL RULES -->
-            <div class="panel panel-default">
-              <div id="collapseThree" class="panel-collapse collapse">
-                <div class="col-md-4">
-                  <!-- PANEL HEADLINE -->
-                  <div class="panel panel-headline">
-                    <div class="panel-heading">
-                      <h3 class="panel-title"><span>1. </span>Format</h3>
-                      <h3 class="panel-title"><span>2. </span>Join Tournament</h3>
-                      <h3 class="panel-title"><span>3. </span>Prizes</h3>
-                    </div>
-                  </div>
-                </div>
-                <!-- END PANEL HEADLINE -->
-                <div class="col-md-8">
-                  <!-- PANEL HEADLINE -->
-                  <div class="panel panel-headline">
-                    <div class="panel-body">
-                      <h3>1. Format</h3>
-                      <br>
-                      <p>Game</p>
-                      <p>Mobile Legends</p>
-                      <br>
-                      <p>Team</p>
-                      <p>5 VS 5 + 1 Substitutes</p>
-                      <hr>
-                      <h3>2. Join Tournament</h3>
-                      <br>
-                      <p>Type</p>
-                      <p>Public</p>
-                      <br>
-                      <p>Entry Fee</p>
-                      <p>Free</p>
-                      <hr>
-                      <h3>3. Prizes</h3>
-                      <br>
-                      <p>Winner</p>
-                      <p>Rp. 5.000.000,00</p>
-                      <p>Runner Up</p>
-                      <p>Rp. 3.500.000,00</p>
-                      <p>Third</p>
-                      <p>Rp. 1.500.000,00</p>
-                      <hr>
-                    </div>
-                  </div>
-                  <!-- END PANEL NO PADDING -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- /.Collapse -->
-      
-    </div>
+									</div>
+									</div>
+                   </div>
+						</div>
 
+						<div id="menu1" class="tab-pane fade">
+							<div class="col-md-5">
+								<!-- PANEL HEADLINE -->
+								<h4>Bio</h4>
+								<div class="panel panel-headline" id="biopanel" >
+								  <div class="panel-body">
+									<div class="row">
+									<br>
+									<p>Name Abraham Claire</p>
+									<br>
+									<p>Country Indonesia</p>
+									<br>
+									<p>Gender Male</p>
+									<br>
+									<p>Email nongski@nongski.com</p>
+									<br>
+									<p>Phone n/a</p>
+									<br>
+									</div>
+								  </div>
+								</div>
+								<!-- PANEL HEADLINE -->
+							  </div>
+							  <!-- END PANEL HEADLINE -->
+							  <div class="col-md-7">
+								<!-- PANEL NO PADDING -->
+								<div class="row">
+								  <div class="col-md-6">
+									<h4>Friends</h4>
+								  <div class="panel">
+								  <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
+									<center>
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/user3.png" >
+									<img src="assets/img/favicon.png" >
+									</center>
+								  </div>
+								</div>
+								</div>
+								<div class="col-md-6">
+								  <h4>Status</h4>
+								  <div class="panel">
+								  <div class="panel-heading padding-top-30 padding-bottom-30">
+									<p>It is a long  established fact theme that machine</p>
+								  </div>
+								</div>
+								</div>
+							  </div>
+								<!-- END PANEL NO PADDING -->
+								<!-- PANEL NO PADDING -->
+								<h4>Teams</h4>
+								<div class="panel">
+								  <div class="panel-heading padding-top-30 padding-bottom-30">
+									<div class="row" >
+									  <div class="col-md-5" id="teampanel" >
+										<div class="row">
+										  <div class="col-md-5">
+											<img src="assets/img/c9.png">
+											<a class="btn btn-primary" id="btnviewteam" href="#" role="button" >View Team</a>
+										  </div>
+										  <div class="col-md-7">
+											<b><h4 style="font-weight: bold;">Cloud 9</h4></b>
+											<h5>It is a long established fact theme that machine</h5>
+										  </div>
+										</div>			
+									  </div>
+									  &nbsp;
+									  <div class="col-md-5" id="teampanel">
+										<div class="row">
+										  <div class="col-md-5">
+											<img src="assets/img/navi.png">
+											<a class="btn btn-primary" id="btnviewteam" href="#" role="button">View Team</a>
+										  </div>
+										  <div class="col-md-7">
+											<b><h4 style="font-weight: bold;">Cloud 9</h4></b>
+											<h5>It is a long established fact theme that machine</h5>
+										  </div>
+										</div>	
+									  </div>
+									</div>
+								  </div>
+								</div>
+								<!-- END PANEL NO PADDING -->
+							  </div>
+						</div>
+					</div>
+					<!--End Konten Pills-->
+    </div>
   </div>
   <!-- END MAIN CONTENT -->
 </div>

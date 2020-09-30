@@ -20,8 +20,12 @@
           </a>
         </li>
         <li><a href="team.html" class=""><img src="{{ asset('assets/img/ICON/team.png') }}"> <span>Team</span></a></li>
-        <li><a href="help.html" class=""><img src="{{ asset('assets/img/ICON/friend_help.png') }}"> <span>Help</span></a></li>
-        <li><a href="logout.html" style="margin-top: 50px;"><img src="{{ asset('assets/img/ICON/exit.png') }}"></i><span>Logout</span></a></li>
+        <li>
+          <a href="{{ URL::route('friend') }}" class="{{ Request::segment(1) ==='friend' ? 'active' :null }}">
+            <img src="{{ asset('assets/img/ICON/friend_help.png') }}">
+            <span>Friend</span>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
