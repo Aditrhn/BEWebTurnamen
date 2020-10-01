@@ -568,8 +568,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
 
   .team-image{
-    width: 110px;
-    height: 90px;
+    width: 90px;
+    height: 72px;
   }
 
   /* End Page Team*/
