@@ -23,20 +23,20 @@
             <div class="col-md-3 friend-page">
               <div class="panel panel-headline panel-friend-detail">
                 <div class="panel-body">
-                    <img class="img-panel-friend" src="assets/img/user3.png">
-                    <h4 class="panel-friend">{{ $item->name }}</h4>
-                    <form action="{{ URL::route('unfriend') }}" method="POST">
-                      @csrf
-                      <div class="buttons col-md-12 btnAdd">
-                        <input type="hidden" name="unfriend" value="{{ $item->id }}">
-                        <button class="btn btn-xs btn-primary" id="btnUnfriend" type="submit">Unfriend</button>
-                      </div>
-                    </form>
+                  <img class="img-panel-friend" src="assets/img/user3.png">
+                  <h4 class="panel-friend">{{ $item->name }}</h4>
+                  <form action="{{ URL::route('unfriend') }}" method="POST">
+                    @csrf
+                    <div class="buttons col-md-12 btnAdd">
+                      <input type="hidden" name="unfriend" value="{{ $item->id }}">
+                      <button class="btn btn-xs btn-primary" id="btnUnfriend" type="submit">Unfriend</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
             @empty
-            <div class="panel-friend not-found">
+            <div class="panel-friend not-found" style="color: #fff">
               <h4>Anda masih belum memiliki teman</h4>
             </div>
             @endforelse
@@ -70,7 +70,7 @@
               </div>
             </div>
             @empty
-            <div class="panel-friend not-found">
+            <div class="panel-friend not-found" style="color: #fff">
               <h4>Belum ada permintaan pertemanan.</h4>
             </div>
             @endforelse
