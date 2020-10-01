@@ -40,7 +40,7 @@
                                         <tbody>
                                         <tr>
                                         <td><img alt="" id="imgGame" src="assets/img/ML.png" class="find-image"></td>
-                                        <td><h4 class="find-text">Nongski</h4></td>
+                                        <td><h4 class="find-text">QuickSilver</h4></td>
                                         <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                         <td><h4 class="find-text">4 / 5</h4></td>
                                         <td><h4 class="find-text">Atra</h4></td>
