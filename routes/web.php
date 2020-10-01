@@ -43,6 +43,17 @@ Route::group(['auth', 'players'], function () {
         Route::post('add-friend', 'FriendController@add_friend')->name('add-friend');
         Route::post('accept-friend', 'FriendController@accept_friend')->name('accept-friend');
         Route::post('decline-friend', 'FriendController@decline_friend')->name('decline-friend');
+
+        //Team
+        Route::get('team', function () {
+            return view('team.index');
+        })->name('team');
+        Route::get('team-create', function () {
+            return view('team.create');
+        })->name('team-create');
+        Route::get('team-search', function () {
+            return view('team.search');
+        })->name('team-search');
     });
     //Search
     Route::get('search-result', 'SearchController@index')->name('search');

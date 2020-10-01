@@ -19,7 +19,12 @@
             <span>Tournament</span>
           </a>
         </li>
-        <li><a href="team.html" class=""><img src="{{ asset('assets/img/ICON/team.png') }}"> <span>Team</span></a></li>
+        <li>
+          <a href="{{ URL::route('team') }}" class="{{ Request::segment(1) ==='team' ? 'active' :null }}">
+            <img src="{{ asset('assets/img/ICON/team.png') }}">
+            <span>Team</span>
+          </a>
+        </li>
         <li>
           <a href="{{ URL::route('friend') }}" class="{{ Request::segment(1) ==='friend' ? 'active' :null }}">
             <img src="{{ asset('assets/img/ICON/friend_help.png') }}">
