@@ -1,181 +1,204 @@
 @extends('layouts.main')
 @section('main')
 <div class="main">
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-    <div class="container-fluid">
-      <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
-        <div class="row">
-          <div class="col-xs-6 col-sm-4"><img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;"></div>
-          <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
-            <b><h2 style="color: white;">{{ Auth::guard('player')->user()->name }}</h2></b>
-            <br>
-            @if (Auth::guard('player')->user()->address !== null)
-            <p style="color: white;">{{ Auth::guard('player')->user()->address }}</p>
-            @else
-            <p style="color: white;">Alamat kusung!!!</p>    
-            @endif
-            <br>
-            @if (Auth::guard('player')->user()->address !== null)
-            <p style="color: white;">{{ Auth::guard('player')->user()->contact }}</p>
-            @else
-            <p style="color: white;">Contact kusung!!!</p>    
-            @endif
-          </div>
-          <!-- Optional: clear the XS cols if their content doesn't match in height -->
-          
-          <div class="col-xs-6 col-sm-12" id="btnaddfriend">
-						<a href="{{ URL::route('edit-profile') }}" type="button" class="btn btn-primary pull-right">Edit Profile</a>
-					</div>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
+                <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
+                </div>
+                <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
+                    <b><h2 style="color: white;">{{ Auth::guard('player')->user()->name }}</h2></b>
+                    <br>
+                    @if (Auth::guard('player')->user()->address !== null)
+                    <p style="color: white;">{{ Auth::guard('player')->user()->address }}</p>
+                    @else
+                    <p style="color: white;">Alamat kusung!!!</p>
+                    @endif
+                    <br>
+                    @if (Auth::guard('player')->user()->contact !== null)
+                    <p style="color: white;">{{ Auth::guard('player')->user()->contact }}</p>
+                    @else
+                    <p style="color: white;">Contact kusung!!!</p>
+                    @endif
+                </div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="col-xs-6 col-sm-12" id="btnaddfriend">
+                    <a href="{{ URL::route('profile.edit') }}" type="button" class="btn btn-primary pull-right">Edit Profile</a>
+                </div>
+                </div>
+            </div>
+
+        <!--Nav-Pills-->
+            <div class="col-md-12">
+                <ul class="nav nav-pills marginPils">
+                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
+                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
+                </ul>
+            </div>
+        <!--Nav-Pills Konten-->
+            <div class="tab-content tabKonten thText">
+                <div id="friendList" class="tab-pane fade in active">
+                    <div class="col-md-12">
+                        <div class="container-fluid" >
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Game</th>
+                                            <th>Name</th>
+                                            <th>Date</th>
+                                            <th>Team</th>
+                                            <th>Participants</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @forelse ($game as $games)
+                                        <tr>
+                                            <td>{{ $games->platform }}</td>
+                                            <td>{{ $games->name }}</td>
+                                            <td>August 13, 2020 @3:00 am</td>
+                                            <td>Liquor</td>
+                                            <td>164 participants</td>
+                                            <td>winner</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td>Game Platform Kusung!!</td>
+                                            <td>Name Turney Kusung!!</td>
+                                            <td>August 13, 2020 @3:00 am</td>
+                                            <td>Liquor</td>
+                                            <td>164 participants</td>
+                                            <td>winner</td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu1" class="tab-pane fade">
+                    <div class="col-md-5">
+                        <!-- PANEL HEADLINE -->
+                        <h4>Bio</h4>
+                        <div class="panel panel-headline" id="biopanel" >
+                            <div class="panel-body">
+                                <div class="row">
+                                    @if (Auth::guard('player')->user()->name !== null)
+                                    <p>{{Auth::guard('player')->user()->name}}</p>
+                                    @else
+                                    <p>No Name</p>
+                                    @endif
+                                    <br>
+                                    @if (Auth::guard('player')->user()->city !== null)
+                                    <p>{{Auth::guard('player')->user()->city}}</p>
+                                    @else
+                                    <p>City in Indonesia</p>
+                                    @endif
+                                    <br>
+                                    @if (Auth::guard('player')->user()->gender !== null)
+                                    <p>{{Auth::guard('player')->user()->gender}}</p>
+                                    @else
+                                    <p>Gender Male</p>
+                                    @endif
+                                    <br>
+                                    <p>{{Auth::guard('player')->user()->email}}</p>
+                                    <br>
+                                    @if (Auth::guard('player')->user()->contact !== null)
+                                    <p>{{Auth::guard('player')->user()->contact}}</p>
+                                    @else
+                                    <p>Phone n/a</p>
+                                    @endif
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- PANEL HEADLINE -->
+                    </div>
+                    <!-- END PANEL HEADLINE -->
+                    <div class="col-md-7">
+                        <!-- PANEL NO PADDING -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Friends</h4>
+                                <div class="panel">
+                                    <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
+                                        <center>
+                                            @foreach ($friend as $item)
+                                            <p>{{ $item->name }}</p>
+                                            @endforeach
+                                            {{-- <img src="assets/img/user3.png" >
+                                            <img src="assets/img/user3.png" >
+                                            <img src="assets/img/user3.png" >
+                                            <img src="assets/img/user3.png" >
+                                            <img src="assets/img/user3.png" >
+                                            <img src="assets/img/user3.png" >
+                                            <img src="assets/img/user3.png" >
+                                            <img src="assets/img/favicon.png" > --}}
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Status</h4>
+                                <div class="panel">
+                                    <div class="panel-heading padding-top-30 padding-bottom-30">
+                                        @if (Auth::guard('player')->user()->status)
+                                        <p>{{ Auth::guard('player')->user()->status }}</p>
+                                        @else
+                                        <p>Status kosong!!</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PANEL NO PADDING -->
+                        <!-- PANEL NO PADDING -->
+                        <h4>Teams</h4>
+                        <div class="panel">
+                            <div class="panel-heading padding-top-30 padding-bottom-30">
+                                <div class="row" >
+                                    <div class="col-md-5" id="teampanel" >
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="assets/img/c9.png">
+                                                <a class="btn btn-primary" id="btnviewteam" href="#" role="button" >View Team</a>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <b><h4 style="font-weight: bold;">Cloud 9</h4></b>
+                                                <h5>It is a long established fact theme that machine</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    &nbsp;
+                                    <div class="col-md-5" id="teampanel">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="assets/img/navi.png">
+                                                <a class="btn btn-primary" id="btnviewteam" href="#" role="button">View Team</a>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <b><h4 style="font-weight: bold;">Cloud 9</h4></b>
+                                                <h5>It is a long established fact theme that machine</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PANEL NO PADDING -->
+                    </div>
+                </div>
+            </div>
+            <!--End Konten Pills-->
         </div>
-      </div>
-
-      <!--Nav-Pills-->
-        <div class="col-md-12">
-						<ul class="nav nav-pills marginPils">
-							<li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
-							<li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
-						</ul>
-			  </div>
-      <!--Nav-Pills Konten-->
-      <div class="tab-content tabKonten thText">
-						<div id="friendList" class="tab-pane fade in active">
-							<div class="col-md-12">
-                  <div class="container-fluid" >
-									<div class="table-responsive">          
-									<table class="table">
-                      <thead>
-                        <tr>
-                          <th>Game</th>
-                          <th>Name</th>
-                          <th>Date</th>
-                          <th>Team</th>
-                          <th>Participants</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      @forelse ($game as $games)
-                        <tr>
-                          <td>{{ $games->platform }}</td>
-                          <td>{{ $games->name }}</td>
-                          <td>August 13, 2020 @3:00 am</td>
-                          <td>Liquor</td>
-                          <td>164 participants</td>
-                          <td>winner</td>
-                        </tr>
-                      @empty                          
-                        <tr>
-                          <td>Game Platform Kusung!!</td>
-                          <td>Name Turney Kusung!!</td>
-                          <td>August 13, 2020 @3:00 am</td>
-                          <td>Liquor</td>
-                          <td>164 participants</td>
-                          <td>winner</td>
-                        </tr>
-                      @endforelse
-                      </tbody>
-                    </table>
-									</div>
-									</div>
-                   </div>
-						</div>
-
-						<div id="menu1" class="tab-pane fade">
-							<div class="col-md-5">
-								<!-- PANEL HEADLINE -->
-								<h4>Bio</h4>
-								<div class="panel panel-headline" id="biopanel" >
-								  <div class="panel-body">
-									<div class="row">
-									<br>
-									<p>Name Abraham Claire</p>
-									<br>
-									<p>Country Indonesia</p>
-									<br>
-									<p>Gender Male</p>
-									<br>
-									<p>Email nongski@nongski.com</p>
-									<br>
-									<p>Phone n/a</p>
-									<br>
-									</div>
-								  </div>
-								</div>
-								<!-- PANEL HEADLINE -->
-							  </div>
-							  <!-- END PANEL HEADLINE -->
-							  <div class="col-md-7">
-								<!-- PANEL NO PADDING -->
-								<div class="row">
-								  <div class="col-md-6">
-									<h4>Friends</h4>
-								  <div class="panel">
-								  <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
-									<center>
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/user3.png" >
-									<img src="assets/img/favicon.png" >
-									</center>
-								  </div>
-								</div>
-								</div>
-								<div class="col-md-6">
-								  <h4>Status</h4>
-								  <div class="panel">
-								  <div class="panel-heading padding-top-30 padding-bottom-30">
-									<p>It is a long  established fact theme that machine</p>
-								  </div>
-								</div>
-								</div>
-							  </div>
-								<!-- END PANEL NO PADDING -->
-								<!-- PANEL NO PADDING -->
-								<h4>Teams</h4>
-								<div class="panel">
-								  <div class="panel-heading padding-top-30 padding-bottom-30">
-									<div class="row" >
-									  <div class="col-md-5" id="teampanel" >
-										<div class="row">
-										  <div class="col-md-5">
-											<img src="assets/img/c9.png">
-											<a class="btn btn-primary" id="btnviewteam" href="#" role="button" >View Team</a>
-										  </div>
-										  <div class="col-md-7">
-											<b><h4 style="font-weight: bold;">Cloud 9</h4></b>
-											<h5>It is a long established fact theme that machine</h5>
-										  </div>
-										</div>			
-									  </div>
-									  &nbsp;
-									  <div class="col-md-5" id="teampanel">
-										<div class="row">
-										  <div class="col-md-5">
-											<img src="assets/img/navi.png">
-											<a class="btn btn-primary" id="btnviewteam" href="#" role="button">View Team</a>
-										  </div>
-										  <div class="col-md-7">
-											<b><h4 style="font-weight: bold;">Cloud 9</h4></b>
-											<h5>It is a long established fact theme that machine</h5>
-										  </div>
-										</div>	
-									  </div>
-									</div>
-								  </div>
-								</div>
-								<!-- END PANEL NO PADDING -->
-							  </div>
-						</div>
-					</div>
-					<!--End Konten Pills-->
     </div>
-  </div>
-  <!-- END MAIN CONTENT -->
+<!-- END MAIN CONTENT -->
 </div>
 @endsection
 @push('wizard')
@@ -196,7 +219,7 @@
       $(".holder_bu").each(function () {
         buArr.push($(this).attr('class'))
       });
-      
+
       $(".holder_bu").click(function (buid) {
         var me = this, id = this.id || buid, joId = $("#" + id), joCN = joId.attr("class").replace(" holder_bu", "");
         var cpos = buArr.indexOf(joCN), mpos = buArr.indexOf("holder_bu_awayL1");
@@ -228,11 +251,11 @@
   });
 
   $("#c1,#c2").click(function(){
-    
+
     $("#c1,#c2.selectedcategoryServices").removeClass("selectedcategoryServices");
     $(this).addClass('selectedcategoryServices');
 
   });
 
-</script>    
+</script>
 @endpush

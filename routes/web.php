@@ -33,9 +33,11 @@ Route::group(['auth', 'players'], function () {
 
         //Profile
         Route::get('profile', 'PlayerAuthController@profile')->name('profile');
-        Route::get('edit-profile', function () {
-            return view('player.edit-profile');
-        })->name('edit-profile');
+        // Route::get('edit-profile', function () {
+        //     return view('player.edit-profile');
+        // })->name('edit-profile');
+        Route::get('profile/edit', 'PlayerAuthController@editProfile')->name('profile.edit');
+        Route::put('profile', 'PlayerAuthController@updateProfile')->name('profile.update');
 
         //Friend
         Route::get('friend', 'FriendController@index')->name('friend');

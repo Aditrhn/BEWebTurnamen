@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Player;
 
 use App\Http\Controllers\Controller;
+use App\Model\Friend;
 use App\Model\Game;
 use App\Model\Player;
 use App\Model\PlayerGame;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Session;
+use File;
 
 class PlayerAuthController extends Controller
 {
@@ -105,12 +107,81 @@ class PlayerAuthController extends Controller
                 ->join('player_games', 'player_games.players_id', '=', 'players.id')
                 ->select('players.*', 'player_games.*')
                 ->get();
-            // $game = DB::table('players')->get();
+
+            // SQL
+            //SELECT p.name FROM friends f join players p on p.id = f.player_one OR p.id = f.player_two WHERE p.id != '1' AND (f.player_one = '1' OR f.player_two = '1') AND f.status = '1'
+            // $friend = Friend::select('players.name')->join('players', function ($join) {
+            //     $join->on('players.id', '=', 'friends.player_one');
+            //     $join->orOn('players.id', '=', 'friends.player_two');
+            // })->where('players.id', '!=', Auth::guard('player')->user()->id)->where(function ($query) {
+            //     $query->where('friends.player_one', Auth::guard('player')->user()->id);
+            //     $query->orWhere('friends.player_two', Auth::guard('player')->user()->id);
+            // })->where('friends.status', 1)->get();
+            $friend = DB::select('select p.name from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
 
             // \dd($game);
-            return \view('player.profile', \compact('game'));
+            return \view('player.profile', \compact('game', 'friend'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
+    }
+
+    public function editProfile(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            return view('player.edit-profile', [
+                'user' => $request->user()
+            ]);
+        } else {
+            return Redirect::to("login"); //routing login jika user tidak ada
+        }
+    }
+    public function updateProfile(Request $request)
+    {
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     // 'email' => 'required|email|unique:players',
+        //     // 'password' => 'required|min:6',
+        //     // 'address' => 'required',
+        //     // 'contact' => 'required|max:15',
+        //     // 'gender' => ' required'
+        //     // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+
+        $player = Auth::guard('player')->user();
+        // \dd($player);
+        $ava_name = Auth::guard('player')->user()->ava_url;
+        // if ($request->hasFile('ava_url')) {
+        //     $ava = $request->ava_url;
+        //     $ava_name = \time() . "_" . $ava->getClientOriginalName();
+        //     $ava->move('images/avatar/', $ava_name);
+        //     $player->ava_url = 'images/avatar/' . $ava_name;
+        //     $player->save();
+        // }
+        if ($request->hasFile('ava_url')) {
+            $file = $request->file('ava_url');
+            $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
+            $path = $request->file('ava_url')->store('avatars/' . $request->user()->id, 's3');
+            $file->move($path, $ava_name);
+            File::delete('avatars/' . $player->ava_url);
+        }
+        // \dd($path);
+        $player->update([
+            'name' => $request->name,
+            // 'email' => $request->email,
+            'address' => $request->address,
+            'contact' => $request->contact,
+            'gender' => $request->gender,
+            'ava_url' => $ava_name,
+            'city' => $request->city,
+            'province' => $request->province,
+            'status' => $request->status
+        ]);
+        // dd($player);
+        // $request->user()->update(
+        //     $request->all()
+        // );
+        return \redirect('profile')->with(['success' => 'Profile updated successfully']);
+        // $data = $request->all();
     }
 }
