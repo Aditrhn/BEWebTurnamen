@@ -39,7 +39,7 @@
                                         </tbody>
                                         <tbody>
                                         <tr>
-                                        <td><img alt="" id="imgGame" src="assets/img/ML.png" class="find-image"></td>
+                                        <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                         <td><h4 class="find-text">QuickSilver</h4></td>
                                         <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                         <td><h4 class="find-text">4 / 5</h4></td>
@@ -48,7 +48,7 @@
                                         </tbody>
                                         <tbody>
                                         <tr>
-                                            <td><img alt="" id="imgGame" src="assets/img/ML.png" class="find-image"></td>
+                                            <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                             <td><h4 class="find-text">Arandelle</h4></td>
                                             <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                             <td><h4 class="find-text">3 / 5</h4></td>
@@ -57,7 +57,7 @@
                                         </tbody>
                                         <tbody>
                                         <tr>
-                                            <td><img alt="" id="imgGame" src="assets/img/ML.png" class="find-image"></td>
+                                            <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                             <td><h4 class="find-text">Evos-Squad</h4></td>
                                             <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                             <td><h4 class="find-text">2 / 5</h4></td>
@@ -66,7 +66,7 @@
                                         </tbody>
                                         <tbody>
                                         <tr>
-                                            <td><img alt="" id="imgGame" src="assets/img/ML.png" class="find-image"></td>
+                                            <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                             <td><h4 class="find-text">RRQ-Legends</h4></td>
                                             <td><img alt="" id="imgGame" src="assets/img/ML.png" class="team-image"></td>
                                             <td><h4 class="find-text">3 / 5</h4></td>
