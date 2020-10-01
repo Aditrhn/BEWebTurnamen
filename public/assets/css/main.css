@@ -473,13 +473,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     color: white;
   }
   .panel-team:hover{
-    height: 380px;
-    width: 400px;
     background-color: #745FF8;
-    margin: 0 auto;
-    border-radius: 15px;
-    text-align: center;
-    color: white;
   }
 
   .panel-myteam{
@@ -563,8 +557,19 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       width: 80px;
   }
   .find-text{
+    font-size: 20px;
     color: white;
     padding-top: 15px;
+  }
+
+  .findTable{
+    background-color: #35346c;
+    border-radius: 15px;
+  }
+
+  .team-image{
+    width: 110px;
+    height: 90px;
   }
 
   /* End Page Team*/
