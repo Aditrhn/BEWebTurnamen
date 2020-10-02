@@ -47,20 +47,13 @@ Route::group(['auth', 'players'], function () {
         Route::post('decline-friend', 'FriendController@decline_friend')->name('decline-friend');
 
         //Team
-        Route::get('team', function () {
-            return view('team.index');
-        })->name('team');
-        Route::get('team-create', function () {
-            return view('team.create');
-        })->name('team-create');
-        Route::get('team-search', function () {
-            return view('team.search');
-        })->name('team-search');
+        Route::get('team', 'TeamController@index')->name('team');
+        Route::get('team-create', 'TeamController@team_create_page')->name('team-create');
+        Route::post('team-create-success', 'TeamController@team_create')->name('team-create-success');
+        Route::get('team-overview', 'TeamController@team_overview')->name('team-overview');
+        Route::get('team-search', 'TeamController@team_search')->name('team-search');
 
-        //tournament
-        // Route::get('tournament', function () {
-        //     return view('tournament.index');
-        // })->name('tournament');
+        //Tournament
         Route::get('tournament', 'TournamentController@index')->name('tournament');
     });
     //Search
