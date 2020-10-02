@@ -4,18 +4,18 @@
       <ul class="nav">
         <li>
           <a href="{{ URL::route('dashboard') }}" class="{{ Request::segment(1) === 'dashboard' ? 'active' :null }}">
-            <img src="{{ asset('assets/img/ICON/dashboard.png') }}"> 
+            <img src="{{ asset('assets/img/ICON/dashboard.png') }}">
             <span>Dashboard</span>
           </a>
         </li>
         <li>
           <a href="{{ URL::route('profile') }}" class="{{ Request::segment(1) ==='profile' ? 'active' :null }}">
-            <img src="{{ asset('assets/img/ICON/profil.png') }}"> 
+            <img src="{{ asset('assets/img/ICON/profil.png') }}">
             <span>Profil</span>
           </a>
         </li>
         <li>
-          <a href="tournament.html" class=""><img src="{{ asset('assets/img/ICON/Tournament.png') }}"> 
+          <a href="{{ URL::route('tournament') }}" class="{{ Request::segment(1) ==='tournament' ? 'active' :null }}" class=""><img src="{{ asset('assets/img/ICON/Tournament.png') }}">
             <span>Tournament</span>
           </a>
         </li>
