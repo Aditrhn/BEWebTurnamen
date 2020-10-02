@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers\Player;
 
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class TeamController extends Controller 
+class TeamController extends Controller
 {
     public function index()
     {
@@ -18,14 +18,15 @@ class TeamController extends Controller
     }
     public function team_create_page()
     {
-        $games = Game::select('name', 'id')->get();
+        // $games = Game::select('name', 'id')->get();
 
-        return \view('team.create', \compact('games'));
+        // return \view('team.create', \compact('games'));
+        return \view('team.create');
     }
-    public function team_create(Request $request)
+    public function store(Request $request)
     {
         // $games = Game::select('name', 'id')->get();
-        $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
+        // $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
         // $check = Team::where('name', 'LIKE', '%' . $request->teamName . '%')->first();
 
         // if ($check == null) {
@@ -44,21 +45,21 @@ class TeamController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'games_id' => 'required',
+            // 'games_id' => 'required',
         ]);
         $file = $request->file('logo_url');
         $name_icon = \time() . "_" . $file->getClientOriginalName();
         $tujuan_upload = 'images/team_logo/';
         $file->move($tujuan_upload, $name_icon);
         Team::create([
-            'name' => $request->teamName,
-            'max_member' => 5,
-            'logo_url' => $name_icon,
-            'games_id' => $games_id->id
+            'name' => $request->name,
+            'max_member' => 10,
+            'logo_url' => $name_icon
+            // 'games_id' => $games_id->id
         ]);
 
         dd($name_icon);
-        return \redirect('team.overview')->with(['success' => 'Team created successfully']);
+        // return \redirect('team-overview')->with(['success' => 'Team created successfully']);
     }
     public function team_overview()
     {
@@ -69,4 +70,3 @@ class TeamController extends Controller
         return \view('team.search');
     }
 }
-?>
