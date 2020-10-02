@@ -74,21 +74,26 @@
 
             <!-- End Card -->
             <!-- TOURNAMENT BANNER -->
+            @foreach ($tournament as $tournaments)
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="product">
                             <div class="img-container">
+                                @if ($tournaments->banner_url)
+                                <img src="{{ asset('images/events/'.$tournaments->banner_url) }}">
+                                @else
                                 <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
+                                @endif
                             </div>
                             <div class="product-info">
                                 <a href="tournament-overview.html">
                                     <div class="product-content">
                                         <div class="col-lg-8 col-xs-12">
-                                            <h1>PROGAMERS NONGSKI I MLBB ONLINE TOURNAMENT</h1>
+                                            <h1>{{ $tournaments->title }}</h1>
                                         </div>
                                         <div class="prizepool col-lg-4 col-xs-12">
                                             <h3 class="panel-title">Prizepool</h3>
-                                            <h4>IDR 10.000.000</h4>
+                                            <h4>IDR {{ $tournaments->prize_pool }}</h4>
                                         </div>
                                         <div class="col-lg-8 col-xs-12">
                                             <table class="table">
@@ -111,16 +116,16 @@
                                                 <tbody>
                                                     <tr class="">
                                                         <td>
-                                                            Free
+                                                            {{ $tournaments->fee }}
                                                         </td>
                                                         <td>
-                                                            60/64
+                                                            {{ $tournaments->participant }}
                                                         </td>
                                                         <td>
-                                                            8 Aug
+                                                            {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('d F') }}
                                                         </td>
                                                         <td>
-                                                            16:00 WIB
+                                                            {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('h:i') }} WIB
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -135,7 +140,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+            @endforeach
+                {{ $tournament->links() }}
+                {{-- <div class="row">
                     <div class="col-lg-12">
                         <div class="product">
                             <div class="img-container">
@@ -196,7 +203,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             <!-- END TOURNAMENT BANNER -->
         </div>
