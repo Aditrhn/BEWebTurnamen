@@ -130,7 +130,11 @@
                                     <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
                                         <center>
                                             @forelse ($friend as $friends)
-                                            <img src="{{ asset('images/avatars/'.$friends->ava_url) }}" >
+                                                @if ($friends->ava_url != null)
+                                                <img src="{{ asset('images/avatars/'.$friends->ava_url) }}" alt="{{ $friends->name }}">
+                                                @else
+                                                <img src="{{ asset('images/avatars/default.png') }}" alt="{{ $friends->name }}">
+                                                @endif
                                             @empty
                                             <p>Tidak ada teman!!</p>
                                             @endforelse
