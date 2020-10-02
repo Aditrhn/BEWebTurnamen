@@ -74,136 +74,82 @@
 
             <!-- End Card -->
             <!-- TOURNAMENT BANNER -->
-            @foreach ($tournament as $tournaments)
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product">
-                            <div class="img-container">
-                                @if ($tournaments->banner_url)
-                                <img src="{{ asset('images/events/'.$tournaments->banner_url) }}">
-                                @else
-                                <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
-                                @endif
-                            </div>
-                            <div class="product-info">
-                                <a href="tournament-overview.html">
-                                    <div class="product-content">
-                                        <div class="col-lg-8 col-xs-12">
-                                            <h1>{{ $tournaments->title }}</h1>
-                                        </div>
-                                        <div class="prizepool col-lg-4 col-xs-12">
-                                            <h3 class="panel-title">Prizepool</h3>
-                                            <h4>IDR {{ $tournaments->prize_pool }}</h4>
-                                        </div>
-                                        <div class="col-lg-8 col-xs-12">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Register
-                                                        </th>
-                                                        <th>
-                                                            Slot
-                                                        </th>
-                                                        <th>
-                                                            Date
-                                                        </th>
-                                                        <th>
-                                                            Time
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="">
-                                                        <td>
-                                                            {{ $tournaments->fee }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $tournaments->participant }}
-                                                        </td>
-                                                        <td>
-                                                            {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('d F') }}
-                                                        </td>
-                                                        <td>
-                                                            {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('h:i') }} WIB
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-4 col-xs-12 buttons">
-                                            <a class="button buy btn-success" href="tournament-overview.html">OPEN</a>
-                                        </div>
+            @forelse ($tournament as $tournaments)
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product">
+                        <div class="img-container">
+                            @if ($tournaments->banner_url)
+                            <img src="{{ asset('images/events/'.$tournaments->banner_url) }}">
+                            @else
+                            <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
+                            @endif
+                        </div>
+                        <div class="product-info">
+                            <a href="tournament-overview.html">
+                                <div class="product-content">
+                                    <div class="col-lg-8 col-xs-12">
+                                        <h1>{{ $tournaments->title }}</h1>
                                     </div>
-                                </a>
-                            </div>
+                                    <div class="prizepool col-lg-4 col-xs-12">
+                                        <h3 class="panel-title">Prizepool</h3>
+                                        <h4>IDR {{ $tournaments->prize_pool }}</h4>
+                                    </div>
+                                    <div class="col-lg-8 col-xs-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Register
+                                                    </th>
+                                                    <th>
+                                                        Slot
+                                                    </th>
+                                                    <th>
+                                                        Date
+                                                    </th>
+                                                    <th>
+                                                        Time
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="">
+                                                    <td>
+                                                        {{ $tournaments->fee }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $tournaments->participant }}
+                                                    </td>
+                                                    <td>
+                                                        {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('d F') }}
+                                                    </td>
+                                                    <td>
+                                                        {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('h:i') }} WIB
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-4 col-xs-12 buttons">
+                                        <a class="button buy btn-success" href="tournament-overview.html">OPEN</a>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-            @endforeach
-                {{ $tournament->links() }}
-                {{-- <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product">
-                            <div class="img-container">
-                                <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
-                            </div>
-                            <div class="product-info">
-                                <a href="tournament-overview.html">
-                                    <div class="product-content">
-                                        <div class="col-md-8">
-                                            <h1>PROGAMERS NONGSKI I MLBB ONLINE TOURNAMENT</h1>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit ariatur</p>
-                                        </div>
-                                        <div class="prizepool col-md-4">
-                                            <h3 class="panel-title margin-right-40">Prizepool</h3>
-                                            <h4 class="margin-top-30">IDR 10.000.000</h4>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Register
-                                                        </th>
-                                                        <th>
-                                                            Slot
-                                                        </th>
-                                                        <th>
-                                                            Date
-                                                        </th>
-                                                        <th>
-                                                            Time
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="">
-                                                        <td>
-                                                            Free
-                                                        </td>
-                                                        <td>
-                                                            60/64
-                                                        </td>
-                                                        <td>
-                                                            8 Aug
-                                                        </td>
-                                                        <td>
-                                                            16:00 WIB
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-4 buttons">
-                                            <a class="button buy btn-success" href="tournament-overview.html">OPEN</a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+            </div>
+            @empty
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product">
+                        <h1>Tidak Ada Turnamen!!</h1>
                     </div>
-                </div> --}}
+                </div>
+            </div>
+            @endforelse
+            {{ $tournament->links() }}
 
             <!-- END TOURNAMENT BANNER -->
         </div>
