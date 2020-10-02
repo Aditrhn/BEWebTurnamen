@@ -78,8 +78,9 @@ class PlayerAuthController extends Controller
     {
         if (Auth::guard('player')->check()) {
             return view('player.dashboard'); //view dashboard
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
-        return Redirect::to("login")->withSuccess('Opps! You do not have access'); //routing login
     }
     public function create(array $data)
     {
@@ -133,54 +134,58 @@ class PlayerAuthController extends Controller
                 'user' => $request->user()
             ]);
         } else {
-            return Redirect::to("login"); //routing login jika user tidak ada
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
     public function updateProfile(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     // 'email' => 'required|email|unique:players',
-        //     // 'password' => 'required|min:6',
-        //     // 'address' => 'required',
-        //     // 'contact' => 'required|max:15',
-        //     // 'gender' => ' required'
-        //     // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+        if (Auth::guard('player')->check()) {
+            // $this->validate($request, [
+            //     'name' => 'required',
+            //     // 'email' => 'required|email|unique:players',
+            //     // 'password' => 'required|min:6',
+            //     // 'address' => 'required',
+            //     // 'contact' => 'required|max:15',
+            //     // 'gender' => ' required'
+            //     // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]);
 
-        $player = Auth::guard('player')->user();
-        // \dd($player);
-        $ava_name = Auth::guard('player')->user()->ava_url;
-        if ($request->hasFile('ava_url')) {
-            $ava = $request->ava_url;
-            $ava_name = \time() . "_" . $ava->getClientOriginalName();
-            $ava->move('images/avatars/', $ava_name);
-            $player->ava_url = 'images/avatars/' . $ava_name;
-            File::delete('avatars/' . $player->ava_url);
+            $player = Auth::guard('player')->user();
+            // \dd($player);
+            $ava_name = Auth::guard('player')->user()->ava_url;
+            if ($request->hasFile('ava_url')) {
+                $ava = $request->ava_url;
+                $ava_name = \time() . "_" . $ava->getClientOriginalName();
+                $ava->move('images/avatars/', $ava_name);
+                $player->ava_url = 'images/avatars/' . $ava_name;
+                File::delete('avatars/' . $player->ava_url);
+            }
+            // if ($request->hasFile('ava_url')) {
+            //     $file = $request->file('ava_url');
+            //     $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
+            //     $path = $request->file('ava_url')->store('images/avatars/' . $request->user());
+            //     $file->move($path, $ava_name);
+            //     File::delete('avatars/' . $player->ava_url);
+            // }
+            // \dd($path);
+            $player->update([
+                'name' => $request->name,
+                // 'email' => $request->email,
+                'address' => $request->address,
+                'contact' => $request->contact,
+                'gender' => $request->gender,
+                'ava_url' => $ava_name,
+                'city' => $request->city,
+                'province' => $request->province,
+                'status' => $request->status
+            ]);
+            // dd($player);
+            // $request->user()->update(
+            //     $request->all()
+            // );
+            return \redirect('profile')->with(['success' => 'Profile updated successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
-        // if ($request->hasFile('ava_url')) {
-        //     $file = $request->file('ava_url');
-        //     $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
-        //     $path = $request->file('ava_url')->store('images/avatars/' . $request->user());
-        //     $file->move($path, $ava_name);
-        //     File::delete('avatars/' . $player->ava_url);
-        // }
-        // \dd($path);
-        $player->update([
-            'name' => $request->name,
-            // 'email' => $request->email,
-            'address' => $request->address,
-            'contact' => $request->contact,
-            'gender' => $request->gender,
-            'ava_url' => $ava_name,
-            'city' => $request->city,
-            'province' => $request->province,
-            'status' => $request->status
-        ]);
-        // dd($player);
-        // $request->user()->update(
-        //     $request->all()
-        // );
-        return \redirect('profile')->with(['success' => 'Profile updated successfully']);
     }
 }

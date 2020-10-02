@@ -11,6 +11,13 @@
 <div class="main">
   <div class="col-md-12 col-sm-12">
     <div class="div panel-body">
+        {{-- notifikasi harus login ketika sudah logout --}}
+        @if ($sukses = Session::get('msg'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $sukses }}</strong>
+        </div>
+        @endif
       <div class="login-form">
         <div class="panel-body">
           <h2>Login to website</h2>
@@ -37,7 +44,7 @@
             <span class="checkbox">
               <label>
               <input name="remember" type="checkbox" value="Remember me"> Remember Me
-              </label> 
+              </label>
               <a href="" class="pull-right">Forgot Password?</a>
             </span>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>

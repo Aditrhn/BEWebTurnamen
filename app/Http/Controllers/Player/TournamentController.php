@@ -17,7 +17,8 @@ class TournamentController extends Controller
             $tournament = Event::query()->paginate(1);
             // \dd($tournament);
             return \view('tournament.index', \compact('tournament'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
-        return Redirect::to("login")->withSuccess('Opps! You do not have access'); //routing login
     }
 }
