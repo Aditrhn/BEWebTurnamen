@@ -51,6 +51,9 @@ Route::group(['auth', 'players'], function () {
         Route::get('team-create', 'TeamController@team_create_page')->name('team-create');
         Route::post('team-create-success', 'TeamController@team_create')->name('team-create-success');
         Route::get('team-search', 'TeamController@team_search')->name('team-search');
+
+        //Tournament
+        Route::get('tournament', 'TournamentController@index')->name('tournament');
     });
     //Search
     Route::get('search-result', 'SearchController@index')->name('search');
