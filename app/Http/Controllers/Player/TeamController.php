@@ -22,27 +22,47 @@ class TeamController extends Controller
 
         return \view('team.create', \compact('games'));
     }
-    public function team_create()
+    public function team_create(Request $request)
     {
-        $games = Game::select('name', 'id')->get();
-        $games_name = request('teamGame');
-        $games_id = Game::where('name', 'LIKE', '%' . $games_name . '%')->first();
-        $team_name = request('teamName');
-        $check = Team::where('name', 'LIKE', '%' . $team_name . '%')->first();
+        // $games = Game::select('name', 'id')->get();
+        $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
+        // $check = Team::where('name', 'LIKE', '%' . $request->teamName . '%')->first();
 
-        if ($check == null) {
-            $team = new Team;
+        // if ($check == null) {
+        //     // $team = new Team;
 
-            $team->name = $team_name;
-            $team->max_member = 5;
-            $team->logo_url = "test";
-            $team->games_id = $games_id->id;
-            $team->save();
+        //     // $team->name = $request->teamName;
+        //     // $team->max_member = 5;
+        //     // $team->logo_url = "test";
+        //     // $team->games_id = $games_id->id;
+        //     // $team->save();
 
-            return \view('team.create', \compact('games'));
-        } else {
-            echo "Nama Tim Sudah Digunakan.";
-        };
+        //     // return \view('team.create', \compact('games'));
+        // } else {
+        //     echo "Nama Tim Sudah Digunakan.";
+        // };
+
+        $this->validate($request, [
+            'name' => 'required',
+            'games_id' => 'required',
+        ]);
+        $file = $request->file('logo_url');
+        $name_icon = \time() . "_" . $file->getClientOriginalName();
+        $tujuan_upload = 'images/team_logo/';
+        $file->move($tujuan_upload, $name_icon);
+        Team::create([
+            'name' => $request->teamName,
+            'max_member' => 5,
+            'logo_url' => $name_icon,
+            'games_id' => $games_id->id
+        ]);
+
+        dd($name_icon);
+        return \redirect('team.overview')->with(['success' => 'Team created successfully']);
+    }
+    public function team_overview()
+    {
+        return view('team.overview');
     }
     public function team_search()
     {
