@@ -13,9 +13,15 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" id="scrollform-teamcreate">Team TAG</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1">
+                    <label for="upload_avatar" id="avatar" > Team Logo (optional)</label>
+                    <div class="input-group" id="upload_logo_team">
+                        <div class="custom-file" id="browse">
+                            <input type="file" class="custom-file-input @error('ava_url') is-invalid @enderror"
+                                id="inputGroupavatar" aria-describedby="inputGroupFileAddon01"
+                                value="{{ asset('/images/avatar/'. Auth::guard('player')->user()->ava_url) }}"
+                                name="ava_url">
+                            
+                        </div>
                     </div>
 
                 </div>
