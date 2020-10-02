@@ -34,7 +34,6 @@ class Relationship extends Migration
         });
         Schema::table('teams', function (Blueprint $table) {
             $table->foreignId('games_id')->constrained('games');
-            $table->foreignId('capt_id')->references('players_id')->on('contracts');
         });
     }
 
