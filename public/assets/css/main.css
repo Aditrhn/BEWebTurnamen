@@ -2506,7 +2506,7 @@ color: white;
  * PAGE: CREATE-TEAM
  ********************/
 #rowcreate{
-  margin-top: 15%;
+  margin-top: 5%;
 }
 #scrollform-teamcreate{
   color: white;
@@ -2572,6 +2572,18 @@ color: white;
   width: 150px;
   height: 40px; 
   border-radius: 20px;
+}
+#upload_logo_team{
+  width: 100%;
+  border-radius: 10px; 
+  height: 60px;
+  background-color: #35356C;
+  border: none; 
+  color: white;
+}
+#browse{
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
  /********************
