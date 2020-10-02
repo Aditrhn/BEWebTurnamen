@@ -73,12 +73,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <input class="btn btn-success" type="submit" value="Save Changes"
-                                        style="width: 100%;">
+                                    <input class="btn btn-success" type="submit" value="Save Changes" style="width: 100%;">
                                 </div>
                                 <div class="col-md-8">
                                     <a href="{{ url('super/game') }}" class="btn btn-outline-primary">Go back</a>
-                                </div>                                
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -86,7 +85,7 @@
             </div>
         </div>
     </div>
-{{-- 
+{{--
     <div class="card-footer text-muted">
         <a href="{{ url('super/game') }}" class="btn btn-outline-primary">Go back</a>
     </div> --}}

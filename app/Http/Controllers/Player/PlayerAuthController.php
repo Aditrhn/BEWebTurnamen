@@ -117,7 +117,7 @@ class PlayerAuthController extends Controller
             //     $query->where('friends.player_one', Auth::guard('player')->user()->id);
             //     $query->orWhere('friends.player_two', Auth::guard('player')->user()->id);
             // })->where('friends.status', 1)->get();
-            $friend = DB::select('select p.name from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
+            $friend = DB::select('select p.name,p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
 
             // \dd($game);
             return \view('player.profile', \compact('game', 'friend'));
@@ -151,20 +151,20 @@ class PlayerAuthController extends Controller
         $player = Auth::guard('player')->user();
         // \dd($player);
         $ava_name = Auth::guard('player')->user()->ava_url;
-        // if ($request->hasFile('ava_url')) {
-        //     $ava = $request->ava_url;
-        //     $ava_name = \time() . "_" . $ava->getClientOriginalName();
-        //     $ava->move('images/avatar/', $ava_name);
-        //     $player->ava_url = 'images/avatar/' . $ava_name;
-        //     $player->save();
-        // }
         if ($request->hasFile('ava_url')) {
-            $file = $request->file('ava_url');
-            $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
-            $path = $request->file('ava_url')->store('avatars/' . $request->user()->id, 's3');
-            $file->move($path, $ava_name);
+            $ava = $request->ava_url;
+            $ava_name = \time() . "_" . $ava->getClientOriginalName();
+            $ava->move('images/avatars/', $ava_name);
+            $player->ava_url = 'images/avatars/' . $ava_name;
             File::delete('avatars/' . $player->ava_url);
         }
+        // if ($request->hasFile('ava_url')) {
+        //     $file = $request->file('ava_url');
+        //     $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
+        //     $path = $request->file('ava_url')->store('images/avatars/' . $request->user());
+        //     $file->move($path, $ava_name);
+        //     File::delete('avatars/' . $player->ava_url);
+        // }
         // \dd($path);
         $player->update([
             'name' => $request->name,
@@ -182,6 +182,5 @@ class PlayerAuthController extends Controller
         //     $request->all()
         // );
         return \redirect('profile')->with(['success' => 'Profile updated successfully']);
-        // $data = $request->all();
     }
 }

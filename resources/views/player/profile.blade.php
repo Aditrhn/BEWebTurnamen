@@ -129,9 +129,15 @@
                                 <div class="panel">
                                     <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
                                         <center>
-                                            @foreach ($friend as $item)
+                                            @forelse ($friend as $friends)
+                                            <img src="{{ asset('images/avatars/'.$friends->ava_url) }}" >
+                                            @empty
+                                            <p>Tidak ada teman!!</p>
+                                            @endforelse
+                                            {{-- @foreach ($friend as $item)
                                             <p>{{ $item->name }}</p>
-                                            @endforeach
+                                            <img src="{{ asset('images/avatars/'.$item->ava_url) }}" >
+                                            @endforeach --}}
                                             {{-- <img src="assets/img/user3.png" >
                                             <img src="assets/img/user3.png" >
                                             <img src="assets/img/user3.png" >

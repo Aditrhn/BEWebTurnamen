@@ -49,8 +49,8 @@
                             <label for="upload_avatar" id="avatar" > Avatar</label>
                             <div class="input-group" id="upload_avatar">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupavatar"
-                                        aria-describedby="inputGroupFileAddon01">
+                                    <input type="file" class="custom-file-input @error('ava_url') is-invalid @enderror" id="inputGroupavatar" aria-describedby="inputGroupFileAddon01" value="{{ asset('/images/avatar/'. Auth::guard('player')->user()->ava_url) }}" name="ava_url">
+                                    <p><strong>Biarkan kosong jika tidak ingin mengganti gambar</strong></p>
                                 </div>
                             </div>
                             {{-- Status --}}
