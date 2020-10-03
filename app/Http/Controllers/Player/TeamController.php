@@ -42,7 +42,6 @@ class TeamController extends Controller
     {
         if (Auth::guard('player')->check()) {
             $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
-            $player_id = Auth::guard('player')->user()->id;
 
             $this->validate($request, [
                 'name' => 'required'
@@ -59,6 +58,7 @@ class TeamController extends Controller
                 'games_id' => $games_id->id
             ]);
 
+            $player_id = Auth::guard('player')->user()->id;
             $teams = Team::where('name', 'LIKE', '%' . $request->name . '%')->first();
 
             Contract::create([
@@ -83,7 +83,10 @@ class TeamController extends Controller
     public function team_search()
     {
         if (Auth::guard('player')->check()) {
-            return \view('team.search');
+            $teams = Team::select('name', 'max_member', 'logo_url')->get();
+            // $captain_id = Contract::select('players_id')->get();
+
+            return \view('team.search', \compact('teams'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

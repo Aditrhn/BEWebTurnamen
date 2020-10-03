@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Player;
 
 use App\Http\Controllers\Controller;
+use App\Model\Contract;
+use App\Model\Team;
 use App\Model\Friend;
 use App\Model\Game;
 use App\Model\Player;
@@ -117,13 +119,22 @@ class PlayerAuthController extends Controller
             // })->where('friends.status', 1)->get();
             $friend = DB::select('select p.name,p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
 
-            // \dd($game);
-            return \view('player.profile', \compact('game', 'friend'));
+            $team = DB::table('teams')
+                ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+                ->select('teams.name', 'teams.logo_url', 'teams.description')
+                ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                ->get();
+
+            // dd($team);
+            return \view('player.profile', \compact('game', 'friend', 'team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-
+    public function userProfile()
+    {
+        return \view('player.user-profile');
+    }
     public function editProfile(Request $request)
     {
         if (Auth::guard('player')->check()) {
