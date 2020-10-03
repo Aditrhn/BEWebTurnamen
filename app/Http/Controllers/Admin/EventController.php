@@ -27,7 +27,7 @@ class EventController extends Controller
         if (Auth::guard('admin')->check()) {
             $myEvents = DB::table('events')
                 ->join('games', 'events.game_id', '=', 'games.id')
-                ->select('events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
+                ->select('events.id as aidi','events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
             $myTempEvents = DB::table('temporary_events')
                 ->join('games', 'temporary_events.game_id', '=', 'games.id')
                 ->select('temporary_events.id as aidi', 'temporary_events.title as judul', 'temporary_events.participant as peserta', 'temporary_events.start_date as tgl_mulai', 'games.name as nama')->get();
@@ -119,27 +119,14 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //SELECT matches.date,matches.team_a,matches.team_b,matches.score_a,matches.score_b,matches.match_number,events.bracket_type, teams.name FROM `matches` JOIN events on matches.event_id=events.id JOIN teams on events.winner_id=teams.id
         $events = Event::find($id);
         $matches = DB::table('matches')
             ->join('events', 'matches.event_id', '=', 'events.id')
-            ->select('matches.match_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
+            ->select('matches.match_number', 'matches.round_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
             ->where('matches.event_id', $id)
             ->orderBy('match_number', 'asc')
             ->get()
             ->toArray();
-        
-        // $matches_score = Match::find($id);
-        // $json_array = \response()->json([
-        //     'status' => \true,
-        //     'respon' => 'Data team!!',
-        //     'teams' => $matches_team
-        // ]);
-        // $json_array2 = \response()->json([
-        //     'status' => \true,
-        //     'respon' => 'Data score!!',
-        //     'scores' => $matches_score
-        // ])  ;
         // \dd($matches);
         return view('admin.tournament.detail', \compact('matches','events'));
         // return view('admin.tournament.detail');

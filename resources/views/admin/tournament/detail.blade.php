@@ -43,16 +43,11 @@
                 @endif
             ],
             results: [
+                @
                 [
-                    [1,2],
-                    [2,1],
-                    [3,0]
-                ],
-                [
-                    [1,2]
-                ],
-                [
-                    [3,0]
+                    @foreach($matches as $match)
+                        [{{$match->score_a}}, {{$match->score_b}}],
+                    @endforeach
                 ]
             ]
         }
@@ -61,7 +56,8 @@
             scoreWidth: 50,
             matchMargin: 75,
             roundMargin: 85,
-            init: minimalData
+            init: minimalData,
+            skipConsolationRound: true
         };
 
         $(function () {
