@@ -30,13 +30,13 @@
                 </div>
                 <label for="scrollform" id="scrollform-teamcreate">Game</label>
                 <div id="custom-select">
-                    {{-- <select name="teamGame">
+                    <select name="teamGame">
                         @forelse($games as $item)
                             <option>{{ $item->name }}</option>
                         @empty
                             <p>Belum ada game yang bisa dipilih.</p>
                         @endforelse
-                    </select> --}}
+                    </select>
                 </div>
                 <div class="form-group" id="formgroup-teamcreate">
                     <label for="exampleInputEmail1" id="scrollform-teamcreate">Description</label>
