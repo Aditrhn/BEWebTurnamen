@@ -2445,6 +2445,13 @@ ul.activity-list > li {
 .main .main-content .container-fluid .col-md-12 .col-xs-6 .col-sm-4{
   margin-left: -10%;
 }
+
+.panel.panel-headline span {
+  float: right;
+  text-align: right;
+  margin-right: 20px;
+}
+
 #listnama{
 color: white;
 }

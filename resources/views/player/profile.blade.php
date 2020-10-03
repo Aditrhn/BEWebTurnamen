@@ -94,27 +94,27 @@
                             <div class="panel-body">
                                 <div class="row">
                                     @if (Auth::guard('player')->user()->name !== null)
-                                    <p>{{Auth::guard('player')->user()->name}}</p>
+                                    <p>Name <span>{{Auth::guard('player')->user()->name}}</span></p>
                                     @else
                                     <p>No Name</p>
                                     @endif
                                     <br>
                                     @if (Auth::guard('player')->user()->city !== null)
-                                    <p>{{Auth::guard('player')->user()->city}}</p>
+                                    <p>City <span>{{Auth::guard('player')->user()->city}}</span></p>
                                     @else
                                     <p>City in Indonesia</p>
                                     @endif
                                     <br>
                                     @if (Auth::guard('player')->user()->gender !== null)
-                                    <p>{{Auth::guard('player')->user()->gender}}</p>
+                                    <p>Gender <span>{{Auth::guard('player')->user()->gender}}</span></p>
                                     @else
                                     <p>Gender Male</p>
                                     @endif
                                     <br>
-                                    <p>{{Auth::guard('player')->user()->email}}</p>
+                                    <p>E-mail <span>{{Auth::guard('player')->user()->email}}</p>
                                     <br>
                                     @if (Auth::guard('player')->user()->contact !== null)
-                                    <p>{{Auth::guard('player')->user()->contact}}</p>
+                                    <p>Phone <span>{{Auth::guard('player')->user()->contact}}</span></p>
                                     @else
                                     <p>Phone n/a</p>
                                     @endif
