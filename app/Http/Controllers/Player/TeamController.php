@@ -19,7 +19,7 @@ class TeamController extends Controller
             $player_id = Auth::guard('player')->user()->id;
             $check = Contract::select('players_id')->where('players_id', '=', $player_id)->first();
 
-            if ($check == null){
+            if ($check == null) {
                 return \view('team.index');
             } else {
                 return \view('team.overview');
@@ -72,10 +72,11 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function team_overview()
+    public function team_overview(Team $team)
     {
         if (Auth::guard('player')->check()) {
-            return view('team.overview');
+            // $team = Team::find($id);
+            return view('team.overview', \compact('team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
