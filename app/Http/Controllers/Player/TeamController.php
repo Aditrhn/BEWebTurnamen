@@ -19,7 +19,7 @@ class TeamController extends Controller
             $player_id = Auth::guard('player')->user()->id;
             $check = Contract::select('players_id')->where('players_id', '=', $player_id)->first();
 
-            if ($check == null){
+            if ($check == null) {
                 return \view('team.index');
             } else {
                 return \view('team.overview');
@@ -42,7 +42,6 @@ class TeamController extends Controller
     {
         if (Auth::guard('player')->check()) {
             $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
-            $player_id = Auth::guard('player')->user()->id;
 
             $this->validate($request, [
                 'name' => 'required'
@@ -59,6 +58,7 @@ class TeamController extends Controller
                 'games_id' => $games_id->id
             ]);
 
+            $player_id = Auth::guard('player')->user()->id;
             $teams = Team::where('name', 'LIKE', '%' . $request->name . '%')->first();
 
             Contract::create([
@@ -72,10 +72,11 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function team_overview()
+    public function team_overview(Team $team)
     {
         if (Auth::guard('player')->check()) {
-            return view('team.overview');
+            // $team = Team::find($id);
+            return view('team.overview', \compact('team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -83,7 +84,10 @@ class TeamController extends Controller
     public function team_search()
     {
         if (Auth::guard('player')->check()) {
-            return \view('team.search');
+            $teams = Team::select('name', 'max_member', 'logo_url')->get();
+            // $captain_id = Contract::select('players_id')->get();
+
+            return \view('team.search', \compact('teams'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

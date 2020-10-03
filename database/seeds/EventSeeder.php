@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class EventSeeder extends Seeder
 {
@@ -12,10 +13,12 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create('id_ID');
         DB::table('events')->insert([
-            'title' => 'PROGAMERS NONGSKI I MLBB ONLINE TOURNAMENT',
+            'title' => $faker->unique()->jobTitle,
             'status' => 1,
             'participant' => 10,
+            'banner_url' => $faker->image(public_path('images/events/'), true, true, null, false),
             'start_date' => now(),
             'description' => 'satu',
             'fee' => 10000,
@@ -24,12 +27,14 @@ class EventSeeder extends Seeder
             'bracket_type' => 1,
             'registration_open' => now(),
             'registration_close' => now(),
-            'form_message' => 'anu'
+            'form_message' => 'anu',
+            'game_id' => 1
         ]);
         DB::table('events')->insert([
-            'title' => 'PROGAMERS NONGSKI III MLBB ONLINE',
+            'title' => $faker->unique()->jobTitle,
             'status' => 1,
             'participant' => 5,
+            'banner_url' => $faker->image(public_path('images/events/'), true, true, null, false),
             'start_date' => now(),
             'description' => 'dua',
             'fee' => 50000,
@@ -38,7 +43,8 @@ class EventSeeder extends Seeder
             'bracket_type' => 2,
             'registration_open' => now(),
             'registration_close' => now(),
-            'form_message' => 'wkwkkwkkkkw'
+            'form_message' => 'wkwkkwkkkkw',
+            'game_id' => 1
         ]);
     }
 }

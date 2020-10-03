@@ -38,6 +38,7 @@ Route::group(['auth', 'players'], function () {
         // })->name('edit-profile');
         Route::get('profile/edit', 'PlayerAuthController@editProfile')->name('profile.edit');
         Route::put('profile', 'PlayerAuthController@updateProfile')->name('profile.update');
+        Route::get('user-profile', 'PlayerAuthController@userProfile')->name('user-profile');
 
         //Friend
         Route::get('friend', 'FriendController@index')->name('friend');
@@ -48,8 +49,8 @@ Route::group(['auth', 'players'], function () {
 
         //Team
         Route::get('team', 'TeamController@index')->name('team');
+        Route::get('overview', 'TeamController@team_overview')->name('team.overview');
         Route::get('team-create', 'TeamController@team_create')->name('team-create');
-        // Route::post('team-create-success', 'TeamController@team_create')->name('team-create-success');
         Route::post('team', 'TeamController@store')->name('team.store');
         Route::get('team-overview', 'TeamController@team_overview')->name('team-overview');
         Route::get('team-search', 'TeamController@team_search')->name('team-search');
