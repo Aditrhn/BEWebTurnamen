@@ -9,7 +9,7 @@
   <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="container-fluid">
-      <h3 style="color: grey;">Search Result for "PUBG"</h3>
+      <h3 style="color: grey;">Search Result for "{{ $cari }}"</h3>
       <div class="row">
         <div class="col-md-2" style="padding-top: 2%;">
           <div class="panel panel-headline">
@@ -28,11 +28,11 @@
           <div class="tab-content">
             <!--Players Search-->
             <div id="player" class="tab-pane fade in active">
-              <!--Baris 1-->
               <div class="row">
                 @forelse ($player as $players)
                   <div class="col-md-3 friend-page">
                     <div class="panel panel-headline panel-friend-detail">
+                      <a href="{{ URL::route('user-profile') }}">
                       <div class="panel-body">
                         <img class="img-panel-friend" src="assets/img/user3.png">
                         <h4 class="panel-friend">{{ $players->name }}</h4>
@@ -44,6 +44,7 @@
                           </div>
                         </form>
                       </div>
+                      </a>
                     </div>
                   </div>
                 @empty
@@ -57,7 +58,6 @@
 
             <!--Team Search-->
             <div id="teams" class="tab-pane fade">
-              <!--Baris 1-->
               <div class="row">
                   @forelse ($team as $teams)
                   <div class="col-md-3 friend-page">
@@ -192,18 +192,16 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 friend-page">
-                  <div class="panel panel-headline panel-friend-detail">
-                    <div class="panel-body">
-                        <img class="img-panel-friend" src="assets/img/user3.png">
-                        <h4 class="panel-friend">AnjayBanget</h4>
-                        <div class="buttons col-md-12 btnAdd">
-                          <button class="btn btn-xs btn-primary" id="btnTeamview" href="#">Team View</button>
-                        </div>
-                    </div>
-                  </div>
+                @empty
+                <div class="panel-friend thText">
+                  <h4>Hasil Tidak Ditemukan.</h4>
                 </div>
+<<<<<<< HEAD
               </div> --}}
+=======
+                @endforelse
+              </div>
+>>>>>>> aac3916fe5b1b5b0550df8e01ab30ba9a40da89b
             </div>
             <!--End Team Search-->
 

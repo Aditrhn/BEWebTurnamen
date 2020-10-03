@@ -16,7 +16,7 @@ class FriendController extends Controller
         if (Auth::guard('player')->check()) {
             $player_id = Auth::guard('player')->user()->id;
             $friendlists = DB::select('select * from friends f join players p on p.id = f.player_one or p.id = player_two
-        where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ') and f.status = "1"');
+            where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ') and f.status = "1"');
             $friend_requests = DB::select('select * from friends f join players p on p.id = f.player_one where f.status = ? and f.player_two = ?', ["0", $player_id]);
 
             return \view('friend.index', \compact('friendlists', 'friend_requests'));
@@ -36,7 +36,9 @@ class FriendController extends Controller
                 or (player_one = ' . $player_id . ' and player_two = ' . $friend_id . ')');
 
                 if ($check == null) {
-                    $friend = DB::insert('insert into friends (player_one, player_two, status) values (' . $player_id . ', ' . $friend_id . ', "0")');
+                    if ($friend_id != $player_id) {
+                        $friend = DB::insert('insert into friends (player_one, player_two, status) values (' . $player_id . ', ' . $friend_id . ', "0")');
+                    }
                 }
 
                 return redirect()->back();
