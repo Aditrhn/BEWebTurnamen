@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/admin/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/admin/style.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/admin/custom.css') }}">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link rel="stylesheet" href="{{ URL::asset('css/admin/datepicker.min.css') }}" />
     {{-- jquery bracket --}}

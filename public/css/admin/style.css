@@ -1,14 +1,6 @@
 /* This css file is to over write bootstarp css
 --------------------------------------------------------- /
-* Theme Name: Ela Admin Template
-* Theme URI: http://demos.jeweltheme.com/
-* Author: jewel_theme
-* Author URI: http://themeforest.net/user/jewel_theme/portfolio
-* Description:
-* Version: 1.0.0
-* License: GNU General Public License v2 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
-* Tags: html, themplate, Ela Admin
+* Theme Name: Nongski.i
 --------------------------------------------------------- */
 /* 
 
@@ -20,22 +12,22 @@ Googel Fonts  */
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
 .bg-flat-color-1 {
-  background: #00c292; }
+  background: #7bf287; }
 
 .bg-flat-color-2 {
   background: #ab8ce4; }
 
 .bg-flat-color-3 {
-  background: #03a9f3; }
+  background: #3751ff; }
 
 .bg-flat-color-4 {
-  background: #fb9678; }
+  background:#f2d87b; }
 
 .bg-flat-color-5 {
   background: #66bb6a; }
 
 .bg-flat-color-6 {
-  background: #5c6bc0; }
+  background:#bcd1ff; }
 
 .bg-transparent {
   background-color: transparent; }
@@ -50,10 +42,10 @@ Googel Fonts  */
   color: #ab8ce4; }
 
 .flat-color-3 {
-  color: #03a9f3; }
+  color: #3751ff; }
 
 .flat-color-4 {
-  color: #fb9678; }
+  color: #f2d87b; }
 
 .flat-color-5 {
   color: #66bb6a; }
@@ -141,22 +133,22 @@ Googel Fonts  */
 
 */
 .bg-flat-color-1 {
-  background: #00c292; }
+  background: #7bf287; }
 
 .bg-flat-color-2 {
   background: #ab8ce4; }
 
 .bg-flat-color-3 {
-  background: #03a9f3; }
+  background: #3751ff; }
 
 .bg-flat-color-4 {
-  background: #fb9678; }
+  background:#f2d87b; }
 
 .bg-flat-color-5 {
   background: #66bb6a; }
 
 .bg-flat-color-6 {
-  background: #5c6bc0; }
+  background: #bcd1ff; }
 
 .bg-transparent {
   background-color: transparent; }
@@ -171,7 +163,7 @@ Googel Fonts  */
   color: #ab8ce4; }
 
 .flat-color-3 {
-  color: #03a9f3; }
+  color: #3751ff; }
 
 .flat-color-4 {
   color: #fb9678; }
@@ -201,7 +193,7 @@ Googel Fonts  */
   background: #66bb6a; }
 
 .bg-white {
-  background-color: #fff; }
+  background-color: #f7f8fc; }
 
 .fade-5 {
   opacity: 0.5; }
@@ -229,6 +221,10 @@ Googel Fonts  */
 
 .color-red {
   color: #dc3545; }
+  /* Button Color */
+.btn-complete{
+  background-color: #000;
+}
 
 .font-3xl {
   font-size: 2.8125em; }
@@ -350,6 +346,10 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   width: 100%; }
+
+hr{
+    margin-top: 300px;
+}
 
 p {
   font-size: 16px;
@@ -542,7 +542,7 @@ canvas {
         font-size: 14px;
         border-radius: 7px; }
     .messenger-box .send-mgs .msg-send-btn {
-      background: #03a9f3;
+      background: #3751ff;
       color: #fff;
       font-size: 28px;
       border-radius: 7px;
@@ -557,7 +557,7 @@ canvas {
 /* Global Styles */
 /* Main Styles */
 aside.left-panel {
-  background: #fff;
+  background: #363740;
   height: 100vh;
   padding: 0;
   vertical-align: top;
@@ -579,7 +579,6 @@ aside.left-panel {
   margin-left: 83px; }
 
 .navbar {
-  background: #fff;
   border-radius: 0;
   border: none;
   display: inline-block;
@@ -587,6 +586,7 @@ aside.left-panel {
   padding: 0;
   vertical-align: top; }
   .navbar .main-menu {
+    background: #363740;
     float: left;
     padding: 0;
     padding-bottom: 50px; }
@@ -607,18 +607,22 @@ aside.left-panel {
     .navbar .navbar-nav > li {
       padding-left: 30px;
       padding-right: 30px; }
+      .navbar .navbar-nav > li:hover{
+        background: #3f4049;
+      }
       .navbar .navbar-nav > li.active {
-        background: #fafafa; }
+        background: #3f4049; }
     .navbar .navbar-nav li {
+      background: #363740;
       width: 100%; }
       .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
       .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
-        color: #03a9f3; }
+        color: #f7f8fc; }
       .navbar .navbar-nav li .dropdown-toggle:after {
         display: none; }
       .navbar .navbar-nav li > a {
         background: none !important;
-        color: #607d8b;
+        color: #828288;
         display: inline-block;
         font-size: 14px;
         line-height: 26px;
@@ -626,11 +630,11 @@ aside.left-panel {
         position: relative;
         width: 100%; }
         .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
-          color: #03a9f3; }
+          color: #f7f8fc; }
         .navbar .navbar-nav li > a .menu-icon {
-          color: #607d8b;
+          color: #828288;
           float: left;
-          margin-top: 8px;
+          margin-top: -2px;
           width: 55px;
           text-align: left;
           z-index: 9; }
@@ -661,7 +665,7 @@ aside.left-panel {
             -webkit-transition: all .25s ease;
             transition: all .25s ease; }
           .navbar .navbar-nav li.menu-item-has-children a:hover:before {
-            border-color: #03a9f3 #03a9f3 transparent transparent; }
+            border-color: #3751ff #3751ff transparent transparent; }
         .navbar .navbar-nav li.menu-item-has-children .sub-menu {
           background: #fff;
           border: none;
@@ -693,7 +697,7 @@ aside.left-panel {
           top: 20px;
           right: -5px; }
         .navbar .navbar-nav li.menu-item-has-children.show a:hover:before {
-          border-color: transparent #03a9f3 #03a9f3 transparent; }
+          border-color: transparent #3751ff #3751ff transparent; }
         .navbar .navbar-nav li.menu-item-has-children.show .sub-menu {
           max-height: 1000px;
           opacity: 1;
@@ -702,7 +706,7 @@ aside.left-panel {
 .navbar .navbar-nav > .active > a,
 .navbar .navbar-nav > .active > a:focus,
 .navbar .navbar-nav > .active > a:hover {
-  color: #03a9f3; }
+  color: #f7f8fc; }
 
 .navbar-nav li span.count {
   background: #a9d86e;
@@ -856,8 +860,7 @@ aside.left-panel {
       content: "/\00a0"; }
 
 .right-panel header.header {
-  background: #fff;
-  border-bottom: 1px solid #e8e9ed;
+  background: #f1f2f6;
   -webkit-box-shadow: none;
           box-shadow: none;
   clear: both;
@@ -876,7 +879,7 @@ aside.left-panel {
   padding-top: 7px; }
 .right-panel .navbar-header {
   width: 100%;
-  background-color: #fff;
+  background-color: #f1f2f6;
   padding: 0 1.25em 0 0; }
   .right-panel .navbar-header > a {
     display: inline-block; }
@@ -2032,6 +2035,16 @@ header .form-inline {
 ---------------------------*/
 .stat-widget-five {
   min-height: 60px; }
+  /* hover stat */
+  #stat-widget-dashboard:hover{
+    border-radius: 5px;
+    border: solid 3px #3751ff;
+    color: #0099d4 !important;
+  }
+  #stat-widget-dashboard h3:hover,
+  #stat-widget-dashboard h1:hover{
+    color: #0063d4 !important;
+  }
   .stat-widget-five .stat-icon {
     font-size: 50px;
     line-height: 50px;
@@ -2098,59 +2111,6 @@ footer.site-footer {
     footer.site-footer .footer-inner a {
       color: #6a7074; }
 
-.calender-cont {
-  position: relative;
-  padding-top: 20px; }
-  .calender-cont .fc-title {
-    color: #fff; }
-  .calender-cont .fc-center {
-    position: absolute;
-    top: 0;
-    left: 0; }
-    .calender-cont .fc-center h2 {
-      font-size: 16px;
-      font-weight: 700; }
-  .calender-cont td .fc-event {
-    border: 0px solid transparent;
-    padding: 1px; }
-  .calender-cont td .fc-time {
-    color: white;
-    font-weight: 400;
-    font-size: 11px;
-    padding: 2px; }
-  .calender-cont .fc-left .fc-button-group {
-    position: absolute;
-    top: 0;
-    right: 0; }
-    .calender-cont .fc-left .fc-button-group button {
-      height: 20px;
-      width: 20px;
-      line-height: 18px;
-      padding: 0;
-      border: 0px solid transparent;
-      background: #eceff1;
-      color: #889196; }
-      .calender-cont .fc-left .fc-button-group button.fc-prev-button {
-        margin-right: 4px; }
-      .calender-cont .fc-left .fc-button-group button .fc-icon {
-        font-size: 11px; }
-      .calender-cont .fc-left .fc-button-group button:hover {
-        background: #d8d8d8; }
-  .calender-cont.widget-calender {
-    padding-top: 20px; }
-    .calender-cont.widget-calender td, .calender-cont.widget-calender th {
-      font-size: 14px;
-      border: 0px solid transparent; }
-    .calender-cont.widget-calender .fc-right {
-      display: none; }
-    .calender-cont.widget-calender .fc-today-button {
-      display: none; }
-    .calender-cont.widget-calender .fc-widget-content {
-      height: 45px !important;
-      min-height: 45px !important; }
-    .calender-cont.widget-calender .fc-day-grid-container {
-      max-height: 250px !important;
-      overflow: hidden !important; }
 
 @media (max-width: 1680px) {
   .timeline li {
@@ -2434,7 +2394,7 @@ footer.site-footer {
   .right-panel .top-left, .right-panel .top-right {
     width: 100%;
     float: none;
-    background: white; }
+    background: #f1f2f6; }
   .right-panel .menutoggle {
     float: right; }
   .right-panel .navbar-header {
@@ -2489,45 +2449,6 @@ footer.site-footer {
     padding-bottom: 5px; }
   .right-panel .menutoggle {
     width: 20px; } }
-#cellPaiChart {
-  height: 160px; }
-  #cellPaiChart .pieLabel {
-    top: 50px !important; }
-    #cellPaiChart .pieLabel div {
-      font-size: 16px !important; }
-  #cellPaiChart #pieLabel1 {
-    left: 20px !important; }
-  #cellPaiChart #pieLabel0 {
-    left: inherit !important;
-    right: 20px !important; }
-
-
-    /********************
- * PAGE: LOGIN
- ********************/
- .container h2{
-   text-align: center;
    
- }
- #form_login{
-   width: 50%;
-   align-items: center;
-   text-align: start;
-   
- }
- #input_username{
-   height: 45px;
-   border: solid;
- }
- #input_password{
-   height: 45px;
-   border: solid;
- }
- #submit_login{
-   width: 100%;
-   height: 50px;
-   background-color: #C0D0EB;
-   border: none;
-   color: black;
- }
+
 /*# sourceMappingURL=style.css.map */
