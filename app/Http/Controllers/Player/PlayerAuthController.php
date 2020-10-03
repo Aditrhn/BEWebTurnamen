@@ -20,11 +20,7 @@ class PlayerAuthController extends Controller
 {
     public function index()
     {
-        // $player = Player::select('name', 'contact')->get();
-        // \dd($player);
         return \view('player.auth.login'); //view login
-        // return \view('player');
-        // return \response()->json($player);
     }
     public function register()
     {
@@ -77,6 +73,7 @@ class PlayerAuthController extends Controller
     public function dashboard()
     {
         if (Auth::guard('player')->check()) {
+            $game = Game::all();
             return view('player.dashboard'); //view dashboard
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
