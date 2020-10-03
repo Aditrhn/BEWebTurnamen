@@ -73,7 +73,7 @@
                                                                 class="pe-3x pe-7s-date pe-va mr-4"></i>{{\Carbon\Carbon::parse($myEvent->tgl_mulai)->translatedFormat('M d, Y') }}
                                                         </h5>
                                                         <a class="col-sm-12 col-lg-12 btn btn-primary text-center mb-5"
-                                                            href="bracket-tournament.html">VIEW</a>
+                                                    href="{{URL::route('event.show',$myEvent->aidi)}}">VIEW</a>
                                                     </div>
                                                 </div>
                                             </div>

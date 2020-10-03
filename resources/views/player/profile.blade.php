@@ -7,7 +7,11 @@
             <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">
+                    @if (Auth::guard('player')->user()->ava_url != null)
+                    <img src="{{ asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
+                    @else
                     <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
+                    @endif
                 </div>
                 <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
                     <b><h2 style="color: white;">{{ Auth::guard('player')->user()->name }}</h2></b>
@@ -90,27 +94,27 @@
                             <div class="panel-body">
                                 <div class="row">
                                     @if (Auth::guard('player')->user()->name !== null)
-                                    <p>{{Auth::guard('player')->user()->name}}</p>
+                                    <p>Name <span>{{Auth::guard('player')->user()->name}}</span></p>
                                     @else
                                     <p>No Name</p>
                                     @endif
                                     <br>
                                     @if (Auth::guard('player')->user()->city !== null)
-                                    <p>{{Auth::guard('player')->user()->city}}</p>
+                                    <p>City <span>{{Auth::guard('player')->user()->city}}</span></p>
                                     @else
                                     <p>City in Indonesia</p>
                                     @endif
                                     <br>
                                     @if (Auth::guard('player')->user()->gender !== null)
-                                    <p>{{Auth::guard('player')->user()->gender}}</p>
+                                    <p>Gender <span>{{Auth::guard('player')->user()->gender}}</span></p>
                                     @else
                                     <p>Gender Male</p>
                                     @endif
                                     <br>
-                                    <p>{{Auth::guard('player')->user()->email}}</p>
+                                    <p>E-mail <span>{{Auth::guard('player')->user()->email}}</p>
                                     <br>
                                     @if (Auth::guard('player')->user()->contact !== null)
-                                    <p>{{Auth::guard('player')->user()->contact}}</p>
+                                    <p>Phone <span>{{Auth::guard('player')->user()->contact}}</span></p>
                                     @else
                                     <p>Phone n/a</p>
                                     @endif

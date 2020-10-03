@@ -42,11 +42,10 @@ class AdminAuthController extends Controller
     public function dashboard()
     {
         if (Auth::guard('admin')->check()) {
-            $game = Game::all();
-            return \view('admin.game.index', \compact('game'));
+            return redirect()->route('overview.index');
         } else {
             // return view('admin.atuh.login'); //view dashboard
-            return Redirect::to("login")->withSuccess('Opps! You do not have access'); //routing login
+            return Redirect::to("super-login")->withSuccess('Opps! You do not have access'); //routing login
         }
     }
     public function logout()
