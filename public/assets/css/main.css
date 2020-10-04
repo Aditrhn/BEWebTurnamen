@@ -2456,7 +2456,7 @@ ul.activity-list > li {
 color: white;
 }
 #btnaddfriend{
-  margin: 20px;
+  margin: 5px;
   float: right;
   text-align:center;
 }
@@ -2479,7 +2479,7 @@ color: white;
   height: 70%;
 }
 #btnviewteam{
-  margin-top: 5%; 
+  margin-top: 10px; 
   border-radius: 10px; 
   border: none; 
   color: white;
@@ -2487,7 +2487,9 @@ color: white;
   text-align: center; 
   font-size: 10px;
   display:inline-block; 
-  text-align:center
+  text-align:center;
+  margin-bottom: 10px;
+  
 }
 #collapse_row  #bu1{
   
@@ -2574,6 +2576,10 @@ color: white;
   background-color: #35356C;
   border: none;
   color: white;
+}
+#desclabel{
+  color: white;
+  margin-top: 20px;
 }
 #btnsubmitteamcreate{
   width: 150px;

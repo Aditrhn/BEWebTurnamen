@@ -5,14 +5,16 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
-            <form action="{{ URL::route('team.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ URL::route('team.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 {{ csrf_token() }}
                 <div class="row" id="rowcreate">
                     <div class="col-md-6">
                         <div class="form-group" id="scrollform-teamcreate">
                             <label for="name">Team Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1" name="name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                id="exampleInputEmail1" name="name">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -38,11 +40,12 @@
                         @endforelse
                     </select>
                 </div>
-                <div class="form-group" id="formgroup-teamcreate">
-                    <label for="exampleInputEmail1" id="scrollform-teamcreate">Description</label>
-                    <input type="text" class="form-control" id="description-teamcreate" name="teamDesc">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" id="desclabel">Description</label>
+                    <textarea class="form-control" id="description-teamcreate" rows="3"></textarea>
                 </div>
-                <button class="btn btn-primary" id="btnsubmitteamcreate" href="#" role="button" type="submit">Submit</button>
+                <button class="btn btn-primary" id="btnsubmitteamcreate" href="#" role="button"
+                    type="submit">Submit</button>
             </form>
         </div>
     </div>
