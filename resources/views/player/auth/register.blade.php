@@ -4,7 +4,7 @@
 </div>
 @endsection
 @section('main')
-<div class="main">
+<div class="main" id="panel-login">
   <div class="col-md-12 col-sm-12">
     <div class="div panel-body">
       <div class="login-form">

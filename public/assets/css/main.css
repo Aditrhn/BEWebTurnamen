@@ -65,7 +65,7 @@ footer {
 
 .login-form h2{
   color: #fff;
-} 
+}
 
 .main {
   padding: 0px 10px;
@@ -101,13 +101,14 @@ footer {
       position: fixed;
       overflow: none;
       background-image: url("../img/claude.jpg");
+      background-size: cover;
       opacity: 0.2;
       z-index: 1;
       left: 0;
   }
 
   .login-form{
-      margin-top: 20%;
+      margin-top: 10%;
       padding: 0 200px 0 200px;
   }
 
@@ -181,7 +182,7 @@ footer {
     position: fixed;
     overflow: none;
     background-image: url("../img/gunranger.jpg");
-    background: cover;
+    background-size: cover;
     opacity: 0.2;
     z-index: 1;
     left: 0;
@@ -232,7 +233,7 @@ footer {
 .hero p.intro {font-family: 'Holtwood One SC', serif;text-transform: uppercase;letter-spacing: 1px;font-size: 3em;margin-bottom:-40px;}
 .hero p.year {color: #fff; letter-spacing: 20px; font-size: 34px; margin: -25px 0 25px;}
 .hero p.year i {font-size: 14px;vertical-align: middle;}
-#bracket {overflow:hidden;background-color: #e1e1e1;background-color:#35346D;padding-top: 20px;font-size: 12px;padding: 40px 0; border-radius: 20px;}
+#bracket {overflow:hidden;background-color: #e1e1e1;background-color:#35346D;font-size: 12px; border-radius: 20px;}
 section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: -webkit-flex;display: flex;-webkit-flex-direction:row;flex-direction: row;}
 .split {display:block;float:left;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display:flex;width: 42%;-webkit-flex-direction:row;-moz-flex-direction:row;flex-direction:row;}
 .champion {float:left;display:block;width: 16%;-webkit-flex-direction:row;flex-direction:row;-webkit-align-self:center;align-self:center;margin-top: -15px;text-align: center;padding: 230px 0\9;} 
@@ -473,7 +474,13 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     color: white;
   }
   .panel-team:hover{
+    height: 380px;
+    width: 400px;
     background-color: #745FF8;
+    margin: 0 auto;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
   }
 
   .panel-myteam{
@@ -557,19 +564,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       width: 80px;
   }
   .find-text{
-    font-size: 20px;
     color: white;
     padding-top: 15px;
-  }
-
-  .findTable{
-    background-color: #35346c;
-    border-radius: 15px;
-  }
-
-  .team-image{
-    width: 90px;
-    height: 72px;
   }
 
   /* End Page Team*/
@@ -584,8 +580,17 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 .main .main-content .panel-body .member p{
   color: #745FF8;
 }
-.main .main-content .panel-body .team-overview a {
-  margin: 80px 10px 0 0;
+.main .main-content .panel-body .member div > img{
+width: 100%; border-radius: 20px; align-items: center; 
+}
+.main .main-content .panel-body .overview div > img {
+width: 100%; border-radius: 20px; align-items: center;
+}
+.main .main-content .panel-body .team-overview a{
+margin-top: 4%;
+}
+.main .main-content .panel-body .team-overview .overview-button{
+  margin-top: 15%;
 }
 .main .main-content .panel span > a{
   margin-right: 10px;
@@ -597,66 +602,29 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   padding-bottom: 20px;
   text-align: start;
 }
+.main .main-content .panel-body .team-info-game > img{
+  width: 80%; border-radius: 20px; align-items: center; 
+}
+.main .main-content .panel-body .team-info-support div > img {
+  width: 100%; border-radius: 20px; margin-left: -10px;
+}
 
 /* Modals team page */
-.sms-send-page-wrapper{
-  background: #f6f9fc;
-
-font-family: 'Abel', sans-serif;
-
+.friend-modal{
+  margin: 10px 0 10px 0;
+}
+.friend-modal .friend-btn{
+  margin-top: 10px;
+}
+.friend-link{
+  color: #fff;
+}
+.friend-list{
+  padding: 10px;
+  max-height: 230px !important;
+  overflow-y: auto !important;
 }
 
-.sms-send-page .pull-left p {
-color: #5b6773;
-margin: 0;
-}
-.sms-send-page .pull-left small {
-color: #637282;
-font-size: 13px;
-}
-.sms-send-page .pull-left {
-line-height: 18px;
-}
-.sms-send-page .list-group-item {
-padding: 14px;
-  border: 1px solid #e6e8eb;
-   position: relative;
-}
-.sms-send-page .pull-right .btn {
-border: medium none;
-border-radius: 23px;
-font-size: 14px;
-font-weight: 900;
-padding: 8px 20px;
-text-transform: uppercase;
-}
-.sms-send-page .list-group {
-box-shadow: 0 0 11px #eceeef;
-margin: 120px 0px;
-}
-.sms-send-page .list-group-item:first-child {
-border-top-left-radius: 2px;
-border-top-right-radius: 2px;
-}
-.sms-send-page .list-group-item:last-child {
-border-bottom-left-radius: 2px;
-border-bottom-right-radius: 2px;
-margin-bottom: 0;
-}
-.sms-send-page .btn
-{
-float: right;
-}
-.sms-send-page .btn-success
-{
-
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#15ad0c+0,007a00+100 */
-background: #15ad0c; /* Old browsers */
-background: -moz-linear-gradient(left, #15ad0c 0%, #007a00 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, #15ad0c 0%,#007a00 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, #15ad0c 0%,#007a00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#15ad0c', endColorstr='#007a00',GradientType=1 ); /* IE6-9 */
-}
 .sms-send-page .btn-success:hover
 {
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#007a00+0,15ad0c+100 */
@@ -768,9 +736,52 @@ vertical-align: middle;
   }
   
   /*End Friend Page*/
+/*Media Screen*/
+@media(min-width:768px) and (max-width:1024px){
+  /* Login */
+  .sidenav{
+    width: 100%;
+    height: 100vh;
+    position: relative !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .main .panel-body .login-form .panel-body{
+    position: absolute;
+    margin-top: -130% !important;
+    width: 130%;
+    left: 15% !important;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  #panel-login{
+    margin-top: -20% !important;
+  }
 
-  /*Media Screen*/
-
+  /* SIGN UP */
+  .side-image {
+    width: 100%;
+    height: 100vh;
+    position: relative !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /* END */
+  /* Team Details */
+  .main .main-content .panel-body .member div > img{
+    width: 50%;;
+    }
+  .main .main-content .panel-body .overview div > img {
+  width: 100%;
+  }
+  .main .main-content .panel-body .team-info-game > img{
+    width: 40%;
+  }
+  .main .main-content .panel-body .team-info-support div > img {
+    width: 50%;
+  }
+}
+ 
   @media(max-width:812px){
 
     .panel-friend-detail{
@@ -823,7 +834,63 @@ vertical-align: middle;
     .pillsOverview{
       font-size: 100%;
     }
-    
+      /* LOGIN */
+    .sidenav{
+      
+      height: 100vh;
+      position: relative !important;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .side-image{
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      position: relative !important;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .main .panel-body .login-form .panel-body{
+      position: absolute;
+      margin-top: -100%;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    #panel-login{
+      margin-top: -35%;
+    }
+    .login-form .panel-body .form-group{
+      padding-top: 15px;
+    }
+    .login-form .panel-body .form-group .form-control{
+      padding: 20px;
+    }
+    .login-form .panel-body .checkbox{
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    .login-form .panel-body .checkbox a{
+      color: #745FF8;
+    }
+    .login-form .panel-body .checkbox a:hover{
+      color:#6049fa;
+    }
+    .login-form .panel-body a{
+      text-align: right;
+    }
+    .login-form .panel-body p{
+      color: #fff;
+    }
+    .login-form .panel-body p a{
+      color: #745FF8;
+    }
+    .login-form .panel-body p a:hover{
+      color: #6049fa;
+    }
+    /* END */
     /* Banner */
     .prizepool{
       text-align: start !important;
@@ -835,8 +902,12 @@ vertical-align: middle;
     /* end */
 
     /* Team Details */
+    .main .main-content .panel-body .team-overview h4{
+    text-align: center;
+    }
     .main .main-content .panel-body .team-overview a{
-      margin-top: 30px !important;
+      display: block;
+      margin-top: 20px !important;
     }
 
     .main .main-content .panel h3{
@@ -872,11 +943,6 @@ vertical-align: middle;
     }
     
     /* End */
-
-    .case-landing__overlay {
-      top: 112px;
-    }
-
     .panel-Create{
       padding-top: 10px;
     }
@@ -894,7 +960,9 @@ vertical-align: middle;
       height: 250px;
       width: 300px;
     }
-  }
+    }
+    /* END */
+
 
   @media(max-width:414px){
 
@@ -1699,10 +1767,9 @@ html.fullscreen-bg #wrapper {
 @media screen and (max-width: 767px) {
   .navbar-nav {
     width: 100%;
-    margin: 0; }
+    margin-top: 15%; }
     .navbar-nav > li {
       display: table-cell;
-      width: 1%;
       position: inherit;
       text-align: center; }
     .navbar-nav > li > a {
@@ -2436,7 +2503,8 @@ ul.activity-list > li {
   box-shadow: 7px 7px 10px 2px #22224F "
 }
 .main .main-content .container-fluid .col-md-12 #gbr{
-  width: 150px;
+  max-width: 135px; 
+  border-radius: 20px;
   margin-top: 10%;
   margin-bottom: 5%;
   border-radius: 10px;
@@ -2445,18 +2513,11 @@ ul.activity-list > li {
 .main .main-content .container-fluid .col-md-12 .col-xs-6 .col-sm-4{
   margin-left: -10%;
 }
-
-.panel.panel-headline span {
-  float: right;
-  text-align: right;
-  margin-right: 20px;
-}
-
 #listnama{
 color: white;
 }
 #btnaddfriend{
-  margin: 5px;
+  margin: 20px;
   float: right;
   text-align:center;
 }
@@ -2479,7 +2540,7 @@ color: white;
   height: 70%;
 }
 #btnviewteam{
-  margin-top: 10px; 
+  margin-top: 5%; 
   border-radius: 10px; 
   border: none; 
   color: white;
@@ -2487,9 +2548,7 @@ color: white;
   text-align: center; 
   font-size: 10px;
   display:inline-block; 
-  text-align:center;
-  margin-bottom: 10px;
-  
+  text-align:center
 }
 #collapse_row  #bu1{
   
@@ -2497,6 +2556,9 @@ color: white;
 }
 #collapse_row #bu2{
   margin-left: 5%;
+}
+#turnamen_profile{
+  color: white;
 }
 
 
@@ -2515,7 +2577,7 @@ color: white;
  * PAGE: CREATE-TEAM
  ********************/
 #rowcreate{
-  margin-top: 5%;
+  margin-top: 15%;
 }
 #scrollform-teamcreate{
   color: white;
@@ -2577,56 +2639,13 @@ color: white;
   border: none;
   color: white;
 }
-#desclabel{
-  color: white;
-  margin-top: 20px;
-}
 #btnsubmitteamcreate{
   width: 150px;
   height: 40px; 
   border-radius: 20px;
 }
-#upload_logo_team{
-  width: 100%;
-  border-radius: 10px; 
-  height: 60px;
-  background-color: #35356C;
-  border: none; 
-  color: white;
-}
-#browse{
-  padding-top: 20px;
-  padding-left: 10px;
-}
 
  /********************
  * ENDPAGE:CREATE-TEAM
- ********************/
-
- /********************
- * PAGE : EDIT-PROFILE
- ********************/
-
- #avatar{
-   color: white;
- }
- #upload_avatar{
-  background-color: #35356C;
-  padding: 2%; 
-  border-radius: 10px;
- }
-#inputGroupavatar{
-  width: 100%;
-}
-#button-editprofile{
-  float: right;
-}
-#btnsubmit_editprofile{
-  float: right;
-  margin: 20px;
-  
-}
- /********************
- *ENDPAGE : EDIT-PROFILE
  ********************/
 /*# sourceMappingURL=main.css.map */
