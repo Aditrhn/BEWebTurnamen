@@ -2554,6 +2554,11 @@ color: white;
   color: white;
 }
 
+.panel.panel-headline span {
+  float: right;
+  margin-right: 20px;
+}
+
 
 /*ACTIVE COLLAPSE*/
  .selectedcategoryServices {

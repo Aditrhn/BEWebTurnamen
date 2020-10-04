@@ -50,7 +50,10 @@ Route::group(['auth', 'players'], function () {
         //Team
         Route::get('team', 'TeamController@index')->name('team');
         Route::get('team-create', 'TeamController@team_create')->name('team-create');
-        Route::post('team', 'TeamController@store')->name('team.store');
+        Route::post('team-create', 'TeamController@store')->name('team-store');
+        Route::get('team-request', 'TeamController@team_request')->name('team-request');
+        Route::post('team-accept', 'TeamController@team_acc')->name('team-accept');
+        Route::post('team-decline', 'TeamController@team_decline')->name('team-decline');
         Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
         Route::get('team-view', 'TeamController@team_view')->name('team-view');
         // Route::get('team-search', 'TeamController@team_search')->name('team-search');

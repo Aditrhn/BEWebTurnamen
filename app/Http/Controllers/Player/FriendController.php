@@ -17,7 +17,15 @@ class FriendController extends Controller
             $player_id = Auth::guard('player')->user()->id;
             $friendlists = DB::select('select * from friends f join players p on p.id = f.player_one or p.id = player_two
             where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ') and f.status = "1"');
-            $friend_requests = DB::select('select * from friends f join players p on p.id = f.player_one where f.status = ? and f.player_two = ?', ["0", $player_id]);
+            
+            $friend_requests = DB::table('friends')
+                ->join('players', 'players.id', '=', 'friends.player_one')
+                ->select('*')
+                ->where([
+                    ['friends.status', '=', '0'],
+                    ['friends.player_two', '=', $player_id]
+                    ])
+                ->get();
 
             return \view('friend.index', \compact('friendlists', 'friend_requests'));
         } else {
@@ -29,15 +37,25 @@ class FriendController extends Controller
         if (Auth::guard('player')->check()) {
             if ($request->has('id')) {
 
-                $player_id = Auth::guard('player')->user()->id;
-                $friend_id = $request->id;
-                $check = DB::select('select * from friends
-                where (player_one = ' . $friend_id . ' and player_two = ' . $player_id . ')
-                or (player_one = ' . $player_id . ' and player_two = ' . $friend_id . ')');
-
+                $check = DB::table('friends')
+                    ->select('*')
+                    ->where([
+                        ['player_one', '=', $request->id],
+                        ['player_two', '=', Auth::guard('player')->user()->id]
+                        ])
+                    ->orWhere([
+                        ['player_one', '=', Auth::guard('player')->user()->id],
+                        ['player_two', '=', $request->id]
+                    ])->first();
+                
                 if ($check == null) {
-                    if ($friend_id != $player_id) {
-                        $friend = DB::insert('insert into friends (player_one, player_two, status) values (' . $player_id . ', ' . $friend_id . ', "0")');
+                    if ($request->id != Auth::guard('player')->user()->id) {
+                        DB::table('friends')->insert(
+                            [
+                                'player_one' => Auth::guard('player')->user()->id, 
+                                'player_two' => $request->id, 
+                                'status' => '0'
+                            ]);
                     }
                 }
 
@@ -51,10 +69,13 @@ class FriendController extends Controller
     {
         if (Auth::guard('player')->check()) {
             if ($request->has('accept')) {
-                $player_id = Auth::guard('player')->user()->id;
-                $friend_id = $request->accept;
 
-                $accept_friend = DB::update('update friends set status = "1" where player_one = ' . $friend_id . ' and player_two = ' . $player_id);
+                DB::table('friends')
+                    ->where([
+                        ['player_one', '=', $request->accept],
+                        ['player_two', '=', Auth::guard('player')->user()->id]
+                        ])
+                    ->update(['status' => '1']);
 
                 return redirect()->back();
             }
@@ -67,10 +88,12 @@ class FriendController extends Controller
         if (Auth::guard('player')->check()) {
             if ($request->has('decline')) {
 
-                $player_id = Auth::guard('player')->user()->id;
-                $friend_id = $request->decline;
-
-                $decline_friends = DB::delete('delete from friends where player_one = ' . $friend_id . ' and player_two = ' . $player_id);
+                DB::table('friends')
+                    ->where([
+                        ['player_one', '=', $request->decline],
+                        ['player_two', '=', Auth::guard('player')->user()->id]
+                        ])
+                    ->delete();
 
                 return redirect()->back();
             }
@@ -83,12 +106,16 @@ class FriendController extends Controller
         if (Auth::guard('player')->check()) {
             if ($request->has('unfriend')) {
 
-                $player_id = Auth::guard('player')->user()->id;
-                $friend_id = $request->unfriend;
-
-                $unfriends = DB::delete('delete from friends
-                where (player_one = ' . $friend_id . ' and player_two = ' . $player_id . ')
-                or (player_one = ' . $player_id . ' and player_two = ' . $friend_id . ')');
+                DB::table('friends')
+                    ->where([
+                        ['player_one', '=', $request->unfriend],
+                        ['player_two', '=', Auth::guard('player')->user()->id]
+                        ])
+                    ->orWhere([
+                        ['player_one', '=', Auth::guard('player')->user()->id],
+                        ['player_two', '=', $request->unfriend]
+                    ])
+                    ->delete();
 
                 return redirect()->back();
             }

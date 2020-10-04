@@ -34,7 +34,11 @@
                                         <div class="panel panel-headline panel-friend-detail">
                                             <a href="{{ URL::route('user-profile') }}">
                                                 <div class="panel-body">
-                                                    <img class="img-panel-friend" src="{{ asset('images/avatars/'.$players->ava_url) }}">
+                                                    @if ($players->ava_url != null)
+                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$players->ava_url) }}">
+                                                    @else
+                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                                                    @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
                                                     <form action="{{ URL::route('add-friend') }}"
                                                         method="POST">

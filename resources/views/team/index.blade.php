@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-6 colPanelTeam">
                 <!-- PANEL DEFAULT -->
-                <a href="{{ URL::route('team-create') }}">
+                <a href="{{ URL::route('team-request') }}">
                     <div class="panel-team">
                         <div class="panel-Create">
                             <img class="imgPanelteam" alt="" src="assets/img/Create Team.png">
