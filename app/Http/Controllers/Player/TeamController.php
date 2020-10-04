@@ -25,7 +25,7 @@ class TeamController extends Controller
                 $team = DB::table('teams')
                     ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                     ->join('games', 'games.id', '=', 'teams.games_id')
-                    ->select('teams.*', 'games.name as game_name')
+                    ->select('teams.*', 'games.name as game_name', 'games.icon_url')
                     ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                     ->first();
                 $member = DB::table('players')
@@ -33,8 +33,11 @@ class TeamController extends Controller
                     ->select('players.name', 'players.ava_url', 'contracts.role')
                     ->where('contracts.teams_id', '=', $team->id)
                     ->get();
-                // dd($member);
-                return view('team.overview-captain', \compact('team', 'member'));
+                $friends = DB::select('select * from friends f join players p on p.id = f.player_one or p.id = player_two
+                    where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ') 
+                    and f.status = "1" and p.id not in (select players_id from contracts)');
+                // dd($friends);
+                return view('team.overview-captain', \compact('team', 'member', 'friends'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -99,15 +102,16 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    // public function team_search()
-    // {
-    //     if (Auth::guard('player')->check()) {
-    //         $teams = Team::select('name', 'max_member', 'logo_url')->get();
-    //         // $captain_id = Contract::select('players_id')->get();
-
-    //         return \view('team.search', \compact('teams'));
-    //     } else {
-    //         return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-    //     }
-    // }
+    public function friendInvite(Request $request)
+    {
+        if ($request->has('friendId') && $request->has('teamId')) {
+            Contract::create([
+                'role' => "2",
+                'teams_id' => $request->teamId,
+                'players_id' => $request->friendId
+            ]);
+            
+            return \redirect('team')->with(['success' => 'Friend invited successfully']);
+        };
+    }
 }

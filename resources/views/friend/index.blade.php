@@ -23,7 +23,11 @@
             <div class="col-md-3 friend-page">
               <div class="panel panel-headline panel-friend-detail">
                 <div class="panel-body">
-                  <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                  @if ($item->ava_url != null)
+                    <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                  @else
+                    <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                  @endif
                   <h4 class="panel-friend">{{ $item->name }}</h4>
                   <form action="{{ URL::route('unfriend') }}" method="POST">
                     @csrf
@@ -50,7 +54,11 @@
             <div class="col-md-3 friend-page">
               <div class="panel panel-headline panel-friend-detail">
                 <div class="panel-body">
-                  <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                  @if ($item->ava_url != null)
+                    <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                  @else
+                  <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                  @endif
                   <h4 class="panel-friend" data-toggle="modal">{{ $item->name }}</h4>
                   <form action="{{ URL::route('accept-friend') }}" method="POST">
                     @csrf

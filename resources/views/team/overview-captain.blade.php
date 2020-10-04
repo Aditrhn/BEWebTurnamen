@@ -73,6 +73,7 @@
                                             <h4 class="pull-left col-lg-12">Game Focus</h4>
                                         </div>
                                         <img src="assets/img/ML.png"alt="">
+                                        {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
                                         <h4 style="text-align: center">{{ $team->game_name }}</h4>
                                     </div>
                                 </div>
@@ -122,73 +123,36 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search Friend" name="q">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!--Friend List-->
                                 <div class="friend-list">
-                                    <div class="col-xs-12 friend-modal">
-                                        <div class="col-xs-3">
-                                            <img class="img-friend" src="assets/img/user3.png">
+                                    @forelse ($friends as $friend)
+                                        <div class="col-xs-12 friend-modal">
+                                            <div class="col-xs-3">
+                                                @if ($friend->ava_url != null)
+                                                    <img class="img-friend" src="{{ asset('images/avatars/'.$friend->ava_url) }}">
+                                                @else
+                                                    <img class="img-friend" src="{{ asset('images/avatars/default.png') }}">
+                                                @endif
+                                            </div>
+                                            <div class="col-xs-4 friend-modal text-friend">
+                                                <h4>{{ $friend->name }}</h4>
+                                            </div>
+                                            <form action="{{ URL::route('team.friendInvite') }}" method="POST">
+                                                @csrf
+                                                <div class="col-xs-5 friend-btn">
+                                                    <input type="hidden" name="friendId" value="{{ $friend->id }}">
+                                                    <input type="hidden" name="teamId" value="{{ $team->id }}">
+                                                    <button type="submit" class="btn btn-primary nextBtn pull-right">Add Friend</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="col-xs-4 friend-modal text-friend">
-                                            <h4>Mystea</h4>
+                                    @empty
+                                        <div class="panel-friend not-found" style="color: #fff">
+                                            <h4>There are no friend</h4>
                                         </div>
-                                        <div class="col-xs-5 friend-btn">
-                                            <input type="button" value="Add Friend" class="btn btn-primary nextBtn pull-right">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 friend-modal">
-                                        <div class="col-xs-3">
-                                            <img class="img-friend" src="assets/img/user3.png">
-                                        </div>
-                                        <div class="col-xs-4 friend-modal text-friend">
-                                            <h4>Mystea</h4>
-                                        </div>
-                                        <div class="col-xs-5 friend-btn">
-                                            <input type="button" value="Add Friend" class="btn btn-primary nextBtn pull-right">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 friend-modal">
-                                        <div class="col-xs-3">
-                                            <img class="img-friend" src="assets/img/user3.png">
-                                        </div>
-                                        <div class="col-xs-4 friend-modal text-friend">
-                                            <h4>Mystea</h4>
-                                        </div>
-                                        <div class="col-xs-5 friend-btn">
-                                            <input type="button" value="Add Friend" class="btn btn-primary nextBtn pull-right">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 friend-modal">
-                                        <div class="col-xs-3">
-                                            <img class="img-friend" src="assets/img/user3.png">
-                                        </div>
-                                        <div class="col-xs-4 friend-modal text-friend">
-                                            <h4>Mystea</h4>
-                                        </div>
-                                        <div class="col-xs-5 friend-btn">
-                                            <input type="button" value="Add Friend" class="btn btn-primary nextBtn pull-right">
-                                        </div>
-                                    </div>
+                                    @endforelse
                                 </div>
                                 <!--End Friend List-->
-
-                                <!--Invite Link-->
-                                <div class="col-xs-12 friend-link">
-                                    <label for="" class="bg-light"> Or, send invite link to a friend</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" value="https://getbootstrap.com/docs/4.3/components/forms/" name="q">
-                                        <div class="input-group-btn">
-                                            <input type="button" value="Copy" class="btn btn-primary">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

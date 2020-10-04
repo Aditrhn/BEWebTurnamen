@@ -51,6 +51,7 @@ Route::group(['auth', 'players'], function () {
         Route::get('team', 'TeamController@index')->name('team');
         Route::get('team-create', 'TeamController@team_create')->name('team-create');
         Route::post('team', 'TeamController@store')->name('team.store');
+        Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
         Route::get('team-view', 'TeamController@team_view')->name('team-view');
         // Route::get('team-search', 'TeamController@team_search')->name('team-search');
 
