@@ -40,7 +40,7 @@
               </div>
             </div>
             @empty
-            <div class="panel-friend not-found" style="color: #fff">
+            <div class="panel-friend" style="color: #fff; margin-left : 2%">
               <h4>Anda masih belum memiliki teman</h4>
             </div>
             @endforelse
@@ -78,7 +78,7 @@
               </div>
             </div>
             @empty
-            <div class="panel-friend not-found" style="color: #fff">
+            <div class="panel-friend" style="color: #fff; margin-left : 2%">
               <h4>Belum ada permintaan pertemanan.</h4>
             </div>
             @endforelse
