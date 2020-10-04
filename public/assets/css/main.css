@@ -474,13 +474,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     color: white;
   }
   .panel-team:hover{
-    height: 380px;
-    width: 400px;
     background-color: #745FF8;
-    margin: 0 auto;
-    border-radius: 15px;
-    text-align: center;
-    color: white;
   }
 
   .panel-myteam{
