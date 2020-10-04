@@ -119,7 +119,11 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $events = Event::find($id);
+        $events = DB::table('events')
+            ->join('games', 'events.game_id', '=', 'games.id')
+            ->where('events.id', $id)
+            ->select('events.*','games.*')->first();
+        
         $matches = DB::table('matches')
             ->join('events', 'matches.event_id', '=', 'events.id')
             ->select('matches.match_number', 'matches.round_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
@@ -127,7 +131,7 @@ class EventController extends Controller
             ->orderBy('match_number', 'asc')
             ->get()
             ->toArray();
-        // \dd($matches);
+        // \dd($events);
         return view('admin.tournament.detail', \compact('matches','events'));
         // return view('admin.tournament.detail');
     }
