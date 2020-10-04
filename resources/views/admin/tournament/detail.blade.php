@@ -35,57 +35,49 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Tournament Name</label>
-                                        <h5>Nongski Tournament</h5>
+                                        <h5>{{$events->title}}</h5>
                                     </div>
                                     <div class="col-md-3">
                                       <label class="labelOverview" for="">Game</label>
-                                      <h5>Mobile Legend</h5>
+                                    <h5>{{$events->name}}</h5>
                                   </div>
                                   <div class="col-md-3">
                                     <label class="labelOverview" for="">Fee</label>
-                                    <h5>Rp. 100.000</h5>
+                                    <h5>{{$events->fee}}</h5>
                                  </div>
                                  <div class="col-md-3">
                                     <label class="labelOverview" for="">Prizepool</label>
-                                    <h5>Rp. 1.000.000</h5>
+                                    <h5>{{$events->prize_pool}}</h5>
                                  </div>
                                 </div>
             
                                 <div class="row padRow">
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Registration Opening</label>
-                                        <h5>YY / MM / DD</h5>
+                                        <h5>{{App\Model\Event::getDetailedDate($events->registration_open)}}</h5>
                                     </div>
                                     <div class="col-md-3">
                                       <label class="labelOverview" for="">Registration Closing</label>
-                                      <h5>YY / MM / DD</h5>
+                                      <h5>{{App\Model\Event::getDetailedDate($events->registration_close)}}</h5>
                                   </div>
                                   <div class="col-md-3">
                                     <label class="labelOverview" for="">Start Date</label>
-                                    <h5>YY / MM / DD</h5>
+                                    <h5>{{App\Model\Event::getDetailedDate($events->start_date)}}</h5>
                                  </div>
                                  <div class="col-md-3">
                                     <label class="labelOverview" for="">End Date</label>
-                                    <h5>YY / MM / DD</h5>
+                                    <h5>{{App\Model\Event::getDetailedDate($events->end_date)}}</h5>
                                  </div>
                                 </div>
             
                                 <div class="row padRule">
                                     <div class="col-md-6">
                                         <label class="labelOverview" for="">Rules</label>
-                                        <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                            Why do we use it?
-                                            
-                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                                            </h5>
+                                        <h5>{{$events->rules}}</h5>
                                     </div>
                                     <div class="col-md-6">
                                       <label class="labelOverview" for="">Term and Agreement</label>
-                                      <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                        Why do we use it?
-                                        
-                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                                        </h5>
+                                      <h5>{{$events->form_message}}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -127,10 +119,6 @@
     <script>
         var minimalData = {
             teams: [
-                // ["Team 1", "Team 2"],
-                // ["Team 3", "Team 4"],
-                // ["Team 5", "Team 6"],
-                // ["Team 7", "Team 8"]
                 @foreach($matches as $match)
                     ["{{$match->team_a}}", "{{$match->team_b}}"],
                 @endforeach
