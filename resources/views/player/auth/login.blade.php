@@ -1,14 +1,10 @@
 @extends('player.auth.main')
 @section('up-main')
 <div class="sidenav">
-  <div class="bg-image">
-    <div class="login-main-text">
-    </div>
-  </div>
 </div>
 @endsection
 @section('main')
-<div class="main">
+<div class="main" id="panel-login">
   <div class="col-md-12 col-sm-12">
     <div class="div panel-body">
         {{-- notifikasi harus login ketika sudah logout --}}
