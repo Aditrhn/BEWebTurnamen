@@ -49,11 +49,10 @@ Route::group(['auth', 'players'], function () {
 
         //Team
         Route::get('team', 'TeamController@index')->name('team');
-        Route::get('overview', 'TeamController@team_overview')->name('team.overview');
         Route::get('team-create', 'TeamController@team_create')->name('team-create');
         Route::post('team', 'TeamController@store')->name('team.store');
-        Route::get('team-overview', 'TeamController@team_overview')->name('team-overview');
-        Route::get('team-search', 'TeamController@team_search')->name('team-search');
+        Route::get('team-view', 'TeamController@team_view')->name('team-view');
+        // Route::get('team-search', 'TeamController@team_search')->name('team-search');
 
         //Tournament
         Route::get('tournament', 'TournamentController@index')->name('tournament');

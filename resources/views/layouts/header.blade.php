@@ -20,11 +20,8 @@
             <span class="badge bg-danger">5</span>
           </a>
           <ul class="dropdown-menu notifications">
-            <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-            <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-            <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
+            <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 friend request</a></li>
+            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to Na'Vi</a></li>
             <li><a href="#" class="more">See all notifications</a></li>
           </ul>
         </li>
@@ -48,8 +45,6 @@
             </a>
           <ul class="dropdown-menu">
             <li><a href="{{ URL::route('profile') }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-            <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-            <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
             <li><a href="{{URL::route('logout')}}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
           </ul>
         </li>

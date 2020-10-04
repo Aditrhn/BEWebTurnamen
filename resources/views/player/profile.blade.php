@@ -29,7 +29,7 @@
                     @endif
                 </div>
                 <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="col-xs-6 col-sm-12" id="btnaddfriend">
+                <div class="col-xs-6 col-sm-4" id="btnaddfriend" style="margin-top: 20px">
                     <a href="{{ URL::route('profile.edit') }}" type="button" class="btn btn-primary pull-right">Edit Profile</a>
                 </div>
                 </div>
@@ -102,13 +102,13 @@
                                     @if (Auth::guard('player')->user()->city !== null)
                                     <p>City <span>{{Auth::guard('player')->user()->city}}</span></p>
                                     @else
-                                    <p>City in Indonesia</p>
+                                    <p>City <span>in Indonesia</span></p>
                                     @endif
                                     <br>
                                     @if (Auth::guard('player')->user()->gender !== null)
                                     <p>Gender <span>{{Auth::guard('player')->user()->gender}}</span></p>
                                     @else
-                                    <p>Gender Male</p>
+                                    <p>Gender <span>Unknown</span></p>
                                     @endif
                                     <br>
                                     <p>E-mail <span>{{Auth::guard('player')->user()->email}}</p>
@@ -116,7 +116,7 @@
                                     @if (Auth::guard('player')->user()->contact !== null)
                                     <p>Phone <span>{{Auth::guard('player')->user()->contact}}</span></p>
                                     @else
-                                    <p>Phone n/a</p>
+                                    <p>Phone <span>n/a</span></p>
                                     @endif
                                     <br>
                                 </div>

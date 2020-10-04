@@ -22,7 +22,19 @@ class TeamController extends Controller
             if ($check == null) {
                 return \view('team.index');
             } else {
-                return \view('team.overview');
+                $team = DB::table('teams')
+                    ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+                    ->join('games', 'games.id', '=', 'teams.games_id')
+                    ->select('teams.*', 'games.name as game_name')
+                    ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                    ->first();
+                $member = DB::table('players')
+                    ->join('contracts', 'contracts.players_id', '=', 'players.id')
+                    ->select('players.name', 'players.ava_url', 'contracts.role')
+                    ->where('contracts.teams_id', '=', $team->id)
+                    ->get();
+                // dd($member);
+                return view('team.overview-captain', \compact('team', 'member'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -72,24 +84,30 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function team_overview(Team $team)
+    public function team_view()
     {
         if (Auth::guard('player')->check()) {
-            // $team = Team::find($id);
-            return view('team.overview', \compact('team'));
-        } else {
-            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        }
-    }
-    public function team_search()
-    {
-        if (Auth::guard('player')->check()) {
-            $teams = Team::select('name', 'max_member', 'logo_url')->get();
-            // $captain_id = Contract::select('players_id')->get();
+            // $team = DB::table('team')
+            //     ->join('contract', 'contract.teams_id', '=', 'team.id')
+            //     ->select('team.*')
+            //     ->where('contract.players_id', '=', Auth::guard('player')->user()->id)
+            //     ->get();
 
-            return \view('team.search', \compact('teams'));
+            // dd($team);
+            return view('team.overview-unsigned', \compact('team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
+    // public function team_search()
+    // {
+    //     if (Auth::guard('player')->check()) {
+    //         $teams = Team::select('name', 'max_member', 'logo_url')->get();
+    //         // $captain_id = Contract::select('players_id')->get();
+
+    //         return \view('team.search', \compact('teams'));
+    //     } else {
+    //         return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+    //     }
+    // }
 }
