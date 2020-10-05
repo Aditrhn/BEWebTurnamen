@@ -21,7 +21,7 @@ class TeamController extends Controller
                 ->where([
                     ['players_id', '=', $player_id],
                     ['status', '=', '1']
-                    ])->first();
+                ])->first();
 
             if ($check == null) {
                 return \view('team.index');
@@ -38,10 +38,10 @@ class TeamController extends Controller
                     ->where([
                         ['contracts.teams_id', '=', $team->id],
                         ['contracts.status', '=', '1']
-                        ])
+                    ])
                     ->get();
                 $friends = DB::select('select * from friends f join players p on p.id = f.player_one or p.id = player_two
-                    where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ') 
+                    where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ')
                     and f.status = "1" and p.id not in (select players_id from contracts)');
                 // dd($member);
                 return view('team.overview-captain', \compact('team', 'member', 'friends'));
@@ -104,19 +104,19 @@ class TeamController extends Controller
                 'teams_id' => $request->teamId,
                 'players_id' => $request->friendId
             ]);
-            
+
             return \redirect('team')->with(['success' => 'Friend invited successfully']);
         };
     }
     public function team_request()
-    {  
+    {
         $teams = DB::table('teams')
             ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
             ->select('teams.id', 'teams.name', 'teams.logo_url')
             ->where([
                 ['contracts.players_id', '=', Auth::guard('player')->user()->id],
                 ['contracts.status', '=', '0']
-                ])
+            ])
             ->get();
         // dd($team);
         return view('team.request-team', \compact('teams'));
@@ -130,7 +130,7 @@ class TeamController extends Controller
                     ->where([
                         ['teams_id', '=', $request->teamAcc],
                         ['players_id', '=', Auth::guard('player')->user()->id]
-                        ])
+                    ])
                     ->update(['status' => '1']);
 
                 return redirect('team')->with(['success' => 'Friend invited successfully']);
@@ -148,7 +148,7 @@ class TeamController extends Controller
                     ->where([
                         ['teams_id', '=', $request->teamDecline],
                         ['players_id', '=', Auth::guard('player')->user()->id]
-                        ])
+                    ])
                     ->delete();
 
                 return redirect()->back();
@@ -157,7 +157,7 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function team_view()
+    public function team_view(Team $team)
     {
         if (Auth::guard('player')->check()) {
             // $team = DB::table('team')

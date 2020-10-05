@@ -55,7 +55,7 @@ Route::group(['auth', 'players'], function () {
         Route::post('team-accept', 'TeamController@team_acc')->name('team-accept');
         Route::post('team-decline', 'TeamController@team_decline')->name('team-decline');
         Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
-        Route::get('team-view', 'TeamController@team_view')->name('team-view');
+        Route::get('team-view', 'TeamController@team_view')->name('team.view');
         // Route::get('team-search', 'TeamController@team_search')->name('team-search');
 
         //Tournament
