@@ -6,7 +6,9 @@
   <div class="main-content">
     <!-- Container -->
     <div class="container-fluid">
-        <label for="">Team Request</label>
+		<div class="row" style="color: #fff; margin : 2%; font-size : 30px; text-align : center;">
+		<label  for="">Team Invitation</label>
+		</div>
         <div class="row">
 			@forelse ($teams as $team)
 				<div class="col-md-3 friend-page">
@@ -36,7 +38,7 @@
 					</div>
 		    	</div>
 			@empty
-				<div class="panel-friend" style="color: #fff; margin-left : 2%">
+				<div class="panel-friend" style="color: #fff; margin : 15%; font-size : 30px; text-align : center;">
 					<h4>Anda masih belum memiliki invitasi tim</h4>
 			  	</div>
 			@endforelse

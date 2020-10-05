@@ -954,6 +954,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       height: 250px;
       width: 300px;
     }
+
+    .case-landing__overlay {
+      top: 110px;
+    }
     }
     /* END */
 
