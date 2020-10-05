@@ -117,7 +117,7 @@
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.bracket.min.js') }}"></script>
     <script>
-        var minimalData = {
+        var single = {
             teams: [
                 @foreach($matches as $match)
                     ["{{$match->team_a}}", "{{$match->team_b}}"],
@@ -138,12 +138,12 @@
                 ]
             ]
         }
-        var resizeParameters = {
+        var bracket = {
             teamWidth: 100,
             scoreWidth: 50,
             matchMargin: 75,
             roundMargin: 85,
-            init: minimalData,
+            init: single,
             skipConsolationRound: true,
             onMatchClick: onclick
         };
@@ -153,7 +153,7 @@
         }
 
         $(function () {
-            $('#bracket').bracket(resizeParameters)
+            $('#bracket').bracket(bracket)
         })
     </script>
     <script src="assets/js/main.js"></script>

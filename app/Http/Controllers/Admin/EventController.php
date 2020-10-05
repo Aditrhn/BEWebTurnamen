@@ -129,12 +129,7 @@ class EventController extends Controller
             ->join('events', 'matches.event_id', '=', 'events.id')
             ->select('matches.match_number', 'matches.round_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
             ->where('matches.event_id', $id)
-            ->orderBy('match_number', 'asc')
-            ->get()
-            ->toArray();
-        $scores = DB::table('matches')
-            ->select('round_number','match_number','score_a', 'score_b')
-            ->where('matches.event_id', $id)
+            ->where('round_number',1)
             ->orderBy('match_number', 'asc')
             ->get()
             ->toArray();
@@ -143,13 +138,20 @@ class EventController extends Controller
             ->distinct('round_number')
             ->count('round_number');
         $rounds = array();
-        for ($i=0; $i < $count_round; $i++) {
-            $arr = array();
+        for ($i=1; $i <= $count_round; $i++) {
+            $mtch = array();
+            $scores = DB::table('matches')
+            ->select('round_number','match_number','score_a', 'score_b')
+            ->where('event_id', $id)
+            ->where('round_number',$i)
+            ->orderBy('match_number', 'asc')
+            ->get()
+            ->toArray();
             foreach ($scores as $score) {
                 $matchscore = array('score_a'=>$score->score_a,'score_b'=>$score->score_b);
-                array_push($arr, $matchscore);
+                array_push($mtch, $matchscore);
             }
-            array_push($rounds, $arr);
+            array_push($rounds, $mtch);
         }
         // \dd($rounds);
         return view('admin.tournament.detail', \compact('matches','events','rounds'));
