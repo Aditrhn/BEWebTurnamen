@@ -11,6 +11,7 @@ use App\Model\TemporaryEvent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Arr;
 
 class EventController extends Controller
 {
@@ -131,8 +132,27 @@ class EventController extends Controller
             ->orderBy('match_number', 'asc')
             ->get()
             ->toArray();
-        // \dd($events);
-        return view('admin.tournament.detail', \compact('matches','events'));
+        $scores = DB::table('matches')
+            ->select('round_number','match_number','score_a', 'score_b')
+            ->where('matches.event_id', $id)
+            ->orderBy('match_number', 'asc')
+            ->get()
+            ->toArray();
+        $count_round = DB::table('matches')
+            ->where('matches.event_id', $id)
+            ->distinct('round_number')
+            ->count('round_number');
+        $rounds = array();
+        for ($i=0; $i < $count_round; $i++) {
+            $arr = array();
+            foreach ($scores as $score) {
+                $matchscore = array('score_a'=>$score->score_a,'score_b'=>$score->score_b);
+                array_push($arr, $matchscore);
+            }
+            array_push($rounds, $arr);
+        }
+        // \dd($rounds);
+        return view('admin.tournament.detail', \compact('matches','events','rounds'));
         // return view('admin.tournament.detail');
     }
 

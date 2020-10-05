@@ -128,13 +128,13 @@
             ],
             results: [
                 [
-                    @foreach($matches as $match)
-                        [{{$match->score_a}}, {{$match->score_b}}],
+                    @foreach($rounds as $round)
+                    [
+                        @foreach($round as $matches)
+                            [{{$matches['score_a']}},{{$matches['score_b']}}],
+                        @endforeach
+                    ],
                     @endforeach
-                ],
-                [
-                    [1,2],
-                    [0,3]
                 ]
             ]
         }
