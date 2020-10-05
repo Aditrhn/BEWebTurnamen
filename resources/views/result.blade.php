@@ -32,7 +32,7 @@
                                 @forelse($player as $players)
                                     <div class="col-md-3 friend-page">
                                         <div class="panel panel-headline panel-friend-detail">
-                                            <a href="{{ URL::route('user-profile') }}">
+                                            <a href="{{ URL::route('user.profile',$players->id) }}">
                                                 <div class="panel-body">
                                                     @if ($players->ava_url != null)
                                                       <img class="img-panel-friend" src="{{ asset('images/avatars/'.$players->ava_url) }}">
