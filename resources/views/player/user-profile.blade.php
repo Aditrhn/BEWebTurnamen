@@ -7,23 +7,23 @@
             <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">
-                    @if (Auth::guard('player')->user()->ava_url != null)
-                    <img src="{{ asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
+                    @if ($player->ava_url !== null)
+                    <img src="{{ asset('images/avatars/'.$player->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
                     @else
                     <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
                     @endif
                 </div>
                 <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
-                    <b><h2 style="color: white;">{{ Auth::guard('player')->user()->name }}</h2></b>
+                    <b><h2 style="color: white;">{{$player->name }}</h2></b>
                     <br>
-                    @if (Auth::guard('player')->user()->address !== null)
-                    <p style="color: white;">{{ Auth::guard('player')->user()->address }}</p>
+                    @if ($player->address !== null)
+                    <p style="color: white;">{{ $player->address }}</p>
                     @else
                     <p style="color: white;">Alamat kusung!!!</p>
                     @endif
                     <br>
-                    @if (Auth::guard('player')->user()->contact !== null)
-                    <p style="color: white;">{{ Auth::guard('player')->user()->contact }}</p>
+                    @if ($player->contact !== null)
+                    <p style="color: white;">{{ $player->contact }}</p>
                     @else
                     <p style="color: white;">Contact kusung!!!</p>
                     @endif
@@ -93,28 +93,28 @@
                         <div class="panel panel-headline" id="biopanel" >
                             <div class="panel-body">
                                 <div class="row">
-                                    @if (Auth::guard('player')->user()->name !== null)
-                                    <p>Name <span>{{Auth::guard('player')->user()->name}}</span></p>
+                                    @if ($player->name !== null)
+                                    <p>Name <span>{{$player->name}}</span></p>
                                     @else
                                     <p>No Name</p>
                                     @endif
                                     <br>
-                                    @if (Auth::guard('player')->user()->city !== null)
-                                    <p>City <span>{{Auth::guard('player')->user()->city}}</span></p>
+                                    @if ($player->city !== null)
+                                    <p>City <span>{{$player->city}}</span></p>
                                     @else
                                     <p>City in Indonesia</p>
                                     @endif
                                     <br>
-                                    @if (Auth::guard('player')->user()->gender !== null)
-                                    <p>Gender <span>{{Auth::guard('player')->user()->gender}}</span></p>
+                                    @if ($player->gender !== null)
+                                    <p>Gender <span>{{$player->gender}}</span></p>
                                     @else
                                     <p>Gender Male</p>
                                     @endif
                                     <br>
-                                    <p>E-mail <span>{{Auth::guard('player')->user()->email}}</p>
+                                    <p>E-mail <span>{{$player->email}}</p>
                                     <br>
-                                    @if (Auth::guard('player')->user()->contact !== null)
-                                    <p>Phone <span>{{Auth::guard('player')->user()->contact}}</span></p>
+                                    @if ($player->contact !== null)
+                                    <p>Phone <span>{{$player->contact}}</span></p>
                                     @else
                                     <p>Phone n/a</p>
                                     @endif
@@ -142,18 +142,6 @@
                                             @empty
                                             <p>Tidak ada teman!!</p>
                                             @endforelse
-                                            {{-- @foreach ($friend as $item)
-                                            <p>{{ $item->name }}</p>
-                                            <img src="{{ asset('images/avatars/'.$item->ava_url) }}" >
-                                            @endforeach --}}
-                                            {{-- <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/favicon.png" > --}}
                                         </center>
                                     </div>
                                 </div>
@@ -162,8 +150,8 @@
                                 <h4>Status</h4>
                                 <div class="panel">
                                     <div class="panel-heading padding-top-30 padding-bottom-30">
-                                        @if (Auth::guard('player')->user()->status)
-                                        <p>{{ Auth::guard('player')->user()->status }}</p>
+                                        @if ($player->status)
+                                        <p>{{ $player->status }}</p>
                                         @else
                                         <p>Status kosong!!</p>
                                         @endif

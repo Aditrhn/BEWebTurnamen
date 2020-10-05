@@ -157,15 +157,10 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
+
     public function team_view(Team $team)
     {
         if (Auth::guard('player')->check()) {
-            // $team = DB::table('team')
-            //     ->join('contract', 'contract.teams_id', '=', 'team.id')
-            //     ->select('team.*')
-            //     ->where('contract.players_id', '=', Auth::guard('player')->user()->id)
-            //     ->get();
-
             // dd($team);
             return view('team.overview-unsigned', \compact('team'));
         } else {
