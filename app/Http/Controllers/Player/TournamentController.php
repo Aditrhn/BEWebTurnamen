@@ -21,4 +21,8 @@ class TournamentController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
+    public function registerTournament(Event $event)
+    {
+        return \view('tournament.overview', \compact('event'));
+    }
 }

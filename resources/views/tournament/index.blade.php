@@ -132,7 +132,7 @@
                                         </table>
                                     </div>
                                     <div class="col-lg-4 col-xs-12 buttons">
-                                        <a class="button buy btn-success" href="tournament-overview.html">OPEN</a>
+                                        <a class="button buy btn-success" href="{{ URL::route('tournament.overview',$tournaments->id) }}">OPEN</a>
                                     </div>
                                 </div>
                             </a>
