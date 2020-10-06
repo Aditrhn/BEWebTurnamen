@@ -4,49 +4,77 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
-            <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
+            <div class="col-md-12"
+                style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
                 <div class="row">
-                <div class="col-xs-6 col-sm-4">
-                    @if ($player->ava_url !== null)
-                    <img src="{{ asset('images/avatars/'.$player->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
-                    @else
-                    <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
-                    @endif
-                </div>
-                <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
-                    <b><h2 style="color: white;">{{$player->name }}</h2></b>
-                    <br>
-                    @if ($player->address !== null)
-                    <p style="color: white;">{{ $player->address }}</p>
-                    @else
-                    <p style="color: white;">Alamat kusung!!!</p>
-                    @endif
-                    <br>
-                    @if ($player->contact !== null)
-                    <p style="color: white;">{{ $player->contact }}</p>
-                    @else
-                    <p style="color: white;">Contact kusung!!!</p>
-                    @endif
-                </div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="col-xs-6 col-sm-12" id="btnaddfriend">
-                    <a href="{{ URL::route('profile.edit') }}" type="button" class="btn btn-primary pull-right">Edit Profile</a>
-                </div>
+                    <div class="col-xs-6 col-sm-4">
+                        @if($player->ava_url !== null)
+                            <img src="{{ asset('images/avatars/'.$player->ava_url) }}"
+                                width="40%"
+                                style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;"
+                                alt="Avatar">
+                        @else
+                            <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%"
+                                style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
+                        @endif
+                    </div>
+                    <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
+                        <b>
+                            <h2 style="color: white;">{{ $player->name }}</h2>
+                        </b>
+                        <br>
+                        @if($player->address !== null)
+                            <p style="color: white;">{{ $player->address }}</p>
+                        @else
+                            <p style="color: white;">Alamat kusung!!!</p>
+                        @endif
+                        <br>
+                        @if($player->contact !== null)
+                            <p style="color: white;">{{ $player->contact }}</p>
+                        @else
+                            <p style="color: white;">Contact kusung!!!</p>
+                        @endif
+                    </div>
+                    <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                    <div class="col-xs-6 col-sm-12" id="btnaddfriend">
+                        @if($check == null)
+                            <form action="{{ URL::route('add-friend') }}" method="POST">
+                                @csrf
+                                <div class="buttons col-md-12 btnAdd">
+                                    <input type="hidden" name="id" value="{{ $player->id }}">
+                                    <button class="btn btn-primary pull-right" id="btnAddfriend" type="submit">Add
+                                        Friend</button>
+                                </div>
+                            </form>
+                        @elseif($checks != null)
+                            <a href="#" type="button" class="btn btn-primary pull-right">Friend Request Sent</a>
+                        @else
+                            <form action="{{ URL::route('unfriend') }}" method="POST">
+                                @csrf
+                                <div class="buttons col-md-12 btnAdd">
+                                    <input type="hidden" name="unfriend" value="{{ $player->id }}">
+                                    <button class="btn btn-primary pull-right" id="btnUnfriend"
+                                        type="submit">Unfriend</button>
+                                </div>
+                            </form>
+                        @endif
+
+                    </div>
                 </div>
             </div>
 
-        <!--Nav-Pills-->
+            <!--Nav-Pills-->
             <div class="col-md-12">
                 <ul class="nav nav-pills marginPils">
                     <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
                     <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
                 </ul>
             </div>
-        <!--Nav-Pills Konten-->
+            <!--Nav-Pills Konten-->
             <div class="tab-content tabKonten thText">
                 <div id="friendList" class="tab-pane fade in active">
                     <div class="col-md-12">
-                        <div class="container-fluid" >
+                        <div class="container-fluid">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -60,25 +88,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse ($game as $games)
-                                        <tr>
-                                            <td>{{ $games->platform }}</td>
-                                            <td>{{ $games->name }}</td>
-                                            <td>August 13, 2020 @3:00 am</td>
-                                            <td>Liquor</td>
-                                            <td>164 participants</td>
-                                            <td>winner</td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td>Game Platform Kusung!!</td>
-                                            <td>Name Turney Kusung!!</td>
-                                            <td>August 13, 2020 @3:00 am</td>
-                                            <td>Liquor</td>
-                                            <td>164 participants</td>
-                                            <td>winner</td>
-                                        </tr>
-                                    @endforelse
+                                        @forelse($game as $games)
+                                            <tr>
+                                                <td>{{ $games->platform }}</td>
+                                                <td>{{ $games->name }}</td>
+                                                <td>August 13, 2020 @3:00 am</td>
+                                                <td>Liquor</td>
+                                                <td>164 participants</td>
+                                                <td>winner</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td>Game Platform Kusung!!</td>
+                                                <td>Name Turney Kusung!!</td>
+                                                <td>August 13, 2020 @3:00 am</td>
+                                                <td>Liquor</td>
+                                                <td>164 participants</td>
+                                                <td>winner</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -90,33 +118,33 @@
                     <div class="col-md-5">
                         <!-- PANEL HEADLINE -->
                         <h4>Bio</h4>
-                        <div class="panel panel-headline" id="biopanel" >
+                        <div class="panel panel-headline" id="biopanel">
                             <div class="panel-body">
                                 <div class="row">
-                                    @if ($player->name !== null)
-                                    <p>Name <span>{{$player->name}}</span></p>
+                                    @if($player->name !== null)
+                                        <p>Name <span>{{ $player->name }}</span></p>
                                     @else
-                                    <p>No Name</p>
+                                        <p>No Name</p>
                                     @endif
                                     <br>
-                                    @if ($player->city !== null)
-                                    <p>City <span>{{$player->city}}</span></p>
+                                    @if($player->city !== null)
+                                        <p>City <span>{{ $player->city }}</span></p>
                                     @else
-                                    <p>City in Indonesia</p>
+                                        <p>City in Indonesia</p>
                                     @endif
                                     <br>
-                                    @if ($player->gender !== null)
-                                    <p>Gender <span>{{$player->gender}}</span></p>
+                                    @if($player->gender !== null)
+                                        <p>Gender <span>{{ $player->gender }}</span></p>
                                     @else
-                                    <p>Gender Male</p>
+                                        <p>Gender Male</p>
                                     @endif
                                     <br>
-                                    <p>E-mail <span>{{$player->email}}</p>
+                                    <p>E-mail <span>{{ $player->email }}</p>
                                     <br>
-                                    @if ($player->contact !== null)
-                                    <p>Phone <span>{{$player->contact}}</span></p>
+                                    @if($player->contact !== null)
+                                        <p>Phone <span>{{ $player->contact }}</span></p>
                                     @else
-                                    <p>Phone n/a</p>
+                                        <p>Phone n/a</p>
                                     @endif
                                     <br>
                                 </div>
@@ -133,14 +161,16 @@
                                 <div class="panel">
                                     <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
                                         <center>
-                                            @forelse ($friend as $friends)
-                                                @if ($friends->ava_url != null)
-                                                <img src="{{ asset('images/avatars/'.$friends->ava_url) }}" alt="{{ $friends->name }}">
+                                            @forelse($friend as $friends)
+                                                @if($friends->ava_url != null)
+                                                    <img src="{{ asset('images/avatars/'.$friends->ava_url) }}"
+                                                        alt="{{ $friends->name }}">
                                                 @else
-                                                <img src="{{ asset('images/avatars/default.png') }}" alt="{{ $friends->name }}">
+                                                    <img src="{{ asset('images/avatars/default.png') }}"
+                                                        alt="{{ $friends->name }}">
                                                 @endif
                                             @empty
-                                            <p>Tidak ada teman!!</p>
+                                                <p>Tidak ada teman!!</p>
                                             @endforelse
                                         </center>
                                     </div>
@@ -150,10 +180,10 @@
                                 <h4>Status</h4>
                                 <div class="panel">
                                     <div class="panel-heading padding-top-30 padding-bottom-30">
-                                        @if ($player->status)
-                                        <p>{{ $player->status }}</p>
+                                        @if($player->status)
+                                            <p>{{ $player->status }}</p>
                                         @else
-                                        <p>Status kosong!!</p>
+                                            <p>Status kosong!!</p>
                                         @endif
                                     </div>
                                 </div>
@@ -164,16 +194,20 @@
                         <h4>Teams</h4>
                         <div class="panel">
                             <div class="panel-heading padding-top-30 padding-bottom-30">
-                                <div class="row" >
-                                    @forelse ($team as $item)
-                                        <div class="col-md-5" id="teampanel" >
+                                <div class="row">
+                                    @forelse($team as $item)
+                                        <div class="col-md-5" id="teampanel">
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <img src="{{ asset('images/team_logo/'.$item->logo_url) }}">
-                                                    <a class="btn btn-primary" id="btnviewteam" href="#" role="button" >View Team</a>
+                                                    <img
+                                                        src="{{ asset('images/team_logo/'.$item->logo_url) }}">
+                                                    <a class="btn btn-primary" id="btnviewteam" href="#"
+                                                        role="button">View Team</a>
                                                 </div>
                                                 <div class="col-md-7">
-                                                    <b><h4 style="font-weight: bold;">{{ $item->name }}</h4></b>
+                                                    <b>
+                                                        <h4 style="font-weight: bold;">{{ $item->name }}</h4>
+                                                    </b>
                                                     <h5>{{ $item->description }}</h5>
                                                 </div>
                                             </div>
@@ -194,64 +228,74 @@
             <!--End Konten Pills-->
         </div>
     </div>
-<!-- END MAIN CONTENT -->
+    <!-- END MAIN CONTENT -->
 </div>
 @endsection
 @push('wizard')
-<script src="assets/scripts/wizard-steps.js"></script>
-<script>var Conclave = (function () {
-  var buArr = [], arlen;
-  return {
-    init: function () {
-      this.addCN(); this.clickReg();
-    },
-    addCN: function () {
-      var buarr = ["holder_bu_center", "holder_bu_awayL1", "holder_bu_awayL2", "holder_bu_awayR1", "holder_bu_awayR2"];
-      for (var i = 1; i <= buarr.length; ++i) {
-        $("#bu" + i).removeClass().addClass(buarr[i - 1] + " holder_bu");
-      }
-    },
-    clickReg: function () {
-      $(".holder_bu").each(function () {
-        buArr.push($(this).attr('class'))
-      });
+    <script src="assets/scripts/wizard-steps.js"></script>
+    <script>
+        var Conclave = (function () {
+            var buArr = [],
+                arlen;
+            return {
+                init: function () {
+                    this.addCN();
+                    this.clickReg();
+                },
+                addCN: function () {
+                    var buarr = ["holder_bu_center", "holder_bu_awayL1", "holder_bu_awayL2",
+                        "holder_bu_awayR1", "holder_bu_awayR2"
+                    ];
+                    for (var i = 1; i <= buarr.length; ++i) {
+                        $("#bu" + i).removeClass().addClass(buarr[i - 1] + " holder_bu");
+                    }
+                },
+                clickReg: function () {
+                    $(".holder_bu").each(function () {
+                        buArr.push($(this).attr('class'))
+                    });
 
-      $(".holder_bu").click(function (buid) {
-        var me = this, id = this.id || buid, joId = $("#" + id), joCN = joId.attr("class").replace(" holder_bu", "");
-        var cpos = buArr.indexOf(joCN), mpos = buArr.indexOf("holder_bu_awayL1");
-        if (cpos != mpos) {
-          tomove = cpos > mpos ? arlen - cpos + mpos : mpos - cpos;
-          while (tomove) {
-            var t = buArr.shift();
-            buArr.push(t);
-            for (var i = 1; i <= arlen; ++i) {
-              $("#bu" + i).removeClass().addClass(buArr[i - 1] + " holder_bu");
-            }
-            --tomove;
-          }
-        }
-      })
-    },
-    auto: function () {
-      for (i = 1; i <= 1; ++i) {
-        $(".holder_bu").delay(4000).trigger('click', "bu" + i).delay(4000);
-        console.log("called");
-      }
-    }
-  };
-  })();
+                    $(".holder_bu").click(function (buid) {
+                        var me = this,
+                            id = this.id || buid,
+                            joId = $("#" + id),
+                            joCN = joId.attr("class").replace(" holder_bu", "");
+                        var cpos = buArr.indexOf(joCN),
+                            mpos = buArr.indexOf("holder_bu_awayL1");
+                        if (cpos != mpos) {
+                            tomove = cpos > mpos ? arlen - cpos + mpos : mpos - cpos;
+                            while (tomove) {
+                                var t = buArr.shift();
+                                buArr.push(t);
+                                for (var i = 1; i <= arlen; ++i) {
+                                    $("#bu" + i).removeClass().addClass(buArr[i - 1] +
+                                        " holder_bu");
+                                }
+                                --tomove;
+                            }
+                        }
+                    })
+                },
+                auto: function () {
+                    for (i = 1; i <= 1; ++i) {
+                        $(".holder_bu").delay(4000).trigger('click', "bu" + i).delay(4000);
+                        console.log("called");
+                    }
+                }
+            };
+        })();
 
-  $(document).ready(function () {
-    window['conclave'] = Conclave;
-    Conclave.init();
-  });
+        $(document).ready(function () {
+            window['conclave'] = Conclave;
+            Conclave.init();
+        });
 
-  $("#c1,#c2").click(function(){
+        $("#c1,#c2").click(function () {
 
-    $("#c1,#c2.selectedcategoryServices").removeClass("selectedcategoryServices");
-    $(this).addClass('selectedcategoryServices');
+            $("#c1,#c2.selectedcategoryServices").removeClass("selectedcategoryServices");
+            $(this).addClass('selectedcategoryServices');
 
-  });
+        });
 
-</script>
+    </script>
 @endpush
