@@ -134,6 +134,28 @@ class PlayerAuthController extends Controller
     public function userProfile(Request $request, Player $player)
     {
         if (Auth::guard('player')->check()) {
+            $check = DB::table('friends')
+                    ->select('*')
+                    ->where([
+                        ['player_one', '=', $player->id],
+                        ['player_two', '=', Auth::guard('player')->user()->id]
+                        ])
+                    ->orWhere([
+                        ['player_one', '=', Auth::guard('player')->user()->id],
+                        ['player_two', '=', $player->id]
+                    ])->first();
+            $checks = DB::table('friends')
+                    ->select('*')
+                    ->where([
+                        ['player_one', '=', $player->id],
+                        ['player_two', '=', Auth::guard('player')->user()->id],
+                        ['status', '=', '0']
+                        ])
+                    ->orWhere([
+                        ['player_one', '=', Auth::guard('player')->user()->id],
+                        ['player_two', '=', $player->id],
+                        ['status', '=', '0']
+                    ])->first();
             $game = DB::table('players')
                 ->join('player_games', 'player_games.players_id', '=', 'players.id')
                 ->select('players.*', 'player_games.*')
@@ -142,7 +164,7 @@ class PlayerAuthController extends Controller
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                 ->select('teams.name', 'teams.logo_url', 'teams.description')
-                ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                ->where('contracts.players_id', '=', $player->id)
                 ->get();
             // $request->user();
             // \dd($player);
@@ -150,7 +172,7 @@ class PlayerAuthController extends Controller
             // return view('player.user-profile', [
             //     'user' => $request->user()
             // ], \compact('player'));
-            return \view('player.user-profile', \compact('player', 'game', 'friend', 'team'));
+            return \view('player.user-profile', \compact('player', 'game', 'friend', 'team', 'check', 'checks'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

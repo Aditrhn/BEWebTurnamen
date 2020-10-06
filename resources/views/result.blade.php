@@ -72,9 +72,15 @@
                                                 <img class="img-panel-friend"
                                                     src="{{ asset('images/team_logo/'.$teams->logo_url) }}">
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
-                                                <div class="buttons col-md-12 btnAdd">
-                                                    <a class="btn btn-xs btn-primary" id="btnTeamview" href="{{ URL::route('team.view',$teams->id) }}">Team View</a>
-                                                </div>
+                                                <form action="{{ URL::route('team.view',$teams->id) }}"
+                                                        method="POST">
+                                                    @csrf
+                                                    <div class="buttons col-md-12 btnAdd">
+                                                        <input type="hidden" name="teamId" value="{{ $teams->id }}">
+                                                        <button class="btn btn-xs btn-primary" id="btnTeamview"
+                                                            type="submit">Team View</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

@@ -47,7 +47,7 @@ class FriendController extends Controller
                         ['player_one', '=', Auth::guard('player')->user()->id],
                         ['player_two', '=', $request->id]
                     ])->first();
-                
+                    
                 if ($check == null) {
                     if ($request->id != Auth::guard('player')->user()->id) {
                         DB::table('friends')->insert(
