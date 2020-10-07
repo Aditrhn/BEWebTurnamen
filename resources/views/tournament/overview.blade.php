@@ -24,7 +24,7 @@
             <div class="tab-content">
                 <div id="overview" class="tab-pane fade in active">
                     <!-- PANEL OVERVIEW -->
-                        
+
                         <div class="col-md-8">
                             <!-- PANEL HEADLINE -->
                             <div class="panel panel-headline">
@@ -108,19 +108,19 @@
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <div class="stepwizard">
                                                     <div class="stepwizard-row setup-panel">
-                                                        <div class="stepwizard-step col-xs-2 col-xs-offset-1"> 
+                                                        <div class="stepwizard-step col-xs-2 col-xs-offset-1">
                                                             <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
                                                         </div>
-                                                        <div class="stepwizard-step col-xs-2"> 
+                                                        <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                                                         </div>
-                                                        <div class="stepwizard-step col-xs-2"> 
+                                                        <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                                                         </div>
-                                                        <div class="stepwizard-step col-xs-2"> 
+                                                        <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
                                                         </div>
-                                                        <div class="stepwizard-step col-xs-2"> 
+                                                        <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
                                                         </div>
                                                     </div>
@@ -145,7 +145,7 @@
                                                                         <br>
                                                                     </div>
                                                                 </div>
-                                                                <input name="remember" type="checkbox" value="Remember me" style="margin-top: 20px;" required> 
+                                                                <input name="remember" type="checkbox" value="Remember me" style="margin-top: 20px;" required>
                                                                 I agree to the <a href="">Terms & Conditions</a> and <a href="">Privacy Policy</a>
                                                             </div>
                                                         </div>
@@ -264,7 +264,7 @@
                             <!-- END PANEL NO PADDING -->
                         </div>
                         <!-- END PANEL HEADLINE -->
-                    
+
                     <!-- End Panel Friend List -->
                 </div>
 
@@ -291,15 +291,15 @@
                                         <ul class="matchup">
                                             <li class="team team-top">NC State<span class="score">74</span></li>
                                             <li class="team team-bottom">Maryland<span class="score">92</span></li>
-                                        </ul>           
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">Georgia Tech<span class="score">78</span></li>
                                             <li class="team team-bottom">Georgia<span class="score">80</span></li>
-                                        </ul>   
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">Auburn<span class="score">64</span></li>
                                             <li class="team team-bottom">Florida<span class="score">63</span></li>
-                                        </ul>   
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">Kentucky<span class="score">70</span></li>
                                             <li class="team team-bottom">Alabama<span class="score">59</span></li>
@@ -307,19 +307,11 @@
                                         <ul class="matchup">
                                             <li class="team team-top">Vanderbilt<span class="score">64</span></li>
                                             <li class="team team-bottom">Gonzaga<span class="score">68</span></li>
-                                        </ul>                                       
+                                        </ul>
                                     </div>  <!-- END ROUND ONE -->
-                            
+
                                     <div class="round round-two">
-                                        <div class="round-details">Round 2<br/><span class="date">March 18</span></div>         
-                                        <ul class="matchup">
-                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>   
-                                        <ul class="matchup">
-                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>   
+                                        <div class="round-details">Round 2<br/><span class="date">March 18</span></div>
                                         <ul class="matchup">
                                             <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
                                             <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
@@ -327,25 +319,33 @@
                                         <ul class="matchup">
                                             <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
                                             <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>                                       
+                                        </ul>
+                                        <ul class="matchup">
+                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
+                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
+                                        </ul>
+                                        <ul class="matchup">
+                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
+                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
+                                        </ul>
                                     </div>  <!-- END ROUND TWO -->
-                                    
+
                                     <div class="round round-three">
-                                        <div class="round-details">Round 3<br/><span class="date">March 22</span></div>         
+                                        <div class="round-details">Round 3<br/><span class="date">March 22</span></div>
                                         <ul class="matchup">
                                             <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
                                             <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>   
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
                                             <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>                                       
-                                    </div>  <!-- END ROUND THREE -->        
-                                </div> 
-                            
+                                        </ul>
+                                    </div>  <!-- END ROUND THREE -->
+                                </div>
+
                                 <div class="champion">
                                         <div class="semis-l">
-                                            <div class="round-details">west semifinals <br/><span class="date">March 26-28</span></div>     
+                                            <div class="round-details">west semifinals <br/><span class="date">March 26-28</span></div>
                                             <ul class ="matchup championship">
                                                 <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
                                                 <li class="team team-bottom">&nbsp;<span class="vote-count">&nbsp;</span></li>
@@ -353,46 +353,26 @@
                                         </div>
                                         <div class="final">
                                             <i class="fa fa-trophy"></i>
-                                            <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>      
+                                            <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>
                                             <ul class ="matchup championship">
                                                 <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
                                                 <li class="team team-bottom">&nbsp;<span class="vote-count">&nbsp;</span></li>
                                             </ul>
                                         </div>
-                                        <div class="semis-r">       
-                                            <div class="round-details">east semifinals <br/><span class="date">March 26-28</span></div>     
+                                        <div class="semis-r">
+                                            <div class="round-details">east semifinals <br/><span class="date">March 26-28</span></div>
                                             <ul class ="matchup championship">
                                                 <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
                                                 <li class="team team-bottom">&nbsp;<span class="vote-count">&nbsp;</span></li>
                                             </ul>
-                                        </div>  
-                                </div>		
-                            
+                                        </div>
+                                </div>
+
                                 <div class="split split-two">
-                            
-                            
+
+
                                     <div class="round round-three">
-                                        <div class="round-details">Round 3<br/><span class="date">March 22</span></div>                     
-                                        <ul class="matchup">
-                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>   
-                                        <ul class="matchup">
-                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>                                       
-                                    </div>  <!-- END ROUND THREE -->    
-                            
-                                    <div class="round round-two">
-                                        <div class="round-details">Round 2<br/><span class="date">March 18</span></div>                     
-                                        <ul class="matchup">
-                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>   
-                                        <ul class="matchup">
-                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>   
+                                        <div class="round-details">Round 3<br/><span class="date">March 22</span></div>
                                         <ul class="matchup">
                                             <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
                                             <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
@@ -400,7 +380,27 @@
                                         <ul class="matchup">
                                             <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
                                             <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-                                        </ul>                                       
+                                        </ul>
+                                    </div>  <!-- END ROUND THREE -->
+
+                                    <div class="round round-two">
+                                        <div class="round-details">Round 2<br/><span class="date">March 18</span></div>
+                                        <ul class="matchup">
+                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
+                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
+                                        </ul>
+                                        <ul class="matchup">
+                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
+                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
+                                        </ul>
+                                        <ul class="matchup">
+                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
+                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
+                                        </ul>
+                                        <ul class="matchup">
+                                            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
+                                            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
+                                        </ul>
                                     </div>  <!-- END ROUND TWO -->
                                     <div class="round round-one current">
                                         <div class="round-details">Round 1<br/><span class="date">March 16</span></div>
@@ -419,15 +419,15 @@
                                         <ul class="matchup">
                                             <li class="team team-top">Purdue<span class="score">36</span></li>
                                             <li class="team team-bottom">Boise State<span class="score">40</span></li>
-                                        </ul>           
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">Penn State<span class="score">38</span></li>
                                             <li class="team team-bottom">Indiana<span class="score">44</span></li>
-                                        </ul>   
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">Ohio State<span class="score">52</span></li>
                                             <li class="team team-bottom">VCU<span class="score">80</span></li>
-                                        </ul>   
+                                        </ul>
                                         <ul class="matchup">
                                             <li class="team team-top">USC<span class="score">58</span></li>
                                             <li class="team team-bottom">Cal<span class="score">59</span></li>
@@ -435,8 +435,8 @@
                                         <ul class="matchup">
                                             <li class="team team-top">Virginia Tech<span class="score">74</span></li>
                                             <li class="team team-bottom">Dartmouth<span class="score">111</span></li>
-                                        </ul>                                       
-                                    </div>  <!-- END ROUND ONE -->                          
+                                        </ul>
+                                    </div>  <!-- END ROUND ONE -->
                                 </div>
                             </div>
                         </section>
@@ -499,3 +499,27 @@
 </div>
 <!-- END MAIN -->
 @endsection
+@push('wizard')
+<script src="{{ asset('assets/scripts/wizard-steps.js') }}"></script>
+<script>
+
+	$("#c1,#c2,#c3").click(function(){
+
+    $("#c1,#c2,#c3.selectedcategoryServices").removeClass("selectedcategoryServices");
+     $(this).addClass('selectedcategoryServices');
+
+ });
+
+	</script>
+	<script src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"></script>
+	<script>
+		$("#slick").ddslick({
+			width:"100%",
+			imagePosition: "left",
+			selectText: "Select your payment method",
+			onSelected: function(data){
+				$("#selected").html(data.selectedData.value);
+			}
+		})
+	</script>
+@endpush

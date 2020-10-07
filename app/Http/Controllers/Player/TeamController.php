@@ -10,6 +10,7 @@ use App\Model\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class TeamController extends Controller
 {
@@ -43,8 +44,17 @@ class TeamController extends Controller
                 $friends = DB::select('select * from friends f join players p on p.id = f.player_one or p.id = player_two
                     where not p.id = ' . $player_id . ' and (f.player_one = ' . $player_id . ' or f.player_two = ' . $player_id . ')
                     and f.status = "1" and p.id not in (select players_id from contracts)');
-                // dd($member);
-                return view('team.overview-captain', \compact('team', 'member', 'friends'));
+                $request = DB::table('contracts')
+                    ->join('players', 'players.id', '=', 'contracts.players_id')
+                    ->select('players.id', 'players.name', 'players.ava_url')
+                    ->where('contracts.status', '=', '2')
+                    ->get();
+                $role = DB::table('contracts')
+                    ->select('role')
+                    ->where('players_id', '=', Auth::guard('player')->user()->id)
+                    ->first();
+                
+                return view('team.overview-captain', \compact('team', 'member', 'friends', 'request', 'role'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -108,7 +118,7 @@ class TeamController extends Controller
             return \redirect('team')->with(['success' => 'Friend invited successfully']);
         };
     }
-    public function team_request()
+    public function team_invitation()
     {
         $teams = DB::table('teams')
             ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
@@ -119,7 +129,7 @@ class TeamController extends Controller
             ])
             ->get();
         // dd($team);
-        return view('team.request-team', \compact('teams'));
+        return view('team.team-invitation', \compact('teams'));
     }
     public function team_acc(Request $request)
     {
@@ -134,6 +144,25 @@ class TeamController extends Controller
                     ->update(['status' => '1']);
 
                 return redirect('team')->with(['success' => 'Friend invited successfully']);
+            }
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function teamreq_acc(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            if ($request->has('teamId') && $request->has('friendId')) {
+                
+                DB::table('contracts')
+                    ->where([
+                        ['teams_id', '=', $request->teamId],
+                        ['players_id', '=', $request->friendId],
+                        ['status', '=', '2']
+                    ])
+                    ->update(['status' => '1']);
+
+                return redirect('team')->with(['success' => 'Request Accepted successfully']);
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -157,14 +186,101 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-
-    public function team_view(Team $team)
+    public function teamreq_decline(Request $request)
     {
         if (Auth::guard('player')->check()) {
-            // dd($team);
-            return view('team.overview-unsigned', \compact('team'));
+            if ($request->has('teamId') && $request->has('friendId')) {
+
+                DB::table('contracts')
+                    ->where([
+                        ['teams_id', '=', $request->teamId],
+                        ['players_id', '=', $request->friendId]
+                    ])
+                    ->delete();
+
+                return redirect('team')->with(['success' => 'Request Declined successfully']);
+            }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function team_view(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            if ($request->has('teamId')) {
+                $team = DB::table('teams')
+                    ->join('games', 'games.id', '=', 'teams.games_id')
+                    ->select('teams.*', 'games.name as game_name', 'games.icon_url')
+                    ->where('teams.id', '=', $request->teamId)
+                    ->first();
+                $member = DB::table('players')
+                    ->join('contracts', 'contracts.players_id', '=', 'players.id')
+                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->where([
+                        ['contracts.teams_id', '=', $request->teamId],
+                        ['contracts.status', '=', '1']
+                    ])
+                    ->get();
+            }
+            // dd($team);
+            return view('team.overview-unsigned', \compact('team', 'member'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function team_join(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            if ($request->has('teamId')) {
+                $team = DB::table('teams')
+                    ->join('games', 'games.id', '=', 'teams.games_id')
+                    ->select('teams.*', 'games.name as game_name', 'games.icon_url')
+                    ->where('teams.id', '=', $request->teamId)
+                    ->first();
+                $member = DB::table('players')
+                    ->join('contracts', 'contracts.players_id', '=', 'players.id')
+                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->where([
+                        ['contracts.teams_id', '=', $request->teamId],
+                        ['contracts.status', '=', '1']
+                    ])
+                    ->get();
+                $check = DB::table('contracts')
+                ->select('*')
+                ->where([
+                    ['teams_id', '=', $request->teamId],
+                    ['players_id', '=', Auth::guard('player')->user()->id],
+                    ['status', '=', '2']
+                    ])
+                ->first();
+    
+                if ($check == null) {
+                    Contract::create([
+                        'role' => "2",
+                        'status' => "2",
+                        'teams_id' => $request->teamId,
+                        'players_id' => Auth::guard('player')->user()->id
+                    ]);
+                }
+    
+                return \view('team.overview-unsigned', \compact('team', 'member'));
+            };
+        }
+    }
+    public function team_leave(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            if ($request->has('teamId')) {
+
+                DB::table('contracts')
+                    ->where([
+                        ['teams_id', '=', $request->teamId],
+                        ['players_id', '=', Auth::guard('player')->user()->id],
+                        ['status', '=', '1']
+                    ])
+                    ->delete();
+            }
+            return redirect('team');
         }
     }
 }

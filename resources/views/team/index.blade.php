@@ -23,11 +23,11 @@
             </div>
             <div class="col-md-6 colPanelTeam">
                 <!-- PANEL DEFAULT -->
-                <a href="{{ URL::route('team-request') }}">
+                <a href="{{ URL::route('team-invitation') }}">
                     <div class="panel-team">
                         <div class="panel-Create">
                             <img class="imgPanelteam" alt="" src="assets/img/Create Team.png">
-                            <h3>Team Invitation</h3>
+                            <h3>Team Invitations</h3>
                         </div>
                         <div class="panel-body">
                             <h3 class="panel-title">You can see the team</h3>

@@ -48,15 +48,20 @@ Route::group(['auth', 'players'], function () {
         Route::get('team', 'TeamController@index')->name('team');
         Route::get('team-create', 'TeamController@team_create')->name('team-create');
         Route::post('team-create', 'TeamController@store')->name('team-store');
-        Route::get('team-request', 'TeamController@team_request')->name('team-request');
+        Route::get('team-invitation', 'TeamController@team_invitation')->name('team-invitation');
         Route::post('team-accept', 'TeamController@team_acc')->name('team-accept');
+        Route::post('teamreq-accept', 'TeamController@teamreq_acc')->name('teamreq-accept');
         Route::post('team-decline', 'TeamController@team_decline')->name('team-decline');
+        Route::post('teamreq-decline', 'TeamController@teamreq_decline')->name('teamreq-decline');
         Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
-        Route::get('team-view', 'TeamController@team_view')->name('team.view');
+        Route::post('team-view', 'TeamController@team_view')->name('team.view');
+        Route::post('team-join', 'TeamController@team_join')->name('team.join');
+        Route::post('team-leave', 'TeamController@team_leave')->name('team.leave');
         // Route::get('team-search', 'TeamController@team_search')->name('team-search');
 
         //Tournament
         Route::get('tournament', 'TournamentController@index')->name('tournament');
+        Route::get('tournament/overview', 'TournamentController@registerTournament')->name('tournament.overview');
     });
     //Search
     Route::get('search-result', 'SearchController@index')->name('search');

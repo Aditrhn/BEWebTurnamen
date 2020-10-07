@@ -16,7 +16,7 @@ class CreateContractsTable extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
             $table->enum('role', ['1','2'])->default('1');
-            $table->enum('status', ['0','1'])->default('0');
+            $table->enum('status', ['0','1','2'])->default('0');
             $table->timestamps();
         });
     }
