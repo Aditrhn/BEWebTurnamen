@@ -2090,8 +2090,8 @@ ul.list-justify > li {
   border-color: #745FF8; }
   .btn-primary:hover, .btn-primary:focus {
     border-radius: 10px;
-    background-color: #26244F;
-    border-color: #26244F }
+    background-color: #5b46e2;
+    border-color: #5b46e2 }
 
 .btn-unfriend {
   background-color: #DC143C;
@@ -2573,7 +2573,37 @@ color: white;
 /********************
  * ENDPAGE:PROFILE
  ********************/
+/* EDIT TEAM */
+.panel-group .form-group .checkbox{
+  padding: 10px;
+  border-radius: 10px;
+  background: #3F3E8F;
+}
+.panel-group .form-group #enableSponsor{
+  font-size: 18px;
+  background: none;
+}
+.well{
+  border-radius: 10px;
+  background: #28285B !important;
+  border: none !important;
+}
+#scrollform-edit-team{
+  color: white;
 
+}
+#scrollform-edit-team > input{
+    border-radius: 10px; 
+    height: 60px;
+    background-color: #35356C;
+    border: none; 
+    color: white;
+}
+#scrollform-edit-team > textarea{
+  background-color: #35356C;
+  border: none; 
+  color: white;
+}
 
  /********************
  * PAGE: CREATE-TEAM
