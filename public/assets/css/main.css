@@ -580,6 +580,14 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .overview div > img {
   width: 100%; border-radius: 20px; align-items: center;
   }
+  .main .main-content  #overview,
+  .main .main-content  #member{
+    height: 250px;
+  }
+  .main .main-content  #team-static,
+  .main .main-content  #description{
+    height: 300px;
+  }
   .main .main-content .panel-body .team-overview a{
   margin-top: 4%;
   }
