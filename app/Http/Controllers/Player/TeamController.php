@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use File;
 
 class TeamController extends Controller
 {
@@ -101,6 +102,47 @@ class TeamController extends Controller
             ]);
 
             return \redirect('team')->with(['success' => 'Team created successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function team_edit(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            $team = DB::table('teams')
+                ->select('id', 'name', 'logo_url', 'description')
+                ->where('id', '=', $request->teamId)
+                ->first();
+
+            return \view('team.edit', \compact('team'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function team_update(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            $team = Team::select('*')
+                ->where('id', '=', $request->teamId)
+                ->first();
+            $logo_name = Team::select('logo_url')
+                ->where('id', '=', $request->teamId)
+                ->first()->logo_url;
+            if ($request->hasFile('logo_url')) {
+                $logo = $request->logo_url;
+                $logo_name = \time() . "_" . $logo->getClientOriginalName();
+                $logo->move('images/team_logo/', $logo_name);
+                $team->logo_url = 'images/team_logo/' . $logo_name;
+                File::delete('team_logo/' . $team->logo_url);
+            }
+            
+            $team->update([
+                'name' => $request->teamName,
+                'logo_url' => $logo_name,
+                'description' => $request->teamDesc
+            ]);
+
+            return redirect('team');
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -278,6 +320,23 @@ class TeamController extends Controller
                         ['players_id', '=', Auth::guard('player')->user()->id],
                         ['status', '=', '1']
                     ])
+                    ->delete();
+            }
+            return redirect('team');
+        }
+    }
+    public function team_disband(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            if ($request->has('teamId')) {
+
+                DB::table('contracts')
+                    ->where([
+                        ['teams_id', '=', $request->teamId],
+                    ])
+                    ->delete();
+                DB::table('teams')
+                    ->where('id', '=', $request->teamId)
                     ->delete();
             }
             return redirect('team');

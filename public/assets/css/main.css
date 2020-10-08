@@ -580,6 +580,14 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .overview div > img {
   width: 100%; border-radius: 20px; align-items: center;
   }
+  .main .main-content  #overview,
+  .main .main-content  #member{
+    height: 210px;
+  }
+  .main .main-content  #team-static,
+  .main .main-content  #description{
+    height: 210px;
+  }
   .main .main-content .panel-body .team-overview a{
   margin-top: 4%;
   }
@@ -1050,6 +1058,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   cursor: pointer;
   transition: all 0.5s ease-out;
 }
+.menu-box #box-game{
+  background-color:  #35346D !important;
+}
 
 .menu-box .box img{
   max-width: 70%;
@@ -1166,10 +1177,16 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(../img/esldota.jpg); 
+    background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.6) 0%,rgba(20, 20, 20, 0.6) 100%), url(../img/esldota.jpg); 
     position: relative;
     min-height: 50vh;
     color: #fff;
+  }
+  .bg-cover {
+    background-attachment: static;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   /* End Jumbotron */
@@ -2090,8 +2107,8 @@ ul.list-justify > li {
   border-color: #745FF8; }
   .btn-primary:hover, .btn-primary:focus {
     border-radius: 10px;
-    background-color: #26244F;
-    border-color: #26244F }
+    background-color: #5b46e2;
+    border-color: #5b46e2 }
 
 .btn-unfriend {
   background-color: #DC143C;
@@ -2573,7 +2590,37 @@ color: white;
 /********************
  * ENDPAGE:PROFILE
  ********************/
+/* EDIT TEAM */
+.panel-group .form-group .checkbox{
+  padding: 10px;
+  border-radius: 10px;
+  background: #3F3E8F;
+}
+.panel-group .form-group #enableSponsor{
+  font-size: 18px;
+  background: none;
+}
+.well{
+  border-radius: 10px;
+  background: #28285B !important;
+  border: none !important;
+}
+#scrollform-edit-team{
+  color: white;
 
+}
+#scrollform-edit-team > input{
+    border-radius: 10px; 
+    height: 60px;
+    background-color: #35356C;
+    border: none; 
+    color: white;
+}
+#scrollform-edit-team > textarea{
+  background-color: #35356C;
+  border: none; 
+  color: white;
+}
 
  /********************
  * PAGE: CREATE-TEAM

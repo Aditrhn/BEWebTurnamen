@@ -45,25 +45,25 @@
                             </div>
 
                              <div class="col-lg-2 col-xs-6  text-center">
-                                <div class="box">
+                                <div class="box" id="box-game">
                                     <img src="{{ asset('assets/img/apex legends.png') }}" alt="">
                                  </div>
                             </div>
 
                              <div class="col-lg-2 col-xs-6 text-center">
-                                <div class="box">
+                                <div class="box" id="box-game">
                                     <img src="{{ asset('assets/img/valorant.png') }}" alt="">
                                  </div>
                             </div>
 
                             <div class="col-lg-2 col-xs-6 text-center">
-                                <div class="box">
+                                <div class="box" id="box-game">
                                     <img src="{{ asset('assets/img/dota2.png') }}" alt="">
                                  </div>
                             </div> --}}
 
                              <div class="col-lg-2 col-xs-6 text-center">
-                                <div class="box">
+                                <div class="box" id="box-game">
                                     <img src="{{ asset('assets/img/ML.png') }}" alt="">
                                  </div>
                             </div>
