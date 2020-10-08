@@ -15,18 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->nullable()->constrained('joins');
-            $table->integer('gross_amount');
-            $table->string('status_code');
-            $table->string('token');
-            $table->string('status_message');
-            $table->string('transaction_id');
-            $table->string('payment_type');
-            $table->string('transaction_time');
-            $table->string('transaction_status');
-            $table->string('fraud_status');
-            $table->string('bill_key');
-            $table->string('biller_code');
+            $table->unsignedInteger('event_id');
+            $table->unsignedInteger('teams_id');
+            $table->unsignedBigInteger('amount');
+            $table->date('date')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('payment_method');
             $table->timestamps();
         });
     }

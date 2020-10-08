@@ -64,8 +64,7 @@ Route::group(['auth', 'players'], function () {
 
         //Tournament
         Route::get('tournament', 'TournamentController@index')->name('tournament');
-        Route::get('tournament/overview/{id}', 'TournamentController@registerTournament')->name('tournament.overview');
-        Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
+        Route::get('tournament/overview', 'TournamentController@registerTournament')->name('tournament.overview');
     });
     //Search
     Route::get('search-result', 'SearchController@index')->name('search');

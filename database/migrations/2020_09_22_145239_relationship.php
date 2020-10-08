@@ -35,7 +35,6 @@ class Relationship extends Migration
         Schema::table('teams', function (Blueprint $table) {
             $table->foreignId('games_id')->constrained('games');
         });
-        // Schema::table('payments')
     }
 
     /**

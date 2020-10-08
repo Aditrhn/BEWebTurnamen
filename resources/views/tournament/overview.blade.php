@@ -70,9 +70,7 @@
                                         <h4>Mobile Legends</h4>
                                     </div>
                                     <div class="col-md-4">
-                                        @foreach ($team as $item)
-                                        <p>{{ $item->name }}</p>
-                                        @endforeach
+                                        <p>Tournament Format</p>
                                         <p>First Place</p>
                                         <p>Pause</p>
                                         <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"> SEE RULES</a></h4>													</div>
@@ -101,7 +99,6 @@
                                         <p>Sign ups open 25 Jul 2020, 17:26 WIB</p>
                                     </div>
                                 </div>
-                                {{-- <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">JOIN TOURNAMENT</a> --}}
                                 <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" data-toggle="modal" data-target="#flipFlop">JOIN TOURNAMENT</button>
                                 <!-- The modal -->
                                 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -120,12 +117,12 @@
                                                         <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                                                         </div>
-                                                        {{-- <div class="stepwizard-step col-xs-2">
+                                                        <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
                                                         </div>
                                                         <div class="stepwizard-step col-xs-2">
                                                             <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
-                                                        </div> --}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,16 +158,14 @@
                                                         <div class="form-group float-label-control">
                                                             <label for="">Select Your Team	</label>
                                                             <select id="country" class="form-control">
-                                                                @foreach ($team as $item)
-                                                                <option>{{ $item->name }}</option>
-                                                                @endforeach
-                                                                {{-- <option>PUBGM</option>
+                                                                <option>MLBB</option>
+                                                                <option>PUBGM</option>
                                                                 <option>DOTA2</option>
                                                                 <option>VALORANT</option>
                                                                 <option>APEX</option>
                                                                 <option>FREE FIRE</option>
                                                                 <option>COC</option>
-                                                                <option>POINT BLANK</option> --}}
+                                                                <option>POINT BLANK</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group float-label-control">
@@ -188,6 +183,18 @@
                                                     </div>
                                                     <div class="setup-content" id="step-3">
                                                         <div class="form-group float-label-control">
+                                                            <label for="">Select Payment Method</label>
+                                                            <div class="form-group">
+                                                                <select name="" id="slick">
+                                                                    <option data-description="This is Visa" data-imagesrc="http://www.credit-card-logos.com/images/visa_credit-card-logos/visa_logo_6.gif">Visa</option>
+                                                                    <option data-description="This is Master card" data-imagesrc="http://www.credit-card-logos.com/images/mastercard_credit-card-logos/mastercard_logo_5.gif">Master card</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <span id="selected"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group float-label-control">
                                                             <label for="">Summary</label>
                                                             <div class="bank">
                                                                 <div class="bank-item pb-3">
@@ -195,14 +202,57 @@
                                                                         <p>Total</p>
                                                                     </div>
                                                                     <div class="summary">
-                                                                        <p>{{ $event->fee }}</p>
+                                                                        <p>Rp. 100.000</p>
                                                                     </div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <input type="button" value="Done" class="btn btn-primary nextBtn pull-right col-md-12" data-dismiss="modal" aria-label="Close" id="pay-button">
+                                                            <input type="button" value="Back" class="btn btn-primary">
+                                                            <input type="button" value="Next" class="btn btn-primary nextBtn pull-right">
+                                                        </div>
+                                                    </div>
+                                                    <div class="setup-content" id="step-4">
+                                                        <div class="form-group float-label-control">
+                                                            <div class="bank">
+                                                                <div class="bank-item pb-3">
+                                                                    <div class="payment" style="text-align: center;">
+                                                                    <h4>Your payment is in the process</h4>
+                                                                    <br>
+                                                                    <br>
+                                                                    <br>
+                                                                    <br>
+                                                                    <p>Please complete the payment process</p>
+                                                                    <p>accourding to your payment method</p>
+                                                                    <br>
+                                                                    <p>Check your email for details</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="button" value="Back" class="btn btn-primary">
+                                                            <input type="button" value="Next" class="btn btn-primary nextBtn pull-right">
+                                                        </div>
+                                                    </div>
+                                                    <div class="setup-content" id="step-5">
+                                                        <div class="bank">
+                                                            <div class="bank-item pb-3">
+                                                                <div class="payment" style="text-align: center;">
+                                                                <h2>Yey!</h2>
+                                                                <br>
+                                                                <h3 class="panel-title">Your team is registered for Nongski Tournament</h3>
+                                                                <br>
+                                                                <br>
+                                                                <p>Your payment has been successful, </p>
+                                                                <p>for payment details check your email</p>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="button" value="Done" class="btn btn-primary nextBtn pull-right col-md-12" data-dismiss="modal" aria-label="Close">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -450,26 +500,6 @@
 <!-- END MAIN -->
 @endsection
 @push('wizard')
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
-    <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function(){
-        // SnapToken acquired from previous step
-        snap.pay('<?=$snapToken?>', {
-          // Optional
-          onSuccess: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onPending: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onError: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          }
-        });
-      };
-    </script>
 <script src="{{ asset('assets/scripts/wizard-steps.js') }}"></script>
 <script>
 
