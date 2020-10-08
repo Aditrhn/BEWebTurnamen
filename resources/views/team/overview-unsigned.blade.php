@@ -14,7 +14,11 @@
                         <div class="panel-body" id="overview">
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
+                                    @if ($team->logo_url != null)
                                     <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                    @else
+                                    <p>Tidak ada team!!</p>
+                                    @endif
                                 </div>
                                 <div class="team-overview col-lg-7 col-sm-8">
                                     <h3 style="text-align: center">{{$team->name}}</h3>
@@ -49,7 +53,7 @@
                                     @if ($members->role == 1)
                                         <p>Captain</p>
                                     @else
-                                        
+
                                     @endif
                                 </div>
                                 @empty
