@@ -6,7 +6,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <!-- Jumbotron -->
-            <div class="jumbotron">
+            <div class="jumbotron bg-cover text-white">
                 <h1>NONGSKI</h1>
                 <p>Tournament Dota 2 Batch 1</p>
                 <!-- <p><a class="btn btn-primary btn-lg">JOIN</a></p> -->

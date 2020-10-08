@@ -1058,6 +1058,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   cursor: pointer;
   transition: all 0.5s ease-out;
 }
+.menu-box #box-game{
+  background-color:  #35346D !important;
+}
 
 .menu-box .box img{
   max-width: 70%;
@@ -1174,10 +1177,16 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(../img/esldota.jpg); 
+    background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.6) 0%,rgba(20, 20, 20, 0.6) 100%), url(../img/esldota.jpg); 
     position: relative;
     min-height: 50vh;
     color: #fff;
+  }
+  .bg-cover {
+    background-attachment: static;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   /* End Jumbotron */
