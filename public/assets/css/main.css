@@ -2711,6 +2711,25 @@ color: white;
   border-radius: 20px;
 }
 
+#upload_logo_team{
+  border-radius: 10px;
+  width: 100%; 
+  height: 60px;
+  background-color: #35356C;
+  border: none; 
+  color: white;
+}
+
+#browse{
+  margin-top: 17px;
+  padding-left: 10px;
+}
+
+#desclabel{
+  color: white;
+  margin-top: 20px;
+}
+
  /********************
  * ENDPAGE:CREATE-TEAM
  ********************/
