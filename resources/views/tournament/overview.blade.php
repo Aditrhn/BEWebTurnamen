@@ -118,13 +118,13 @@
                                                             <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                                                         </div>
                                                         <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                                                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled"></a>
                                                         </div>
                                                         {{-- <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                                                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"></a>
                                                         </div>
                                                         <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
+                                                            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled"></a>
                                                         </div> --}}
                                                     </div>
                                                 </div>

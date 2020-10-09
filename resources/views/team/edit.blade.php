@@ -36,9 +36,6 @@
                             </div>
                         </div>
                         <div id="collapseOne" aria-expanded="false" class="collapse">
-                            <div id="sponsor_fields">
-
-                            </div>
                             <div class="well">
                                 <div class="form-group" id="scrollform-edit-team">
                                     <div class="checkbox" id="enableSponsor">
@@ -56,6 +53,9 @@
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add More Sponsor</button>
                                 </div>
+                            </div>
+                            <div id="sponsor_fields">
+
                             </div>
                         </div>
                     </div>
