@@ -30,7 +30,7 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>Mobile Legends</h4>
+                                        <h4>{{ $event->title }}</h4>
                                     </div>
                                     <div class="col-md-4">
                                         <p>Tournament Format</p>
@@ -102,7 +102,11 @@
                                     </div>
                                 </div>
                                 {{-- <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">JOIN TOURNAMENT</a> --}}
-                                <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" data-toggle="modal" data-target="#flipFlop">JOIN TOURNAMENT</button>
+                                <form action="{{ URL::route('tournament.payment',$event->id) }}" method="POST">
+                                    @csrf
+                                    {{ csrf_field() }}
+                                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="submit">JOIN TOURNAMENT</button>
+                                </form>
                                 <!-- The modal -->
                                 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -450,26 +454,6 @@
 <!-- END MAIN -->
 @endsection
 @push('wizard')
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
-    <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function(){
-        // SnapToken acquired from previous step
-        snap.pay('<?=$snapToken?>', {
-          // Optional
-          onSuccess: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onPending: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onError: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          }
-        });
-      };
-    </script>
 <script src="{{ asset('assets/scripts/wizard-steps.js') }}"></script>
 <script>
 	$("#c1,#c2,#c3").click(function(){
