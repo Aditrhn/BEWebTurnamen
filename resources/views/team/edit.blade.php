@@ -43,6 +43,11 @@
                                         <p>Sponsor #1</p>
                                     </div>
                                 </div>
+                                <!-- {{-- Sponsor Name --}} -->
+										<div class="form-group" id="scrollform-edit-team">
+											<label for="team-nama-sponsor">Sponsor Name</label>
+											<input type="text" class="form-control @error('sponsorName') is-invalid @enderror" id="namaSponsor" name="sponsorName" value="">
+										</div>
                                 <!-- {{-- Sponsor Logo --}} -->
                                 <div class="form-group" id="scrollform-edit-team">
                                     <label for="team-sponsor-logo">Sponsor Logo</label>

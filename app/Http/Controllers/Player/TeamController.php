@@ -7,6 +7,7 @@ use App\Model\Contract;
 use App\Model\Player;
 use App\Model\Game;
 use App\Model\Team;
+use App\Model\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,8 +55,11 @@ class TeamController extends Controller
                     ->select('role')
                     ->where('players_id', '=', Auth::guard('player')->user()->id)
                     ->first();
-                
-                return view('team.overview-captain', \compact('team', 'member', 'friends', 'request', 'role'));
+                $sponsor = Sponsor::select('*')
+                    ->where('team_id', '=', $team->id)
+                    ->get();
+
+                return view('team.overview-captain', \compact('team', 'member', 'friends', 'request', 'role', 'sponsor'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -111,9 +115,9 @@ class TeamController extends Controller
         if (Auth::guard('player')->check()) {
             $team = DB::table('teams')
                 ->select('id', 'name', 'logo_url', 'description')
-                ->where('id', '=', $request->teamId)
+                ->where('teams.id', '=', $request->teamId)
                 ->first();
-
+            
             return \view('team.edit', \compact('team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -125,20 +129,52 @@ class TeamController extends Controller
             $team = Team::select('*')
                 ->where('id', '=', $request->teamId)
                 ->first();
-            $logo_name = Team::select('logo_url')
+            $sponsor = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->first();
+            $team_logo = Team::select('logo_url')
                 ->where('id', '=', $request->teamId)
                 ->first()->logo_url;
+            // dd($sponsor_logo);
             if ($request->hasFile('logo_url')) {
                 $logo = $request->logo_url;
-                $logo_name = \time() . "_" . $logo->getClientOriginalName();
-                $logo->move('images/team_logo/', $logo_name);
-                $team->logo_url = 'images/team_logo/' . $logo_name;
+                $team_logo = \time() . "_" . $logo->getClientOriginalName();
+                $logo->move('images/team_logo/', $team_logo);
+                $team->logo_url = 'images/team_logo/' . $team_logo;
                 File::delete('team_logo/' . $team->logo_url);
+            }
+            if ($request->hasFile('sponsor_url')) {
+                if ($sponsor == null) {
+                    $file = $request->file('sponsor_url');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    Sponsor::create([
+                        'name' => $request->sponsorName,
+                        'logo_url' => $name_icon,
+                        'team_id' => $request->teamId
+                    ]);
+                } else {
+                    $sponsor_logo = Sponsor::select('logo_url')
+                        ->where('team_id', '=', $request->teamId)
+                        ->first()->logo_url;
+                    $logo = $request->sponsor_url;
+                    $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
+                    $logo->move('images/sponsor_logo/', $sponsor_logo);
+                    $sponsor->logo_url = 'images/sponsor_logo/' . $sponsor_logo;
+                    File::delete('sponsor_logo/' . $sponsor->logo_url);
+
+                    $sponsor->update([
+                        'name' => $request->sponsorName,
+                        'logo_url' => $sponsor_logo,
+                        'team_id' => $request->teamId
+                    ]);
+                }
             }
             
             $team->update([
                 'name' => $request->teamName,
-                'logo_url' => $logo_name,
+                'logo_url' => $team_logo,
                 'description' => $request->teamDesc
             ]);
 
