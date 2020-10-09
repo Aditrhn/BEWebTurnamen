@@ -2574,6 +2574,24 @@ color: white;
  * ENDPAGE:PROFILE
  ********************/
 
+ /********************
+ * PAGE: EDIT-PROFILE
+ ********************/
+#avatar{
+  color: white;
+}
+
+#upload_avatar{
+  background-color: #35356C;
+  padding: 2%; 
+  border-radius: 10px;
+}
+
+
+ /********************
+ * ENDPAGE: EDIT-PROFILE
+ ********************/
+
 
  /********************
  * PAGE: CREATE-TEAM
