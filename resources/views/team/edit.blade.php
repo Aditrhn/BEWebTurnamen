@@ -39,7 +39,7 @@
                             <div class="well">
                                 <div class="form-group" id="scrollform-edit-team">
                                     <div class="checkbox" id="enableSponsor">
-                                        <label><input type="checkbox" value="">Enable Sponsor</label>
+                                        <label><input type="checkbox" id="sponsor"value="">Enable Sponsor</label>
                                         <p>Sponsor #1</p>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
 		var divtest = document.createElement("div");
 		divtest.setAttribute("class", "form-group removeclass"+room);
 		var rdiv = 'removeclass'+room;
-		divtest.innerHTML = '<div class="well"><div class="form-group" id="scrollform-edit-team"><div class="checkbox" id="enableSponsor"><label><input type="checkbox" value="">Enable Sponsor</label><p>Sponsor #'+ room +'</p></div></div><div class="form-group" id="scrollform-edit-team"><label for="team-sponsor-logo">Sponsor Logo</label><input type="file" class="custom-file-input" id="teamSponsorLogo" aria-describedby="inputGroupFileAddon01" value="" name="ava_url"><p>*Biarkan kosong jika tidak ingin mengganti gambar</p></div><div class="clear"></div><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor</button></div></div></div></div><div class="clear"></div></div>';
+		divtest.innerHTML = '<div class="well"><div class="form-group" id="scrollform-edit-team"><div class="checkbox" id="enableSponsor"><label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label><p>Sponsor #'+ room +'</p></div></div><div class="form-group" id="scrollform-edit-team"><label for="team-sponsor-logo">Sponsor Logo</label><input type="file" class="custom-file-input" id="teamSponsorLogo" aria-describedby="inputGroupFileAddon01" value="" name="ava_url"><p>*Biarkan kosong jika tidak ingin mengganti gambar</p></div><div class="clear"></div><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor</button></div></div></div></div><div class="clear"></div></div>';
 		
 		objTo.appendChild(divtest)
 	}
