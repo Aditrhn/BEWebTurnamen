@@ -21,11 +21,11 @@
                                     <h4>{{ $team->name }}</h4>
                                     <div class="overview-button">
                                         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#requestJoin">Request</a>
-                                        <form action="{{ URL::route('team.leave') }}" method="POST">
+                                        <form action="{{ URL::route('team.disband') }}" method="POST">
                                             @csrf
                                             <div class="friend-btn">
                                                 <input type="hidden" name="teamId" value="{{ $team->id }}">
-                                                <button type="submit" class="btn btn-danger">Leave</button>
+                                                <button type="submit" class="btn btn-danger">Disband</button>
                                             </div>
                                         </form>
                                     </div>
@@ -37,7 +37,14 @@
                 <div class="col-lg-8 col-xs-12">
                     <h3>Team Roaster
                         <span>
-                            <a href="" class="btn btn-primary pull-right">Edit team</a>
+                            {{-- <a href="{{ URL::route('team.edit', $team->id) }}" class="btn btn-primary pull-right">Edit team</a> --}}
+                            <form action="{{ URL::route('team.edit') }}" method="POST">
+                                @csrf
+                                <div class="friend-btn">
+                                    <input type="hidden" name="teamId" value="{{ $team->id }}">
+                                    <button type="submit" class="btn btn-primary pull-right">Edit Team</button>
+                                </div>
+                            </form>
                             <a href="" class="btn btn-primary pull-right" data-toggle="modal" data-target="#inviteFriend">Invite Friend</a>
                         </span>
                     </h3>
@@ -47,17 +54,17 @@
                             <div class="member">
                                 @forelse ($member as $members)
                                 <div class="col-lg-2 col-xs-6 col-lg-offset-1" style="margin-left: 17px">
+                                    @if ($members->role == 1)
+                                        <p>Captain</p>
+                                    @else
+                                        <p style="color: #35346D">Captain</p>
+                                    @endif
                                     @if ($members->ava_url != null)
                                         <img src="{{ asset('images/avatars/'.$members->ava_url) }}">
                                     @else
                                         <img src="{{ asset('images/avatars/default.png') }}">
                                     @endif
                                     <h4>{{ $members->name }}</h4>
-                                    @if ($members->role == 1)
-                                        <p>Captain</p>
-                                    @else
-                                        
-                                    @endif
                                 </div>
                                 @empty
                                     <p>There are no member</p>
@@ -113,7 +120,7 @@
                     <h3>Description</h3>
                     <div class="panel panel-headline">
                         <div class="panel-body" id="description">
-                            <p>{{ $team->description }}</p>
+                            <p style="text-align: justify">{{ $team->description }}</p>
                         </div>
                     </div>
                 </div>
