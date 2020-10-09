@@ -472,7 +472,6 @@
     </script>
 <script src="{{ asset('assets/scripts/wizard-steps.js') }}"></script>
 <script>
-
 	$("#c1,#c2,#c3").click(function(){
 
     $("#c1,#c2,#c3.selectedcategoryServices").removeClass("selectedcategoryServices");
