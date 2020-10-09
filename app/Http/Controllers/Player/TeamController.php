@@ -299,9 +299,12 @@ class TeamController extends Controller
                         ['contracts.status', '=', '1']
                     ])
                     ->get();
+                $sponsor = Sponsor::select('*')
+                    ->where('team_id', '=', $request->teamId)
+                    ->get();
             }
             // dd($team);
-            return view('team.overview-unsigned', \compact('team', 'member'));
+            return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
