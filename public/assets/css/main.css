@@ -2168,7 +2168,7 @@ fieldset[disabled] .btn {
   background-color: transparent !important;
   box-shadow: none !important;
 }
-#wrapper .main .main-content .row .panel {
+#wrapper .main .main-content .panel {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 20px;
@@ -2176,7 +2176,7 @@ fieldset[disabled] .btn {
   color: #fff;
   margin-bottom: 30px; }
   @media screen and (max-width: 768px) {
-    #wrapper .main .main-content .row .panel{
+    #wrapper .main .main-content .panel{
       background-color: #35346D; } }
   .panel .panel-heading,
   .panel .panel-footer {
