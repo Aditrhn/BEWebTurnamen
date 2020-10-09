@@ -99,7 +99,6 @@
                                     <div class="col-lg-6 col-xs-12">
                                         <div class="team-info-support">
                                             <h4 class="pull-left col-lg-12">Supported</h4>
-<<<<<<< Updated upstream
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">
@@ -108,29 +107,6 @@
                                         @empty
                                             <p>Belum ada Sponsor.</p>
                                         @endforelse
-=======
-                                            <div class="col-lg-6 col-xs-6">
-                                                <div class="box">
-                                                    <img src="assets/img/bars-white.png" alt="">
-                                                    </div>
-                                            </div>
-                                            <div class="col-lg-6 col-xs-6">
-                                                <div class="box">
-                                                    <img src="assets/img/bars-white.png" alt="">
-                                                    </div>
-                                            </div>
-                                            <div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
-                                                <div class="box">
-                                                    <img src="assets/img/bars-white.png" alt="">
-                                                    </div>
-                                            </div>
-                                            <div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
-                                                <div class="box">
-                                                    <img src="assets/img/bars-white.png" alt="">
-                                                    </div>
-                                            </div>
-                                        </div>
->>>>>>> Stashed changes
                                     </div>
                                 </div>
                             </div>
