@@ -30,7 +30,7 @@
                         <div class="form-group" id="scrollform-edit-team">
                             <div class="checkbox">
                             <label data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                {{-- <input type="checkbox"/> Advanced Setting --}}
+                                <input type="checkbox"/>
                                 <p style="margin : 0px">Advanced Setting</p>
                             </label>
                             </div>
