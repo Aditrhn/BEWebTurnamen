@@ -117,8 +117,13 @@ class TeamController extends Controller
                 ->select('id', 'name', 'logo_url', 'description')
                 ->where('teams.id', '=', $request->teamId)
                 ->first();
-            
-            return \view('team.edit', \compact('team'));
+            $count = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->count();
+            $sponsor = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->get();
+            return \view('team.edit', \compact('team', 'sponsor', 'count'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

@@ -19,13 +19,12 @@
                                         <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                     </div>
                                     <div class="team-overview col-lg-7 col-sm-8">
-                                        <h4>{{ $team->name }}</h4>
-                                        <div class="overview-button">
+                                        <h3 style="text-align: center">{{ $team->name }}</h3>
+                                        <div class="overview-button" style="align-content: center">
                                             <form action="{{ URL::route('team.disband') }}" method="POST">
                                                 @csrf
                                                 <div class="friend-btn">
-                                                    <input type="hidden" name="teamRequest" value="">
-                                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#requestJoin">Request</button>
+                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#requestJoin">Request</a>
                                                     <input type="hidden" name="teamId" value="{{ $team->id }}">
                                                     <button type="submit" class="btn btn-danger">Disband</button>
                                                 </div>
@@ -242,7 +241,7 @@
                                     <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                 </div>
                                 <div class="team-overview col-lg-7 col-sm-8">
-                                    <h4>{{ $team->name }}</h4>
+                                    <h3>{{ $team->name }}</h3>
                                     <div class="overview-button">
                                         <form action="{{ URL::route('team.leave') }}" method="POST">
                                             @csrf
@@ -316,7 +315,7 @@
                                                 <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
-                                            <p>Belum ada Sponsor.</p>
+                                            <h4 style="text-align: center">Belum ada Sponsor.</h4>
                                         @endforelse
                                     </div>
                                 </div>
