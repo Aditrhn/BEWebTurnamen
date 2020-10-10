@@ -95,7 +95,8 @@
 		objTo.appendChild(divtest)
 	}
 	function remove_education_fields(rid) {
-		$('.removeclass'+rid).remove();
+        room-1;
+		$('.removeclass'+rid+room).remove();
 	}
 	</script>
 @endsection

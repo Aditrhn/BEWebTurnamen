@@ -605,8 +605,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .team-info-game > img{
     width: 80%; border-radius: 20px; align-items: center; 
   }
-  .main .main-content .panel-body .team-info-support div > img {
-    width: 100%; border-radius: 20px; margin-left: -10px;
+  .main .main-content .panel-body .team-static div > img {
+    max-width: 100%; 
   }
   
   /* Modals team page */
@@ -1554,7 +1554,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 @media screen and (max-width: 767px) {
   #wrapper #sidebar-nav,
   #wrapper .main {
-    padding-top: 130px; } }
+    padding-top: 60px; } }
 
 .layout-fullwidth #wrapper .sidebar {
   left: -260px; }
