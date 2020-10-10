@@ -27,7 +27,7 @@
         </li>
         <li>
           <a href="{{ URL::route('friend') }}" class="{{ Request::segment(1) ==='friend' ? 'active' :null }}">
-            <img src="{{ asset('assets/img/ICON/friend_help.png') }}">
+            <img src="{{ asset('assets/img/ICON/friend.png') }}">
             <span>Friend</span>
           </a>
         </li>

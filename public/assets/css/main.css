@@ -1690,7 +1690,9 @@ html.fullscreen-bg #wrapper {
         min-width: 150px; } }
   @media screen and (max-width: 640px) {
     .navbar-form {
-      display: none; } }
+      width: 15%; } 
+      .navbar-form input[type="text"] {
+        min-width: 115px; } }
 
 .navbar-nav .icon-menu {
   display: inline-block;
