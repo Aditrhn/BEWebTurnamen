@@ -144,8 +144,7 @@
     }
 
     function remove_education_fields(rid) {
-        room-1;
-        $('.removeclass' + rid+room).remove();
+        $('.removeclass' + rid).remove();
     }
 
 </script>
