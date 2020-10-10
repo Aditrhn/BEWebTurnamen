@@ -89,7 +89,7 @@
                                 <div class="team-static">
                                     <div class="col-lg-6 col-xs-12">
                                         <div class="team-info-game">
-                                            <h4 class="pull-left col-lg-12">Game Focus</h4>
+                                            <h4 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h4>
                                             <img src="assets/img/ML.png"alt="">
                                             {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
                                             <h4 style="text-align: center">{{ $team->game_name }}</h4>
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="col-lg-6 col-xs-12">
                                         <div class="team-info-support">
-                                            <h4 class="pull-left col-lg-12">Supported</h4>
+                                            <h4 class="pull-left col-lg-12 col-xs-12 center-block">Supported</h4>
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">
@@ -298,17 +298,17 @@
                                 <div class="col-lg-6 col-xs-12">
                                     <div class="team-info-game">
                                         <div class="row">
-                                            <h4 class="pull-left col-lg-12">Game Focus</h4>
+                                            <h4 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h4>
                                         </div>
+                                            {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
                                         <img src="assets/img/ML.png"alt="">
-                                        {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
-                                        <h4 style="text-align: center">{{ $team->game_name }}</h4>
+                                        <h4 class="center-block">{{ $team->game_name }}</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xs-12">
                                     <div class="team-info-support">
                                         <div class="row">
-                                            <h4 class="pull-left col-lg-12">Supported</h4>
+                                            <h4 class="pull-left col-lg-12 center-block">Supported</h4>
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">

@@ -126,7 +126,7 @@
 <div class="clearfix"></div>
 <script>
     var room = 1;
-    function education_fields(i) {
+    function education_fields() {
 
         room++;
         var objTo = document.getElementById('sponsor_fields')
@@ -144,7 +144,8 @@
     }
 
     function remove_education_fields(rid) {
-        $('.removeclass' + rid).remove();
+        room-1;
+        $('.removeclass' + rid+room).remove();
     }
 
 </script>
