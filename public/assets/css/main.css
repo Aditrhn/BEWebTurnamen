@@ -769,10 +769,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   /* END */
   /* Team Details */
   .main .main-content .panel-body .member div > img{
-    width: 50%;;
+    max-width: 50%;;
     }
   .main .main-content .panel-body .overview div > img {
-  width: 100%;
+  max-width: 100%;
   }
   .main .main-content .panel-body .team-info-game > img{
     width: 40%;
