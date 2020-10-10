@@ -19,14 +19,14 @@
                                         <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                     </div>
                                     <div class="team-overview col-lg-7 col-sm-8">
-                                        <h3 style="text-align: center">{{ $team->name }}</h3>
+                                        <h3>{{ $team->name }}</h3>
                                         <div class="overview-button" style="align-content: center">
                                             <form action="{{ URL::route('team.disband') }}" method="POST">
                                                 @csrf
                                                 <div class="friend-btn">
-                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#requestJoin">Request</a>
+                                                    <a class="btn btn-primary col-lg-5" data-toggle="modal" data-target="#requestJoin">Request</a>
                                                     <input type="hidden" name="teamId" value="{{ $team->id }}">
-                                                    <button type="submit" class="btn btn-danger">Disband</button>
+                                                    <button type="submit" class="btn btn-danger col-lg-5">Disband</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -89,7 +89,7 @@
                                 <div class="team-static">
                                     <div class="col-lg-6 col-xs-12">
                                         <div class="team-info-game">
-                                            <h4 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h4>
+                                            <h5 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h5>
                                             <img src="assets/img/ML.png"alt="">
                                             {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
                                             <h4 style="text-align: center">{{ $team->game_name }}</h4>

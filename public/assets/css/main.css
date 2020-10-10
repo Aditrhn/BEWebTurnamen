@@ -579,10 +579,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     color: #745FF8;
   }
   .main .main-content .panel-body .member div > img{
-  width: 60%; border-radius: 20px; align-items: center; 
+  width: 80%; border-radius: 20px; align-items: center; 
   }
   .main .main-content .panel-body .overview div > img {
-  width: 100%; border-radius: 20px; align-items: center;
+  max-width: 110%; border-radius: 20px; align-items: center;
   }
   .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
   margin-right: 5px;
@@ -606,7 +606,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     width: 80%; border-radius: 20px; align-items: center; 
   }
   .main .main-content .panel-body .team-static div > img {
-    max-width: 100%; 
+    max-width: 120%; 
   }
   
   /* Modals team page */

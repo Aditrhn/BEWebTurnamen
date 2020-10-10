@@ -42,12 +42,6 @@
                             </div>
                         </div>
                         <div id="collapseOne" aria-expanded="false" class="collapse">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary pull-right" type="button" onclick="education_fields();"
-                                    style="margin-bottom: 10px">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
-                                    Sponsor</button>
-                            </div>
                             @if($count == 0)
                                 <div class="well">
                                     <div class="form-group" id="scrollform-edit-team">
@@ -72,7 +66,76 @@
                                     </div>
                                     <div class="clear"></div>
                                 </div>
-                            @else
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #2</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+                                    </div>
+                                    <!-- {{-- Sponsor Logo --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-sponsor-logo">Sponsor Logo</label>
+                                        <input type="file" class="custom-file-input" id="teamSponsorLogo"
+                                            aria-describedby="inputGroupFileAddon01" value="" name="sponsor_url">
+                                        <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #3</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+                                    </div>
+                                    <!-- {{-- Sponsor Logo --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-sponsor-logo">Sponsor Logo</label>
+                                        <input type="file" class="custom-file-input" id="teamSponsorLogo"
+                                            aria-describedby="inputGroupFileAddon01" value="" name="sponsor_url">
+                                        <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #4</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+                                    </div>
+                                    <!-- {{-- Sponsor Logo --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-sponsor-logo">Sponsor Logo</label>
+                                        <input type="file" class="custom-file-input" id="teamSponsorLogo"
+                                            aria-describedby="inputGroupFileAddon01" value="" name="sponsor_url">
+                                        <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                @else
                                 @foreach($sponsor as $sponsors)
                                     <?php $i = 1 ?>
                                     <div class="well">
@@ -80,7 +143,7 @@
                                             <div class="checkbox" id="enableSponsor">
                                                 <label><input type="checkbox" id="sponsor" value="">Enable
                                                     Sponsor</label>
-                                                <p>Sponsor #{{ $i }}</p>
+                                                <p>Sponsor #4</p>
                                             </div>
                                         </div>
                                         <!-- {{-- Sponsor Name --}} -->
