@@ -56,6 +56,7 @@ Route::group(['auth', 'players'], function () {
         Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
         Route::post('team-edit', 'TeamController@team_edit')->name('team.edit');
         Route::post('team-update', 'TeamController@team_update')->name('team.update');
+        // Route::post('teamSponsor-delete', 'TeamController@teamSponsor_delete')->name('teamSponsor.delete');
         Route::post('team-view', 'TeamController@team_view')->name('team.view');
         Route::post('team-join', 'TeamController@team_join')->name('team.join');
         Route::post('team-leave', 'TeamController@team_leave')->name('team.leave');

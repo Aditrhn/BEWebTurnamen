@@ -9,7 +9,7 @@
                 enctype="multipart/form-data">
                 @csrf
                 {{ csrf_token() }}
-                <div class="row" id="rowcreate">
+                <div class="row" id="rowcreate" style="margin-top: 0px">
                     <div class="col-md-6">
                         <div class="form-group" id="scrollform-teamcreate">
                             <label for="name">Team Name</label>
