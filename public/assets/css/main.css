@@ -584,7 +584,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .overview div > img {
   max-width: 110%; border-radius: 20px; align-items: center;
   }
-  @media(min-width:1200px) and (max-width:1500px){
+  @media(min-width:1200px) and (max-width:1700px){
     .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
     font-size: 10px;
     padding: 3% 6% 3% 6% !important;}
@@ -611,6 +611,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     width: 80%; border-radius: 20px; align-items: center; 
   }
   .main .main-content .panel-body .team-static div > img {
+    margin: 10px;
     max-width: 150%; 
   }
   
@@ -785,6 +786,12 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .team-info-support div > img {
     width: 50%;
   }
+  .main .main-content .panel-body .member div > img{
+    max-width: 40%;
+  }
+  .main .main-content .panel-body .team-static div > img{
+    max-width: 40%;
+  }
 }
  
   @media(max-width:767px){
@@ -926,6 +933,15 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       margin-right: 4px !important;
       font-size: 12px;
       padding: 1px 4px 1px 4px !important;
+    }
+    .main .main-content .panel-body .overview div > h3{
+      text-align: center;
+    }
+    .main .main-content .panel-body .overview div > img{
+      max-width: 100%;
+    }
+    .main .main-content .panel-body .team-static div > img{
+      max-width: 80% ;
     }
     /* End */
 
