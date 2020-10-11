@@ -42,14 +42,33 @@
                             </div>
                         </div>
                         <div id="collapseOne" aria-expanded="false" class="collapse">
+<<<<<<< Updated upstream
                             <div class="well">
                                 <div class="form-group" id="scrollform-edit-team">
                                     <div class="checkbox" id="enableSponsor">
                                         <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor1">Enable
                                             Sponsor</label>
                                         <p>Sponsor #1</p>
+=======
+                            @if($count == 0)
+                            <div class="col-lg-6 col-xs-12">
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #1</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+>>>>>>> Stashed changes
                                     </div>
                                 </div>
+<<<<<<< Updated upstream
                                 <!-- {{-- Sponsor Name --}} -->
                                 <div class="form-group" id="scrollform-edit-team">
                                     <label for="team-nama-sponsor">Sponsor Name</label>
@@ -71,6 +90,23 @@
                                         <button class="btn btn-danger" type="button">
                                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                         </button>
+=======
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #2</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+>>>>>>> Stashed changes
                                     </div>
                                 @else
                                 
@@ -85,6 +121,7 @@
                                         <p>Sponsor #2</p>
                                     </div>
                                 </div>
+<<<<<<< Updated upstream
                                 <!-- {{-- Sponsor Name --}} -->
                                 <div class="form-group" id="scrollform-edit-team">
                                     <label for="team-nama-sponsor">Sponsor Name</label>
@@ -106,6 +143,23 @@
                                         <button class="btn btn-danger" type="button">
                                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                         </button>
+=======
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #3</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+>>>>>>> Stashed changes
                                     </div>
                                 @endif
                                 <div class="clear"></div>
@@ -118,6 +172,7 @@
                                         <p>Sponsor #3</p>
                                     </div>
                                 </div>
+<<<<<<< Updated upstream
                                 <!-- {{-- Sponsor Name --}} -->
                                 <div class="form-group" id="scrollform-edit-team">
                                     <label for="team-nama-sponsor">Sponsor Name</label>
@@ -139,6 +194,23 @@
                                         <button class="btn btn-danger" type="button">
                                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                         </button>
+=======
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                                <div class="well">
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <div class="checkbox" id="enableSponsor">
+                                            <label><input type="checkbox" id="sponsor" value="">Enable Sponsor</label>
+                                            <p>Sponsor #4</p>
+                                        </div>
+                                    </div>
+                                    <!-- {{-- Sponsor Name --}} -->
+                                    <div class="form-group" id="scrollform-edit-team">
+                                        <label for="team-nama-sponsor">Sponsor Name</label>
+                                        <input type="text"
+                                            class="form-control @error('sponsorName') is-invalid @enderror"
+                                            id="namaSponsor" name="sponsorName" value="">
+>>>>>>> Stashed changes
                                     </div>
                                 @endif
                                 <div class="clear"></div>
@@ -151,6 +223,7 @@
                                         <p>Sponsor #4</p>
                                     </div>
                                 </div>
+<<<<<<< Updated upstream
                                 <!-- {{-- Sponsor Name --}} -->
                                 <div class="form-group" id="scrollform-edit-team">
                                     <label for="team-nama-sponsor">Sponsor Name</label>
@@ -174,6 +247,34 @@
                                             <button class="btn btn-danger" type="submit" form="form4">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
+=======
+                            </div>
+                                @else
+                                @foreach($sponsor as $sponsors)
+                                    <?php $i = 1 ?>
+                                    <div class="well">
+                                        <div class="form-group" id="scrollform-edit-team">
+                                            <div class="checkbox" id="enableSponsor">
+                                                <label><input type="checkbox" id="sponsor" value="">Enable
+                                                    Sponsor</label>
+                                                <p>Sponsor #4</p>
+                                            </div>
+                                        </div>
+                                        <!-- {{-- Sponsor Name --}} -->
+                                        <div class="form-group" id="scrollform-edit-team">
+                                            <label for="team-nama-sponsor">Sponsor Name</label>
+                                            <input type="text"
+                                                class="form-control @error('sponsorName') is-invalid @enderror"
+                                                id="namaSponsor" name="sponsorName" value="{{ $sponsors->name }}">
+                                        </div>
+                                        <!-- {{-- Sponsor Logo --}} -->
+                                        <div class="form-group" id="scrollform-edit-team">
+                                            <label for="team-sponsor-logo">Sponsor Logo</label>
+                                            <input type="file" class="custom-file-input" id="teamSponsorLogo"
+                                                aria-describedby="inputGroupFileAddon01"
+                                                value="{{ $sponsors->logo_url }}" name="sponsor_url">
+                                            <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
+>>>>>>> Stashed changes
                                         </div>
                                     {{-- </form> --}}
                                 @endif

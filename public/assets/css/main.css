@@ -584,6 +584,11 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .overview div > img {
   max-width: 110%; border-radius: 20px; align-items: center;
   }
+  @media(min-width:1200px) and (max-width:1500px){
+    .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
+    font-size: 10px;
+    padding: 3% 6% 3% 6% !important;}
+  }
   .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
   margin-right: 5px;
   margin-top: 4%;
@@ -598,15 +603,15 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .team-static{
     text-align: center;
   }
-  .main .main-content .panel-body .team-static h4{
-    padding-bottom: 20px;
+  .main .main-content .panel-body .team-static h5{
+    padding-bottom: 10px;
     text-align: start;
   }
   .main .main-content .panel-body .team-info-game > img{
     width: 80%; border-radius: 20px; align-items: center; 
   }
   .main .main-content .panel-body .team-static div > img {
-    max-width: 120%; 
+    max-width: 150%; 
   }
   
   /* Modals team page */
@@ -2617,7 +2622,7 @@ color: white;
 }
 #scrollform-edit-team > input{
     border-radius: 10px; 
-    height: 60px;
+    height: 40px;
     background-color: #35356C;
     border: none; 
     color: white;
@@ -2628,10 +2633,10 @@ color: white;
   color: white;
 }
 #teamSponsorLogo{
-  padding: 20px;
+  padding: 10px;
 }
 #teamLogo{
-  padding: 20px;
+  padding: 10px;
 }
 
  /********************

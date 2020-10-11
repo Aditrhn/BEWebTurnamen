@@ -24,9 +24,9 @@
                                             <form action="{{ URL::route('team.disband') }}" method="POST">
                                                 @csrf
                                                 <div class="friend-btn">
-                                                    <a class="btn btn-primary col-lg-5" data-toggle="modal" data-target="#requestJoin">Request</a>
+                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#requestJoin">Request</a>
                                                     <input type="hidden" name="teamId" value="{{ $team->id }}">
-                                                    <button type="submit" class="btn btn-danger col-lg-5">Disband</button>
+                                                    <button type="submit" class="btn btn-danger">Disband</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -92,12 +92,12 @@
                                             <h5 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h5>
                                             <img src="assets/img/ML.png"alt="">
                                             {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
-                                            <h4 style="text-align: center">{{ $team->game_name }}</h4>
+                                            <p style="text-align: center">{{ $team->game_name }}</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-xs-12">
                                         <div class="team-info-support">
-                                            <h4 class="pull-left col-lg-12 col-xs-12 center-block">Supported</h4>
+                                            <h5 class="pull-left col-lg-12 col-xs-12 center-block">Supported</h5>
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">
