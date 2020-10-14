@@ -22,11 +22,12 @@ class CreatePaymentsTable extends Migration
             $table->string('status_message');
             $table->string('transaction_id');
             $table->string('payment_type');
-            $table->string('transaction_time');
-            $table->string('transaction_status');
-            $table->string('fraud_status');
-            $table->string('bill_key');
-            $table->string('biller_code');
+            $table->string('transaction_time')->nullable();
+            $table->string('transaction_status')->nullable();
+            $table->string('fraud_status')->nullable();
+            $table->string('va_number')->nullable();
+            $table->string('bill_key')->nullable();
+            $table->string('biller_code')->nullable();
             $table->timestamps();
         });
     }

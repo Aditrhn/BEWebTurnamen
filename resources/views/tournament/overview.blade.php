@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                                 {{-- <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">JOIN TOURNAMENT</a> --}}
-                                <form action="{{ URL::route('tournament.payment',$event->id) }}" method="POST">
+                                <form action="{{ URL::route('tournament.join',$event->id) }}" method="POST">
                                     @csrf
                                     {{ csrf_field() }}
                                     <button class="col-md-12 btn btn-success btn-block btn-lg" type="submit">JOIN TOURNAMENT</button>

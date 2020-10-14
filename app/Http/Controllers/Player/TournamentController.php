@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Contract;
 use App\Model\Event;
 use App\Model\Join;
+use App\Model\Payment;
 use App\Model\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,42 +98,87 @@ class TournamentController extends Controller
                 ]);
             }
 
-
             $detail_payment = DB::table('joins')
                 ->join('contracts', 'contracts.id', '=', 'joins.team_id')
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
                 ->join('events', 'events.id', '=', 'joins.event_id')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
                 ->where('players.id', Auth::guard('player')->user()->id)
-                ->select('teams.name as name_team', 'teams.id as team_id', 'events.id as id_event', 'events.title as title_turney', 'events.fee as prise', 'players.name as captain')->first();
-            return \view('tournament.checkout', \compact('contract', 'detail_payment'));
+                ->select('teams.name as name_team', 'teams.id as team_id', 'events.id as id_event', 'events.title as title_turney', 'events.fee as prise', 'players.name as captain', 'players.email as mail', 'players.contact as telp')->first();
+
+            $this->initPaymentGateway();
+            $params = array(
+                'enable_payments' => Payment::PAYMENT_CHANNELS,
+                'transaction_details' => array(
+                    'order_id' => rand() . '_from_' . $detail_payment->captain,
+                    'gross_amount' => $detail_payment->prise,
+                ),
+                'customer_details' => array(
+                    'first_name' => $detail_payment->captain,
+                    'last_name' => $detail_payment->name_team,
+                    'email' => $detail_payment->mail,
+                    'phone' => $detail_payment->telp,
+                ),
+                'expiry' => array(
+                    'start_time' => date('Y-m-d H:i:s T'),
+                    'unit' => \App\Model\Payment::EXPIRY_UNIT,
+                    'duration' => \App\Model\Payment::EXPIRY_DURATION,
+                ),
+            );
+            // \dd($params['transaction_details']['order_id']);
+            // $snap = \Midtrans\Snap::createTransaction($params);
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            // $midtrans = \json_encode($snapToken);
+            // \dd($snap);
+
+            // \dd($midtrans);
+            // $payment = Payment::create([
+            //     'order_id' => $params['transaction_details']['order_id'],
+            //     'gross_amount' => $params['transaction_details']['gross_amount'],
+            //     // 'status_code'=>
+            // ]);
+            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
     public function payment(Request $request)
     {
+        if (Auth::guard('player')->check()) {
+            $detail_payment = DB::table('joins')
+                ->join('contracts', 'contracts.id', '=', 'joins.team_id')
+                ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+                ->join('events', 'events.id', '=', 'joins.event_id')
+                ->join('players', 'players.id', '=', 'contracts.players_id')
+                ->where('players.id', Auth::guard('player')->user()->id)
+                ->select('teams.name as name_team', 'teams.id as team_id', 'events.id as id_event', 'events.title as title_turney', 'events.fee as prise', 'players.name as captain', 'players.email as mail', 'players.contact as telp')->first();
+            $this->initPaymentGateway();
+            $params = array(
+                'enable_payments' => Payment::PAYMENT_CHANNELS,
+                'transaction_details' => array(
+                    'order_id' => rand() . '_from_' . $detail_payment->captain,
+                    'gross_amount' => $detail_payment->prise,
+                ),
+                'customer_details' => array(
+                    'first_name' => $detail_payment->captain,
+                    'last_name' => $detail_payment->name_team,
+                    'email' => $detail_payment->mail,
+                    'phone' => $detail_payment->telp,
+                ),
+                'expiry' => array(
+                    'start_time' => date('Y-m-d H:i:s T'),
+                    'unit' => \App\Model\Payment::EXPIRY_UNIT,
+                    'duration' => \App\Model\Payment::EXPIRY_DURATION,
+                ),
+            );
 
-        // $token = Str::random(100);
-        $this->initPaymentGateway();
-        $var = 20000;
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => $var,
-            ),
-            'customer_details' => array(
-                'first_name' => 'budi',
-                // 'last_name' => 'pratama',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-        );
-
-        // \dd($params);
-
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        // \dd($params, $snapToken);
-        return view('snap', \compact('params', 'snapToken'));
+            // \dd($params);
+            $snap = \Midtrans\Snap::createTransaction($params);
+            // $snapToken = \Midtrans\Snap::getSnapToken($params);
+            // \dd($params, $snapToken);
+            return view('snap', \compact('snapToken', 'detail_payment'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
     }
 }

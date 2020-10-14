@@ -3,7 +3,9 @@
 <div class="main">
     <div class="main-content">
         <div class="container-fluid">
-            <form action="">
+            {{-- <form action="{{ URL::route('tournament.payment') }}" method="POST">
+                @csrf
+                {{ csrf_field() }} --}}
                 <div class="col-md-12">
                     <!-- PANEL HEADLINE -->
                     <div class="panel panel-headline">
@@ -16,9 +18,9 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <button class="col-md-4 btn btn-success btn-block btn-lg" type="button" id="pay-button">Pay Now</a>
+                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
                 </div>
-            </form>
+            {{-- </form> --}}
         </div>
     </div>
 </div>
@@ -28,7 +30,7 @@
 <script type="text/javascript">
     document.getElementById('pay-button').onclick = function(){
         // SnapToken acquired from previous step
-        snap.pay({
+        snap.pay('<?=$snapToken?>', {
           // Optional
             onSuccess: function(result){
                 /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
