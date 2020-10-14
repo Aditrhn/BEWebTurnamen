@@ -65,10 +65,15 @@ Route::group(['auth', 'players'], function () {
         //Tournament
         Route::get('tournament', 'TournamentController@index')->name('tournament');
         Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
-        Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.payment');
-        // Route::get('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
+        Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
+        // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');
-        // Route::get('/tournament/payment/payment/finish', 'TournamentController@payment')->name('tournament.payment');
+        // Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
+
+        // Route::post('payments/notification', 'PaymentController@notification');
+        // Route::get('payments/completed', 'PaymentController@completed');
+        // Route::get('payments/failed', 'PaymentController@failed');
+        // Route::get('payments/unfinish', 'PaymentController@unfinish');
     });
     //Search
     Route::get('search-result', 'SearchController@index')->name('search');
