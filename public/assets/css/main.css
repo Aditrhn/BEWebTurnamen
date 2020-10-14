@@ -568,6 +568,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel h3{
     padding-bottom: 10px;
   }
+  #wrapper .main .main-content #panel-team-details{
+    background: #26244F;
+    margin: 0 !important;
+  }
   .main .main-content .panel-body .member{
     text-align: center;
   }
@@ -575,32 +579,40 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     color: #745FF8;
   }
   .main .main-content .panel-body .member div > img{
-  width: 100%; border-radius: 20px; align-items: center; 
+  width: 80%; border-radius: 20px; align-items: center; 
   }
   .main .main-content .panel-body .overview div > img {
-  width: 100%; border-radius: 20px; align-items: center;
+  max-width: 110%; border-radius: 20px; align-items: center;
   }
-  .main .main-content .panel-body .team-overview a{
+  @media(min-width:1200px) and (max-width:1700px){
+    .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
+    font-size: 10px;
+    padding: 3% 6% 3% 6% !important;}
+  }
+  .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
+  margin-right: 5px;
   margin-top: 4%;
   }
   .main .main-content .panel-body .team-overview .overview-button{
     margin-top: 15%;
   }
-  .main .main-content .panel span > a{
+  .main .main-content .panel .button-team .friend-btn > .btn{
+    margin-top: -25px;
     margin-right: 10px;
   }
   .main .main-content .panel-body .team-static{
     text-align: center;
   }
-  .main .main-content .panel-body .team-static h4{
-    padding-bottom: 20px;
+  .main .main-content .panel-body .team-static h5{
+    padding-bottom: 10px;
     text-align: start;
   }
   .main .main-content .panel-body .team-info-game > img{
     width: 80%; border-radius: 20px; align-items: center; 
   }
-  .main .main-content .panel-body .team-info-support div > img {
-    width: 100%; border-radius: 20px; margin-left: -10px;
+  .main .main-content .panel-body .team-static div > img {
+    margin: 10px;
+    max-width: 150%; 
   }
   
   /* Modals team page */
@@ -763,10 +775,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   /* END */
   /* Team Details */
   .main .main-content .panel-body .member div > img{
-    width: 50%;;
+    max-width: 50%;;
     }
   .main .main-content .panel-body .overview div > img {
-  width: 100%;
+  max-width: 100%;
   }
   .main .main-content .panel-body .team-info-game > img{
     width: 40%;
@@ -774,9 +786,15 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .main .main-content .panel-body .team-info-support div > img {
     width: 50%;
   }
+  .main .main-content .panel-body .member div > img{
+    max-width: 40%;
+  }
+  .main .main-content .panel-body .team-static div > img{
+    max-width: 40%;
+  }
 }
  
-  @media(max-width:812px){
+  @media(max-width:767px){
 
     .panel-friend-detail{
       width: 45%;
@@ -899,21 +917,31 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .main .main-content .panel-body .team-overview h4{
       text-align: center;
       }
-    .main .main-content .panel-body .team-overview a{
+    .main .main-content .panel-body .team-overview .overview-button .friend-btn{
+      margin-top: 20% !important;
+    }
+    .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
+      width: 100%;
       display: block;
-      margin-top: 20px !important;
     }
 
     .main .main-content .panel h3{
       font-size: 18px;
     }
-    .main .main-content .panel span > a{
-      font-size: 12px;
-    }
-    
-    .main .main-content .panel span > .btn{
+    .main .main-content .panel .button-team .friend-btn > .btn{
+      margin-top: -6% !important;
       margin-right: 4px !important;
+      font-size: 12px;
       padding: 1px 4px 1px 4px !important;
+    }
+    .main .main-content .panel-body .overview div > h3{
+      text-align: center;
+    }
+    .main .main-content .panel-body .overview div > img{
+      max-width: 100%;
+    }
+    .main .main-content .panel-body .team-static div > img{
+      max-width: 80% ;
     }
     /* End */
 
@@ -1116,6 +1144,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .table>tfoot>tr>td, .table>tfoot>tr>th,
   .table>thead>tr>td, .table>thead>tr>th
   {
+    color: #fff;
     border: 0
   }
   .container-fluid .product .product-info .product-content h1 {
@@ -1546,7 +1575,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 @media screen and (max-width: 767px) {
   #wrapper #sidebar-nav,
   #wrapper .main {
-    padding-top: 130px; } }
+    padding-top: 60px; } }
 
 .layout-fullwidth #wrapper .sidebar {
   left: -260px; }
@@ -1682,7 +1711,9 @@ html.fullscreen-bg #wrapper {
         min-width: 150px; } }
   @media screen and (max-width: 640px) {
     .navbar-form {
-      display: none; } }
+      width: 15%; } 
+      .navbar-form input[type="text"] {
+        min-width: 115px; } }
 
 .navbar-nav .icon-menu {
   display: inline-block;
@@ -1942,6 +1973,8 @@ ul.notifications > li {
 
 .text-danger {
   color: #F9354C; }
+.text-white {
+  color: #fff; }
 
 ul.list-justify > li {
   margin-bottom: 5px; }
@@ -2473,6 +2506,8 @@ ul.activity-list > li {
 /********************
  * HELPERS
  ********************/
+.bg-none {
+  background-color: #35346D !important; }
 .bg-success {
   background-color: #41B314; }
 
@@ -2603,7 +2638,7 @@ color: white;
 }
 #scrollform-edit-team > input{
     border-radius: 10px; 
-    height: 60px;
+    height: 40px;
     background-color: #35356C;
     border: none; 
     color: white;
@@ -2614,10 +2649,10 @@ color: white;
   color: white;
 }
 #teamSponsorLogo{
-  padding: 20px;
+  padding: 10px;
 }
 #teamLogo{
-  padding: 20px;
+  padding: 10px;
 }
 
  /********************
@@ -2709,6 +2744,25 @@ color: white;
   width: 150px;
   height: 40px; 
   border-radius: 20px;
+}
+
+#upload_logo_team{
+  border-radius: 10px;
+  width: 100%; 
+  height: 60px;
+  background-color: #35356C;
+  border: none; 
+  color: white;
+}
+
+#browse{
+  margin-top: 17px;
+  padding-left: 10px;
+}
+
+#desclabel{
+  color: white;
+  margin-top: 20px;
 }
 
  /********************

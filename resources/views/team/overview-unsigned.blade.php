@@ -85,18 +85,13 @@
                                         <div class="row">
                                             <h4 class="pull-left col-lg-12">Supported</h4>
                                         </div>
-                                        <div class="col-lg-6 col-xs-6">
-                                            <img src="assets/img/1x1.jpg" alt="">
-                                        </div>
-                                        <div class="col-lg-6 col-xs-6">
-                                            <img src="assets/img/1x1.jpg" alt="">
-                                        </div>
-                                        <div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
-                                            <img src="assets/img/1x1.jpg" alt="">
-                                        </div>
-                                        <div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
-                                            <img src="assets/img/1x1.jpg" alt="">
-                                        </div>
+                                        @forelse ($sponsor as $sponsors)
+                                            <div class="col-lg-6 col-xs-6">
+                                                <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
+                                            </div>
+                                        @empty
+                                            <p>Belum ada Sponsor.</p>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>

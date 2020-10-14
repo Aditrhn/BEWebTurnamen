@@ -9,7 +9,7 @@
                 enctype="multipart/form-data">
                 @csrf
                 {{ csrf_token() }}
-                <div class="row" id="rowcreate">
+                <div class="row" id="rowcreate" style="margin-top: 0px">
                     <div class="col-md-6">
                         <div class="form-group" id="scrollform-teamcreate">
                             <label for="name">Team Name</label>
@@ -20,7 +20,7 @@
                     <div class="col-md-6">
                         <label for="logo_url" id="avatar"> Team Logo (optional)</label>
                         <div class="input-group" id="upload_logo_team">
-                            <div class="custom-file" id="browse">
+                            <div class="custom-file" id="browse" style="">
                                 <input type="file" class="custom-file-input @error('ava_url') is-invalid @enderror"
                                     id="inputGroupavatar" aria-describedby="inputGroupFileAddon01"
                                     value="{{ asset('/images/avatar/'. Auth::guard('player')->user()->ava_url) }}"

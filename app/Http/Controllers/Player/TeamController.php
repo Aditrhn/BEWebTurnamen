@@ -7,6 +7,7 @@ use App\Model\Contract;
 use App\Model\Player;
 use App\Model\Game;
 use App\Model\Team;
+use App\Model\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,8 +55,14 @@ class TeamController extends Controller
                     ->select('role')
                     ->where('players_id', '=', Auth::guard('player')->user()->id)
                     ->first();
-                
-                return view('team.overview-captain', \compact('team', 'member', 'friends', 'request', 'role'));
+                $sponsor = Sponsor::select('*')
+                    ->where([
+                        ['team_id', '=', $team->id],
+                        ['status', '=', '1']
+                        ])
+                    ->get();
+
+                return view('team.overview-captain', \compact('team', 'member', 'friends', 'request', 'role', 'sponsor'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -111,10 +118,16 @@ class TeamController extends Controller
         if (Auth::guard('player')->check()) {
             $team = DB::table('teams')
                 ->select('id', 'name', 'logo_url', 'description')
-                ->where('id', '=', $request->teamId)
+                ->where('teams.id', '=', $request->teamId)
                 ->first();
-
-            return \view('team.edit', \compact('team'));
+            $count = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->count();
+            $sponsor = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->get();
+            // dd($sponsor[0]->name);
+            return \view('team.edit', \compact('team', 'sponsor', 'count'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -125,20 +138,583 @@ class TeamController extends Controller
             $team = Team::select('*')
                 ->where('id', '=', $request->teamId)
                 ->first();
-            $logo_name = Team::select('logo_url')
+            $count = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->count();
+            $sponsor = Sponsor::select('*')
+                ->where('team_id', '=', $request->teamId)
+                ->get();
+            $team_logo = Team::select('logo_url')
                 ->where('id', '=', $request->teamId)
                 ->first()->logo_url;
+            // dd($sponsor_logo);
             if ($request->hasFile('logo_url')) {
                 $logo = $request->logo_url;
-                $logo_name = \time() . "_" . $logo->getClientOriginalName();
-                $logo->move('images/team_logo/', $logo_name);
-                $team->logo_url = 'images/team_logo/' . $logo_name;
+                $team_logo = \time() . "_" . $logo->getClientOriginalName();
+                $logo->move('images/team_logo/', $team_logo);
+                $team->logo_url = 'images/team_logo/' . $team_logo;
                 File::delete('team_logo/' . $team->logo_url);
             }
-            
+            // Sponsor add & update
+            if ($count == 0) {
+                if ($request->hasFile('sponsor_url1')){
+                    $file = $request->file('sponsor_url1');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor1')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->hasFile('sponsor_url2')){
+                    $file = $request->file('sponsor_url2');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor2')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->hasFile('sponsor_url3')){
+                    $file = $request->file('sponsor_url3');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor3')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->hasFile('sponsor_url4')){
+                    $file = $request->file('sponsor_url4');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor4')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+            } elseif ($count == 1) {
+                if ($request->hasFile('sponsor_url1')){
+                    $sponsor_logo = $sponsor[0]->logo_url;
+                    $logo = $request->sponsor_url1;
+                    $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
+                    $logo->move('images/sponsor_logo/', $sponsor_logo);
+                    $sponsor[0]->logo_url = 'images/sponsor_logo/' . $sponsor_logo;
+                    File::delete('sponsor_logo/' . $sponsor[0]->logo_url);
+                    $sponsor[0]->update([
+                        'logo_url' => $sponsor_logo
+                        ]);
+                }
+                if ($request->has('enable_sponsor1')) {
+                    $sponsor[0]->update([
+                        'id' => $request->sponsor_id1,
+                        'name' => $request->sponsorName1,
+                        'team_id' => $request->teamId,
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[0]->update([
+                        'id' => $request->sponsor_id1,
+                        'name' => $request->sponsorName1,
+                        'team_id' => $request->teamId,
+                        'status' => '0'
+                    ]);
+                 }
+                if ($request->hasFile('sponsor_url2')){
+                    $file = $request->file('sponsor_url2');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor2')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor2')) {
+                    $sponsor[1]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[1]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url3')){
+                    $file = $request->file('sponsor_url3');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor3')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor3')) {
+                    $sponsor[2]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[2]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url4')){
+                    $file = $request->file('sponsor_url4');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor4')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor4')) {
+                    $sponsor[3]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[3]->update([
+                        'status' => '0'
+                    ]);
+                }
+            } elseif ($count == 2) {
+                if ($request->hasFile('sponsor_url1')){
+                    $file = $request->file('sponsor_url1');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor1')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor1')) {
+                    $sponsor[0]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[0]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url2')){
+                    $sponsor_logo = $sponsor[1]->logo_url;
+                    $logo = $request->sponsor_url2;
+                    $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
+                    $logo->move('images/sponsor_logo/', $sponsor_logo);
+                    $sponsor[1]->logo_url = 'images/sponsor_logo/' . $sponsor_logo;
+                    File::delete('sponsor_logo/' . $sponsor[1]->logo_url);
+                    $sponsor[1]->update([
+                        'logo_url' => $sponsor_logo
+                        ]);
+                }
+                if ($request->has('enable_sponsor2')) {
+                    $sponsor[1]->update([
+                        'id' => $request->sponsor_id2,
+                        'name' => $request->sponsorName2,
+                        'team_id' => $request->teamId,
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[1]->update([
+                        'id' => $request->sponsor_id2,
+                        'name' => $request->sponsorName2,
+                        'team_id' => $request->teamId,
+                        'status' => '0'
+                    ]);
+                 }
+                if ($request->hasFile('sponsor_url3')){
+                    $file = $request->file('sponsor_url3');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor3')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor3')) {
+                    $sponsor[2]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[2]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url4')){
+                    $file = $request->file('sponsor_url4');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor4')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor4')) {
+                    $sponsor[3]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[3]->update([
+                        'status' => '0'
+                    ]);
+                }
+            } elseif ($count == 3) {
+                if ($request->hasFile('sponsor_url1')){
+                    $file = $request->file('sponsor_url1');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor1')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor1')) {
+                    $sponsor[0]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[0]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url2')){
+                    $file = $request->file('sponsor_url2');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor2')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor2')) {
+                    $sponsor[1]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[1]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url3')){
+                    $sponsor_logo = $sponsor[2]->logo_url;
+                    $logo = $request->sponsor_url3;
+                    $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
+                    $logo->move('images/sponsor_logo/', $sponsor_logo);
+                    $sponsor[2]->logo_url = 'images/sponsor_logo/' . $sponsor_logo;
+                    File::delete('sponsor_logo/' . $sponsor[2]->logo_url);
+                    $sponsor[2]->update([
+                        'logo_url' => $sponsor_logo
+                        ]);
+                }
+                if ($request->has('enable_sponsor3')) {
+                    $sponsor[2]->update([
+                        'id' => $request->sponsor_id3,
+                        'name' => $request->sponsorName3,
+                        'team_id' => $request->teamId,
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[2]->update([
+                        'id' => $request->sponsor_id3,
+                        'name' => $request->sponsorName3,
+                        'team_id' => $request->teamId,
+                        'status' => '0'
+                    ]);
+                 }
+                if ($request->hasFile('sponsor_url4')){
+                    $file = $request->file('sponsor_url4');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor4')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName4,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor4')) {
+                    $sponsor[3]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[3]->update([
+                        'status' => '0'
+                    ]);
+                }
+            } else {
+                if ($request->hasFile('sponsor_url1')){
+                    $file = $request->file('sponsor_url1');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor1')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName1,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor1')) {
+                    $sponsor[0]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[0]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url2')){
+                    $file = $request->file('sponsor_url2');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor2')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName2,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor2')) {
+                    $sponsor[1]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[1]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url3')){
+                    $file = $request->file('sponsor_url3');
+                    $name_icon = \time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/sponsor_logo/';
+                    $file->move($tujuan_upload, $name_icon);
+                    if ($request->has('enable_sponsor3')) {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '1'
+                        ]);
+                     } else {
+                        Sponsor::create([
+                            'name' => $request->sponsorName3,
+                            'logo_url' => $name_icon,
+                            'team_id' => $request->teamId,
+                            'status' => '0'
+                        ]);
+                     }
+                }
+                if ($request->has('enable_sponsor3')) {
+                    $sponsor[2]->update([
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[2]->update([
+                        'status' => '0'
+                    ]);
+                }
+                if ($request->hasFile('sponsor_url4')){
+                    $sponsor_logo = $sponsor[3]->logo_url;
+                    $logo = $request->sponsor_url4;
+                    $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
+                    $logo->move('images/sponsor_logo/', $sponsor_logo);
+                    $sponsor[3]->logo_url = 'images/sponsor_logo/' . $sponsor_logo;
+                    File::delete('sponsor_logo/' . $sponsor[3]->logo_url);
+                    $sponsor[3]->update([
+                        'logo_url' => $sponsor_logo
+                        ]);
+                }
+                if ($request->has('enable_sponsor4')) {
+                    $sponsor[3]->update([
+                        'id' => $request->sponsor_id4,
+                        'name' => $request->sponsorName4,
+                        'team_id' => $request->teamId,
+                        'status' => '1'
+                    ]);
+                 } else {
+                    $sponsor[3]->update([
+                        'id' => $request->sponsor_id4,
+                        'name' => $request->sponsorName4,
+                        'team_id' => $request->teamId,
+                        'status' => '0'
+                    ]);
+                 }
+            }
+            // Sponsor add & update END
+
             $team->update([
                 'name' => $request->teamName,
-                'logo_url' => $logo_name,
+                'logo_url' => $team_logo,
                 'description' => $request->teamDesc
             ]);
 
@@ -147,6 +723,23 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
+    // public function teamSponsor_delete(Request $request)
+    // {
+    //     if (Auth::guard('player')->check()) {
+    //         if ($request->has('sponsor_id1')) {
+    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id1)->delete();
+    //         } elseif ($request->has('sponsor_id2')) {
+    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id2)->delete();
+    //         } elseif ($request->has('sponsor_id3')) {
+    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id3)->delete();
+    //         } else {
+    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id4)->delete();
+    //         }
+    //         return redirect('team');
+    //     } else {
+    //         return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+    //     }
+    // }
     public function friendInvite(Request $request)
     {
         if ($request->has('friendId') && $request->has('teamId')) {
@@ -263,9 +856,15 @@ class TeamController extends Controller
                         ['contracts.status', '=', '1']
                     ])
                     ->get();
+                $sponsor = Sponsor::select('*')
+                    ->where([
+                        ['team_id', '=', $request->teamId],
+                        ['status', '=', '1']
+                        ])
+                    ->get();
             }
             // dd($team);
-            return view('team.overview-unsigned', \compact('team', 'member'));
+            return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
