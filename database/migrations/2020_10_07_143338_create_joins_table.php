@@ -15,7 +15,7 @@ class CreateJoinsTable extends Migration
     {
         Schema::create('joins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->nullable()->constrained('contracts');
+            $table->foreignId('team_id')->constrained('teams');
             $table->unsignedBigInteger('event_id');
             $table->enum('status', [1, 0])->default(0);
             $table->datetime('join_date');

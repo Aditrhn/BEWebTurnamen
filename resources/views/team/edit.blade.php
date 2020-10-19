@@ -190,10 +190,10 @@
                         </div>
                     </div>
                     <!-- BUTTON -->
-                    <div class="col-md-6" id="button-editprofile">
+                    <div class="col-md-6" id="button-editprofile" style="padding-left: 0px">
                         <input type="hidden" name="teamId" value="{{ $team->id }}">
                         <button class="btn btn-primary" id="btnsubmit_editprofile" type="submit">Save</button>
-                        <a class="btn btn-primary" id="btnsubmit_editprofile"
+                        <a class="btn btn-danger" id="btnsubmit_editprofile"
                             href="{{ URL::route('team') }}" role="button">Cancel</a>
                     </div>
                 </form>

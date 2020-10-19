@@ -4,7 +4,7 @@
     <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre>
 
 <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-dvB9iWeAP20Q61Ip"></script>
     <script type="text/javascript">
       document.getElementById('pay-button').onclick = function(){
         // SnapToken acquired from previous step

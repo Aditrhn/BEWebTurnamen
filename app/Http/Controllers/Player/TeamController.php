@@ -737,7 +737,7 @@ class TeamController extends Controller
     //         }
     //         return redirect('team');
     //     } else {
-    //         return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+    //         return \redirect('team')->with(['success' => 'Sponsor deleted successfully']);
     //     }
     // }
     public function friendInvite(Request $request)
