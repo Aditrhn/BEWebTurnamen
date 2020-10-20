@@ -411,7 +411,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     /*Landing Image*/
     .landing1 {
       height: 250px;
-      width: 260px;
+      width: 300px;
     }
     .landing2 {
       height: 250px;
@@ -1667,7 +1667,7 @@ html.fullscreen-bg #wrapper {
   @media screen and (max-width: 992px) {
     .navbar-default .brand {
       display: none; } }
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 767px) {
     .navbar-default #navbar-menu {
       float: right; } }
 
