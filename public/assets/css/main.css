@@ -992,20 +992,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .panel-Invitation{
       padding-top: 30px;
     }
-    .rowSucces{
-      text-align: center; 
-      color: white; 
-      margin: 6%;
-    }
-    .fontSucces{
-      font-weight: bold; 
-      margin: 20px;
-    }
-    .btnPaymentsucces{
-      width: 150px; 
-      margin: 20px;
-    }
-    
+
     }
     /* END */
 
@@ -1122,6 +1109,20 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 
 .fa{
    color:#4183D7;
+}
+
+.rowSucces{
+  text-align: center; 
+  color: white; 
+  margin: 6%;
+}
+.fontSucces{
+  font-weight: bold; 
+  margin: 20px;
+}
+.btnPaymentsucces{
+  width: 150px; 
+  margin: 20px;
 }
 /* END TOURNAMENT */
   /* Product */

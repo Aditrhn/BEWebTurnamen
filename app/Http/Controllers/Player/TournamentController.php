@@ -200,6 +200,6 @@ class TournamentController extends Controller
     }
     public function paymentSuccess()
     {
-        return \view('tournament.succes');
+        return \view('tournament.success');
     }
 }
