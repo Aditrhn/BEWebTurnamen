@@ -463,6 +463,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .panel-Create{
       padding-top: 30px;
     }
+    .panel-Invitation{
+      padding-top: 70px;
+    }
 
   .panel-team{
     height: 380px;
@@ -986,6 +989,23 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .case-landing__overlay {
       top: 110px;
     }
+    .panel-Invitation{
+      padding-top: 30px;
+    }
+    .rowSucces{
+      text-align: center; 
+      color: white; 
+      margin: 6%;
+    }
+    .fontSucces{
+      font-weight: bold; 
+      margin: 20px;
+    }
+    .btnPaymentsucces{
+      width: 150px; 
+      margin: 20px;
+    }
+    
     }
     /* END */
 
@@ -1045,6 +1065,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .panel-team{
       height: 220px;
       width: 200px;
+    }
+    .panel-Invitation{
+      padding-top: 25px;
     }
   }
 
