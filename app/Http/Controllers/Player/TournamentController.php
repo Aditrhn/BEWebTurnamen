@@ -198,8 +198,8 @@ class TournamentController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function response()
+    public function paymentSuccess()
     {
-        return \view('tournament.response');
+        return \view('tournament.success');
     }
 }
