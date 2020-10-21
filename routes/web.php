@@ -113,6 +113,8 @@ Route::group(['auth', 'admins'], function () {
         //overview
         Route::get('super/overview', 'OverviewController@index')->name('overview.index');
 
-        //bracket
+        //payment-players
+        Route::get('super/info-payment', 'InfoPaymentController@index')->name('info.index');
+        Route::put('super/info-payment/{join}', 'InfoPaymentController@update')->name('info.update');
     });
 });
