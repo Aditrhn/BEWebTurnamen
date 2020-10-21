@@ -116,5 +116,6 @@ Route::group(['auth', 'admins'], function () {
         //payment-players
         Route::get('super/info-payment', 'InfoPaymentController@index')->name('info.index');
         Route::put('super/info-payment/{join}', 'InfoPaymentController@update')->name('info.update');
+        Route::delete('super/info-payment/{join}', 'InfoPaymentController@destroy')->name('info.destroy');
     });
 });

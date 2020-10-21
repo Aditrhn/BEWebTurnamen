@@ -62,10 +62,6 @@
                                                     <input type="hidden" name="team_id" value="{{ $infos->team_id }}">
                                                     <input type="hidden" name="event_id"
                                                         value="{{ $infos->event_id }}">
-                                                    {{-- <input type="hidden" name="info_pembayaran"
-                                                        value="{{ $infos->info_pembayaran }}"> --}}
-                                                    {{-- <input type="number" name="status" value="{{ $infos->info_pembayaran }}">
-                                                    --}}
                                                     <select name="status">
                                                         <option value="0"
                                                             {{ $infos->info_pembayaran == 0 ? 'selected':'' }}>
@@ -74,13 +70,6 @@
                                                             {{ $infos->info_pembayaran ==1 ? 'selected':'' }}>
                                                             1</option>
                                                     </select>
-                                                    {{-- <select name="status">
-                                                        <option value="0" {{ old('status') == 0 ? "selected" : '' }}>0
-                                                    </option>
-                                                    <option value="1"
-                                                        {{ old('status') == 1 ? "selected" : '' }}>
-                                                        1</option>
-                                                    </select> --}}
                                                     <input type="hidden" name="join_date"
                                                         value="{{ $infos->join_date }}">
                                                     <input type="hidden" name="payment_due"
@@ -91,6 +80,14 @@
                                                         value="{{ $infos->cancellation_note }}">
                                                     <button class="btn btn-outline-info btn-sm" type="submit">
                                                         <i class="fa fa-dot-circle-o"></i>Konfirmasi</button>
+                                                </form>
+                                                <form
+                                                    action="{{ URL::route('info.destroy',$infos->id) }}"
+                                                    method="POST">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="btn btn-outline-danger btn-sm" type="submit">
+                                                        <i class="fa fa-dot-circle-o"></i>Hapus</button>
                                                 </form>
                                             </td>
                                             @if($infos->info_pembayaran == 1)
@@ -124,6 +121,5 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
-
     </script>
 @endpush

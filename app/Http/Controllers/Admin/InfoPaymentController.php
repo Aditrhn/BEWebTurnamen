@@ -99,8 +99,9 @@ class InfoPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Join $join)
     {
-        //
+        Join::destroy($join->id);
+        return \redirect()->back()->with(['msg' => 'Berhasil menghapus pembayaran!!']);
     }
 }
