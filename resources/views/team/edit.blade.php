@@ -46,9 +46,15 @@
                                 <div class="well">
                                     <div class="form-group" id="scrollform-edit-team">
                                         <div class="checkbox" id="enableSponsor">
+                                            @if ($status[0]->status == "0")
                                             <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor1">Enable
                                                 Sponsor</label>
                                             <p>Sponsor #1</p>
+                                            @else
+                                            <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor1" checked>Enable
+                                                Sponsor</label>
+                                            <p>Sponsor #1</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- {{-- Sponsor Name --}} -->
@@ -66,11 +72,11 @@
                                     </div>
                                     @if ($count > 0 && $count <= 4)
                                         <input type="hidden" name="sponsor_id1" value="{{$sponsor[0]->id}}">
-                                        <div class="input-group-btn">
+                                        {{-- <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
-                                        </div>
+                                        </div> --}}
                                     @else
                                     
                                     @endif
@@ -81,9 +87,15 @@
                                 <div class="well">
                                     <div class="form-group" id="scrollform-edit-team">
                                         <div class="checkbox" id="enableSponsor">
+                                            @if ($status[1]->status == "0")
                                             <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor2">Enable
                                                 Sponsor</label>
                                             <p>Sponsor #2</p>
+                                            @else
+                                            <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor2" checked>Enable
+                                                Sponsor</label>
+                                            <p>Sponsor #2</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- {{-- Sponsor Name --}} -->
@@ -103,11 +115,11 @@
                                     </div>
                                     @if ($count > 1 && $count <= 4)
                                         <input type="hidden" name="sponsor_id2" value="{{$sponsor[1]->id}}">
-                                        <div class="input-group-btn">
+                                        {{-- <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
-                                        </div>
+                                        </div> --}}
                                     @endif
                                     <div class="clear"></div>
                                 </div>
@@ -116,9 +128,15 @@
                                 <div class="well">
                                     <div class="form-group" id="scrollform-edit-team">
                                         <div class="checkbox" id="enableSponsor">
+                                            @if ($status[2]->status == "0")
                                             <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor3">Enable
                                                 Sponsor</label>
                                             <p>Sponsor #3</p>
+                                            @else
+                                            <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor3" checked>Enable
+                                                Sponsor</label>
+                                            <p>Sponsor #3</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- {{-- Sponsor Name --}} -->
@@ -138,11 +156,11 @@
                                     </div>
                                     @if ($count > 2 && $count <= 4)
                                         <input type="hidden" name="sponsor_id3" value="{{$sponsor[2]->id}}">
-                                        <div class="input-group-btn">
+                                        {{-- <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
-                                        </div>
+                                        </div> --}}
                                     @endif
                                     <div class="clear"></div>
                                 </div>
@@ -151,9 +169,15 @@
                                 <div class="well">
                                     <div class="form-group" id="scrollform-edit-team">
                                         <div class="checkbox" id="enableSponsor">
+                                            @if ($status[3]->status == "0")
                                             <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor4">Enable
                                                 Sponsor</label>
                                             <p>Sponsor #4</p>
+                                            @else
+                                            <label><input type="checkbox" id="sponsor" value="" name="enable_sponsor4" checked>Enable
+                                                Sponsor</label>
+                                            <p>Sponsor #4</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- {{-- Sponsor Name --}} -->
@@ -175,11 +199,11 @@
                                         {{-- <form action="{{URL::route('teamSponsor.delete')}}" method="POST" id="form4"> --}}
                                             @csrf
                                             <input type="hidden" name="sponsor_id4" value="{{$sponsor[3]->id}}">
-                                            <div class="input-group-btn">
+                                            {{-- <div class="input-group-btn">
                                                 <button class="btn btn-danger" type="submit" form="form4">
                                                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                                 </button>
-                                            </div>
+                                            </div> --}}
                                         {{-- </form> --}}
                                     @endif
                                     <div class="clear"></div>
