@@ -70,16 +70,16 @@
                                             @if ($count > 0 && $count <= 4) value="{{ $sponsor[0]->name }}" @endif  name="sponsor_url1">
                                         <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
                                     </div>
-                                    {{-- @if ($count > 0 && $count <= 4)
+                                    @if ($count > 0 && $count <= 4)
                                         <input type="hidden" name="sponsor_id1" value="{{$sponsor[0]->id}}">
-                                        <div class="input-group-btn">
+                                        {{-- <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
-                                        </div>
+                                        </div> --}}
                                     @else
                                     
-                                    @endif --}}
+                                    @endif
                                     <div class="clear"></div>
                                 </div>
                             </div>
@@ -113,14 +113,14 @@
                                             @if ($count > 1 && $count <= 4) value="{{ $sponsor[1]->name }}" @endif name="sponsor_url2">
                                         <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
                                     </div>
-                                    {{-- @if ($count > 1 && $count <= 4)
+                                    @if ($count > 1 && $count <= 4)
                                         <input type="hidden" name="sponsor_id2" value="{{$sponsor[1]->id}}">
-                                        <div class="input-group-btn">
+                                        {{-- <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
-                                        </div>
-                                    @endif --}}
+                                        </div> --}}
+                                    @endif
                                     <div class="clear"></div>
                                 </div>
                             </div>
@@ -154,14 +154,14 @@
                                             @if ($count > 2 && $count <= 4) value="{{ $sponsor[2]->name }}" @endif name="sponsor_url3">
                                         <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
                                     </div>
-                                    {{-- @if ($count > 2 && $count <= 4)
+                                    @if ($count > 2 && $count <= 4)
                                         <input type="hidden" name="sponsor_id3" value="{{$sponsor[2]->id}}">
-                                        <div class="input-group-btn">
+                                        {{-- <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button">
                                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                             </button>
-                                        </div>
-                                    @endif --}}
+                                        </div> --}}
+                                    @endif
                                     <div class="clear"></div>
                                 </div>
                             </div>
@@ -195,17 +195,17 @@
                                             @if ($count > 3 && $count <= 4) value="{{ $sponsor[3]->name }}" @endif name="sponsor_url4">
                                         <p>*Biarkan kosong jika tidak ingin mengganti gambar</p>
                                     </div>
-                                    {{-- @if ($count > 3 && $count <= 4) --}}
+                                    @if ($count > 3 && $count <= 4)
                                         {{-- <form action="{{URL::route('teamSponsor.delete')}}" method="POST" id="form4"> --}}
-                                            {{-- @csrf
+                                            @csrf
                                             <input type="hidden" name="sponsor_id4" value="{{$sponsor[3]->id}}">
-                                            <div class="input-group-btn">
+                                            {{-- <div class="input-group-btn">
                                                 <button class="btn btn-danger" type="submit" form="form4">
                                                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Sponsor
                                                 </button>
                                             </div> --}}
                                         {{-- </form> --}}
-                                    {{-- @endif --}}
+                                    @endif
                                     <div class="clear"></div>
                                 </div>
                             </div>
