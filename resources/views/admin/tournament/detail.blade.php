@@ -1,6 +1,58 @@
 @extends('admin.main')
 @section('title','Tournament Create')
 @section('main')
+<!-- Modal -->
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="mdlText">Report Score</h3>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Score</th>    
+                        </tr>
+                      </thead>
+                    <tbody>
+                      <tr>
+                        <td class="mdlText">Cimindi</td>
+                        <td>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="mdlText">Yudistira</td>
+                        <td>
+                            <select class="form-control" id="exampleFormControlSelect2">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="modal-footer center">
+                <button type="button" class="btn btn-block btn-primary">Submit Score</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row m-0">
     <div class="col-sm-12">
         <div class="float-left">
@@ -109,13 +161,14 @@
                 </div>
             </div>
         </div>
-    </div><!-- .animated -->
+</div><!-- .animated -->
 </div><!-- .content -->
 @endsection
 @push('tooltip')
     <!-- Date Picker -->
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.bracket.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}"></script>
     <script>
         var single = {
             teams: [
@@ -149,7 +202,8 @@
         };
 
         function onclick() {
-            console.log("Hello!"); 
+            $('#largeModal').modal('show');
+            console.log("Hello!");
         }
 
         $(function () {
