@@ -13,7 +13,7 @@
                         <!-- PANEL HEADLINE -->
                         <h3 class="text-white">Overview</h3>
                         <div class="panel panel-headline">
-                            <div class="panel-body" id="overview">
+                            <div class="panel-body" id="overview" style="height: 159px">
                                 <div class="overview">
                                     <div class="col-lg-5 col-sm-4">
                                         <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
@@ -71,7 +71,7 @@
                                         <h4>{{ $members->name }}</h4>
                                     </div>
                                     @empty
-                                        <p>There are no member</p>
+                                        <p style="text-align: center">There are no member</p>
                                     @endforelse
                                 </div>
                             </div>
@@ -84,14 +84,14 @@
                 <div class="row" id="panel-team-details">
                     <div class="col-lg-4 col-xs-12">
                         <h3 class="text-white">Team Info</h3>
-                        <div class="panel panel-headline">
+                        <div class="panel panel-headline" style="margin-bottom: 0px">
                             <div class="panel-body" id="team-static">
                                 <div class="team-static">
                                     <div class="col-lg-6 col-xs-12">
                                         <div class="team-info-game">
                                             <h5 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h5>
-                                            <img src="assets/img/ML.png"alt="">
-                                            {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
+                                            {{-- <img src="assets/img/ML.png"alt=""> --}}
+                                            <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt="">
                                             <p style="text-align: center">{{ $team->game_name }}</p>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@
                                                 <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
-                                            <p>Belum ada Sponsor.</p>
+                                            <p style="text-align: center; opacity: 50%">No sponsors yet..</p>
                                         @endforelse
                                     </div>
                                 </div>
@@ -115,9 +115,13 @@
                     <div class="col-lg-8 col-xs-12">
                         <!-- PANEL NO PADDING -->
                         <h3 class="text-white">Description</h3>
-                        <div class="panel panel-headline">
-                            <div class="panel-body" id="description">
-                                <p style="text-align: justify">{{ $team->description }}</p>
+                        <div class="panel panel-headline" style="margin-bottom: 0px">
+                            <div class="panel-body" id="description" style="height: 184px">
+                                @if ($team->description != null)
+                                    <p style="text-align: justify">{{ $team->description }}</p>
+                                @else
+                                    <p style="text-align: justify; opacity: 50%">Team's Captain too lazy to write the description...</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -235,7 +239,7 @@
                     <!-- PANEL HEADLINE -->
                     <h3>Overview</h3>
                     <div class="panel panel-headline">
-                        <div class="panel-body" id="overview">
+                        <div class="panel-body" id="overview" style="height: 159px">
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
                                     <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
@@ -300,8 +304,8 @@
                                         <div class="row">
                                             <h4 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h4>
                                         </div>
-                                            {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
-                                        <img src="assets/img/ML.png"alt="">
+                                        <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt="">
+                                        {{-- <img src="assets/img/ML.png"alt=""> --}}
                                         <h4 class="center-block">{{ $team->game_name }}</h4>
                                     </div>
                                 </div>
@@ -315,7 +319,7 @@
                                                 <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
-                                            <h4 style="text-align: center">Belum ada Sponsor.</h4>
+                                            <h4 style="text-align: center; opacity: 50%">No sponsors yet..</h4>
                                         @endforelse
                                     </div>
                                 </div>
@@ -328,8 +332,12 @@
                     <!-- PANEL NO PADDING -->
                     <h3>Description</h3>
                     <div class="panel panel-headline">
-                        <div class="panel-body" id="description">
-                            <p>{{ $team->description }}</p>
+                        <div class="panel-body" id="description" style="height: 184px">
+                            @if ($team->description != null)
+                                <p style="text-align: justify">{{ $team->description }}</p>
+                            @else
+                                <p style="text-align: justify; opacity: 50%">Team's Captain too lazy to write the description...</p>
+                            @endif
                         </div>
                     </div>
                 </div>

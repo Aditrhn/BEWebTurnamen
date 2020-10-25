@@ -19,13 +19,13 @@
                     @if (Auth::guard('player')->user()->address !== null)
                     <p style="color: white;">{{ Auth::guard('player')->user()->address }}</p>
                     @else
-                    <p style="color: white;">Alamat kusung!!!</p>
+                    <p style="color: white;">Somewhere on earth..</p>
                     @endif
                     <br>
                     @if (Auth::guard('player')->user()->contact !== null)
                     <p style="color: white;">{{ Auth::guard('player')->user()->contact }}</p>
                     @else
-                    <p style="color: white;">Contact kusung!!!</p>
+                    <p style="color: white;"> </p>
                     @endif
                 </div>
                 <!-- Optional: clear the XS cols if their content doesn't match in height -->
@@ -140,7 +140,7 @@
                                                 <img src="{{ asset('images/avatars/default.png') }}" alt="{{ $friends->name }}">
                                                 @endif
                                             @empty
-                                            <p>Tidak ada teman!!</p>
+                                            <p style="text-align: justify; opacity: 50%">Making friend soon..</p>
                                             @endforelse
                                             {{-- @foreach ($friend as $item)
                                             <p>{{ $item->name }}</p>
@@ -165,7 +165,7 @@
                                         @if (Auth::guard('player')->user()->status)
                                         <p>{{ Auth::guard('player')->user()->status }}</p>
                                         @else
-                                        <p>Status kosong!!</p>
+                                        <p style="text-align: justify; opacity: 50%">I'm too lazy to write status..</p>
                                         @endif
                                     </div>
                                 </div>
