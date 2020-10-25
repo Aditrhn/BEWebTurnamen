@@ -192,7 +192,7 @@
                                         </div>
                                     @empty
                                         <div class="panel-friend thText">
-                                            <h4>Hasil Tidak Ditemukan.</h4>
+                                            <h4 style="text-align: justify; opacity: 50%; padding-left: 20px">You haven't join any team yet..</h4>
                                         </div>
                                     @endforelse
                                     &nbsp;
