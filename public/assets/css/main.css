@@ -411,7 +411,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     /*Landing Image*/
     .landing1 {
       height: 250px;
-      width: 260px;
+      width: 300px;
     }
     .landing2 {
       height: 250px;
@@ -462,6 +462,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 
     .panel-Create{
       padding-top: 30px;
+    }
+    .panel-Invitation{
+      padding-top: 70px;
     }
 
   .panel-team{
@@ -986,6 +989,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .case-landing__overlay {
       top: 110px;
     }
+    .panel-Invitation{
+      padding-top: 30px;
+    }
+
     }
     /* END */
 
@@ -1046,6 +1053,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       height: 220px;
       width: 200px;
     }
+    .panel-Invitation{
+      padding-top: 25px;
+    }
   }
 
 
@@ -1099,6 +1109,20 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 
 .fa{
    color:#4183D7;
+}
+
+.rowSucces{
+  text-align: center; 
+  color: white; 
+  margin: 6%;
+}
+.fontSucces{
+  font-weight: bold; 
+  margin: 20px;
+}
+.btnPaymentsucces{
+  width: 150px; 
+  margin: 20px;
 }
 /* END TOURNAMENT */
   /* Product */
@@ -1667,7 +1691,7 @@ html.fullscreen-bg #wrapper {
   @media screen and (max-width: 992px) {
     .navbar-default .brand {
       display: none; } }
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 767px) {
     .navbar-default #navbar-menu {
       float: right; } }
 

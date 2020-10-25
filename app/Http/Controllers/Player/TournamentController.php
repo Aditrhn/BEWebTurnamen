@@ -78,18 +78,28 @@ class TournamentController extends Controller
     {
         if (Auth::guard('player')->check()) {
             $event = Event::find($id);
+            // dd($event->id);
             $contract = DB::table('contracts')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
                 ->where('players.id', Auth::guard('player')->user()->id)
-                ->select('players.name', 'players.email', 'contracts.teams_id', 'contracts.id')
+                ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
                 ->first();
+            $team = DB::table('joins')
+            ->select('status')
+            ->where('team_id', '=', $contract->team_id)->first();
+            // dd($team);
+            $check_team = DB::table('joins')
+            ->select('team_id', 'event_id')
+            ->where([
+                ['team_id', '=', $contract->team_id],
+                ['event_id', '=', $id]
+            ])->first();
+            // dd($check_team);
 
-            $check_team = DB::table('joins')->first();
-
-            if ($check_team->team_id != $contract->id && $check_team->event_id != $event->id) {
+            if ($check_team == null) {
                 $join = Join::create([
-                    'team_id' => $contract->id,
+                    'team_id' => $contract->team_id,
                     'event_id' => $id,
                     'join_date' => \now(),
                     'payment_due' => \now(),
@@ -98,24 +108,34 @@ class TournamentController extends Controller
                 ]);
             }
 
+            // $detail_payment = DB::table('joins')
+            //     ->join('contracts', 'contracts.id', '=', 'joins.team_id')
+            //     ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+            //     ->join('events', 'events.id', '=', 'joins.event_id')
+            //     ->join('players', 'players.id', '=', 'contracts.players_id')
+            //     ->select('teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
+            //     ->where('players.id', Auth::guard('player')->user()->id)->first();
             $detail_payment = DB::table('joins')
-                ->join('contracts', 'contracts.id', '=', 'joins.team_id')
-                ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+                ->join('teams', 'teams.id', '=', 'joins.team_id')
                 ->join('events', 'events.id', '=', 'joins.event_id')
+                ->join('contracts', 'contracts.teams_id', '=', 'joins.team_id')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
-                ->where('players.id', Auth::guard('player')->user()->id)
-                ->select('teams.name as name_team', 'teams.id as team_id', 'events.id as id_event', 'events.title as title_turney', 'events.fee as prise', 'players.name as captain', 'players.email as mail', 'players.contact as telp')->first();
-
+                ->select('teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
+                ->where([
+                    ['players.id', '=', Auth::guard('player')->user()->id],
+                    ['teams.id', '=', $contract->team_id]
+                    ])->first();
+            // dd($detail_payment);
             $this->initPaymentGateway();
             $params = array(
                 'enable_payments' => Payment::PAYMENT_CHANNELS,
                 'transaction_details' => array(
                     'order_id' => rand() . '_from_' . $detail_payment->captain,
-                    'gross_amount' => $detail_payment->prise,
+                    'gross_amount' => $detail_payment->price,
                 ),
                 'customer_details' => array(
                     'first_name' => $detail_payment->captain,
-                    'last_name' => $detail_payment->name_team,
+                    'last_name' => $detail_payment->team_name,
                     'email' => $detail_payment->mail,
                     'phone' => $detail_payment->telp,
                 ),
@@ -137,7 +157,7 @@ class TournamentController extends Controller
             //     'gross_amount' => $params['transaction_details']['gross_amount'],
             //     // 'status_code'=>
             // ]);
-            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken'));
+            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken', 'team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -180,5 +200,9 @@ class TournamentController extends Controller
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
+    }
+    public function paymentSuccess()
+    {
+        return \view('tournament.success');
     }
 }

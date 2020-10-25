@@ -10,16 +10,22 @@
                     <!-- PANEL HEADLINE -->
                     <div class="panel panel-headline">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><span>{{ $detail_payment->name_team }} </span>Team</h3>
-                            <h3 class="panel-title"><span>{{ $detail_payment->title_turney }} </span>Tournament</h3>
-                            <h3 class="panel-title"><span>{{ $detail_payment->prise }} </span>Prizes</h3>
+                            <h3 class="panel-title"><span>{{ $detail_payment->team_name }} </span>Team</h3>
+                            <h3 class="panel-title"><span>{{ $detail_payment->event_title }} </span>Tournament</h3>
+                            <h3 class="panel-title"><span>{{ $detail_payment->price }} </span>Prices</h3>
                             <h3 class="panel-title"><span>{{ $detail_payment->captain }} </span>Pendaftar</h3>
                         </div>
                     </div>
                 </div>
+                @if ($team->status == "0")
                 <div class="col-md-4">
                     <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
                 </div>
+                @else
+                <div class="col-md-4">
+                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" disabled>Joined</a>
+                </div>
+                @endif
             {{-- </form> --}}
         </div>
     </div>
@@ -33,7 +39,7 @@
         snap.pay('<?=$snapToken?>', {
           // Optional
             onSuccess: function(result){
-                /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                /* You may add your own js here, this is just example */ window.location = "../response"; document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2); 
             },
             // Optional
             onPending: function(result){

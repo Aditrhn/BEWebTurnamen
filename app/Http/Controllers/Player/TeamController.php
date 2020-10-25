@@ -126,8 +126,11 @@ class TeamController extends Controller
             $sponsor = Sponsor::select('*')
                 ->where('team_id', '=', $request->teamId)
                 ->get();
-            // dd($sponsor[0]->name);
-            return \view('team.edit', \compact('team', 'sponsor', 'count'));
+            $status = Sponsor::select('status')
+            ->where('team_id', '=', $request->teamId)
+            ->get();
+            // dd($status[0]->status);
+            return \view('team.edit', \compact('team', 'sponsor', 'count', 'status'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -737,7 +740,7 @@ class TeamController extends Controller
     //         }
     //         return redirect('team');
     //     } else {
-    //         return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+    //         return \redirect('team')->with(['success' => 'Sponsor deleted successfully']);
     //     }
     // }
     public function friendInvite(Request $request)

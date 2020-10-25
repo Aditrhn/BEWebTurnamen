@@ -67,6 +67,7 @@ Route::group(['auth', 'players'], function () {
         Route::get('tournament', 'TournamentController@index')->name('tournament');
         Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
         Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
+        Route::get('tournament/payment/success', 'TournamentController@paymentSuccess')->name('tournament.success');
         // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
@@ -112,6 +113,9 @@ Route::group(['auth', 'admins'], function () {
         //overview
         Route::get('super/overview', 'OverviewController@index')->name('overview.index');
 
-        //bracket
+        //payment-players
+        Route::get('super/info-payment', 'InfoPaymentController@index')->name('info.index');
+        Route::put('super/info-payment/{join}', 'InfoPaymentController@update')->name('info.update');
+        Route::delete('super/info-payment/{join}', 'InfoPaymentController@destroy')->name('info.destroy');
     });
 });
