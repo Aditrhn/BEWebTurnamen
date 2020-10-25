@@ -55,7 +55,7 @@ class PlayerAuthController extends Controller
         \request()->validate([
             'name' => 'required',
             'email' => 'required|email|unique:players',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
             // 'address' => 'required',
             // 'contact' => 'required|max:15',
             // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -135,27 +135,27 @@ class PlayerAuthController extends Controller
     {
         if (Auth::guard('player')->check()) {
             $check = DB::table('friends')
-                    ->select('*')
-                    ->where([
-                        ['player_one', '=', $player->id],
-                        ['player_two', '=', Auth::guard('player')->user()->id]
-                        ])
-                    ->orWhere([
-                        ['player_one', '=', Auth::guard('player')->user()->id],
-                        ['player_two', '=', $player->id]
-                    ])->first();
+                ->select('*')
+                ->where([
+                    ['player_one', '=', $player->id],
+                    ['player_two', '=', Auth::guard('player')->user()->id]
+                ])
+                ->orWhere([
+                    ['player_one', '=', Auth::guard('player')->user()->id],
+                    ['player_two', '=', $player->id]
+                ])->first();
             $checks = DB::table('friends')
-                    ->select('*')
-                    ->where([
-                        ['player_one', '=', $player->id],
-                        ['player_two', '=', Auth::guard('player')->user()->id],
-                        ['status', '=', '0']
-                        ])
-                    ->orWhere([
-                        ['player_one', '=', Auth::guard('player')->user()->id],
-                        ['player_two', '=', $player->id],
-                        ['status', '=', '0']
-                    ])->first();
+                ->select('*')
+                ->where([
+                    ['player_one', '=', $player->id],
+                    ['player_two', '=', Auth::guard('player')->user()->id],
+                    ['status', '=', '0']
+                ])
+                ->orWhere([
+                    ['player_one', '=', Auth::guard('player')->user()->id],
+                    ['player_two', '=', $player->id],
+                    ['status', '=', '0']
+                ])->first();
             $game = DB::table('players')
                 ->join('player_games', 'player_games.players_id', '=', 'players.id')
                 ->select('players.*', 'player_games.*')
