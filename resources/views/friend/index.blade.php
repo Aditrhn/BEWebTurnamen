@@ -22,26 +22,28 @@
             @forelse ($friendlists as $item)
             <div class="col-md-3 friend-page">
               <div class="panel panel-headline panel-friend-detail">
-                <div class="panel-body">
-                  @if ($item->ava_url != null)
-                    <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
-                  @else
-                    <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
-                  @endif
-                  <h4 class="panel-friend">{{ $item->name }}</h4>
-                  <form action="{{ URL::route('unfriend') }}" method="POST">
-                    @csrf
-                    <div class="buttons col-md-12 btnAdd">
-                      <input type="hidden" name="unfriend" value="{{ $item->id }}">
-                      <button class="btn btn-xs btn-primary" id="btnUnfriend" type="submit">Unfriend</button>
-                    </div>
-                  </form>
-                </div>
+                <a href="{{ URL::route('user.profile',$item->id) }}">
+                  <div class="panel-body">
+                    @if ($item->ava_url != null)
+                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                    @else
+                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                    @endif
+                    <h4 class="panel-friend">{{ $item->name }}</h4>
+                    <form action="{{ URL::route('unfriend') }}" method="POST">
+                      @csrf
+                      <div class="buttons col-md-12 btnAdd">
+                        <input type="hidden" name="unfriend" value="{{ $item->id }}">
+                        <button class="btn btn-xs btn-primary" id="btnUnfriend" type="submit">Unfriend</button>
+                      </div>
+                    </form>
+                  </div>
+                </a>
               </div>
             </div>
             @empty
             <div class="panel-friend" style="color: #fff; margin-left : 2%">
-              <h4>Anda masih belum memiliki teman</h4>
+              <h4>You don't have friend yet..</h4>
             </div>
             @endforelse
           </div>
@@ -53,33 +55,35 @@
             @forelse ($friend_requests as $item)
             <div class="col-md-3 friend-page">
               <div class="panel panel-headline panel-friend-detail">
-                <div class="panel-body">
-                  @if ($item->ava_url != null)
-                    <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
-                  @else
-                  <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
-                  @endif
-                  <h4 class="panel-friend" data-toggle="modal">{{ $item->name }}</h4>
-                  <form action="{{ URL::route('accept-friend') }}" method="POST">
-                    @csrf
-                    <div class="buttons col-md-6 btnRquest">
-                      <input type="hidden" name="accept" value="{{ $item->id }}">
-                      <button class="btn btn-xs btn-primary" id="btnAccept" type="submit">Accept</button>
-                    </div>
-                  </form>
-                  <form action="{{ URL::route('decline-friend') }}" method="POST">
-                    @csrf
-                    <div class="buttons col-md-6 btnRquest">
-                      <input type="hidden" name="decline" value="{{ $item->id }}">
-                      <button class="btn btn-xs btn-unfriend" id="btnUnfriend" type="submit">Decline</button>
-                    </div>
-                  </form>
-                </div>
+                <a href="{{ URL::route('user.profile',$item->id) }}">
+                  <div class="panel-body">
+                    @if ($item->ava_url != null)
+                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                    @else
+                    <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                    @endif
+                    <h4 class="panel-friend" data-toggle="modal">{{ $item->name }}</h4>
+                    <form action="{{ URL::route('accept-friend') }}" method="POST">
+                      @csrf
+                      <div class="buttons col-md-6 btnRquest">
+                        <input type="hidden" name="accept" value="{{ $item->id }}">
+                        <button class="btn btn-xs btn-primary" id="btnAccept" type="submit">Accept</button>
+                      </div>
+                    </form>
+                    <form action="{{ URL::route('decline-friend') }}" method="POST">
+                      @csrf
+                      <div class="buttons col-md-6 btnRquest">
+                        <input type="hidden" name="decline" value="{{ $item->id }}">
+                        <button class="btn btn-xs btn-unfriend" id="btnUnfriend" type="submit">Decline</button>
+                      </div>
+                    </form>
+                  </div>
+                </a>
               </div>
             </div>
             @empty
             <div class="panel-friend" style="color: #fff; margin-left : 2%">
-              <h4>Belum ada permintaan pertemanan.</h4>
+              <h4>There are no friend requests yet..</h4>
             </div>
             @endforelse
           </div>

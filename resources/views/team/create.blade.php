@@ -5,6 +5,16 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
+            @if($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <ul style="list-style-type: none">
+                        @foreach($errors->all() as $error)
+                            <li><strong>{{ $error }}</strong></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ URL::route('team-store') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf

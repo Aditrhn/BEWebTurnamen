@@ -85,7 +85,15 @@ class TeamController extends Controller
         }
     }
     public function store(Request $request)
-    {
+    {   
+        request()->validate([
+            'name' => 'required|unique:teams'
+        ],
+        [
+            'name.required' => 'Team Name is required',
+            'name.unique' => 'Team Name is taken'
+        ]);
+
         if (Auth::guard('player')->check()) {
             $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
 
@@ -700,23 +708,6 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    // public function teamSponsor_delete(Request $request)
-    // {
-    //     if (Auth::guard('player')->check()) {
-    //         if ($request->has('sponsor_id1')) {
-    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id1)->delete();
-    //         } elseif ($request->has('sponsor_id2')) {
-    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id2)->delete();
-    //         } elseif ($request->has('sponsor_id3')) {
-    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id3)->delete();
-    //         } else {
-    //             DB::table('sponsors')->where('id', '=', $request->sponsor_id4)->delete();
-    //         }
-    //         return redirect('team');
-    //     } else {
-    //         return \redirect('team')->with(['success' => 'Sponsor deleted successfully']);
-    //     }
-    // }
     public function friendInvite(Request $request)
     {
         if ($request->has('friendId') && $request->has('teamId')) {
