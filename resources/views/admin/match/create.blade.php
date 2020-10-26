@@ -32,39 +32,26 @@
                                     </div>
                                 @enderror
                             </div> --}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group" id="round">
-                                        <input type="full_name" class="form-control" id="exampleInputEmail1" placeholder="Round">
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group" id="match_number">  
-                                        <input type="full_name" class="form-control" id="exampleInputEmail1" placeholder="Match Number">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="row mt-3" >
-                                <div class="col-md-5">
-                                    <div class="form-group" id="match_number">  
-                                        <input type="full_name" class="form-control" id="exampleInputEmail1" placeholder="TEAM A">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <center>
-                                    <h2>VS</h2>
-                                    </center>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group" id="match_number">  
-                                        <input type="full_name" class="form-control" id="exampleInputEmail1" placeholder="TEAM B">
-                                    </div>
+                            <div class="row form-group">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="participant" class=" form-control-label">Size Teams</label>
+                                        <input type="test" name="participant" id="city" placeholder="Enter your size team"
+                                            class="form-control">
+                                        @error('participant')
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ $message }}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                    @enderror
                                 </div>
                             </div>
-                            <a class="btn btn-primary float-right mt-3" id="btnsubmit_editprofile" href="#" role="button">Save & Continue</a>
-                            
+                            <div class="card-right float-right text-right">
+                                <input class="btn btn-primary" type="submit" value="Save and Continue"
+                                    style="width: 100%;">
+                            </div>
                             <!-- /.card-right -->
                         </form>
                     </div>

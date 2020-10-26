@@ -31,6 +31,13 @@ class TournamentController extends Controller
         if (Auth::guard('player')->check()) {
             // $this->initPaymentGateway();
             $event = Event::find($id);
+            $contract = DB::table('contracts')
+            ->join('players', 'players.id', '=', 'contracts.players_id')
+            ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+            ->where('players.id', Auth::guard('player')->user()->id)
+            ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
+            ->first();
+            // dd($contract);
             // $contract = DB::table('joins')
             //     ->join('contracts', 'contracts.id', '=', 'joins.team_id')
             //     ->join('players', 'players.id', '=', 'contracts.players_id')
@@ -69,7 +76,7 @@ class TournamentController extends Controller
             // $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             $team = DB::table('teams')->get();
-            return \view('tournament.overview', \compact('event', 'team'));
+            return \view('tournament.overview', \compact('contract','event', 'team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -85,29 +92,34 @@ class TournamentController extends Controller
                 ->where('players.id', Auth::guard('player')->user()->id)
                 ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
                 ->first();
-            // \dd($contract);
+            // dd($contract);
+            
             $team = DB::table('joins')
-                ->select('status')
-                ->where('team_id', '=', $contract->team_id)->first();
+             ->join('teams','teams.id','=','joins.team_id')
+             ->where('team_id', $contract->team_id)
+             ->select('status')
+             ->first();
             // dd($team);
-            $check_team = DB::table('joins')
+             $check_team = DB::table('joins')
                 ->select('team_id', 'event_id')
                 ->where([
                     ['team_id', '=', $contract->team_id],
                     ['event_id', '=', $id]
-                ])->first();
-            // dd($check_team);
+            ])->first();
+            dd($check_team);
 
             if ($check_team == null) {
                 $join = Join::create([
-                    'team_id' => $contract->team_id,
-                    'event_id' => $id,
-                    'join_date' => \now(),
-                    'payment_due' => \now(),
-                    'gross_amount' => $event->fee,
-                    'cancellation_note' => 'none'
-                ]);
-            }
+                     'team_id' => $contract->team_id,
+                     'event_id' => $id,
+                     'join_date' => \now(),
+                     'payment_due' => \now(),
+                     'gross_amount' => $event->fee,
+                     'cancellation_note' => 'none'
+               ]);
+            //    dd($join);
+            }             
+            
 
             // $detail_payment = DB::table('joins')
             //     ->join('contracts', 'contracts.id', '=', 'joins.team_id')

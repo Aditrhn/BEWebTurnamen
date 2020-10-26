@@ -155,22 +155,20 @@ class EventController extends Controller
         }
         #SELECT joins.id,joins.team_id,joins.event_id, teams.id tim,teams.name,events.title,events.id as event FROM `joins` join teams on teams.id=joins.team_id join events on events.id=joins.event_id
         $join = DB::table('joins')
-            ->where('status', '1')
-            ->where('event_id', $id)
-            ->select('*')
+            ->join('teams', 'teams.id', '=', 'joins.team_id')
+            ->join('events', 'events.id', '=', 'joins.event_id')
+            ->where('joins.event_id', $id)
+            ->select('joins.*', 'events.*')
             ->count();
         $join2 = DB::table('joins')
             ->join('teams', 'teams.id', '=', 'joins.team_id')
             ->join('events', 'events.id', '=', 'joins.event_id')
             ->where('joins.event_id', $id)
-            ->where('status', '1')
             ->select('joins.team_id', 'teams.*')
             ->get();
-        $match = DB::table('matches')->where('id', $id)->get();
-        // \dd($join);
         // \dd($join2);
         // \dd($rounds);
-        return view('admin.tournament.detail', \compact('matches', 'events', 'rounds', 'join', 'join2', 'match'));
+        return view('admin.tournament.detail', \compact('matches', 'events', 'rounds', 'join', 'join2'));
         // return view('admin.tournament.detail');
     }
 
