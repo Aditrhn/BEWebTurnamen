@@ -134,7 +134,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <div id="bracket"></div>
+                                <div id="bracket">ini bracket</div>
                             </div>
                             <div class="tab-pane fade" id="pills-partisipan" role="tabpanel" aria-labelledby="pills-contact-tab">
                                 <div class="row">
@@ -172,49 +172,5 @@
 @endsection
 @push('tooltip')
     <!-- Date Picker -->
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('js/jquery.bracket.min.js') }}"></script>
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}"></script>
-    <script>
-        var single = {
-            teams: [
-                @foreach($matches as $match)
-                    ["{{$match->team_a}}", "{{$match->team_b}}"],
-                @endforeach
-                @if(count($matches) % 2 != 0)
-                    [null, null]
-                @endif
-            ],
-            results: [
-                [
-                    @foreach($rounds as $round)
-                    [
-                        @foreach($round as $matches)
-                            [{{$matches['score_a']}},{{$matches['score_b']}}],
-                        @endforeach
-                    ],
-                    @endforeach
-                ]
-            ]
-        }
-        var bracket = {
-            teamWidth: 100,
-            scoreWidth: 50,
-            matchMargin: 75,
-            roundMargin: 85,
-            init: single,
-            skipConsolationRound: true,
-            onMatchClick: onclick
-        };
-
-        function onclick() {
-            $('#largeModal').modal('show');
-            console.log("Hello!");
-        }
-
-        $(function () {
-            $('#bracket').bracket(bracket)
-        })
-    </script>
     <script src="assets/js/main.js"></script>
 @endpush

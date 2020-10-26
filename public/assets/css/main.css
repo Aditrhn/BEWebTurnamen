@@ -2626,16 +2626,18 @@ color: white;
 #teampanel .col-md-5 img{
   width: 60px;
   height: 70%;
+  margin-top: 10px;
 }
 #btnviewteam{
-  margin-top: 5%; 
+  margin-top: 20px; 
   border-radius: 10px; 
   border: none; 
   color: white;
-  width: 70px; 
+  
   font-size: 10px;
   display:inline-block; 
-  text-align:center
+  text-align:center;
+  margin-bottom: 20px;
 }
 #collapse_row  #bu1{
   
