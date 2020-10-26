@@ -42,8 +42,6 @@ class MatchController extends Controller
             'match_number' => 'required',
             'team_a' => 'required',
             'team_b' => 'required',
-            'score_a' => 'required',
-            'score_b' => 'required'
         ]);
         $join = Join::find($id);
         Match::create([
@@ -53,8 +51,6 @@ class MatchController extends Controller
             'match_number' => $request->match_number,
             'team_a' => $request->team_a,
             'team_b' => $request->team_b,
-            'score_a' => $request->score_a,
-            'score_b' => $request->score_b
         ]);
         return \redirect('super/team-matches')->with(['msg' => 'Berhasil menambah team matches!!']);
     }
