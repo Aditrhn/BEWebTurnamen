@@ -74,7 +74,7 @@ class MatchController extends Controller
      */
     public function edit(Match $match)
     {
-        //
+        return \view('admin.match.edit', \compact('match'));
     }
 
     /**
@@ -84,9 +84,41 @@ class MatchController extends Controller
      * @param  \App\Model\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function updateDate(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'date' => 'required'
+        ]);
+        $match = Match::find($id);
+        $match->update([
+            'date' => $request->date,
+            'event_id' => $match->event_id,
+            'round_number' => $match->round_number,
+            'match_number' => $match->match_number,
+            'team_a' => $match->team_a,
+            'team_b' => $match->team_b,
+            'score_a' => $match->score_a,
+            'score_b' => $match->score_b
+        ]);
+    }
+    public function updateScore(Request $request, $id)
+    {
+        $this->validate($request, [
+            'score_a' => 'required',
+            'score_b' => 'required'
+        ]);
+        $match = Match::find($id);
+        $match->update([
+            'date' => $match->date,
+            'event_id' => $match->event_id,
+            'round_number' => $match->round_number,
+            'match_number' => $match->match_number,
+            'team_a' => $match->team_a,
+            'team_b' => $match->team_b,
+            'score_a' => $request->score_a,
+            'score_b' => $request->score_b
+        ]);
+        return \redirect('super/event')->with(['msg' => 'score berhasil diubah!!']);
     }
 
     /**
