@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Join;
 use App\Model\Match;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        //
+        return \view('admin.match.index');
     }
 
     /**
@@ -25,7 +26,7 @@ class MatchController extends Controller
      */
     public function create()
     {
-        //
+        return \view('admin.match.create');
     }
 
     /**
@@ -34,9 +35,28 @@ class MatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'round_number' => 'required',
+            'match_number' => 'required',
+            'team_a' => 'required',
+            'team_b' => 'required',
+            'score_a' => 'required',
+            'score_b' => 'required'
+        ]);
+        $join = Join::find($id);
+        Match::create([
+            'date' => \now(),
+            'event_id' => $join,
+            'round_number' => $request->round_number,
+            'match_number' => $request->match_number,
+            'team_a' => $request->team_a,
+            'team_b' => $request->team_b,
+            'score_a' => $request->score_a,
+            'score_b' => $request->score_b
+        ]);
+        return \redirect('super/team-matches')->with(['msg' => 'Berhasil menambah team matches!!']);
     }
 
     /**
