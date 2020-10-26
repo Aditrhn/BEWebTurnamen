@@ -12,6 +12,13 @@ h1{
   color: #fff;
 }
 
+.avatar {
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
 a {
   color: #fff; }
   a:hover, a:focus {
@@ -713,7 +720,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
 
   .img-panel-friend{
-    width: 35%;
+    width: 85px;
+    height: 85px;
     border-radius: 100%; 
     align-items: center;
   }
@@ -993,6 +1001,13 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       padding-top: 30px;
     }
 
+    .img-panel-friend{
+      width: 85px;
+      height: 85px;
+      border-radius: 100%; 
+      align-items: center;
+    }
+
     }
     /* END */
 
@@ -1055,6 +1070,13 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
     .panel-Invitation{
       padding-top: 25px;
+    }
+
+    .img-panel-friend{
+      width: 85px;
+      height: 85px;
+      border-radius: 100%; 
+      align-items: center;
     }
   }
 

@@ -39,7 +39,7 @@
 		    	</div>
 			@empty
 				<div class="panel-friend" style="color: #fff; margin : 15%; font-size : 30px; text-align : center;">
-					<h4>Anda masih belum memiliki invitasi tim</h4>
+					<h4 style="opacity: 50%">No team invitation yet...</h4>
 			  	</div>
 			@endforelse
 		</div>

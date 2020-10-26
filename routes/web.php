@@ -117,5 +117,13 @@ Route::group(['auth', 'admins'], function () {
         Route::get('super/info-payment', 'InfoPaymentController@index')->name('info.index');
         Route::put('super/info-payment/{join}', 'InfoPaymentController@update')->name('info.update');
         Route::delete('super/info-payment/{join}', 'InfoPaymentController@destroy')->name('info.destroy');
+
+        //team-matches
+        Route::get('super/team-matches', 'MatchController@index')->name('match.index');
+        Route::get('super/team-matches/create', 'MatchController@create')->name('match.create');
+        Route::post('super/team-matches', 'MatchController@store')->name('match.store');
+        Route::get('super/team-matches/{match}', 'MatchController@edit')->name('match.edit');
+        Route::put('super/team-matches/{match}', 'MatchController@update')->name('match.update');
+        Route::delete('super/team-matches/{match}', 'MatchController@destroy')->name('match.destroy');
     });
 });

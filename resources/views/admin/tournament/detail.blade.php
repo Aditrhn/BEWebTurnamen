@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                           <th scope="col"></th>
-                          <th scope="col">Score</th>    
+                          <th scope="col">Score</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -102,7 +102,7 @@
                                     <h5>{{$events->prize_pool}}</h5>
                                  </div>
                                 </div>
-            
+
                                 <div class="row padRow">
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Registration Opening</label>
@@ -121,7 +121,7 @@
                                     <h5>{{App\Model\Event::getDetailedDate($events->end_date)}}</h5>
                                  </div>
                                 </div>
-            
+
                                 <div class="row padRule">
                                     <div class="col-md-6">
                                         <label class="labelOverview" for="">Rules</label>
@@ -138,23 +138,29 @@
                             </div>
                             <div class="tab-pane fade" id="pills-partisipan" role="tabpanel" aria-labelledby="pills-contact-tab">
                                 <div class="row">
-                                    <h5 class="leftSlot">Team ( 30 / 30 )</h5>
+                                    <h5 class="leftSlot">Team ( {{ $events->participant }} / {{ $join }} )</h5>
                                 </div>
+                                @forelse ($join2 as $team)
                                 <!--Baris 1-->
                                 <div class="row" style="padding-top: 2%; text-align: center;">
                                     <div class="col-md-2">
                                         <div class="card" style="border-radius: 10px;">
                                             <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/ML.png')}}" alt="Card image cap">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ asset('images/team_logo/'. $team->logo_url) }}" alt="Card image cap">
                                             </div>
                                             <div class="card-title">
                                               <h5 id="teamName" class="card-title titleTeam">
-                                                  Ole Team
+                                                  {{ $team->name }}
                                               </h5>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @empty
+                                <p><strong>tidak ada pendaftar!!</strong></p>
+                                @endforelse
+
+
                             </div>
                         </div>
                     </div>
