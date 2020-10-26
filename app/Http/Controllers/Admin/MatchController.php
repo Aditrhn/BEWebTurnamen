@@ -53,7 +53,7 @@ class MatchController extends Controller
             'team_a' => $request->team_a,
             'team_b' => $request->team_b,
         ]);
-        return \redirect('super/team-matches')->with(['msg' => 'Berhasil menambah team matches!!']);
+        return \redirect()->back()->with(['msg' => 'Berhasil menambah team matches!!']);
     }
 
     /**
@@ -73,11 +73,10 @@ class MatchController extends Controller
      * @param  \App\Model\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function score()
+    public function score($id)
     {
-        // $events = Event::get();
-        // \dd($events);
-        return \view('admin.match.score');
+        $match = Match::find($id);
+        return \view('admin.match.score', \compact('match'));
     }
     public function time()
     {
@@ -111,7 +110,7 @@ class MatchController extends Controller
             'score_a' => $match->score_a,
             'score_b' => $match->score_b
         ]);
-        return \redirect()->back()->with(['msg' => 'waktu dimulai berhasil ditentukan!!']);
+        return \redirect()->route('event.show')->with(['msg' => 'waktu dimulai berhasil ditentukan!!']);
     }
     public function updateScore(Request $request, $id)
     {
@@ -130,7 +129,7 @@ class MatchController extends Controller
             'score_a' => $request->score_a,
             'score_b' => $request->score_b
         ]);
-        return \redirect('super/event')->with(['msg' => 'score berhasil diubah!!']);
+        return \redirect()->route('event.show')->with(['msg' => 'score berhasil diubah!!']);
     }
 
     /**
