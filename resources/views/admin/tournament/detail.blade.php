@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('admin-name', 'suwarno')
 @section('title','Tournament Create')
 @section('main')
 <!-- Modal -->
@@ -249,24 +250,12 @@
                                             <td><h4 class="padMatch">TBD</h4></td>
                                             <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 </div>
-
                                 <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="titleMatch">Match List</h3>
                                     <h4 class="titleMatch">Round 2</h4>
                                 </div>
                                 <div class="col-md-12">
@@ -325,16 +314,6 @@
                                             <td><h4 class="padMatch">TBD</h4></td>
                                             <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -345,7 +324,7 @@
                             </div>
                             <div class="tab-pane fade" id="pills-participant" role="tabpanel" aria-labelledby="pills-participant-tab">
                                 <div class="row">
-                                    <h5 class="leftSlot">Team ( {{ $events->participant }} / {{ $join }} )</h5>
+                                    <h5 class="leftSlot">Team ( {{ $join }} / {{ $events->participant }})</h5>
                                 </div>
                                 @forelse ($join2 as $team)
                                 <!--Baris 1-->
