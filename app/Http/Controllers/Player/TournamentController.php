@@ -85,16 +85,17 @@ class TournamentController extends Controller
                 ->where('players.id', Auth::guard('player')->user()->id)
                 ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
                 ->first();
+            // \dd($contract);
             $team = DB::table('joins')
-            ->select('status')
-            ->where('team_id', '=', $contract->team_id)->first();
+                ->select('status')
+                ->where('team_id', '=', $contract->team_id)->first();
             // dd($team);
             $check_team = DB::table('joins')
-            ->select('team_id', 'event_id')
-            ->where([
-                ['team_id', '=', $contract->team_id],
-                ['event_id', '=', $id]
-            ])->first();
+                ->select('team_id', 'event_id')
+                ->where([
+                    ['team_id', '=', $contract->team_id],
+                    ['event_id', '=', $id]
+                ])->first();
             // dd($check_team);
 
             if ($check_team == null) {
@@ -124,7 +125,7 @@ class TournamentController extends Controller
                 ->where([
                     ['players.id', '=', Auth::guard('player')->user()->id],
                     ['teams.id', '=', $contract->team_id]
-                    ])->first();
+                ])->first();
             // dd($detail_payment);
             $this->initPaymentGateway();
             $params = array(

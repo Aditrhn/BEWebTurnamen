@@ -345,7 +345,7 @@
                             </div>
                             <div class="tab-pane fade" id="pills-participant" role="tabpanel" aria-labelledby="pills-participant-tab">
                                 <div class="row">
-                                    <h5 class="leftSlot">Team ( {{ $events->participant }} / {{ $join }} )</h5>
+                                    <h5 class="leftSlot">Team ( {{ $join }} / {{ $events->participant }})</h5>
                                 </div>
                                 @forelse ($join2 as $team)
                                 <!--Baris 1-->

@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 // });
 Route::group(['auth', 'players'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'Player\PlayerAuthController@index')->name('login');
     Route::namespace('Player')->group(function () {
         //Auth Player
         Route::get('login', 'PlayerAuthController@index')->name('login');
@@ -121,8 +119,8 @@ Route::group(['auth', 'admins'], function () {
         //team-matches
         Route::get('super/team-matches', 'MatchController@index')->name('match.index');
         Route::get('super/team-matches/create', 'MatchController@create')->name('match.create');
-        Route::post('super/event', 'MatchController@store')->name('match.store');
-        Route::get('super/event/{match}', 'MatchController@edit')->name('match.edit');
+        Route::post('super/team-matches', 'MatchController@store')->name('match.store');
+        Route::get('super/team-matches/{match}', 'MatchController@edit')->name('match.edit');
         // Route::put('super/event/{id}', 'MatchController@updateScore')->name('match.updateScore');
         Route::get('super/score', 'MatchController@score')->name('match.score');
         Route::get('super/date', 'MatchController@time')->name('match.time');
