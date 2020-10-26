@@ -53,6 +53,52 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="mdlText">Set Date</h3>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="mdlText">Date</td>
+                            <td>
+                                <div class="input-group date" id="datetimepicker1">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" class="form-control datepicker-here" name="start_date"
+                                        data-language="en" data-date-format="yyyy-mm-dd"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mdlText">Time</td>
+                            <td>
+                                <select class="form-control" id="exampleFormControlSelect2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer center">
+                <button type="button" class="btn btn-block btn-primary">Submit Score</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row m-0">
     <div class="col-sm-12">
         <div class="float-left">
@@ -137,7 +183,72 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-match" role="tabpanel" aria-labelledby="pills-match-tab">
-                                <div>ini match</div>
+                            <div class="col-md-12">
+                                    <h4>Match List</h4>
+                                    <h4>Round 1</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Match</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Time</th>
+                                            <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td data-toggle="modal" data-target="#matchModal"><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel" aria-labelledby="pills-bracket-tab">
                                 <div id="bracket">ini bracket</div>
