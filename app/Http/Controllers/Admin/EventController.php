@@ -28,7 +28,7 @@ class EventController extends Controller
         if (Auth::guard('admin')->check()) {
             $myEvents = DB::table('events')
                 ->join('games', 'events.game_id', '=', 'games.id')
-                ->select('events.id as aidi','events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
+                ->select('events.id as aidi', 'events.title as judul', 'events.participant as peserta', 'events.start_date as tgl_mulai', 'games.name as nama')->get();
             $myTempEvents = DB::table('temporary_events')
                 ->join('games', 'temporary_events.game_id', '=', 'games.id')
                 ->select('temporary_events.id as aidi', 'temporary_events.title as judul', 'temporary_events.participant as peserta', 'temporary_events.start_date as tgl_mulai', 'games.name as nama')->get();
@@ -123,13 +123,13 @@ class EventController extends Controller
         $events = DB::table('events')
             ->join('games', 'events.game_id', '=', 'games.id')
             ->where('events.id', $id)
-            ->select('events.*','games.*')->first();
-        
+            ->select('events.*', 'games.*')->first();
+
         $matches = DB::table('matches')
             ->join('events', 'matches.event_id', '=', 'events.id')
             ->select('matches.match_number', 'matches.round_number', 'matches.date', 'matches.team_a', 'matches.team_b', 'matches.score_a', 'matches.score_b')
             ->where('matches.event_id', $id)
-            ->where('round_number',1)
+            ->where('round_number', 1)
             ->orderBy('match_number', 'asc')
             ->get()
             ->toArray();
@@ -138,23 +138,37 @@ class EventController extends Controller
             ->distinct('round_number')
             ->count('round_number');
         $rounds = array();
-        for ($i=1; $i <= $count_round; $i++) {
+        for ($i = 1; $i <= $count_round; $i++) {
             $mtch = array();
             $scores = DB::table('matches')
-            ->select('round_number','match_number','score_a', 'score_b')
-            ->where('event_id', $id)
-            ->where('round_number',$i)
-            ->orderBy('match_number', 'asc')
-            ->get()
-            ->toArray();
+                ->select('round_number', 'match_number', 'score_a', 'score_b')
+                ->where('event_id', $id)
+                ->where('round_number', $i)
+                ->orderBy('match_number', 'asc')
+                ->get()
+                ->toArray();
             foreach ($scores as $score) {
-                $matchscore = array('score_a'=>$score->score_a,'score_b'=>$score->score_b);
+                $matchscore = array('score_a' => $score->score_a, 'score_b' => $score->score_b);
                 array_push($mtch, $matchscore);
             }
             array_push($rounds, $mtch);
         }
+        #SELECT joins.id,joins.team_id,joins.event_id, teams.id tim,teams.name,events.title,events.id as event FROM `joins` join teams on teams.id=joins.team_id join events on events.id=joins.event_id
+        $join = DB::table('joins')
+            ->join('teams', 'teams.id', '=', 'joins.team_id')
+            ->join('events', 'events.id', '=', 'joins.event_id')
+            ->where('joins.event_id', $id)
+            ->select('joins.*', 'events.*')
+            ->count();
+        $join2 = DB::table('joins')
+            ->join('teams', 'teams.id', '=', 'joins.team_id')
+            ->join('events', 'events.id', '=', 'joins.event_id')
+            ->where('joins.event_id', $id)
+            ->select('joins.team_id', 'teams.*')
+            ->get();
+        // \dd($join2);
         // \dd($rounds);
-        return view('admin.tournament.detail', \compact('matches','events','rounds'));
+        return view('admin.tournament.detail', \compact('matches', 'events', 'rounds', 'join', 'join2'));
         // return view('admin.tournament.detail');
     }
 
