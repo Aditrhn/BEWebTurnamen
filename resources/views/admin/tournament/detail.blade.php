@@ -183,9 +183,10 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-match" role="tabpanel" aria-labelledby="pills-match-tab">
-                            <div class="col-md-12">
-                                    <h4>Match List</h4>
-                                    <h4>Round 1</h4>
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="titleMatch">Match List</h3>
+                                    <h4 class="titleMatch">Round 1</h4>
                                 </div>
                                 <div class="col-md-12">
                                     <table class="table">
@@ -207,47 +208,131 @@
                                             <td><h4 class="padMatch">0 - 3</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
                                             <td><h4 class="padMatch">Navi</h4></td>
-                                            <td data-toggle="modal" data-target="#matchModal"><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            <td >
+                                                <h4 class="padMatch">May 26, 2020</h4>
+                                                <label class="fontMatch" for="">6:30 PM</label>
+                                            </td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setScore">Set Score</button></td>
                                             </tr>
+
                                             <tr>
                                             <td><h4 class="padMatch">Secret</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
                                             <td><h4 class="padMatch">Navi</h4></td>
-                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
+                                            
                                             <tr>
                                             <td><h4 class="padMatch">Secret</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
                                             <td><h4 class="padMatch">Navi</h4></td>
-                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
+
                                             <tr>
                                             <td><h4 class="padMatch">Secret</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
                                             <td><h4 class="padMatch">Navi</h4></td>
-                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
+                                            
                                             <tr>
                                             <td><h4 class="padMatch">Secret</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
                                             <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
                                             <td><h4 class="padMatch">Navi</h4></td>
-                                            <td data-toggle="modal" data-target="#largeModal"><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-primary">Primary</button></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                </div>
+                                
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="titleMatch">Match List</h3>
+                                    <h4 class="titleMatch">Round 2</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Match</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Time</th>
+                                            <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">0 - 3</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td >
+                                                <h4 class="padMatch">May 26, 2020</h4>
+                                                <label class="fontMatch" for="">6:30 PM</label>
+                                            </td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setScore">Set Score</button></td>
+                                            </tr>
+
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
+                                            </tr>
+
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            <td><h4 class="padMatch">Secret</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">VS</h4></td>
+                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                            <td><h4 class="padMatch">Navi</h4></td>
+                                            <td><h4 class="padMatch">TBD</h4></td>
+                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel" aria-labelledby="pills-bracket-tab">
