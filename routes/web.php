@@ -124,13 +124,9 @@ Route::group(['auth', 'admins'], function () {
         Route::post('super/event', 'MatchController@store')->name('match.store');
         Route::get('super/event/{match}', 'MatchController@edit')->name('match.edit');
         // Route::put('super/event/{id}', 'MatchController@updateScore')->name('match.updateScore');
-        Route::get('super/event/score', function () {
-            return view('admin.match.score');
-        });
-        Route::get('super/event/date', function () {
-            return view('admin.match.date');
-        });
-        Route::put('super/event/{id}', 'MatchController@updateDate')->name('match.updateDate');
+        Route::get('super/score', 'MatchController@score')->name('match.score');
+        Route::get('super/date', 'MatchController@time')->name('match.time');
+        // Route::put('super/event/{id}', 'MatchController@updateDate')->name('match.updateDate');
         Route::delete('super/team-matches/{match}', 'MatchController@destroy')->name('match.destroy');
     });
 });

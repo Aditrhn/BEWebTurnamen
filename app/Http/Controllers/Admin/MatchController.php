@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Event;
 use App\Model\Join;
 use App\Model\Match;
 use Illuminate\Http\Request;
@@ -72,6 +73,16 @@ class MatchController extends Controller
      * @param  \App\Model\Match  $match
      * @return \Illuminate\Http\Response
      */
+    public function score()
+    {
+        // $events = Event::get();
+        // \dd($events);
+        return \view('admin.match.score');
+    }
+    public function time()
+    {
+        return \view('admin.match.date');
+    }
     public function edit(Match $match)
     {
         return \view('admin.match.edit', \compact('match'));
@@ -100,7 +111,7 @@ class MatchController extends Controller
             'score_a' => $match->score_a,
             'score_b' => $match->score_b
         ]);
-        return \redirect()->back()->with(['msg'=>'waktu dimulai berhasil ditentukan!!'])
+        return \redirect()->back()->with(['msg' => 'waktu dimulai berhasil ditentukan!!']);
     }
     public function updateScore(Request $request, $id)
     {
