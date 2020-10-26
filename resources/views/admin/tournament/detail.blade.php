@@ -345,8 +345,6 @@
                                 @empty
                                 <p><strong>tidak ada pendaftar!!</strong></p>
                                 @endforelse
-
-
                             </div>
                         </div>
                     </div>
