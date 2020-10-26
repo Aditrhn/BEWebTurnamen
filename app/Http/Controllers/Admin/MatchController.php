@@ -100,6 +100,7 @@ class MatchController extends Controller
             'score_a' => $match->score_a,
             'score_b' => $match->score_b
         ]);
+        return \redirect()->back()->with(['msg'=>'waktu dimulai berhasil ditentukan!!'])
     }
     public function updateScore(Request $request, $id)
     {
