@@ -45,6 +45,12 @@
                     <li class="{{ Request::url() == url('super/game') ? 'active' : '' }}">
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
+                    <li class="{{ Request::url() == url('super/info-payment') ? 'active' : '' }}">
+                        <a href="{{URL::route('info.index')}}"><i class="menu-icon fa fa-2x fa-money"></i>Info Payment</a>
+                    </li>
+                    <li class="{{ Request::url() == url('super/team-matches') ? 'active' : '' }}">
+                        <a href="{{URL::route('match.index')}}"><i class="menu-icon fa fa-2x fa-meetup"></i>Team Matches</a>
+                    </li>
                     <hr class="bg-white" width="100%">
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -153,7 +159,7 @@
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js') }}"></script>
     <script src="{{ asset('js/admin/main.js') }}"></script>
-    <!--  Chart js -->  
+    <!--  Chart js -->
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js') }}"></script>
     <!--Flot Chart-->
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js') }}"></script>

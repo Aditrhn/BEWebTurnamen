@@ -85,7 +85,10 @@ class TournamentController extends Controller
                 ->where('players.id', Auth::guard('player')->user()->id)
                 ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
                 ->first();
-            // dd($contract->team_id);
+            $team = DB::table('joins')
+            ->select('status')
+            ->where('team_id', '=', $contract->team_id)->first();
+            // dd($team);
             $check_team = DB::table('joins')
             ->select('team_id', 'event_id')
             ->where([
@@ -154,7 +157,7 @@ class TournamentController extends Controller
             //     'gross_amount' => $params['transaction_details']['gross_amount'],
             //     // 'status_code'=>
             // ]);
-            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken'));
+            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken', 'team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -198,8 +201,8 @@ class TournamentController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function response()
+    public function paymentSuccess()
     {
-        return \view('tournament.response');
+        return \view('tournament.success');
     }
 }

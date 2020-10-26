@@ -58,8 +58,6 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    {{-- <div class="alert alert-danger">{{ $message }}
-                            </div> --}}
                             @enderror
                         </div>
                     </div>

@@ -67,7 +67,7 @@ Route::group(['auth', 'players'], function () {
         Route::get('tournament', 'TournamentController@index')->name('tournament');
         Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
         Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
-        Route::get('tournament/response', 'TournamentController@response')->name('tournament.response');
+        Route::get('tournament/payment/success', 'TournamentController@paymentSuccess')->name('tournament.success');
         // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
@@ -113,6 +113,18 @@ Route::group(['auth', 'admins'], function () {
         //overview
         Route::get('super/overview', 'OverviewController@index')->name('overview.index');
 
-        //bracket
+        //payment-players
+        Route::get('super/info-payment', 'InfoPaymentController@index')->name('info.index');
+        Route::put('super/info-payment/{join}', 'InfoPaymentController@update')->name('info.update');
+        Route::delete('super/info-payment/{join}', 'InfoPaymentController@destroy')->name('info.destroy');
+
+        //team-matches
+        Route::get('super/team-matches', 'MatchController@index')->name('match.index');
+        Route::get('super/team-matches/create', 'MatchController@create')->name('match.create');
+        Route::post('super/event', 'MatchController@store')->name('match.store');
+        Route::get('super/event/{match}', 'MatchController@edit')->name('match.edit');
+        Route::put('super/event/{id}', 'MatchController@updateScore')->name('match.updateScore');
+        Route::put('super/event/{id}', 'MatchController@updateDate')->name('match.updateDate');
+        Route::delete('super/team-matches/{match}', 'MatchController@destroy')->name('match.destroy');
     });
 });

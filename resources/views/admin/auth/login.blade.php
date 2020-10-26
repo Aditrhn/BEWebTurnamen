@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="container">
-      <img src="assets/img/navi.png "width="100px">
+      <img src="{{ asset('assets/img/navi.png') }} "width="100px">
         <div class="title mt-5">
             <h2>Log In</h2>
             <center>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>

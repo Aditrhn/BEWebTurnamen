@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->integer('fee')->default(0);
             $table->integer('prize_pool')->nullable();
             $table->string('rules');
+            $table->string('img')->nullable();
             $table->enum('bracket_type', ['1', '2'])->default('1');
             $table->enum('comeback', ['0', '1'])->default('0');
             $table->dateTime('registration_open');

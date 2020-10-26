@@ -37,7 +37,7 @@
 }
 
 .padPills{
-  padding-left: 18%;
+  padding-left: 13%;
   font-weight: bold;
 }
 
@@ -50,6 +50,7 @@
   padding-top: 30px;
 }
 
+
 .padRule{
   padding-top: 50px;
 }
@@ -59,9 +60,42 @@
   padding-left: 90%;
 }
 
+.imgMatch{
+  width: 60px; 
+  height: 60px;
+}
+
 .imgTeam{
   width: 200px; 
   height: 100px;
+}
+
+.padMatch{
+  padding-top : 24px;
+  font-weight: bold;
+}
+
+.titleMatch{
+  margin: 10px;
+  font-weight: bold;
+}
+
+.fontMatch{
+  color: gray;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-setScore{
+  background-color: #164FDD;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-setDate{
+  background-color: #C2CD0A;
+  color: white;
+  font-weight: bold;
 }
 
 .titleTeam{

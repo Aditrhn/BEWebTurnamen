@@ -26,17 +26,17 @@
                         @if($player->address !== null)
                             <p style="color: white;">{{ $player->address }}</p>
                         @else
-                            <p style="color: white;">Alamat kusung!!!</p>
+                            <p style="color: white;">Somewhere on earth...</p>
                         @endif
                         <br>
                         @if($player->contact !== null)
                             <p style="color: white;">{{ $player->contact }}</p>
                         @else
-                            <p style="color: white;">Contact kusung!!!</p>
+                            <p style="color: white;">I don't have phone</p>
                         @endif
                     </div>
                     <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                    <div class="col-xs-6 col-sm-12" id="btnaddfriend">
+                    <div class="col-xs-6 col-sm-4" id="btnaddfriend" style="margin-top: 20px">
                         @if($check == null)
                             <form action="{{ URL::route('add-friend') }}" method="POST">
                                 @csrf
@@ -53,7 +53,7 @@
                                 @csrf
                                 <div class="buttons col-md-12 btnAdd">
                                     <input type="hidden" name="unfriend" value="{{ $player->id }}">
-                                    <button class="btn btn-primary pull-right" id="btnUnfriend"
+                                    <button class="btn btn-danger pull-right" id="btnUnfriend"
                                         type="submit">Unfriend</button>
                                 </div>
                             </form>
@@ -130,13 +130,13 @@
                                     @if($player->city !== null)
                                         <p>City <span>{{ $player->city }}</span></p>
                                     @else
-                                        <p>City in Indonesia</p>
+                                        <p>City in <span>Indonesia</span></p>
                                     @endif
                                     <br>
                                     @if($player->gender !== null)
                                         <p>Gender <span>{{ $player->gender }}</span></p>
                                     @else
-                                        <p>Gender Male</p>
+                                        <p>Gender <span>Unknown</span></p>
                                     @endif
                                     <br>
                                     <p>E-mail <span>{{ $player->email }}</p>
@@ -144,7 +144,7 @@
                                     @if($player->contact !== null)
                                         <p>Phone <span>{{ $player->contact }}</span></p>
                                     @else
-                                        <p>Phone n/a</p>
+                                        <p>Phone <span>n/a</span></p>
                                     @endif
                                     <br>
                                 </div>
@@ -170,7 +170,7 @@
                                                         alt="{{ $friends->name }}">
                                                 @endif
                                             @empty
-                                                <p>Tidak ada teman!!</p>
+                                                <p style="text-align: justify; opacity: 50%">Don't have any friend yet..</p>
                                             @endforelse
                                         </center>
                                     </div>
@@ -183,7 +183,7 @@
                                         @if($player->status)
                                             <p>{{ $player->status }}</p>
                                         @else
-                                            <p>Status kosong!!</p>
+                                            <p style="text-align: justify; opacity: 50%">I'm too lazy to write status..</p>
                                         @endif
                                     </div>
                                 </div>
@@ -214,7 +214,7 @@
                                         </div>
                                     @empty
                                         <div class="panel-friend thText">
-                                            <h4>Hasil Tidak Ditemukan.</h4>
+                                            <h4 style="text-align: justify; opacity: 50%; padding-left: 20px">Haven't join any team yet..</h4>
                                         </div>
                                     @endforelse
                                     &nbsp;

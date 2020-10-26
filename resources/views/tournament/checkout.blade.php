@@ -17,9 +17,15 @@
                         </div>
                     </div>
                 </div>
+                @if ($team->status == "0")
                 <div class="col-md-4">
                     <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
                 </div>
+                @else
+                <div class="col-md-4">
+                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" disabled>Joined</a>
+                </div>
+                @endif
             {{-- </form> --}}
         </div>
     </div>
@@ -33,7 +39,7 @@
         snap.pay('<?=$snapToken?>', {
           // Optional
             onSuccess: function(result){
-                /* You may add your own js here, this is just example */ window.location = "../response"; document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2); 
+                /* You may add your own js here, this is just example */ window.location = "../response"; document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
             },
             // Optional
             onPending: function(result){
