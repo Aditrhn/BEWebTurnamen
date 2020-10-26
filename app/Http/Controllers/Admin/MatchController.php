@@ -27,7 +27,8 @@ class MatchController extends Controller
      */
     public function create()
     {
-        return \view('admin.match.create');
+        $match = Match::all();
+        return \view('admin.match.create', \compact('match'));
     }
 
     /**
@@ -53,7 +54,7 @@ class MatchController extends Controller
             'team_a' => $request->team_a,
             'team_b' => $request->team_b,
         ]);
-        return \redirect('super/team-matches')->with(['msg' => 'Berhasil menambah team matches!!']);
+        return \redirect()->back()->with(['msg' => 'Berhasil menambah team matches!!']);
     }
 
     /**
