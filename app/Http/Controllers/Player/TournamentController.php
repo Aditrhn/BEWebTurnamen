@@ -106,7 +106,7 @@ class TournamentController extends Controller
                     ['team_id', '=', $contract->team_id],
                     ['event_id', '=', $id]
             ])->first();
-            // dd($check_team);
+            dd($check_team);
 
             if ($check_team == null) {
                 $join = Join::create([
@@ -117,7 +117,7 @@ class TournamentController extends Controller
                      'gross_amount' => $event->fee,
                      'cancellation_note' => 'none'
                ]);
-               dd($join);
+            //    dd($join);
             }             
             
 
