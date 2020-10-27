@@ -204,52 +204,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($matches as $match)
                                             <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">0 - 3</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td >
-                                                <h4 class="padMatch">May 26, 2020</h4>
-                                                <label class="fontMatch" for="">6:30 PM</label>
-                                            </td>
-                                            <td style="padding-top : 25px;">
-                                                <a href="{{ URL::route('match.score') }}" class="btn btn-setScore">Set Score</a>
-                                            </td>
+                                            <td><h4 class="padMatch">{{$match->team_a}}</h4></td>
+                                                <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                                <td><h4 class="padMatch">VS</h4></td>
+                                                <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
+                                                <td><h4 class="padMatch">{{$match->team_b}}</h4></td>
+                                                <td><h4 class="padMatch">@if ($match->date != null)
+                                                    {{$match->date}}
+                                                </h4></td>
+                                                <td style="padding-top : 25px;">
+                                                    <a href="{{ URL::route('match.score') }}" class="btn btn-setScore">Set Score</a>
+                                                </td>
+                                                @else
+                                                TBD
+                                                </h4></td>
+                                                <td style="padding-top : 25px;">
+                                                    <a href="{{ URL::route('match.time') }}" class="btn btn-setDate">Set Date</a>
+                                                </td>
+                                                @endif
                                             </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;">
-                                                <a href="{{ URL::route('match.time') }}" class="btn btn-setDate">Set Date</a>
-                                            </td>
-                                            </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
-                                            </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -283,26 +259,6 @@
                                                 <label class="fontMatch" for="">6:30 PM</label>
                                             </td>
                                             <td style="padding-top : 25px;"><button type="button" class="btn btn-setScore">Set Score</button></td>
-                                            </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
-                                            </tr>
-
-                                            <tr>
-                                            <td><h4 class="padMatch">Secret</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">VS</h4></td>
-                                            <td><img id="imgMatch" class="card-img-top imgMatch" src="{{ URL::asset('assets/img/navi.png')}}"></td>
-                                            <td><h4 class="padMatch">Navi</h4></td>
-                                            <td><h4 class="padMatch">TBD</h4></td>
-                                            <td style="padding-top : 25px;"><button type="button" class="btn btn-setDate">Set Date</button></td>
                                             </tr>
 
                                             <tr>
