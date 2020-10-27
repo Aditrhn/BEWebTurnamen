@@ -119,10 +119,10 @@ Route::group(['auth', 'admins'], function () {
         Route::delete('super/info-payment/{join}', 'InfoPaymentController@destroy')->name('info.destroy');
 
         //team-matches
-        Route::get('super/team-matches', 'MatchController@index')->name('match.index');
-        Route::get('super/team-matches/create', 'MatchController@create')->name('match.create');
-        Route::post('super/team-matches', 'MatchController@store')->name('match.store');
-        Route::get('super/event/{match}', 'MatchController@edit')->name('match.edit');
+        Route::get('super/event/team-matches', 'MatchController@index')->name('match.index');
+        Route::get('super/event/team-matches/{id}/create', 'MatchController@create')->name('match.create');
+        Route::post('super/event/team-matches/{id}', 'MatchController@store')->name('match.store');
+        Route::get('super/event/team-match/{match}', 'MatchController@edit')->name('match.edit');
         // Route::put('super/event/{id}', 'MatchController@updateScore')->name('match.updateScore');
         Route::get('super/score', 'MatchController@score')->name('match.score');
         Route::get('super/date', 'MatchController@time')->name('match.time');

@@ -187,7 +187,7 @@
                                 <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="titleMatch">Match List</h3>
-                                    <a href="{{ URL::route('match.create') }}" class="badge badge-primary">Create</a>
+                                    <a href="{{ URL::route('match.create',$events->id) }}" class="badge badge-primary">Create</a>
                                     <h4 class="titleMatch">Round 1</h4>
                                 </div>
                                 <div class="col-md-12">
