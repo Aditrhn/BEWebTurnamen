@@ -109,15 +109,12 @@ class MatchController extends Controller
      */
     public function score($id)
     {
-        $events = Event::find();
-        \dd($events);
-        return \view('admin.match.score', \compact('events'));
+        $matches = Match::find($id);
+        return \view('admin.match.score', \compact('matches'));
     }
     public function time($id)
     {
-        // $events = Event::find($id);
         $matches = Match::find($id);
-        // \dd($matches);
         return \view('admin.match.date', \compact('matches'));
     }
     public function edit(Match $match)
