@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1" id="desclabel">Status</label>
                                 <textarea class="form-control" id="description-teamcreate" rows="3"
-                                    name="teamDesc"></textarea>
+                                    name="status" placeholder="{{ Auth::guard('player')->user()->status }}"></textarea>
                             </div>
                             <div class="col-md-6" id="button-editprofile">
                                 <button class="btn btn-primary" id="btnsubmit_editprofile" type="submit">Save</button>
