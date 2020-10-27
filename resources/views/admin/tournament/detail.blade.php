@@ -3,58 +3,6 @@
 @section('title','Tournament Create')
 @section('main')
 <!-- Modal -->
-<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h3 class="mdlText">Report Score</h3>
-            </div>
-            <div class="modal-body" style="text-align: center;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                          <th scope="col"></th>
-                          <th scope="col">Score</th>
-                        </tr>
-                      </thead>
-                    <tbody>
-                      <tr>
-                        <td class="mdlText">Cimindi</td>
-                        <td>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="mdlText">Yudistira</td>
-                        <td>
-                            <select class="form-control" id="exampleFormControlSelect2">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <div class="modal-footer center">
-                <button type="button" class="btn btn-block btn-primary">Submit Score</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -276,7 +224,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel" aria-labelledby="pills-bracket-tab">
-                                <div id="bracket">ini bracket</div>
+                                <div id="bracket"></div>
                             </div>
                             <div class="tab-pane fade" id="pills-participant" role="tabpanel" aria-labelledby="pills-participant-tab">
                                 <div class="row">
@@ -384,4 +332,43 @@
 @push('tooltip')
     <!-- Date Picker -->
     <script src="assets/js/main.js"></script>
+    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery.bracket.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}"></script>
+    <script>
+        var single = {
+            teams: [
+                @foreach($matches as $match)
+                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @endforeach
+                @if(count($matches) % 2 != 0)
+                    [null, null] 
+                @endif
+            ],
+            results: [
+                [
+                    @foreach($rounds as $round)
+                    [
+                        @foreach($round as $matches)
+                            [{{$matches['score_a']}},{{$matches['score_b']}}],
+                        @endforeach
+                    ],
+                    @endforeach
+                ]
+            ]
+        }
+        var bracket = {
+            teamWidth: 100,
+            scoreWidth: 50,
+            matchMargin: 75,
+            roundMargin: 85,
+            init: single,
+            skipConsolationRound: true,
+            onMatchClick: onclick
+        };
+
+        $(function () {
+            $('#bracket').bracket(bracket)
+        })
+    </script>
 @endpush

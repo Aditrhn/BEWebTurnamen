@@ -167,7 +167,7 @@ class EventController extends Controller
             ->where('joins.event_id', $id)
             ->select('joins.team_id', 'teams.*')
             ->get();
-        // \dd($join2);
+        // \dd($join);
         // \dd($rounds);
         return view('admin.tournament.detail', \compact('matches', 'events', 'rounds', 'join', 'join2'));
         // return view('admin.tournament.detail');
