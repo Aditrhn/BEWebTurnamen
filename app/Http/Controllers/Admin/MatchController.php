@@ -48,8 +48,12 @@ class MatchController extends Controller
     {
         if (Auth::guard('admin')->check()) {
             $event = Event::find($id);
-            $join = DB::table('joins');
-            \dd($event);
+            $join = DB::table('joins')
+                ->join('events', 'events.id', 'joins.event_id')
+                ->where('events.id', $event->id)
+                ->where('joins.status', '1')
+                ->select('joins.*', 'events.id')->get();
+            \dd($join);
 
             $this->validate($request, [
                 'round_number' => 'required',
@@ -58,7 +62,6 @@ class MatchController extends Controller
                 'team_b' => 'required',
             ]);
             Match::create([
-                'date' => \now(),
                 'event_id' => $event->id,
                 'round_number' => $request->round_number,
                 'match_number' => $request->match_number,
