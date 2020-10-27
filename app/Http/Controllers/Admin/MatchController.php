@@ -48,7 +48,7 @@ class MatchController extends Controller
         //     ->select('matches.*')
         //     ->get();
         #SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = 1 AND m.round_number = 1
-        $match = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' AND m.round_number = 2');
+        $match = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' AND m.round_number = 1');
         // \dd($match);
         return \view('admin.match.create', \compact('match', 'event', 'team'));
     }
