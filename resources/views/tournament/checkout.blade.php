@@ -17,14 +17,20 @@
                         </div>
                     </div>
                 </div>
-                @if ($team->status == "0")
-                <div class="col-md-4">
-                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
-                </div>
+                @if ($team != null)
+                    @if ($team->status == "0")
+                        <div class="col-md-4">
+                            <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
+                        </div>
+                    @else
+                        <div class="col-md-4">
+                            <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" disabled>Joined</a>
+                        </div>
+                    @endif
                 @else
-                <div class="col-md-4">
-                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" disabled>Joined</a>
-                </div>
+                    <div class="col-md-4">
+                        <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
+                    </div>
                 @endif
             {{-- </form> --}}
         </div>

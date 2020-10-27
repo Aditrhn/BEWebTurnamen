@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Event;
-use App\Model\Join;
 use App\Model\Match;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MatchController extends Controller
 {
@@ -25,10 +26,16 @@ class MatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        $event = Event::find($id);
+        // $events = DB::table('events')
+        //     ->join('games', 'events.game_id', '=', 'games.id')
+        //     ->where('events.id', $id)
+        //     ->select('events.*', 'games.*')->first();
+        // \dd($event);
         $match = Match::all();
-        return \view('admin.match.create', \compact('match'));
+        return \view('admin.match.create', \compact('match', 'event'));
     }
 
     /**
@@ -39,22 +46,32 @@ class MatchController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $this->validate($request, [
-            'round_number' => 'required',
-            'match_number' => 'required',
-            'team_a' => 'required',
-            'team_b' => 'required',
-        ]);
-        $join = Join::find($id);
-        Match::create([
-            'date' => \now(),
-            'event_id' => $join,
-            'round_number' => $request->round_number,
-            'match_number' => $request->match_number,
-            'team_a' => $request->team_a,
-            'team_b' => $request->team_b,
-        ]);
-        return \redirect()->back()->with(['msg' => 'Berhasil menambah team matches!!']);
+        if (Auth::guard('admin')->check()) {
+            $event = Event::find($id);
+            $join = DB::table('joins')
+                ->join('events', 'events.id', 'joins.event_id')
+                ->where('events.id', $event->id)
+                ->where('joins.status', '1')
+                ->select('joins.*', 'events.id')->get();
+            \dd($join);
+
+            $this->validate($request, [
+                'round_number' => 'required',
+                'match_number' => 'required',
+                'team_a' => 'required',
+                'team_b' => 'required',
+            ]);
+            Match::create([
+                'event_id' => $event->id,
+                'round_number' => $request->round_number,
+                'match_number' => $request->match_number,
+                'team_a' => $request->team_a,
+                'team_b' => $request->team_b,
+            ]);
+            return \redirect()->back()->with(['msg' => 'Berhasil menambah team matches!!']);
+        } else {
+            return \redirect('login')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**

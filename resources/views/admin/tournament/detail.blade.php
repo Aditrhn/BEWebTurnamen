@@ -187,7 +187,7 @@
                                 <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="titleMatch">Match List</h3>
-                                    <a href="{{ URL::route('match.create') }}" class="badge badge-primary">Create</a>
+                                    <a href="{{ URL::route('match.create',$events->id) }}" class="badge badge-primary">Create</a>
                                     <h4 class="titleMatch">Round 1</h4>
                                 </div>
                                 <div class="col-md-12">
@@ -324,27 +324,98 @@
                             </div>
                             <div class="tab-pane fade" id="pills-participant" role="tabpanel" aria-labelledby="pills-participant-tab">
                                 <div class="row">
-                                    <h5 class="leftSlot">Team ( {{ $join }} / {{ $events->participant }})</h5>
+                                    <div class="col-lg-12">
+                                    <label  class="leftSlot" for="">Team ( {{ $join }} / {{ $events->participant }})</label>
+                                    </div>
                                 </div>
-                                @forelse ($join2 as $team)
                                 <!--Baris 1-->
                                 <div class="row" style="padding-top: 2%; text-align: center;">
                                     <div class="col-md-2">
                                         <div class="card" style="border-radius: 10px;">
                                             <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ asset('images/team_logo/'. $team->logo_url) }}" alt="Card image cap">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
                                             </div>
                                             <div class="card-title">
                                               <h5 id="teamName" class="card-title titleTeam">
-                                                  {{ $team->name }}
+                                                  Navi
+                                              </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card" style="border-radius: 10px;">
+                                            <div class="card-img-top" style=" background-color: black;">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-title">
+                                              <h5 id="teamName" class="card-title titleTeam">
+                                                  Navi
+                                              </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card" style="border-radius: 10px;">
+                                            <div class="card-img-top" style=" background-color: black;">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-title">
+                                              <h5 id="teamName" class="card-title titleTeam">
+                                                  Navi
+                                              </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card" style="border-radius: 10px;">
+                                            <div class="card-img-top" style=" background-color: black;">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-title">
+                                              <h5 id="teamName" class="card-title titleTeam">
+                                                  Navi
+                                              </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card" style="border-radius: 10px;">
+                                            <div class="card-img-top" style=" background-color: black;">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-title">
+                                              <h5 id="teamName" class="card-title titleTeam">
+                                                  Navi
+                                              </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card" style="border-radius: 10px;">
+                                            <div class="card-img-top" style=" background-color: black;">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-title">
+                                              <h5 id="teamName" class="card-title titleTeam">
+                                                  Navi
+                                              </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card" style="border-radius: 10px;">
+                                            <div class="card-img-top" style=" background-color: black;">
+                                                <img id="imgTeam" class="card-img-top imgTeam" src="{{ URL::asset('assets/img/navi.png')}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-title">
+                                              <h5 id="teamName" class="card-title titleTeam">
+                                                  Navi
                                               </h5>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @empty
-                                <p><strong>tidak ada pendaftar!!</strong></p>
-                                @endforelse
+                                <!--Baris 2-->
                             </div>
                         </div>
                     </div>

@@ -120,10 +120,12 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $events = DB::table('events')
+        $event = DB::table('events')
             ->join('games', 'events.game_id', '=', 'games.id')
             ->where('events.id', $id)
-            ->select('events.*', 'games.*')->first();
+            ->select('events.*', 'games.id as games_id')->first();
+        $events = Event::find($id);
+        // \dd($event);
 
         $matches = DB::table('matches')
             ->join('events', 'matches.event_id', '=', 'events.id')

@@ -16,18 +16,41 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body card-block p-5">
-                        <form action="{{ URL::route('match.store') }}" method="POST">
+                        <form action="{{ URL::route('match.store',$event->id) }}"
+                            method="POST">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" id="round">
-                                        <input type="full_name" class="form-control" id="exampleInputEmail1" name="round_number" value="{{ old('round_number') }}" placeholder="Round Number">
+                                        <input type="full_name"
+                                            class="form-control @error('round_number') is-invalid @enderror"
+                                            id="exampleInputEmail1" name="round_number"
+                                            value="{{ old('round_number') }}"
+                                            placeholder="Round Number">
+                                        @error('round_number')
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ $message }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" id="match_number">
-                                        <input type="full_name" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Match Number">
+                                        <input type="full_name" class="form-control @error('match_number') @enderror"
+                                            id="exampleInputEmail1" name="match_number" placeholder="Match Number">
+                                        @error('match_number')
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ $message }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -60,9 +83,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-primary float-right mt-3" id="btnsubmit_editprofile" href="#"
+                            <button type="submit" class="btn btn-primary float-right mt-3" id="btnsubmit_editprofile"
                                 role="button">Save &
-                                Continue</a>
+                                Continue</button> cek {{ $event->id }}
                             <!-- /.card-right -->
                         </form>
                     </div>
@@ -81,7 +104,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($match as $item)
+                                @forelse($match as $item)
                                     <tr>
                                         <th scope="row"></th>
                                         <th scope="row"></th>
@@ -91,11 +114,11 @@
                                         <td>{{ $match->team_b }}</td>
                                     </tr>
                                 @empty
-                                <tr>
-                                    <td colspan="6" style="text-align: center;">
-                                        <p><strong>Tidak ada match!!</strong></p>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="6" style="text-align: center;">
+                                            <p><strong>Tidak ada match!!</strong></p>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
