@@ -208,7 +208,7 @@
                                                     <b>
                                                         <h4 style="font-weight: bold;">{{ $item->name }}</h4>
                                                     </b>
-                                                    <h5>{{ $item->description }}</h5>
+                                                    <p id="descprofile">{{ $item->description }}</p>
                                                 </div>
                                             </div>
                                         </div>
