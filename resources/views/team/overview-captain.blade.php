@@ -13,10 +13,12 @@
                         <!-- PANEL HEADLINE -->
                         <h3 class="text-white">Overview</h3>
                         <div class="panel panel-headline">
-                            <div class="panel-body" id="overview" style="height: 159px">
+                            <div class="panel-body" id="overview">
                                 <div class="overview">
                                     <div class="col-lg-5 col-sm-4">
-                                        <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                        <div class="thumbex">
+                                            <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                        </div>
                                     </div>
                                     <div class="team-overview col-lg-7 col-sm-8">
                                         <h3>{{ $team->name }}</h3>
@@ -64,9 +66,13 @@
                                             <p style="color: #35346D">Captain</p>
                                         @endif
                                         @if ($members->ava_url != null)
+                                        <div class="thumbex">
                                             <img src="{{ asset('images/avatars/'.$members->ava_url) }}">
+                                        </div>
                                         @else
+                                        <div class="thumbex">
                                             <img src="{{ asset('images/avatars/default.png') }}">
+                                        </div>
                                         @endif
                                         <h4>{{ $members->name }}</h4>
                                     </div>
