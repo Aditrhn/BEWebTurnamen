@@ -170,7 +170,13 @@
                                                                 src="{{ URL::asset('assets/img/navi.png') }}">
                                                         </td>
                                                         <td>
-                                                            <h4 class="padMatch">VS</h4>
+                                                            <h4 class="padMatch">
+                                                                @if ($match->score_a && $match->score_b != null)
+                                                                    {{$match->score_a}} - {{$match->score_b}}
+                                                                @else
+                                                                    VS
+                                                                @endif
+                                                            </h4>
                                                         </td>
                                                         <td><img id="imgMatch" class="card-img-top imgMatch"
                                                                 src="{{ URL::asset('assets/img/navi.png') }}">
@@ -195,7 +201,7 @@
                                                         <td style="padding-top : 25px;">&nbsp;</td>
                                                         @else
                                                         <td style="padding-top : 25px;">
-                                                            <a href="{{ URL::route('match.updateDate',$match->id) }}"
+                                                            <a href="{{ URL::route('match.score',$match->id) }}"
                                                                 class="btn btn-setScore">Set Score</a>
                                                         </td>
                                                         @endif

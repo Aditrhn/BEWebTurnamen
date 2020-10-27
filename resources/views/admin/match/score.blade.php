@@ -9,7 +9,7 @@
             <h3 class="padTitle">Round 1 | Secret vs Navi</h3>
             <!-- /# column -->
             <div class="col-lg-12">
-                <form action="{{ URL::route('match.updateScore',$matches->id) }}" method="POST">
+                <form action="{{ URL::route('match.updateScore',$matches[0]->id) }}" method="POST">
                     {{ csrf_field() }}
                     @method('put')
                     <div class="card">
@@ -24,27 +24,24 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="mdlText">Secret</td>
+                                        <td class="mdlText">{{$matches[0]->team_a}}</td>
                                         <td>
-                                            <select name="socre_a" class="form-control" id="exampleFormControlSelect1">
-                                                <option disabled selected>Pilih score</option>
-                                                <option value="{{  }}">0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
+                                            <select name="score_a" class="form-control" id="exampleFormControlSelect1">
+                                              <option value="0">0</option>
+                                              <option value="1">1</option>
+                                              <option value="2">2</option>
+                                              <option value="3">3</option>
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="mdlText">Navi</td>
+                                        <td class="mdlText">{{$matches[0]->team_b}}</td>
                                         <td>
-                                            <select class="form-control" id="exampleFormControlSelect2">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
+                                            <select name="score_b" class="form-control" id="exampleFormControlSelect2">
+                                              <option value="0">0</option>
+                                              <option value="1">1</option>
+                                              <option value="2">2</option>
+                                              <option value="3">3</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -52,7 +49,7 @@
                             </table>
                         </div>
                         <div class="modal-footer center">
-                            <button type="button" class="btn btn-block btn-primary">Submit Score</button>
+                            <button type="submit" class="btn btn-block btn-primary">Submit Score</button>
                         </div>
                     </div>
                 </form>

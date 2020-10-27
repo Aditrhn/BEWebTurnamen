@@ -126,7 +126,7 @@ Route::group(['auth', 'admins'], function () {
         Route::get('super/event/{id}/team-match/time', 'MatchController@time')->name('match.time');
         Route::put('super/event/{id}/team-match/time', 'MatchController@updateDate')->name('match.time.update');
         Route::get('super/event/{id}/team-match/score', 'MatchController@score')->name('match.score');
-        Route::put('super/event/{id}/team-match/score', 'MatchController@updateDate')->name('match.updateDate');
+        Route::put('super/event/{id}/team-match/score', 'MatchController@updateScore')->name('match.updateScore');
         //
         Route::delete('super/team-matches/{match}', 'MatchController@destroy')->name('match.destroy');
     });

@@ -109,7 +109,11 @@ class MatchController extends Controller
      */
     public function score($id)
     {
-        $matches = Match::find($id);
+        $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
+        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id
+        FROM matches m JOIN events e ON m.event_id = e.id
+        WHERE m.id = ' . $id);
+        // \dd($matches);
         return \view('admin.match.score', \compact('matches'));
     }
     public function time($id)
