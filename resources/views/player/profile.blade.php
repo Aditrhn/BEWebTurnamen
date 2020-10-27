@@ -181,7 +181,7 @@
                                                 </div>
                                                 <div class="col-md-7">
                                                     <b><h4 style="font-weight: bold;">{{ $item->name }}</h4></b>
-                                                    <p style="text-align: justify; white-space: pre; overflow: hidden; text-overflow: ellipsis">
+                                                    <p id="descprofile">
                                                         {{ $item->description }}
                                                     </p>
                                                 </div>
@@ -262,5 +262,8 @@
 
   });
 
+  
+
 </script>
+
 @endpush
