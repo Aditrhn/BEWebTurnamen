@@ -99,12 +99,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td>Game Platform Kusung!!</td>
-                                                <td>Name Turney Kusung!!</td>
-                                                <td>August 13, 2020 @3:00 am</td>
-                                                <td>Liquor</td>
-                                                <td>164 participants</td>
-                                                <td>winner</td>
+                                                <td colspan="6" style="text-align: center">No matches yet..</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
