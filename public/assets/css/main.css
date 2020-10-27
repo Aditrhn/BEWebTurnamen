@@ -798,9 +798,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
   /* END */
   /* Team Details */
-  .main .main-content .panel-body .member div > img{
+  /* .main .main-content .panel-body .member div > img{
     max-width: 50%;;
-    }
+    } */
   .main .main-content .panel-body .overview div > img {
   max-width: 100%;
   }
@@ -809,10 +809,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
   .main .main-content .panel-body .team-info-support div > img {
     width: 50%;
-  }
+  }/* 
   .main .main-content .panel-body .member div > img{
     max-width: 40%;
-  }
+  } */
   .main .main-content .panel-body .team-static div > img{
     max-width: 40%;
   }
@@ -962,6 +962,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       text-align: center;
     }
     .main .main-content .panel-body .overview div > img{
+      border-radius: 20px;
       max-width: 100%;
     }
     .main .main-content .panel-body .team-static div > img{
