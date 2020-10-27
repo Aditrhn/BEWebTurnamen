@@ -99,12 +99,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td>Game Platform Kusung!!</td>
-                                                <td>Name Turney Kusung!!</td>
-                                                <td>August 13, 2020 @3:00 am</td>
-                                                <td>Liquor</td>
-                                                <td>164 participants</td>
-                                                <td>winner</td>
+                                                <td colspan="6" style="text-align: center">No matches yet..</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -201,14 +196,19 @@
                                                 <div class="col-md-5">
                                                     <img
                                                         src="{{ asset('images/team_logo/'.$item->logo_url) }}">
-                                                    <a class="btn btn-primary" id="btnviewteam" href="#"
-                                                        role="button">View Team</a>
+                                                    <form action="{{ URL::route('team.view',$item->id) }}"
+                                                            method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="teamId" value="{{ $item->id }}">
+                                                        <button class="btn btn-primary" id="btnviewteam"
+                                                            type="submit">View Team</button>
+                                                    </form>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <b>
                                                         <h4 style="font-weight: bold;">{{ $item->name }}</h4>
                                                     </b>
-                                                    <h5>{{ $item->description }}</h5>
+                                                    <p id="descprofile">{{ $item->description }}</p>
                                                 </div>
                                             </div>
                                         </div>

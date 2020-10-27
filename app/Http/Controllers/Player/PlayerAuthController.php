@@ -121,7 +121,7 @@ class PlayerAuthController extends Controller
 
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-                ->select('teams.name', 'teams.logo_url', 'teams.description')
+                ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
                 ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                 ->get();
 
@@ -163,7 +163,7 @@ class PlayerAuthController extends Controller
             $friend = DB::select('select p.name, p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . $player->id . ' and (f.player_one = ' . $player->id . ' or f.player_two = ' . $player->id . ') and f.status = "1"');
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-                ->select('teams.name', 'teams.logo_url', 'teams.description')
+                ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
                 ->where('contracts.players_id', '=', $player->id)
                 ->get();
             // $request->user();

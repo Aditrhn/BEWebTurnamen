@@ -122,7 +122,7 @@
                         <!-- PANEL NO PADDING -->
                         <h3 class="text-white">Description</h3>
                         <div class="panel panel-headline" style="margin-bottom: 0px">
-                            <div class="panel-body" id="description" style="height: 184px">
+                            <div class="panel-body" id="description">
                                 @if ($team->description != null)
                                     <p style="text-align: justify">{{ $team->description }}</p>
                                 @else
@@ -338,7 +338,7 @@
                     <!-- PANEL NO PADDING -->
                     <h3>Description</h3>
                     <div class="panel panel-headline">
-                        <div class="panel-body" id="description" style="height: 184px">
+                        <div class="panel-body" id="description">
                             @if ($team->description != null)
                                 <p style="text-align: justify">{{ $team->description }}</p>
                             @else

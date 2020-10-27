@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::group(['auth', 'players'], function () {
     Route::get('/', function () {
-        return view('welcome');
+        return Redirect('login');
     });
     Route::namespace('Player')->group(function () {
         //Auth Player
@@ -67,7 +67,7 @@ Route::group(['auth', 'players'], function () {
         Route::get('tournament', 'TournamentController@index')->name('tournament');
         Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
         Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
-        Route::get('tournament/payment/success', 'TournamentController@paymentSuccess')->name('tournament.success');
+        Route::get('tournament/payment-success', 'TournamentController@paymentSuccess')->name('tournament.success');
         // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');
         // Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
@@ -123,10 +123,11 @@ Route::group(['auth', 'admins'], function () {
         Route::get('super/event/team-matches/{id}/create', 'MatchController@create')->name('match.create');
         Route::post('super/event/team-matches/{id}', 'MatchController@store')->name('match.store');
         Route::get('super/event/team-match/{match}', 'MatchController@edit')->name('match.edit');
-        // Route::put('super/event/{id}', 'MatchController@updateScore')->name('match.updateScore');
-        Route::get('super/score', 'MatchController@score')->name('match.score');
-        Route::get('super/date', 'MatchController@time')->name('match.time');
-        // Route::put('super/event/{id}', 'MatchController@updateDate')->name('match.updateDate');
+        Route::get('super/event/{id}/team-match/time', 'MatchController@time')->name('match.time');
+        Route::put('super/event/{id}/team-match/time', 'MatchController@updateDate')->name('match.time.update');
+        Route::get('super/event/{id}/team-match/score', 'MatchController@score')->name('match.score');
+        Route::put('super/event/{id}/team-match/score', 'MatchController@updateScore')->name('match.updateScore');
+        //
         Route::delete('super/team-matches/{match}', 'MatchController@destroy')->name('match.destroy');
     });
 });
