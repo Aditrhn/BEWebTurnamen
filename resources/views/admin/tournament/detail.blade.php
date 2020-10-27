@@ -195,7 +195,7 @@
                                                         <td style="padding-top : 25px;">&nbsp;</td>
                                                         @else
                                                         <td style="padding-top : 25px;">
-                                                            <a href="{{ URL::route('match.score',$match->id) }}"
+                                                            <a href="{{ URL::route('match.updateDate',$match->id) }}"
                                                                 class="btn btn-setScore">Set Score</a>
                                                         </td>
                                                         @endif

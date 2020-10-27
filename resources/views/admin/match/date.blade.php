@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <form action="{{ URL::route('match.time.update',$matches->id) }}" method="POST">
                         {{ csrf_field() }}
-                        @method('PUT')
+                        @method('put')
                         <div class="card">
                             <h3 class="padScore">Set Date</h3>
                             <div class="card-body">
