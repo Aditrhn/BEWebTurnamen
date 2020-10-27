@@ -48,7 +48,7 @@ class MatchController extends Controller
         //     ->select('matches.*')
         //     ->get();
         #SELECT (SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' AND m.round_number = 1 ORDER BY `m`.`match_number` ASC
-        $match = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' ORDER BY `m`.`round_number` ASC');
+        $match = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date, m.round_number, m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' ORDER BY `m`.`round_number` ASC');
         // $cek = $match->paginate(2);
         // \dd($match);
         return \view('admin.match.create', \compact('match', 'event', 'team'));
@@ -107,15 +107,18 @@ class MatchController extends Controller
      * @param  \App\Model\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function score()
+    public function score($id)
     {
-        // $events = Event::get();
-        // \dd($events);
+        $events = Event::find();
+        \dd($events);
         return \view('admin.match.score');
     }
-    public function time()
+    public function time($id)
     {
-        return \view('admin.match.date');
+        // $events = Event::find($id);
+        $matches = Match::find($id);
+        // \dd($matches);
+        return \view('admin.match.date', \compact('matches'));
     }
     public function edit(Match $match)
     {
@@ -135,6 +138,7 @@ class MatchController extends Controller
             'date' => 'required'
         ]);
         $match = Match::find($id);
+        dd($match);
         $match->update([
             'date' => $request->date,
             'event_id' => $match->event_id,

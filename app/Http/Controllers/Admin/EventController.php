@@ -127,8 +127,8 @@ class EventController extends Controller
         $events = Event::find($id);
 
         $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
-        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date 
-        FROM matches m JOIN events e ON m.event_id = e.id 
+        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id, m.score_a, m.score_b, m.date
+        FROM matches m JOIN events e ON m.event_id = e.id
         WHERE m.event_id = ' . $id);
         // \dd($matches);
 
