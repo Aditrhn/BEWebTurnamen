@@ -216,6 +216,18 @@ class TournamentController extends Controller
     }
     public function paymentSuccess()
     {
-        return \view('tournament.success');
+        if (Auth::guard('player')->check()) {
+            
+            $tournament = DB::table('events')
+                ->join('joins', 'joins.event_id', '=', 'events.id')
+                ->join('contracts', 'contracts.teams_id', '=', 'joins.team_id')
+                ->select('events.id')
+                ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                ->first();
+            // dd($tournament);
+            return \view('tournament.success', \compact('tournament'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
     }
 }

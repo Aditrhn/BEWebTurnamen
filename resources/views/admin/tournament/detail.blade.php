@@ -400,35 +400,26 @@
     <script src="assets/js/main.js"></script>
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.bracket.min.js') }}"></script>
-    <script
-        src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}">
-    </script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}"></script>
     <script>
         var single = {
-            teams: [ <
-                blade foreach | ( % 24 matches % 20 as % 20 % 24 match) > ["{{ $match->team_a }}",
-                    "{{ $match->team_b }}"
-                ], <
-                /blade endforeach> <
-                blade
-                if |(count( % 24 matches) % 20 % 25 % 202 % 20! % 3 D % 200) > [null, null] <
-                /blade endif>
+            teams: [
+                @foreach($matches as $match)
+                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @endforeach
+                @if(count($matches) % 2 != 0)
+                    [null, null] 
+                @endif
             ],
             results: [
-                [ <
-                    blade foreach | ( % 24 rounds % 20 as % 20 % 24 round) > [ <
-                        blade foreach | ( % 24 round % 20 as % 20 % 24 matches) > [{
-                            {
-                                % 24 matches % 5 B % 26 % 2339 % 3 Bscore_a % 26 % 2339 % 3 B % 5 D
-                            }
-                        }, {
-                            {
-                                % 24 matches % 5 B % 26 % 2339 % 3 Bscore_b % 26 % 2339 % 3 B % 5 D
-                            }
-                        }], <
-                        /blade endforeach>
-                    ], <
-                    /blade endforeach>
+                [
+                    @foreach($rounds as $round)
+                    [
+                        @foreach($round as $matches)
+                            [{{$matches['score_a']}},{{$matches['score_b']}}],
+                        @endforeach
+                    ],
+                    @endforeach
                 ]
             ]
         }
@@ -442,9 +433,13 @@
             onMatchClick: onclick
         };
 
+        function onclick() {
+            $('#largeModal').modal('show');
+            console.log("Hello!");
+        }
+
         $(function () {
             $('#bracket').bracket(bracket)
         })
-
     </script>
 @endpush

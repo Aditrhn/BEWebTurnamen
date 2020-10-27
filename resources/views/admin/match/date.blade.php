@@ -20,16 +20,10 @@
                                 <td class="mdlText">Date</td>
                                 <td>
                                 <div class="input-group date" id="datetimepicker1">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" id="start-date" class="form-control datepicker-here"
-                                                data-language="en" data-date-format="yyyy-mm-dd"/>
+                                            <input type="text" id="start-date" class="form-control datepicker-here" name="match_date"
+                                            data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true" 
+                                            data-time-format='hh:ii:00' />
                                         </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="mdlText">Time</td>
-                                <td>
-                                <input type="time" id="appt" name="appt">
                                 </td>
                             </tr>
                             </tbody>

@@ -42,10 +42,11 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group" id="match_number">
-                                        <input type="full_name" class="form-control @error('match_number') @enderror"
-                                            id="exampleInputEmail1" name="match_number" placeholder="Match Number">
-                                        @error('match_number')
+                                    <div class="form-group date" id="date">
+                                            <input type="text" id="date" class="form-control datepicker-here" name="date"
+                                            data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
+                                            data-time-format='hh:ii:00' placeholder="date and time"/>
+                                        @error('date')
                                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                 {{ $message }}
                                                 <button type="button" class="close" data-dismiss="alert"
@@ -157,15 +158,10 @@
     <script src="{{ URL::asset('js/admin/datepicker.min.js') }}"></script>
     <script src="{{ URL::asset('js/admin/i18n/datepicker.en.js') }}"></script>
     <script>
-        $('#start-date').datepicker({
+        $('#date').datepicker({
             language: 'en',
             minDate: new Date() // Now can select only dates, which goes after today
         });
-        $('#end-date').datepicker({
-            language: 'en',
-            minDate: new Date() // Now can select only dates, which goes after today
-        });
-
     </script>
     <script src="assets/js/main.js"></script>
 @endpush

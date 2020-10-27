@@ -9,7 +9,7 @@
 				<h3 class="fontSucces">Yey ! Your payment was successfull</h3>
 				<h5 class="fontSucces">Your payment information has been sent to your email</h5>
 
-				<button class="btn btn-xs btn-primary btnPaymentsucces" id="btnPaymentDone" href="#">Done</button>
+				<button class="btn btn-xs btn-primary btnPaymentsucces" id="btnPaymentDone" href="">Done</button>
 			</div>
 		</div>
 	</div>
