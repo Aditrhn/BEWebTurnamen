@@ -18,20 +18,19 @@
                 <div class="card-body">
                     <div style="background-color: white;" class="rounded">
 
-
-                            <!-- alert -->
-                            @if(session('msg'))
-                                <div class="alert alert-success alert-dismissible fade show position-fixed ml-4"
-                                    role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    {{ session('msg') }}
-                                </div>
-                            @endif
-
-
                         <label for="table-stat" class="pb-4 pt-3 ml-2"><strong>List pembayaran</strong></label>
+
+                        <!-- alert -->
+                        @if(session('msg'))
+                            <div class="alert alert-success alert-dismissible fade show position-relativ"
+                                role="alert" style="z-index: 1">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ session('msg') }}
+                            </div>
+                        @endif
+
                         <div class="table-stats order-table ov-h" id="table-stat">
                             <table class="table ">
                                 <thead class="thead-light">
