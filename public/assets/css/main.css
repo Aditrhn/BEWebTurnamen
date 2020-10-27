@@ -2664,6 +2664,12 @@ color: white;
 #turnamen_profile{
   color: white;
 }
+#descprofile{
+  width: 100px;
+  white-space: nowrap
+  ;overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .panel.panel-headline span {
   float: right;
