@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::group(['auth', 'players'], function () {
     Route::get('/', function () {
-        return view('welcome');
+        return Redirect('login');
     });
     Route::namespace('Player')->group(function () {
         //Auth Player
