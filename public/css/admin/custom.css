@@ -110,6 +110,12 @@
   font-weight: bold;
 }
 
+.btn-round{
+  background-color: #0DBA25;
+  color: white;
+  font-weight: bold;
+}
+
 .titleTeam{
   text-align: center; 
   font-weight: bold; 
