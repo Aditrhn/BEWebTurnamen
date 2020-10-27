@@ -57,10 +57,24 @@
                             <div class="row mt-3">
                                 <div class="col-md-5">
                                     <div class="form-group" id="match_number">
-                                        <select name="" id="exampleInputEmail1" class="form-control">
+                                        <select name="team_a" id="exampleInputEmail1" class="form-control @error('team_a') @enderror">
                                             <option disabled selected>TEAM A</option>
-                                            <option value="1">siapa</option>
-                                            <option value="2">siapanya</option>
+                                            {{-- @if ($team == $match)
+                                                @foreach ($team as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($team as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @endif --}}
+                                            @foreach ($team as $item)
+                                                {{-- @if ($item == 'selected') --}}
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                {{-- @else
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endif --}}
+                                            @endforeach
                                         </select>
                                         {{-- <input type="full_name" class="form-control" id="exampleInputEmail1"
                                             placeholder="TEAM A"> --}}
@@ -73,16 +87,22 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group" id="match_number">
-                                        <select name="" id="exampleInputEmail1" class="form-control">
+                                        <select name="team_b" id="exampleInputEmail1" class="form-control">
                                             <option disabled selected>TEAM B</option>
-                                            <option value="1">siapa</option>
-                                            <option value="2">siapanya</option>
+                                            @foreach ($team as $item)
+                                            {{-- @if ($item == 'selected') --}}
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            {{-- @else
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endif --}}
+                                            @endforeach
                                         </select>
                                         {{-- <input type="full_name" class="form-control" id="exampleInputEmail1"
                                             placeholder="TEAM B"> --}}
                                     </div>
                                 </div>
                             </div>
+                            {{-- <button type="submit">save</button> --}}
                             <button type="submit" class="btn btn-primary float-right mt-3" id="btnsubmit_editprofile"
                                 role="button">Save &
                                 Continue</button> cek {{ $event->id }}
@@ -97,7 +117,7 @@
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
-                                    <th scope="col">Round</th>
+                                    <th scope="col">Round Number</th>
                                     <th scope="col">Match Number</th>
                                     <th scope="col">Team A</th>
                                     <th scope="col">Team B</th>
@@ -108,10 +128,10 @@
                                     <tr>
                                         <th scope="row"></th>
                                         <th scope="row"></th>
-                                        <td>{{ $match->round_number }}</td>
-                                        <td>{{ $match->match_number }}</td>
-                                        <td>{{ $match->team_a }}</td>
-                                        <td>{{ $match->team_b }}</td>
+                                        <td>{{ $item->round_number }}</td>
+                                        <td>{{ $item->match_number }}</td>
+                                        <td>{{ $item->team_a }}</td>
+                                        <td>{{ $item->team_b }}</td>
                                     </tr>
                                 @empty
                                     <tr>
