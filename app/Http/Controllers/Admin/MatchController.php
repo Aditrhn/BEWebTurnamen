@@ -47,8 +47,9 @@ class MatchController extends Controller
         //     ->where('events.id', $event->id)
         //     ->select('matches.*')
         //     ->get();
-        #SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = 1 AND m.round_number = 1
-        $match = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' AND m.round_number = 1');
+        #SELECT (SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' AND m.round_number = 1 ORDER BY `m`.`match_number` ASC
+        $match = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,(SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.score_a, m.score_b, m.date,m.round_number,m.match_number FROM matches m JOIN events e ON m.event_id = e.id WHERE m.event_id = ' . $event->id . ' ORDER BY `m`.`round_number` ASC');
+        // $cek = $match->paginate(2);
         // \dd($match);
         return \view('admin.match.create', \compact('match', 'event', 'team'));
     }

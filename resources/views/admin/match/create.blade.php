@@ -15,6 +15,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-header">
+                        <a href="{{ URL::route('event.show',$event->id) }}">back</a>
+                    </div>
                     <div class="card-body card-block p-5">
                         <form action="{{ URL::route('match.store',$event->id) }}"
                             method="POST">
