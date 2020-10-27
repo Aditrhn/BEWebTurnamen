@@ -71,12 +71,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td>Game Platform Kusung!!</td>
-                                            <td>Name Turney Kusung!!</td>
-                                            <td>August 13, 2020 @3:00 am</td>
-                                            <td>Liquor</td>
-                                            <td>164 participants</td>
-                                            <td>winner</td>
+                                            <td colspan="6" style="text-align: center">No matches yet..</td>
                                         </tr>
                                     @endforelse
                                     </tbody>
@@ -186,7 +181,9 @@
                                                 </div>
                                                 <div class="col-md-7">
                                                     <b><h4 style="font-weight: bold;">{{ $item->name }}</h4></b>
-                                                    <h5>{{ $item->description }}</h5>
+                                                    <p style="text-align: justify; white-space: pre; overflow: hidden; text-overflow: ellipsis">
+                                                        {{ $item->description }}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
