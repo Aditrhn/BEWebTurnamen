@@ -111,7 +111,7 @@ class MatchController extends Controller
     {
         $events = Event::find();
         \dd($events);
-        return \view('admin.match.score');
+        return \view('admin.match.score', \compact('events'));
     }
     public function time($id)
     {
@@ -168,7 +168,7 @@ class MatchController extends Controller
             'score_a' => $request->score_a,
             'score_b' => $request->score_b
         ]);
-        return \redirect('super/event')->with(['msg' => 'score berhasil diubah!!']);
+        return \redirect()->back()->with(['msg' => 'score berhasil diubah!!']);
     }
 
     /**
