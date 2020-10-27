@@ -575,6 +575,19 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   /* End Page Team*/
 
   /* Page Team Details */
+  /* BOX */
+  .thumbex {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 435px;
+    height: 150px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: hidden;
+    outline-offset: -15px;
+  }
+  /* END BOX */
   .main .main-content .panel h3{
     padding-bottom: 10px;
   }
@@ -589,10 +602,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     color: #745FF8;
   }
   .main .main-content .panel-body .member div > img{
-  width: 80%; border-radius: 20px; align-items: center; 
+  max-width: 100%;
   }
   .main .main-content .panel-body .overview div > img {
-  max-width: 110%; border-radius: 20px; align-items: center;
+  max-width: 100%;
   }
   @media(min-width:1200px) and (max-width:1700px){
     .main .main-content .panel-body .team-overview .overview-button .friend-btn .btn{
@@ -785,9 +798,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
   /* END */
   /* Team Details */
-  .main .main-content .panel-body .member div > img{
+  /* .main .main-content .panel-body .member div > img{
     max-width: 50%;;
-    }
+    } */
   .main .main-content .panel-body .overview div > img {
   max-width: 100%;
   }
@@ -796,10 +809,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
   .main .main-content .panel-body .team-info-support div > img {
     width: 50%;
-  }
+  }/* 
   .main .main-content .panel-body .member div > img{
     max-width: 40%;
-  }
+  } */
   .main .main-content .panel-body .team-static div > img{
     max-width: 40%;
   }
@@ -949,6 +962,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       text-align: center;
     }
     .main .main-content .panel-body .overview div > img{
+      border-radius: 20px;
       max-width: 100%;
     }
     .main .main-content .panel-body .team-static div > img{
@@ -1092,9 +1106,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   opacity: 0.8;
 }
 .prizepool h3{
-  margin-right: 40px;
+  margin-right: 20px;
 }
 .prizepool h4{
+  margin-right: 20px;
   margin-top: 30px;
 }
 .panel-title{

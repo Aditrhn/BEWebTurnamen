@@ -57,7 +57,7 @@
 
 .leftSlot{
   font-weight: bold; 
-  padding-left: 90%;
+  float: right;
 }
 
 .imgMatch{
@@ -68,6 +68,7 @@
 .imgTeam{
   width: 200px; 
   height: 100px;
+  text-align: center;
 }
 
 .padMatch{
@@ -105,6 +106,12 @@
 
 .btn-setDate{
   background-color: #C2CD0A;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-round{
+  background-color: #0DBA25;
   color: white;
   font-weight: bold;
 }

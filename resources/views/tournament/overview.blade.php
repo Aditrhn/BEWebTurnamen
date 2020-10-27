@@ -415,9 +415,9 @@
                         <!-- PANEL HEADLINE -->
                         <div class="panel panel-headline">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span>1. </span>Format</h3>
-                                <h3 class="panel-title"><span>2. </span>Join Tournament</h3>
-                                <h3 class="panel-title"><span>3. </span>Prizes</h3>
+                                <h3 class="panel-title">1. Format</h3>
+                                <h3 class="panel-title">2. Join Tournament</h3>
+                                <h3 class="panel-title">3. Prizes</h3>
                             </div>
                         </div>
                     </div>

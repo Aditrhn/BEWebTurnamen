@@ -14,17 +14,17 @@
         </div>
     </div>
 </div>
-<!-- alert -->
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show position-fixed ml-4" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        {{ session('success') }}
-    </div>
-@endif
 
 <div class="content">
+    <!-- alert -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
