@@ -178,26 +178,28 @@
                                                         <td>
                                                             <h4 class="padMatch">{{ $match->team_b }}</h4>
                                                         </td>
+                                                        @if($match->date != null)
                                                         <td>
                                                             <h4 class="padMatch">
-                                                                @if($match->date != null)
-                                                                    {{ $match->date }}
+                                                                {{ $match->date }}
                                                             </h4>
                                                         </td>
+                                                        @else
+                                                        <td>
+                                                            <h4 class="padMatch">
+                                                                TBD
+                                                            </h4>
+                                                        </td>
+                                                        @endif
+                                                        @if ($match->score_a && $match->score_b != null)
+                                                        <td style="padding-top : 25px;">&nbsp;</td>
+                                                        @else
                                                         <td style="padding-top : 25px;">
                                                             <a href="{{ URL::route('match.score',$match->id) }}"
                                                                 class="btn btn-setScore">Set Score</a>
                                                         </td>
-                                                    @else
-                                                        TBD
-                                                        </h4>
-                                                        </td>
-                                                        <td style="padding-top : 25px;">
-                                                            <a href="{{ URL::route('match.time',$match->id) }}"
-                                                                class="btn btn-setDate">Set Date</a>
-                                                        </td>
-                                                @endif
-                                                </tr>
+                                                        @endif
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
