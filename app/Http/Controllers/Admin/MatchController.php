@@ -73,14 +73,14 @@ class MatchController extends Controller
 
             $this->validate($request, [
                 'round_number' => 'required',
-                'match_number' => 'required',
+                'date' => 'required',
                 'team_a' => 'required',
                 'team_b' => 'required',
             ]);
             Match::create([
                 'event_id' => $event->id,
                 'round_number' => $request->round_number,
-                'match_number' => $request->match_number,
+                'date' => $request->date,
                 'team_a' => $request->team_a,
                 'team_b' => $request->team_b
             ]);
