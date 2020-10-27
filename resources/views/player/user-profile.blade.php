@@ -201,8 +201,13 @@
                                                 <div class="col-md-5">
                                                     <img
                                                         src="{{ asset('images/team_logo/'.$item->logo_url) }}">
-                                                    <a class="btn btn-primary" id="btnviewteam" href="#"
-                                                        role="button">View Team</a>
+                                                    <form action="{{ URL::route('team.view',$item->id) }}"
+                                                            method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="teamId" value="{{ $item->id }}">
+                                                        <button class="btn btn-primary" id="btnviewteam"
+                                                            type="submit">View Team</button>
+                                                    </form>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <b>
