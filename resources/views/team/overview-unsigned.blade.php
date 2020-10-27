@@ -77,7 +77,7 @@
                                         </div>
                                         <img src="assets/img/ML.png"alt="">
                                         {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
-                                        <h4 style="text-align: center">{{ $team->game_name }}</h4>
+                                        <p style="text-align: center">{{ $team->game_name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xs-12">
@@ -90,7 +90,7 @@
                                                 <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
-                                            <p>Belum ada Sponsor.</p>
+                                            <p style="text-align: center; opacity: 50%">No sponsors yet..</p>
                                         @endforelse
                                     </div>
                                 </div>
