@@ -24,7 +24,7 @@
 							</div> -->
 						</div>
 						<div class="col-md-12"><!--Class utama Carousel "carousel-landing"-->
-							<div id="Carousel" class="carousel slide">					 
+							<div id="Carousel" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner">
 									<div class="item active">
@@ -44,7 +44,7 @@
 													   <h2 class="case-landing__title">PUBG</h2>
 													</div>
 												</div>
-											
+
 										</div><!--.row-->
 									</div>
 									<!--
@@ -70,7 +70,7 @@
 									-->
 								</div>
 							</div>
-						</div> 
+						</div>
 					</div>
 				</div>
 				<!--Carousel Feature Turnament-->
@@ -92,7 +92,7 @@
 							</div> -->
 						</div>
 						<div class="col-md-12"> <!--Class utama Carousel "carousel-landing"-->
-							<div id="Carousel-Feature" class="carousel slide">					 
+							<div id="Carousel-Feature" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner">
 									<div class="item active">
@@ -113,7 +113,7 @@
 													   <h2 class="case-landing__title">PUBG Nasional Invitation</h2>
 													</div>
 												</div>
-											
+
 											</div><!--.row-->
 										</div>
 									</div>
@@ -140,7 +140,7 @@
 									-->
 								</div>
 							</div>
-						</div> 
+						</div>
 					</div>
 				</div>
 				<!-- End Carousel -->
@@ -153,7 +153,7 @@
 										Matchticker</h3>
 								</div>
 							</div>
-							<div class="table-responsive table-matchticker">          
+							<div class="table-responsive table-matchticker">
 							<table class="table table-matchticker-content">
 								<tr>
 									<th>
@@ -161,16 +161,16 @@
 										<h4>02/03/2020</h4>
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
 										<h4 class="text-versus">VS</h4>
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
 										<h4>Nongski</h4>
@@ -188,16 +188,16 @@
 										<h4>02/03/2020</h4>
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
 										<h4 class="text-versus">VS</h4>
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
 										<h4>Nongski</h4>
@@ -215,16 +215,16 @@
 										<h4>02/03/2020</h4>
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
 										<h4 class="text-versus">VS</h4>
 									</th>
 									<th>
-										<img class="table-matchticker-img" alt="" src="assets/img/ML.png">
+										<img class="table-matchticker-img" alt="" src="{{ asset('assets/img/ML.png') }}">
 									</th>
 									<th>
 										<h4>Nongski</h4>
