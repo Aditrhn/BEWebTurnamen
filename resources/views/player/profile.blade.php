@@ -19,7 +19,7 @@
                             <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
                         @endif --}}
                     {{-- <p>{{ $avatar->ava_url }}</p> --}}
-                    <img src="{{ asset('images/avatars/'.$avatar->ava_url) }}" alt="">
+                    <img src="{{ URL::asset('images/avatars/'.$avatar->ava_url) }}" alt="">
                     @endforeach
                 </div>
                 <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
