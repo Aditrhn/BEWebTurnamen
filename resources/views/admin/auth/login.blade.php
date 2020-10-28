@@ -55,7 +55,7 @@
                 </div>
                 <span class="checkbox">
                   <label>
-                  <input name="remember" type="checkbox" value="Remember me"> Remember Me
+                  <input disabled name="remember" type="checkbox" value="Remember me"> Remember Me
                   </label>
                 </span>
                 <input class="btn btn-success mt-4" type="submit" value="Log In" id="submit_login">
