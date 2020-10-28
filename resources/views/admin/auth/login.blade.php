@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="css/admin/cs-skin-elastic.css">
-    <link rel="stylesheet" href="css/admin/style.css">
+    <link rel="stylesheet" href="{{ asset('css/admin/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
