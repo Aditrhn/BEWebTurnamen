@@ -7,11 +7,20 @@
             <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">
-                    @if (Auth::guard('player')->user()->ava_url != null)
-                    <img src="{{ asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
-                    @else
-                    <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
-                    @endif
+                    {{-- @if (Auth::guard('player')->user()->ava_url != null) --}}
+                    {{-- <img src="{{ asset('images/avatars/'.$ava->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar"> --}}
+                    {{-- @else --}}
+                    {{-- <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;"> --}}
+                    {{-- @endif --}}
+                    @foreach ($ava as $avatar)
+                        {{-- @if ($avatar->ava_url != null)
+                            <img src="{{ asset('images/avatars/'.$ava->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
+                        @else
+                            <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
+                        @endif --}}
+                    {{-- <p>{{ $avatar->ava_url }}</p> --}}
+                    <img src="{{ asset('images/avatars/'.$avatar->ava_url) }}" alt="">
+                    @endforeach
                 </div>
                 <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
                     <b><h2 style="color: white;">{{ Auth::guard('player')->user()->name }}</h2></b>
@@ -262,7 +271,7 @@
 
   });
 
-  
+
 
 </script>
 
