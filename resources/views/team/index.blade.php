@@ -10,7 +10,7 @@
                 <a href="{{ URL::route('team-create') }}">
                     <div class="panel-team">
                         <div class="panel-Create">
-                            <img class="imgPanelteam" alt="" src="assets/img/Create Team.png">
+                            <img class="imgPanelteam" alt="" src="{{ asset('assets/img/Create Team.png') }}">
                             <h3>Create</h3>
                         </div>
                         <div class="panel-body">
@@ -26,7 +26,7 @@
                 <a href="{{ URL::route('team-invitation') }}">
                     <div class="panel-team">
                         <div class="panel-Invitation">
-                            <img class="imgPanelteam" alt="" src="assets/img/ICON/teamReq.png">
+                            <img class="imgPanelteam" alt="" src="{{ asset('assets/img/ICON/teamReq.png') }}">
                             <h3>Team Invitations</h3>
                         </div>
                         <div class="panel-body">
