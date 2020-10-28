@@ -124,13 +124,9 @@ class PlayerAuthController extends Controller
                 ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
                 ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                 ->get();
-            $ava = DB::table('players')
-                ->where('id', Auth::guard('player')->user()->id)
-                ->select('id', 'name', 'email', 'password', 'address', 'contact', 'ava_url', 'city', 'province', 'status', 'gender')
-                ->get();
-            // \dd($ava);
+
             // dd($team);
-            return \view('player.profile', \compact('game', 'friend', 'team', 'ava'));
+            return \view('player.profile', \compact('game', 'friend', 'team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
