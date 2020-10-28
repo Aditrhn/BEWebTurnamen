@@ -53,11 +53,11 @@
                     </span>
                   @endif
                 </div>
-                <span class="checkbox">
+                {{-- <span class="checkbox">
                   <label>
                   <input disabled name="remember" type="checkbox" value="Remember me"> Remember Me
                   </label>
-                </span>
+                </span> --}}
                 <input class="btn btn-success mt-4" type="submit" value="Log In" id="submit_login">
               </fieldset>
               </form>
