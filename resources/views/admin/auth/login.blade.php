@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="container">
-      <img src="{{ asset('assets/img/navi.png') }} "width="100px">
+      <img src="{{ asset('assets/img/gameski.png') }} "width="100px">
         <div class="title mt-5">
             <h2>Log In</h2>
             <center>
