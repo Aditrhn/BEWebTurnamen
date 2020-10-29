@@ -36,7 +36,7 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if (Auth::guard('player')->user()->ava_url != null)
-                <img src="{{ asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" class="avatar" alt="Avatar">
+                <img src="{{ URL::asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" class="avatar" alt="Avatar">
                 @else
                 <img src="{{ asset('images/avatars/default.png') }}" class="avatar" alt="Avatar">
                 @endif

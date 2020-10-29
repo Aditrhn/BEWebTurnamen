@@ -8,7 +8,7 @@
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">
                     @if (Auth::guard('player')->user()->ava_url != null)
-                    <img src="{{ asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
+                    <img src="{{ URL::asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
                     @else
                     <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
                     @endif
@@ -130,7 +130,7 @@
                                         <center>
                                             @forelse ($friend as $friends)
                                                 @if ($friends->ava_url != null)
-                                                <img src="{{ asset('images/avatars/'.$friends->ava_url) }}" alt="{{ $friends->name }}">
+                                                <img src="{{ URL::asset('images/avatars/'.$friends->ava_url) }}" alt="{{ $friends->name }}">
                                                 @else
                                                 <img src="{{ asset('images/avatars/default.png') }}" alt="{{ $friends->name }}">
                                                 @endif
@@ -176,7 +176,7 @@
                                         <div class="col-md-5" id="teampanel" >
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <img src="{{ asset('images/team_logo/'.$item->logo_url) }}">
+                                                    <img src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
                                                     <a class="btn btn-primary" id="btnviewteam" href="{{ URL::route('team') }}" role="button">View Team</a>
                                                 </div>
                                                 <div class="col-md-7">
@@ -262,7 +262,7 @@
 
   });
 
-  
+
 
 </script>
 

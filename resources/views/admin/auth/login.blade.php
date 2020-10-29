@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="css/admin/cs-skin-elastic.css">
-    <link rel="stylesheet" href="css/admin/style.css">
+    <link rel="stylesheet" href="{{ asset('css/admin/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -53,11 +53,11 @@
                     </span>
                   @endif
                 </div>
-                <span class="checkbox">
+                {{-- <span class="checkbox">
                   <label>
-                  <input name="remember" type="checkbox" value="Remember me"> Remember Me
+                  <input disabled name="remember" type="checkbox" value="Remember me"> Remember Me
                   </label>
-                </span>
+                </span> --}}
                 <input class="btn btn-success mt-4" type="submit" value="Log In" id="submit_login">
               </fieldset>
               </form>
@@ -75,7 +75,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="js/admin/main.js"></script>
+    <script src="{{ asset('js/admin/main.js') }}"></script>
 
 </body>
 </html>

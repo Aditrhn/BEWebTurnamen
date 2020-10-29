@@ -35,7 +35,7 @@
                                             <a href="{{ URL::route('user.profile',$players->id) }}">
                                                 <div class="panel-body">
                                                     @if ($players->ava_url != null)
-                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$players->ava_url) }}">
+                                                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$players->ava_url) }}">
                                                     @else
                                                       <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                                                     @endif
@@ -70,7 +70,7 @@
                                         <div class="panel panel-headline panel-friend-detail">
                                             <div class="panel-body">
                                                 <img class="img-panel-friend"
-                                                    src="{{ asset('images/team_logo/'.$teams->logo_url) }}">
+                                                    src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
                                                 <form action="{{ URL::route('team.view',$teams->id) }}"
                                                         method="POST">
@@ -110,7 +110,7 @@
                                         <tbody>
                                             <tr>
                                                 @forelse ($tournament as $tournaments)
-                                                <td><img alt="" id="imgGame" src="{{ asset('images/game_icon/'.$tournaments->logo) }}" class="find-image">
+                                                <td><img alt="" id="imgGame" src="{{ URL::asset('images/game_icon/'.$tournaments->logo) }}" class="find-image">
                                                 </td>
                                                 <td>
                                                     <h4 class="find-text">{{ $tournaments->name }}</h4>
