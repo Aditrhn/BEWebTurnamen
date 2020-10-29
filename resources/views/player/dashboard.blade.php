@@ -34,7 +34,7 @@
 													   <h2 class="case-landing__title">Mobile Legend</h2>
 													</div>
 												</div>
-												<div class="case-landing landing1" style="background-image: url('https://60dtk.com/wp-content/uploads/2019/01/free-fire-750x390.jpeg');">
+												<div class="case-landing landing1" style="background-image: url('https://id-test-11.slatic.net/p/88cd68df4f9451f7febafdc3543459e6.png');">
 													<div class="case-landing__overlay">
 													   <h2 class="case-landing__title">Free Fire</h2>
 													</div>
@@ -103,7 +103,7 @@
 													   <h2 class="case-landing__title">Mobile Legend Squad Yogyakarta</h2>
 													</div>
 												</div>
-												<div class="case-landing landing2" style="background-image: url('https://pantau.tekape.id/wp-content/uploads/2020/08/t_5e607879bbfa8.jpg');">
+												<div class="case-landing landing2" style="background-image: url('https://id-test-11.slatic.net/p/88cd68df4f9451f7febafdc3543459e6.png');">
 													<div class="case-landing__overlay">
 													   <h2 class="case-landing__title">Free Fire Kualifikasi Daerah</h2>
 													</div>
