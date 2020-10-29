@@ -294,104 +294,24 @@
                                 </div>
                                 <!--Baris 1-->
                                 <div class="row" style="padding-top: 2%; text-align: center;">
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
+                                    @forelse ($join2 as $joins)
+                                        <div class="col-md-2">
+                                            <div class="card" style="border-radius: 10px;">
+                                                <div class="card-img-top" style=" background-color: black;">
+                                                    <img id="imgTeam" class="card-img-top imgTeam"
+                                                        src="{{ URL::asset('images/team_logo/'. $joins->logo_url) }}"
+                                                        alt="Card image cap">
+                                                </div>
+                                                <div class="card-title">
+                                                    <h5 id="teamName" class="card-title titleTeam">
+                                                        {{ $joins->name }}
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card" style="border-radius: 10px;">
-                                            <div class="card-img-top" style=" background-color: black;">
-                                                <img id="imgTeam" class="card-img-top imgTeam"
-                                                    src="{{ URL::asset('assets/img/navi.png') }}"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div class="card-title">
-                                                <h5 id="teamName" class="card-title titleTeam">
-                                                    Navi
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @empty
+                                        <h5 style="text-align: center">No participants yet..</h5>
+                                    @endforelse
                                 </div>
                                 <!--Baris 2-->
                             </div>
