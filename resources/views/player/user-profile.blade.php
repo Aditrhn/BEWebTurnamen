@@ -9,12 +9,12 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-4">
                         @if($player->ava_url !== null)
-                            <img src="{{ asset('images/avatars/'.$player->ava_url) }}"
+                            <img src="{{ URL::asset('images/avatars/'.$player->ava_url) }}"
                                 width="40%"
                                 style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;"
                                 alt="Avatar">
                         @else
-                            <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%"
+                            <img src="{{ asset('images/avatars/default.png') }}" width="40%"
                                 style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
                         @endif
                     </div>
@@ -158,7 +158,7 @@
                                         <center>
                                             @forelse($friend as $friends)
                                                 @if($friends->ava_url != null)
-                                                    <img src="{{ asset('images/avatars/'.$friends->ava_url) }}"
+                                                    <img src="{{ URL::asset('images/avatars/'.$friends->ava_url) }}"
                                                         alt="{{ $friends->name }}">
                                                 @else
                                                     <img src="{{ asset('images/avatars/default.png') }}"
@@ -195,7 +195,7 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <img
-                                                        src="{{ asset('images/team_logo/'.$item->logo_url) }}">
+                                                        src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
                                                     <form action="{{ URL::route('team.view',$item->id) }}"
                                                             method="POST">
                                                         @csrf

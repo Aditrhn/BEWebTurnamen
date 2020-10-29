@@ -17,7 +17,7 @@
                                 <div class="overview">
                                     <div class="col-lg-5 col-sm-4">
                                         <div class="thumbex">
-                                            <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                            <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                         </div>
                                     </div>
                                     <div class="team-overview col-lg-7 col-sm-8">
@@ -67,7 +67,7 @@
                                         @endif
                                         @if ($members->ava_url != null)
                                         <div class="thumbex">
-                                            <img src="{{ asset('images/avatars/'.$members->ava_url) }}">
+                                            <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
                                         </div>
                                         @else
                                         <div class="thumbex">
@@ -97,7 +97,7 @@
                                         <div class="team-info-game">
                                             <h5 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h5>
                                             {{-- <img src="assets/img/ML.png"alt=""> --}}
-                                            <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt="">
+                                            <img src="{{ URL::asset('images/game_icon/'.$team->icon_url) }}"alt="">
                                             <p style="text-align: center">{{ $team->game_name }}</p>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">
-                                                <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
+                                                <img src="{{ URL::asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
                                             <p style="text-align: center; opacity: 50%">No sponsors yet..</p>
@@ -152,7 +152,7 @@
                                         <div class="col-xs-12 friend-modal">
                                             <div class="col-xs-3">
                                                 @if ($requests->ava_url != null)
-                                                    <img class="img-friend" src="{{ asset('images/avatars/'.$requests->ava_url) }}">
+                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/'.$requests->ava_url) }}">
                                                 @else
                                                     <img class="img-friend" src="{{ asset('images/avatars/default.png') }}">
                                                 @endif
@@ -205,7 +205,7 @@
                                         <div class="col-xs-12 friend-modal">
                                             <div class="col-xs-3">
                                                 @if ($friend->ava_url != null)
-                                                    <img class="img-friend" src="{{ asset('images/avatars/'.$friend->ava_url) }}">
+                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/'.$friend->ava_url) }}">
                                                 @else
                                                     <img class="img-friend" src="{{ asset('images/avatars/default.png') }}">
                                                 @endif
