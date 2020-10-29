@@ -8,7 +8,7 @@
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">
                     @if (Auth::guard('player')->user()->ava_url != null)
-                    <img src="{{ asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
+                    <img src="{{ URL::asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;" alt="Avatar">
                     @else
                     <img src="{{ asset('assets/img/apple-icon.png') }}" width="40%" style="margin-top: 5%; margin-bottom: 5%; border-radius: 10px; margin-left: 10%;">
                     @endif
@@ -262,7 +262,7 @@
 
   });
 
-  
+
 
 </script>
 
