@@ -38,9 +38,9 @@
               @endif
             </div>
             <span class="checkbox">
-              <label>
+              {{-- <label>
               <input disabled name="remember" type="checkbox" value="Remember me"> Remember Me
-              </label>
+              </label> --}}
               <a href="" class="pull-right">Forgot Password?</a>
             </span>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
