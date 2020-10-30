@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="brand">
-    <a href="{{URL::route('dashboard')}}"><img src="{{ asset('assets/img/gameski.png') }}" class="img-responsive logo"></a>
+    <a href="{{URL::route('dashboard')}}"><img src="{{ asset('assets/img/gameski.png') }}" class="img-responsive logo" width="150px"></a>
   </div>
   <div class="container-fluid">
     <div class="navbar-btn">
