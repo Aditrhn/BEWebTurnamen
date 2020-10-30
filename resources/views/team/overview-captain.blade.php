@@ -248,7 +248,7 @@
                         <div class="panel-body" id="overview" style="height: 159px">
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
-                                    <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                    <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                 </div>
                                 <div class="team-overview col-lg-7 col-sm-8">
                                     <h3>{{ $team->name }}</h3>
@@ -279,7 +279,7 @@
                                 @forelse ($member as $members)
                                 <div class="col-lg-2 col-xs-6 col-lg-offset-1" style="margin-left: 17px">
                                     @if ($members->ava_url != null)
-                                        <img src="{{ asset('images/avatars/'.$members->ava_url) }}">
+                                        <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
                                     @else
                                         <img src="{{ asset('images/avatars/default.png') }}">
                                     @endif
@@ -310,9 +310,9 @@
                                         <div class="row">
                                             <h4 class="pull-left col-lg-12 col-xs-12 center-block">Game Focus</h4>
                                         </div>
-                                        <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt="">
+                                        <img src="{{ URL::asset('images/game_icon/'.$team->icon_url) }}"alt="">
                                         {{-- <img src="assets/img/ML.png"alt=""> --}}
-                                        <h4 class="center-block">{{ $team->game_name }}</h4>
+                                        <p class="center-block">{{ $team->game_name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xs-12">
@@ -322,7 +322,7 @@
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">
-                                                <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
+                                                <img src="{{ URL::asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
                                             <h4 style="text-align: center; opacity: 50%">No sponsors yet..</h4>
@@ -366,7 +366,7 @@
                                         <div class="col-xs-12 friend-modal">
                                             <div class="col-xs-3">
                                                 @if ($friend->ava_url != null)
-                                                    <img class="img-friend" src="{{ asset('images/avatars/'.$friend->ava_url) }}">
+                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/'.$friend->ava_url) }}">
                                                 @else
                                                     <img class="img-friend" src="{{ asset('images/avatars/default.png') }}">
                                                 @endif

@@ -41,7 +41,7 @@
               {{-- <label>
               <input disabled name="remember" type="checkbox" value="Remember me"> Remember Me
               </label> --}}
-              <a href="" class="pull-right">Forgot Password?</a>
+              <a href="" class="pull-right" style="margin-top: 5px">Forgot Password?</a>
             </span>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             <br>
