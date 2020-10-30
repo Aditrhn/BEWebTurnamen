@@ -1,5 +1,10 @@
 
 /* PAGE LOGIN */
+
+#imglogin{
+  margin-top: 20px;
+}
+
 #container_login h2{
   text-align: center;
  
@@ -19,7 +24,7 @@
  border-radius: 5px;
 }
 #submit_login{
- width: 100%;
+ width: 20%;
  height: 50px;
  background-color: #C0D0EB;
  border: none;

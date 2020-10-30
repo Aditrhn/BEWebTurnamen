@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/custom.css') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -28,7 +29,7 @@
 </head>
 <body>
     <div class="container">
-      <img src="{{ asset('assets/img/gameski.png') }} "width="100px">
+      <img id="imglogin" src="{{ asset('assets/img/gameski.png') }} "width="30%" >
         <div class="title mt-5">
             <h2>Log In</h2>
             <center>
