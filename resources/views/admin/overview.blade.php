@@ -79,24 +79,18 @@
                     </nav>
                     <div class="tab-content pt-4" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                            @forelse ($status_1 as $onGoing)
                             <div class="row">
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
                                             <div class="card-left pt-1 float-left">
-                                                {{-- @forelse ($status_1 as $onGoing)
                                                 <h3 class="mb-0 fw-r">{{ $onGoing->judul }}</h3>
                                                 <p class="text-light mt-1 m-0">{{ $onGoing->nama }}</p>
-                                                @empty --}}
-                                                <h3 class="mb-0 fw-r">Null!!</h3>
-                                                <p class="text-light mt-1 m-0">Null!!</p>
-                                                {{-- @endforelse --}}
                                             </div><!-- /.card-left -->
-
                                             <div class="card-right float-right text-right">
                                                 <a class="btn btn-primary" href="#">On Going</a>
                                             </div><!-- /.card-right -->
-
                                         </div>
                                         <div class="card-text bg-light">
                                             <div class="table-stats order-table ov-h">
@@ -104,7 +98,6 @@
                                                     <thead>
                                                     </thead>
                                                     <tbody>
-                                                        {{-- @forelse ($status_1 as $onGoing)
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
@@ -123,26 +116,6 @@
                                                                 <span class="badges text-secondary">{{ $onGoing->mode }} Elimination</span>
                                                             </td>
                                                         </tr>
-                                                        @empty --}}
-                                                        <tr>
-                                                            <td>  <span class="name">Participant</span> </td>
-                                                            <td>
-                                                                <span class="badges text-secondary">Null!! Teams</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>  <span class="name">Date</span> </td>
-                                                            <td>
-                                                                <span class="badges text-secondary">Null!!</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>  <span class="name">Mode</span> </td>
-                                                            <td>
-                                                                <span class="badges text-secondary">Null!! Mode</span>
-                                                            </td>
-                                                        </tr>
-                                                        {{-- @endforelse --}}
                                                     </tbody>
                                                 </table>
                                             </div> <!-- /.table-stats -->
@@ -150,24 +123,18 @@
                                     </div>
                                 </div>
                             </div><!-- /# column -->
+                            @empty
                             <div class="row">
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
                                             <div class="card-left pt-1 float-left">
-                                                {{-- @forelse ($status_1 as $onGoing)
-                                                <h3 class="mb-0 fw-r">{{ $onGoing->judul }}</h3>
-                                                <p class="text-light mt-1 m-0">{{ $onGoing->nama }}</p>
-                                                @empty --}}
                                                 <h3 class="mb-0 fw-r">Null!! 2</h3>
                                                 <p class="text-light mt-1 m-0">Null!!</p>
-                                                {{-- @endforelse --}}
                                             </div><!-- /.card-left -->
-
                                             <div class="card-right float-right text-right">
                                                 <a class="btn btn-primary" href="#">On Going</a>
                                             </div><!-- /.card-right -->
-
                                         </div>
                                         <div class="card-text bg-light">
                                             <div class="table-stats order-table ov-h">
@@ -175,26 +142,6 @@
                                                     <thead>
                                                     </thead>
                                                     <tbody>
-                                                        {{-- @forelse ($status_1 as $onGoing)
-                                                        <tr>
-                                                            <td>  <span class="name">Participant</span> </td>
-                                                            <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->jml_peserta }} Teams</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>  <span class="name">Date</span> </td>
-                                                            <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->tgl_mulai }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>  <span class="name">Mode</span> </td>
-                                                            <td>
-                                                                <span class="badges text-secondary">{{ $onGoing->mode }} Elimination</span>
-                                                            </td>
-                                                        </tr>
-                                                        @empty --}}
                                                         <tr>
                                                             <td>  <span class="name">Participant</span> </td>
                                                             <td>
@@ -213,7 +160,6 @@
                                                                 <span class="badges text-secondary">Null!! Mode</span>
                                                             </td>
                                                         </tr>
-                                                        {{-- @endforelse --}}
                                                     </tbody>
                                                 </table>
                                             </div> <!-- /.table-stats -->
@@ -221,153 +167,102 @@
                                     </div>
                                 </div>
                             </div><!-- /# column -->
-
+                            @endforelse
                         </div>
                         <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
-                            <div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
-                                <div class="row">
-                                    <div class="col-sm-12 col-lg-6">
-                                        <div class="card text-white bg-flat-color-1">
-                                            <div class="card-body p-5">
-                                                <div class="card-left pt-1 float-left">
-                                                    {{-- @forelse ($status_0 as $finished)
-                                                    <h3 class="mb-0 fw-r">{{ $finished->judul }}</h3>
-                                                    <p class="text-light mt-1 m-0">{{ $finished->nama }}</p>
-                                                    @empty --}}
-                                                    <h3 class="mb-0 fw-r">Null!!</h3>
-                                                    <p class="text-light mt-1 m-0">Null!!</p>
-                                                    {{-- @endforelse --}}
-                                                </div><!-- /.card-left -->
+                            @forelse ($status_0 as $finished)
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="card text-white bg-flat-color-1">
+                                        <div class="card-body p-5">
+                                            <div class="card-left pt-1 float-left">
+                                                <h3 class="mb-0 fw-r">{{ $finished->judul }}</h3>
+                                                <p class="text-light mt-1 m-0">{{ $finished->nama }}</p>
+                                            </div><!-- /.card-left -->
 
-                                                <div class="card-right float-right text-right">
-                                                    <a class="btn btn-success" href="#">Finished</a>
-                                                </div><!-- /.card-right -->
+                                            <div class="card-right float-right text-right">
+                                                <a class="btn btn-success" href="#">Finished</a>
+                                            </div><!-- /.card-right -->
 
-                                            </div>
-                                            <div class="card-text bg-light">
-                                                <div class="table-stats order-table ov-h">
-                                                    <table class="table">
-                                                        <thead>
-                                                        </thead>
-                                                        <tbody>
-                                                            {{-- @forelse ($status_0 as $finished))
-                                                            <tr>
-                                                                <td>  <span class="name">Participant</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">{{ $finished->jml_peserta }} Teams</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Date</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">{{ $finished->tgl_mulai }}</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Mode</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">{{ $finished->mode }} Mode</span>
-                                                                </td>
-                                                            </tr>
-                                                            @empty --}}
-                                                            <tr>
-                                                                <td>  <span class="name">Participant</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">Null!! Teams</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Date</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">Null!!</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Mode</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">Null!!</span>
-                                                                </td>
-                                                            </tr>
-                                                            {{-- @endforelse --}}
-                                                        </tbody>
-                                                    </table>
-                                                </div> <!-- /.table-stats -->
-                                            </div>
+                                        </div>
+                                        <div class="card-text bg-light">
+                                            <div class="table-stats order-table ov-h">
+                                                <table class="table">
+                                                    <thead>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>  <span class="name">Participant</span> </td>
+                                                            <td>
+                                                                <span class="badges text-secondary">{{ $finished->jml_peserta }} Teams</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>  <span class="name">Date</span> </td>
+                                                            <td>
+                                                                <span class="badges text-secondary">{{ $finished->tgl_mulai }}</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>  <span class="name">Mode</span> </td>
+                                                            <td>
+                                                                <span class="badges text-secondary">{{ $finished->mode }} Mode</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- /.table-stats -->
                                         </div>
                                     </div>
-                                </div><!-- /# column -->
-                                <div class="row">
-                                    <div class="col-sm-12 col-lg-6">
-                                        <div class="card text-white bg-flat-color-1">
-                                            <div class="card-body p-5">
-                                                <div class="card-left pt-1 float-left">
-                                                    {{-- @forelse ($status_0 as $finished)
-                                                    <h3 class="mb-0 fw-r">{{ $finished->judul }}</h3>
-                                                    <p class="text-light mt-1 m-0">{{ $finished->nama }}</p>
-                                                    @empty --}}
-                                                    <h3 class="mb-0 fw-r">Null!!2</h3>
-                                                    <p class="text-light mt-1 m-0">Null!!</p>
-                                                    {{-- @endforelse --}}
-                                                </div><!-- /.card-left -->
+                                </div>
+                            </div><!-- /# column -->
+                            @empty
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="card text-white bg-flat-color-1">
+                                        <div class="card-body p-5">
+                                            <div class="card-left pt-1 float-left">
+                                                <h3 class="mb-0 fw-r">Null!!2</h3>
+                                                <p class="text-light mt-1 m-0">Null!!</p>
+                                            </div><!-- /.card-left -->
 
-                                                <div class="card-right float-right text-right">
-                                                    <a class="btn btn-success" href="#">Finished</a>
-                                                </div><!-- /.card-right -->
+                                            <div class="card-right float-right text-right">
+                                                <a class="btn btn-success" href="#">Finished</a>
+                                            </div><!-- /.card-right -->
 
-                                            </div>
-                                            <div class="card-text bg-light">
-                                                <div class="table-stats order-table ov-h">
-                                                    <table class="table">
-                                                        <thead>
-                                                        </thead>
-                                                        <tbody>
-                                                            {{-- @forelse ($status_0 as $finished))
-                                                            <tr>
-                                                                <td>  <span class="name">Participant</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">{{ $finished->jml_peserta }} Teams</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Date</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">{{ $finished->tgl_mulai }}</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Mode</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">{{ $finished->mode }} Mode</span>
-                                                                </td>
-                                                            </tr>
-                                                            @empty --}}
-                                                            <tr>
-                                                                <td>  <span class="name">Participant</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">Null!! Teams</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Date</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">Null!!</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>  <span class="name">Mode</span> </td>
-                                                                <td>
-                                                                    <span class="badges text-secondary">Null!!</span>
-                                                                </td>
-                                                            </tr>
-                                                            {{-- @endforelse --}}
-                                                        </tbody>
-                                                    </table>
-                                                </div> <!-- /.table-stats -->
-                                            </div>
+                                        </div>
+                                        <div class="card-text bg-light">
+                                            <div class="table-stats order-table ov-h">
+                                                <table class="table">
+                                                    <thead>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>  <span class="name">Participant</span> </td>
+                                                            <td>
+                                                                <span class="badges text-secondary">Null!! Teams</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>  <span class="name">Date</span> </td>
+                                                            <td>
+                                                                <span class="badges text-secondary">Null!!</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>  <span class="name">Mode</span> </td>
+                                                            <td>
+                                                                <span class="badges text-secondary">Null!!</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- /.table-stats -->
                                         </div>
                                     </div>
-                                </div><!-- /# column -->
-                            </div>
+                                </div>
+                            </div><!-- /# column -->
+                            @endforelse
                         </div>
                     </div>
 
