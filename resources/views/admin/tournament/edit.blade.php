@@ -235,8 +235,8 @@
 @push('tooltip')
 
     <!-- Date Picker -->
-    <script src="{{ URL::asset('js/admin/datepicker.min.js') }}"></script>
-    <script src="{{ URL::asset('js/admin/i18n/datepicker.en.js') }}">
+    <script src="{{ asset('js/admin/datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/admin/i18n/datepicker.en.js') }}">
     </script>
     <script>
         $('#start-date').datepicker({
@@ -265,5 +265,5 @@
             x.readOnly = false;
         }
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 @endpush
