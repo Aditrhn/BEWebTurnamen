@@ -59,7 +59,7 @@
 </div>
 <div class="content">
     <div class="col-md-12" style="background-color: black; text-align: center;">
-        <img class="bannerOverview" src="{{ URL::asset('assets/img/ML.png') }}" alt="">
+        <img class="bannerOverview" src="{{ asset('assets/img/ML.png') }}" alt="">
     </div>
     <ul class="nav nav-pills mb-3 padNav" id="pills-tab" role="tablist">
         <li class="nav-item padPills">
@@ -167,7 +167,7 @@
                                                             <h4 class="padMatch">{{ $match->team_a }}</h4>
                                                         </td>
                                                         <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                                src="{{ URL::asset('assets/img/navi.png') }}">
+                                                                src="{{ asset('assets/img/navi.png') }}">
                                                         </td>
                                                         <td>
                                                             <h4 class="padMatch">
@@ -179,7 +179,7 @@
                                                             </h4>
                                                         </td>
                                                         <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                                src="{{ URL::asset('assets/img/navi.png') }}">
+                                                                src="{{ asset('assets/img/navi.png') }}">
                                                         </td>
                                                         <td>
                                                             <h4 class="padMatch">{{ $match->team_b }}</h4>
@@ -234,13 +234,13 @@
                                                         <h4 class="padMatch">Secret</h4>
                                                     </td>
                                                     <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ URL::asset('assets/img/navi.png') }}">
+                                                            src="{{ asset('assets/img/navi.png') }}">
                                                     </td>
                                                     <td>
                                                         <h4 class="padMatch">0 - 3</h4>
                                                     </td>
                                                     <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ URL::asset('assets/img/navi.png') }}">
+                                                            src="{{ asset('assets/img/navi.png') }}">
                                                     </td>
                                                     <td>
                                                         <h4 class="padMatch">Navi</h4>
@@ -258,13 +258,13 @@
                                                         <h4 class="padMatch">Secret</h4>
                                                     </td>
                                                     <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ URL::asset('assets/img/navi.png') }}">
+                                                            src="{{ asset('assets/img/navi.png') }}">
                                                     </td>
                                                     <td>
                                                         <h4 class="padMatch">VS</h4>
                                                     </td>
                                                     <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ URL::asset('assets/img/navi.png') }}">
+                                                            src="{{ asset('assets/img/navi.png') }}">
                                                     </td>
                                                     <td>
                                                         <h4 class="padMatch">Navi</h4>
@@ -299,7 +299,7 @@
                                             <div class="card" style="border-radius: 10px;">
                                                 <div class="card-img-top" style=" background-color: black;">
                                                     <img id="imgTeam" class="card-img-top imgTeam"
-                                                        src="{{ URL::asset('images/team_logo/'. $joins->logo_url) }}"
+                                                        src="{{ asset('images/team_logo/'. $joins->logo_url) }}"
                                                         alt="Card image cap">
                                                 </div>
                                                 <div class="card-title">
@@ -326,8 +326,8 @@
 @push('tooltip')
     <!-- Date Picker -->
     <script src="assets/js/main.js"></script>
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('js/jquery.bracket.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.bracket.min.js') }}"></script>
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js') }}"></script>
     <script>
         var single = {
@@ -336,7 +336,7 @@
                     ["{{$match->team_a}}", "{{$match->team_b}}"],
                 @endforeach
                 @if(count($matches) % 2 != 0)
-                    [null, null] 
+                    [null, null]
                 @endif
             ],
             results: [
