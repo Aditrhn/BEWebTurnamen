@@ -49,7 +49,7 @@
                                             <td class="avatar">
                                                 <div class="round-img">
                                                     <img class="rounded-circle"
-                                                        src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}"
+                                                        src="{{ asset('images/game_icon/'. $games->icon_url) }}"
                                                         alt="game_icon">
                                                 </div>
                                             </td>
