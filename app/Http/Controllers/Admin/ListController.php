@@ -11,7 +11,8 @@ class ListController extends Controller
 {
     public function player()
     {
-        $player = Player::select('name', 'email', 'address', 'contact', 'gender', 'city')->get();
+        // $player = Player::select('name', 'email', 'address', 'contact', 'gender', 'city')->get();
+        $player = Player::query()->paginate(50);
         return \view('admin.player-list.index', \compact('player'));
     }
     public function team()

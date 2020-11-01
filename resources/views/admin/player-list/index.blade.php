@@ -49,8 +49,8 @@
 
                                     </tr>
                                 </tbody>
-                                {{-- {{ $info->links() }} --}}
                             </table>
+                            {{ $player->links() }}
                         </div>
                     </div>
                 </div>

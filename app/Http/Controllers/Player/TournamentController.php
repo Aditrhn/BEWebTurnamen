@@ -19,7 +19,7 @@ class TournamentController extends Controller
         if (Auth::guard('player')->check()) {
             // $tournament = Event::select('title', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC')->paginate(1);
             // $tournament = Event::all('title', 'status', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC');
-            $tournament = Event::query()->paginate(1);
+            $tournament = Event::query()->paginate(5);
             // \dd($tournament);
             return \view('tournament.index', \compact('tournament'));
         } else {
