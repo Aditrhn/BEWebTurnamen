@@ -48,9 +48,9 @@
                                     <tr>
 
                                     </tr>
-                                </tbody>
-                                {{-- {{ $info->links() }} --}}
+                                </tbody> 
                             </table>
+                            {{ $team->links() }}
                         </div>
                     </div>
                 </div>

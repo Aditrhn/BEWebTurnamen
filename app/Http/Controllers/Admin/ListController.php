@@ -26,7 +26,7 @@ class ListController extends Controller
         $team = DB::table('teams')
             ->join('games', 'games.id', '=', 'teams.games_id')
             ->select('teams.id', 'teams.name as team_name', 'teams.max_member', 'teams.description', 'games.name as game_name')
-            ->get();
+            ->paginate(50);
         // dd($team);
         foreach ($team as $teams) {
             $member[] = Contract::select('*')->where('teams_id', '=', $teams->id)->count();

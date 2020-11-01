@@ -40,7 +40,33 @@
                                                       <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
-                                                    <form action="{{ URL::route('add-friend') }}"
+                                                    <?php 
+                                                        $status = DB::table('friends')
+                                                            ->select('status')
+                                                            ->where([
+                                                                ['player_one', '=', $players->id],
+                                                                ['player_two', '=', Auth::guard('player')->user()->id]
+                                                            ])
+                                                            ->orWhere([
+                                                                ['player_one', '=', Auth::guard('player')->user()->id],
+                                                                ['player_two', '=', $players->id]
+                                                            ])->first();
+                                                    ?>
+                                                    @if ($status != null)
+                                                        @if ($status->status == "1")
+                                                        <form action="{{ URL::route('unfriend') }}" method="POST">
+                                                            @csrf
+                                                            <div class="buttons col-md-12 btnAdd">
+                                                                <input type="hidden" name="unfriend" value="{{ $players->id }}">
+                                                                <button class="btn btn-xs btn-danger" id="btnUnfriend"
+                                                                    type="submit">Unfriend</button>
+                                                            </div>
+                                                        </form>
+                                                        @elseif ($status->status == "0")
+                                                            <a href="#" type="button" class="btn btn-xs btn-primary">Friend Request Sent</a>
+                                                        @endif
+                                                    @else
+                                                        <form action="{{ URL::route('add-friend') }}"
                                                         method="POST">
                                                         @csrf
                                                         <div class="buttons col-md-12 btnAdd">
@@ -48,7 +74,8 @@
                                                             <button class="btn btn-xs btn-primary" id="btnAddfriend"
                                                                 type="submit">Add Friend</button>
                                                         </div>
-                                                    </form>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </a>
                                         </div>
