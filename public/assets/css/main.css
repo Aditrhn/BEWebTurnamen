@@ -35,20 +35,52 @@ th {
   font-weight: 300; }
 
 footer {
-  position: absolute;
+  color: #fff;
   bottom: 0;
   right: 0;
   padding-top: 15px;
   padding-bottom: 10px; }
 
+  .img-footer{
+    width: 220px;
+    height: 50px;
+  }
+
+  .img-support{
+    padding-left: 15px;
+    width: 150px;
+    height: 30px;
+  }
+
+  .copyright-font{
+    padding-top: 25px;
+    margin-bottom: 0;
+    padding-left: 12%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
 .copyright {
+  padding-top: 60px;
   margin-bottom: 0;
-  text-align: right;
+  padding-left: 12%;
+  text-align: center;
   font-size: 13px; }
   @media screen and (max-width: 767px) {
     .copyright {
+      padding-top: 10px;
+      padding-left: 0;
       text-align: center;
-      position: relative !important; } }
+      position: relative !important; } 
+      
+    .copyright-font{
+      padding-top: 20px;
+      padding-left: 0;
+      text-align: center;
+      position: relative !important; } 
+  }
+    }
 
 /********************
  * LAYOUT

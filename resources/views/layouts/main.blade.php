@@ -35,6 +35,30 @@
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>
+			<div class="container-fluid">
+				<div class="row copyright">
+					<div class="col-md-4">
+						<img class="img-footer" src="{{ asset('assets/img/gameski.png') }}" alt="">
+					</div>
+					<div class="col-md-4">
+						<h4>About Us</h4>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+							when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+						</p>
+						<p>Telp. 01241041548952</p>
+					</div>
+					<div class="col-md-4">
+						<h4>Support By :</h4>
+						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
+						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
+						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
+						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
+					</div>
+				</div>
+
+				<p class="copyright-font">&copy; 2020 Gameskii.</p>
+			</div>
 		</footer>
 	</div>
 	<!-- END WRAPPER -->
