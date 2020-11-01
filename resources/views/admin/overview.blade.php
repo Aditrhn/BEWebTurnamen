@@ -79,8 +79,8 @@
                     </nav>
                     <div class="tab-content pt-4" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
-                            @forelse ($status_1 as $onGoing)
                             <div class="row">
+                                @forelse ($status_1 as $onGoing)
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
@@ -122,9 +122,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- /# column -->
-                            @empty
-                            <div class="row">
+                                
+                                @empty
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="card text-white bg-flat-color-3">
                                         <div class="card-body p-5">
@@ -166,12 +165,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /# column -->
+                                
+                                @endforelse
                             </div><!-- /# column -->
-                            @endforelse
                         </div>
                         <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
-                            @forelse ($status_0 as $finished)
                             <div class="row">
+                                @forelse ($status_0 as $finished)
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="card text-white bg-flat-color-1">
                                         <div class="card-body p-5">
@@ -215,9 +216,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- /# column -->
-                            @empty
-                            <div class="row">
+                                <!-- /# column -->
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="card text-white bg-flat-color-1">
                                         <div class="card-body p-5">
@@ -225,11 +224,11 @@
                                                 <h3 class="mb-0 fw-r">Null!!2</h3>
                                                 <p class="text-light mt-1 m-0">Null!!</p>
                                             </div><!-- /.card-left -->
-
+    
                                             <div class="card-right float-right text-right">
                                                 <a class="btn btn-success" href="#">Finished</a>
                                             </div><!-- /.card-right -->
-
+    
                                         </div>
                                         <div class="card-text bg-light">
                                             <div class="table-stats order-table ov-h">
@@ -261,7 +260,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- /# column -->
+                                <!-- /# column -->
+                            @empty
                             @endforelse
                         </div>
                     </div>
