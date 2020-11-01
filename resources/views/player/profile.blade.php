@@ -16,8 +16,8 @@
                 <div class="col-xs-6 col-sm-4" style="margin-left: -10%; ">
                     <b><h2 style="color: white;">{{ Auth::guard('player')->user()->name }}</h2></b>
                     <br>
-                    @if (Auth::guard('player')->user()->address !== null)
-                    <p style="color: white;">{{ Auth::guard('player')->user()->address }}</p>
+                    @if (Auth::guard('player')->user()->city !== null)
+                    <p style="color: white;">{{ Auth::guard('player')->user()->city }}</p>
                     @else
                     <p style="color: white;">Somewhere on earth..</p>
                     @endif

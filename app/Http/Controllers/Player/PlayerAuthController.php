@@ -222,6 +222,7 @@ class PlayerAuthController extends Controller
                 'name' => $request->name,
                 // 'email' => $request->email,
                 'address' => $request->address,
+                'email' => $request->mail,
                 'contact' => $request->contact,
                 'gender' => $request->gender,
                 'ava_url' => $ava_name,

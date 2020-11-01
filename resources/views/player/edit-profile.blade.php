@@ -38,7 +38,14 @@
                             </div>
                             {{-- Contact --}}
                             <div class="form-group" id="scrollform-teamcreate">
-                                <label for="contact">Contact</label>
+                                <label for="contact">E-mail</label>
+                                <input type="text" class="form-control @error('contact') is-invalid @enderror"
+                                    id="exampleInputEmail1" name="mail"
+                                    value="{{ Auth::guard('player')->user()->email }}">
+                            </div>
+                            {{-- Contact --}}
+                            <div class="form-group" id="scrollform-teamcreate">
+                                <label for="contact">Phone</label>
                                 <input type="text" class="form-control @error('contact') is-invalid @enderror"
                                     id="exampleInputEmail1" name="contact"
                                     value="{{ Auth::guard('player')->user()->contact }}">
