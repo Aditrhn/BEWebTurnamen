@@ -23,8 +23,8 @@
                     <div class="col-md-6">
                         <div class="form-group" id="scrollform-teamcreate">
                             <label for="name">Team Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                id="exampleInputEmail1" name="name">
+                            <input type="text" maxlength="12" class="form-control @error('name') is-invalid @enderror"
+                                id="exampleInputEmail1" name="name" placeholder="Input your team's name">
                         </div>
                     </div>
                     <div class="col-md-6">

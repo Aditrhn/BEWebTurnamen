@@ -35,10 +35,15 @@
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>
-			<div class="container-fluid">
+			<div class="container-fluid" style="background-color: #35346c;">
 				<div class="row copyright">
 					<div class="col-md-4">
 						<img class="img-footer" src="{{ asset('assets/img/gameski.png') }}" alt="">
+						<div class="row" style="padding-top : 20px;">
+							<img class="img-sosial" src="{{ asset('assets/img/ICON/instagram.png') }}" alt="">
+							<img class="img-sosial" src="{{ asset('assets/img/ICON/facebook.png') }}" alt="">
+							<img class="img-sosial" src="{{ asset('assets/img/ICON/twitter.png') }}" alt="">
+						</div>
 					</div>
 					<div class="col-md-4">
 						<h4>About Us</h4>
@@ -56,7 +61,6 @@
 						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
 					</div>
 				</div>
-
 				<p class="copyright-font">&copy; 2020 Gameskii.</p>
 			</div>
 		</footer>
