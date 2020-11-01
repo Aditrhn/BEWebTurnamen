@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\Excel\PlayersExport;
 use App\Http\Controllers\Controller;
 use App\Model\Player;
 use App\Model\Contract;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListController extends Controller
 {
@@ -15,6 +17,10 @@ class ListController extends Controller
         $player = Player::query()->paginate(50);
         return \view('admin.player-list.index', \compact('player'));
     }
+    public function exportPlayer()
+    {
+        return Excel::download(new PlayersExport, 'players.xlsx');
+    }
     public function team()
     {
         $team = DB::table('teams')
@@ -22,7 +28,7 @@ class ListController extends Controller
             ->select('teams.id', 'teams.name as team_name', 'teams.max_member', 'teams.description', 'games.name as game_name')
             ->get();
         // dd($team);
-        foreach($team as $teams) {
+        foreach ($team as $teams) {
             $member[] = Contract::select('*')->where('teams_id', '=', $teams->id)->count();
         }
         // dd($member);
