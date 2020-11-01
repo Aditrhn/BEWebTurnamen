@@ -121,6 +121,7 @@ Route::group(['auth', 'admins'], function () {
         //Team-player list
         Route::get('super/player-list', 'ListController@player')->name('list.player');
         Route::get('super/team-list', 'ListController@team')->name('list.team');
+        Route::get('super/team-list/excel', 'ListController@exportPlayer')->name('players.export');
 
         //team-matches
         Route::get('super/event/team-matches', 'MatchController@index')->name('match.index');

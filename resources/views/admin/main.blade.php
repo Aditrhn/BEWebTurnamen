@@ -24,6 +24,17 @@
     <link rel="stylesheet" href="{{ asset('css/admin/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/custom.css') }}">
+    <style>
+        svg.bi.bi-file-earmark-excel-fill{
+            font-size: 20px;
+            color: black;
+
+        }
+        svg.bi.bi-file-earmark-excel-fill:hover{
+            color: darkolivegreen;
+
+        }
+    </style>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link rel="stylesheet" href="{{ asset('css/admin/datepicker.min.css') }}" />
     {{-- jquery bracket --}}
