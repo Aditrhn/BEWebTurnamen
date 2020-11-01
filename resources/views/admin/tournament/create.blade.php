@@ -93,7 +93,7 @@
                                     </div>
                             @enderror
                         </div>
-                        <small class="form-text text-muted">(MM/DD/YYYY)</small>
+                        <small class="form-text text-muted">(YYYY-MM-DD)</small>
                     </div>
                 </div>
                 <div class="col-6">
@@ -105,7 +105,7 @@
                             data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
                             data-time-format='hh:ii:00' />
                         </div>
-                        <small class="form-text text-muted">(MM/DD/YYYY)</small>
+                        <small class="form-text text-muted">(YYYY-MM-DD)</small>
                     </div>
                 </div>
             </div>

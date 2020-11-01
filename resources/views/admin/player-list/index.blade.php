@@ -27,7 +27,6 @@
                                         <th>No.</th>
                                         <th>Nama</th>
                                         <th>E-mail</th>
-                                        <th>Alamat</th>
                                         <th>No. Hp</th>
                                         <th>Gender</th>
                                         <th>Kota</th>
@@ -39,7 +38,6 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $players->name }}</td>
                                             <td>{{ $players->email }}</td>
-                                            <td>{{ $players->address }}</td>
                                             <td>{{ $players->contact }}</td>
                                             <td>{{ $players->gender }}</td>
                                             <td>{{ $players->city }}</td>

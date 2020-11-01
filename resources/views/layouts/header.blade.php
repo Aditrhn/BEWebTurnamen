@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="brand">
+  <div class="brand" style="padding: 25px 39px">
     <a href="{{URL::route('dashboard')}}"><img src="{{ asset('assets/img/gameski.png') }}" class="img-responsive logo" width="150px"></a>
   </div>
   <div class="container-fluid">
@@ -22,7 +22,6 @@
           <ul class="dropdown-menu notifications">
             <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 friend request</a></li>
             <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to Na'Vi</a></li>
-            <li><a href="#" class="more">See all notifications</a></li>
           </ul>
         </li>
         <li class="dropdown">
