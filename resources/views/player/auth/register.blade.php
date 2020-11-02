@@ -1,6 +1,6 @@
 @extends('player.auth.main')
 @section('up-main')
-<div class="side-image">
+<div class="sidenav">
 </div>
 @endsection
 @section('main')
@@ -11,7 +11,7 @@
         <div class="panel-body">
           <h2>Sign Up</h2>
           <br>
-          <form accept-charset="UTF-8" role="form" action="{{URL::route('post.register')}}" method="POST">
+          <form accept-charset="UTF-8" role="form" class="text-white" action="{{URL::route('post.register')}}" method="POST">
             {{ csrf_field() }}
           <fieldset>
             <div class="form-group">
