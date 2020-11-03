@@ -48,32 +48,35 @@ footer {
   }
 
   .img-sosial{
-    padding-left: 8px;
-    padding-top: 8px;
-    width: 25px;
-    height: 25px;
+    padding: 4px;
+    width: 28px;
+    height: 28px;
+  }
+  .img-sosial:hover{
+    background-color: #745FF8;
   }
 
   .img-support{
-    padding-left: 15px;
-    width: 150px;
-    height: 30px;
+    padding: 4px;
+    width: 80px;
+    height: 50px;
   }
 
   .copyright-font{
     padding-top: 25px;
     padding-bottom: 20px;
     margin-bottom: 0;
-    padding-left: 12%;
+    padding-left: 10%;
     text-align: center;
     font-size: 15px;
     font-weight: bold;
   }
 
 .copyright {
+  position: relative;
   padding-top: 60px;
   margin-bottom: 0;
-  padding-left: 12%;
+  padding-left: 10%;
   text-align: center;
   font-size: 13px; }
   @media screen and (max-width: 767px) {
@@ -497,7 +500,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
 
     .colPanelTeam{
-      top: 100px; 
+      top: 10px; 
       margin-top: 10px;
     }
 

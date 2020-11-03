@@ -7,6 +7,7 @@
                     <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/instagram-white.png') }}" alt="">
                     <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/facebook-white.png') }}" alt="">
                     <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/whatsapp-white.png') }}" alt="">
+                    <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/youtube-white.png') }}" alt="">
                 </div>
             </div>
             <div class="col-md-4">
