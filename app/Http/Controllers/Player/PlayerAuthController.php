@@ -52,7 +52,7 @@ class PlayerAuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return \redirect('dashboard'); //redirect to url link dashboard
+            return \redirect('dashboard')->with(['success' => 'Register success']); //redirect to url link dashboard
         } else {
             return Redirect::to("login"); //routing login jika user tidak ada
         }

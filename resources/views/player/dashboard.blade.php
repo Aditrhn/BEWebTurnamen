@@ -1,28 +1,19 @@
 @extends('layouts.main')
 @section('notif')
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-      <i class="lnr lnr-alarm"></i>
-      <span class="badge bg-danger">{{ $notifFriend }}</span>
-      <span class="badge bg-danger">{{ $notif }}</span>
-    </a>
-    <ul class="dropdown-menu notifications">
-      <li><a href="{{ URL::route('friend') }}" class="notification-item"><span class="dot bg-danger"></span>You have {{ $notifFriend }} friend request</a></li>
-      {{-- @if ($notifTeams->name !== null)
-      <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to {{ $notifTeams->name }}</a></li>
-      @else
-      <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to ..</a></li>
-      @endif --}}
-      @foreach ($notifTeams as $item)
-      <li><a href="{{ URL::route('team-invitation') }}" class="notification-item"><span class="dot bg-success"></span>You've been invited to {{ $item->name }}</a></li>
-      @endforeach
-    </ul>
-</li>
+
 @show
 @section('main')
 <div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
+				@if(session('success'))
+        		<div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+        		    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        		        <span aria-hidden="true">&times;</span>
+        		    </button>
+        		    {{ session('success') }}
+				</div>
+				@endif
 				<!--carousel-->
 				<div class="container-fluid">
 					<div class="row">

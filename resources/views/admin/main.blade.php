@@ -98,26 +98,27 @@
                         </div>
 
                         <div class="dropdown for-notification">
+                            <?php 
+                                $payment = DB::table('joins')
+                                    ->select('*')
+                                    ->where('status', '=', '0')
+                                    ->count();
+                            ?>
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
-                                <span class="count bg-danger">3</span>
+                                @if ($payment != null)
+                                    <span class="count bg-danger">{{ $payment }}</span>
+                                @endif
                             </button>
+                            @if ($payment != null)
                             <div class="dropdown-menu" aria-labelledby="notification">
-                                <p class="red">You have 3 Notification</p>
                                 <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-check"></i>
-                                    <p>Server #1 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-info"></i>
-                                    <p>Server #2 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-warning"></i>
-                                    <p>Server #3 overloaded.</p>
+                                    <i class="fa fa-money"></i>
+                                    <p>{{ $payment }} new payment</p>
                                 </a>
                             </div>
+                            @endif
                         </div>
                     </div>
 

@@ -5,6 +5,14 @@
     <!-- MAIN CONTENT -->
     @if ($role->role == "1")
     <div class="main-content">
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="container-fluid">
             <!-- PANEL DETAILS -->
             <div class="panel panel-default">
@@ -278,17 +286,17 @@
                             <div class="member">
                                 @forelse ($member as $members)
                                 <div class="col-lg-2 col-xs-6 col-lg-offset-1" style="margin-left: 17px">
+                                    @if ($members->role == 1)
+                                        <p>Captain</p>
+                                    @else
+                                        <p style="color: #35346D">Captain</p>
+                                    @endif
                                     @if ($members->ava_url != null)
                                         <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
                                     @else
                                         <img src="{{ asset('images/avatars/default.png') }}">
                                     @endif
                                     <h4>{{ $members->name }}</h4>
-                                    @if ($members->role == 1)
-                                        <p>Captain</p>
-                                    @else
-                                        
-                                    @endif
                                 </div>
                                 @empty
                                     <p>There are no member</p>
