@@ -116,6 +116,8 @@
             <!--End Konten Pills-->
         </div>
         <!-- End Container -->
+        <!--Footer-->
+		@include('layouts.footer')
     </div>
     <!-- END MAIN CONTENT -->
 </div>

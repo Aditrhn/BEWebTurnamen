@@ -66,7 +66,6 @@ footer {
     padding-top: 25px;
     padding-bottom: 20px;
     margin-bottom: 0;
-    padding-left: 10%;
     text-align: center;
     font-size: 15px;
     font-weight: bold;
@@ -76,7 +75,6 @@ footer {
   position: relative;
   padding-top: 60px;
   margin-bottom: 0;
-  padding-left: 10%;
   text-align: center;
   font-size: 13px; }
   @media screen and (max-width: 767px) {
@@ -500,8 +498,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
 
     .colPanelTeam{
-      top: 10px; 
-      margin-top: 10px;
+      top: 0; 
+      margin-top: 0;
     }
 
     .panel-Create{

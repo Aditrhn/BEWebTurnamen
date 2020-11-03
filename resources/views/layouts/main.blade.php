@@ -34,7 +34,6 @@
     @yield('main')
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-	@include('layouts.footer')
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
