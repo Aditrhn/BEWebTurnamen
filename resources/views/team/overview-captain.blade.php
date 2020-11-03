@@ -325,7 +325,7 @@
                                                 <img src="{{ URL::asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
-                                            <h4 style="text-align: center; opacity: 50%">No sponsors yet..</h4>
+                                            <p style="text-align: center; opacity: 50%">No sponsors yet..</p>
                                         @endforelse
                                     </div>
                                 </div>

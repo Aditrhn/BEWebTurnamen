@@ -38,36 +38,15 @@
             <div class="menu-box">
                 <div class="container-fluid">
                      <div class="row">
-                            {{-- <div class="col-lg-2 col-xs-6 col-lg-offset-1 text-center">
-                                <div class="box">
-                                    <img src="{{ asset('assets/img/bars-white.png') }}" alt="">
-                                 </div>
-                            </div>
-
-                             <div class="col-lg-2 col-xs-6  text-center">
-                                <div class="box" id="box-game">
-                                    <img src="{{ asset('assets/img/apex legends.png') }}" alt="">
-                                 </div>
-                            </div>
-
-                             <div class="col-lg-2 col-xs-6 text-center">
-                                <div class="box" id="box-game">
-                                    <img src="{{ asset('assets/img/valorant.png') }}" alt="">
-                                 </div>
-                            </div>
-
+                        @forelse ($game as $games)
                             <div class="col-lg-2 col-xs-6 text-center">
                                 <div class="box" id="box-game">
-                                    <img src="{{ asset('assets/img/dota2.png') }}" alt="">
-                                 </div>
-                            </div> --}}
-
-                             <div class="col-lg-2 col-xs-6 text-center">
-                                <div class="box" id="box-game">
-                                    <img src="{{ asset('assets/img/ML.png') }}" alt="">
+                                    <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="">
                                  </div>
                             </div>
-
+                        @empty
+                            
+                        @endforelse
                     </div>
                 </div>
             </div>

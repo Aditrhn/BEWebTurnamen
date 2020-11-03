@@ -13,8 +13,8 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ URL::asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css ">
@@ -55,6 +55,9 @@
                     </li>
                     <li class="{{ Request::url() == url('super/game') ? 'active' : '' }}">
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
+                    </li>
+                    <li class="{{ Request::url() == url('super/sponsors') ? 'active' : '' }}">
+                        <a href="{{URL::route('sponsors.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Sponsors</a>
                     </li>
                     <li class="{{ Request::url() == url('super/info-payment') ? 'active' : '' }}">
                         <a href="{{URL::route('info.index')}}"><i class="menu-icon fa fa-2x fa-money"></i>Info Payment</a>
@@ -128,13 +131,6 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
                             <a class="nav-link" href="{{ URL::route('super.logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
