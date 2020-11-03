@@ -14,16 +14,33 @@
     </form>
     <div id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
+        @yield('notif')
+        {{-- @if (URL::route('dashboard'))
         <li class="dropdown">
+            <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+              <i class="lnr lnr-alarm"></i>
+              <span class="badge bg-danger">{{ $notifFriend }}</span>
+              <span class="badge bg-danger">0</span>
+            </a>
+            <ul class="dropdown-menu notifications">
+              <li><a href="{{ URL::route('friend') }}" class="notification-item"><span class="dot bg-danger"></span>You have 0 friend request</a></li>
+              <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to Na'Vi</a></li>
+            </ul>
+          </li>
+        @else
+
+        @endif --}}
+        {{-- <li class="dropdown">
           <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
             <i class="lnr lnr-alarm"></i>
-            <span class="badge bg-danger">5</span>
+            <span class="badge bg-danger">{{ $notifFriend }}</span>
+            <span class="badge bg-danger">0</span>
           </a>
           <ul class="dropdown-menu notifications">
-            <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 friend request</a></li>
+            <li><a href="{{ URL::route('friend') }}" class="notification-item"><span class="dot bg-danger"></span>You have 0 friend request</a></li>
             <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to Na'Vi</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li class="dropdown">
           <ul class="dropdown-menu">
             <li><a href="#">Basic Use</a></li>

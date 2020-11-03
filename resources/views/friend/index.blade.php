@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('asset-toastr')
-<link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
+<link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}">
 @endsection
 @section('main')
 <!-- MAIN -->
