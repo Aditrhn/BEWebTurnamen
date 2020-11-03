@@ -5,7 +5,7 @@
     <div class="col-sm-12">
         <div class="float-left">
             <div class="page-title">
-                <h3 class="pt-2">Lottery Matches</h3>
+                <h3 class="pt-2">{{$event->title}}</h3>
             </div>
         </div>
     </div>
@@ -58,6 +58,19 @@
                                     </div>
                                 </div>
                             </div>
+                            @if ($event->bracket_type == '2') 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" id="round">
+                                        <select name="bracket" id="exampleInputEmail1" class="form-control @error('bracket') @enderror">
+                                            <option disabled selected>bracket</option>
+                                            <option value="wb">winner bracket</option>
+                                            <option value="lb">loser bracket</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                             <div class="row mt-3">
                                 <div class="col-md-5">
                                     <div class="form-group" id="match_number">
@@ -109,7 +122,7 @@
                             {{-- <button type="submit">save</button> --}}
                             <button type="submit" class="btn btn-primary float-right mt-3" id="btnsubmit_editprofile"
                                 role="button">Save &
-                                Continue</button> cek {{ $event->id }}
+                                Continue</button>
                             <!-- /.card-right -->
                         </form>
                     </div>

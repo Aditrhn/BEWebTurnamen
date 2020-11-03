@@ -229,52 +229,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h4 class="padMatch">Secret</h4>
-                                                    </td>
-                                                    <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ asset('assets/img/navi.png') }}">
-                                                    </td>
-                                                    <td>
-                                                        <h4 class="padMatch">0 - 3</h4>
-                                                    </td>
-                                                    <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ asset('assets/img/navi.png') }}">
-                                                    </td>
-                                                    <td>
-                                                        <h4 class="padMatch">Navi</h4>
-                                                    </td>
-                                                    <td>
-                                                        <h4 class="padMatch">May 26, 2020</h4>
-                                                        <label class="fontMatch" for="">6:30 PM</label>
-                                                    </td>
-                                                    <td style="padding-top : 25px;"><button type="button"
-                                                            class="btn btn-setScore">Set Score</button></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <h4 class="padMatch">Secret</h4>
-                                                    </td>
-                                                    <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ asset('assets/img/navi.png') }}">
-                                                    </td>
-                                                    <td>
-                                                        <h4 class="padMatch">VS</h4>
-                                                    </td>
-                                                    <td><img id="imgMatch" class="card-img-top imgMatch"
-                                                            src="{{ asset('assets/img/navi.png') }}">
-                                                    </td>
-                                                    <td>
-                                                        <h4 class="padMatch">Navi</h4>
-                                                    </td>
-                                                    <td>
-                                                        <h4 class="padMatch">TBD</h4>
-                                                    </td>
-                                                    <td style="padding-top : 25px;"><button type="button"
-                                                            class="btn btn-setDate">Set Date</button></td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -350,13 +305,46 @@
                     @endforeach
                 ]
             ]
+        };
+        var double = {
+            teams : [
+            ["Team 1", "Team 2"],
+            ["Team 3", "Team 4"]
+            ],
+            results : [
+                [      /* WINNER BRACKET */
+                    [
+                        [1,2], 
+                        [3,4]], /* first and second matches of the first round */
+                    [
+                        [5,6]
+                    ]         /* second round */
+                ], 
+                [              /* LOSER BRACKET */
+                    [
+                        [7,8]
+                        ],        /* first round */
+                    [
+                        [9,10]
+                    ]        /* second round */
+                ], 
+                [              /* FINALS */
+                    [
+                        [1,12], 
+                        [13,14]
+                    ],
+                    [
+                        [15,16]
+                    ]       /* LB winner won first round so need a rematch */
+                ]
+            ]
         }
         var bracket = {
             teamWidth: 100,
             scoreWidth: 50,
             matchMargin: 75,
             roundMargin: 85,
-            init: single,
+            init: double,
             skipConsolationRound: true,
             onMatchClick: onclick
         };
