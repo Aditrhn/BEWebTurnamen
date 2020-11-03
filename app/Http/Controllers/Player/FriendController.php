@@ -26,8 +26,8 @@ class FriendController extends Controller
                     ['friends.player_two', '=', $player_id]
                     ])
                 ->get();
-
-            return \view('friend.index', \compact('friendlists', 'friend_requests'));
+            $count = $friend_requests->count();
+            return \view('friend.index', \compact('friendlists', 'friend_requests', 'count'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

@@ -12,7 +12,12 @@
       <div class="col-md-12">
         <ul class="nav nav-pills marginPils">
           <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Friend List</a></li>
-          <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Friend Request</a></li>
+          @if ($count != null)
+            <span class="badge bg-danger">{{$count}}</span>
+          @endif
+          <li class="pillsRequest">
+            <a data-toggle="pill" href="#menu1" class="pillsFriend">Friend Request</a>
+          </li>
         </ul>
       </div>
       <!--Konten Pills-->
