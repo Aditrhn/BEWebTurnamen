@@ -35,14 +35,6 @@ class PlayerAuthController extends Controller
             'password' => 'required',
         ]);
         $player = Player::where('email', $request->email)->first();
-        // // dd(Hash::check($request->password, $player->password));
-        // if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-        //   // return \response()->json($player);
-        //   return \view('player.dashboard');
-        // } else {
-        //   return Redirect::to("login") //routing login jika user tidak ada
-        //     ->withSuccess('Oppes! You have entered invalid credentials');
-        // }
 
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard'); //redirect to url link dashboard
@@ -56,21 +48,16 @@ class PlayerAuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:players',
             'password' => 'required|min:8',
-            // 'address' => 'required',
-            // 'contact' => 'required|max:15',
-            // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        // $player = Auth::user();
-        // $ava_name = $player->id . '_avatar' . time() . '.' . \request()->ava_url->getClientOriginalExtension();
-        // $ava_url = \request()->file('ava_url');
-        // $ava_name = $ava_url->getClientOriginalName() . '_avatar' . \time();
-        // $ava_folder = \storage_path('ava_player');
-        // $ava_url->move($ava_folder, $ava_name);
-
         $data = $request->all();
         $check = $this->create($data);
-        return Redirect::to("dashboard")->withSuccess('Great! U have successfully loggedin'); //routing dashboard
+        if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return \redirect('dashboard'); //redirect to url link dashboard
+        } else {
+            return Redirect::to("login"); //routing login jika user tidak ada
+        }
+        // return \redirect('dashboard'); //redirect to url link dashboard
+        // return Redirect::to("dashboard")->withSuccess('Great! U have successfully loggedin'); //routing dashboard
     }
     public function dashboard()
     {
@@ -87,9 +74,6 @@ class PlayerAuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            // 'address' => $data['address'],
-            // 'contact' => $data['contact'],
-            // 'ava_url' => $data['ava_url'],
         ]);
     }
     public function logout()
