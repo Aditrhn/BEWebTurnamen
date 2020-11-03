@@ -11,7 +11,7 @@
         <li>
           <a href="{{ URL::route('profile') }}" class="{{ Request::segment(1) ==='profile' ? 'active' :null }}">
             <img src="{{ asset('assets/img/ICON/profil.png') }}">
-            <span>Profil</span>
+            <span>Profile</span>
           </a>
         </li>
         <li>

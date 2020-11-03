@@ -59,9 +59,13 @@
                             </div>
                             <div class="form-group" id="scrollform-teamcreate">
                                 <label for="gender">Gender</label>
-                                <input type="text" class="form-control @error('gender') is-invalid @enderror"
-                                    id="exampleInputEmail1" name="gender"
-                                    value="{{ Auth::guard('player')->user()->gender }}">
+                                <div id="custom-select">
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                             </div>
 
                             {{-- Avatar --}}

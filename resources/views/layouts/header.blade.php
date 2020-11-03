@@ -15,13 +15,43 @@
     <div id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
+          <?php 
+            $friend = DB::table('friends')
+              ->select('*')
+              ->where([
+                ['player_two', '=', Auth::guard('player')->user()->id],
+                ['status', '=', '0']
+                ])
+              ->count();
+            $team = DB::table('teams')
+              ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+              ->select('teams.id', 'teams.name', 'teams.logo_url')
+              ->where([
+                  ['contracts.players_id', '=', Auth::guard('player')->user()->id],
+                  ['contracts.status', '=', '0']
+              ])
+              ->paginate(5);
+            $teamc = $team->count();
+          ?>
           <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
             <i class="lnr lnr-alarm"></i>
-            <span class="badge bg-danger">5</span>
+            @if ($friend != null && $teamc != null)
+              <span class="badge bg-danger">{{ $teamc+$friend }}</span>
+            @elseif ($friend == null && $teamc != null)
+              <span class="badge bg-danger">{{ $teamc }}</span>
+            @elseif ($friend != null && $teamc == null)
+              <span class="badge bg-danger">{{ $friend }}</span>
+            @else
+            @endif
           </a>
           <ul class="dropdown-menu notifications">
-            <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 friend request</a></li>
-            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>You've been invited to Na'Vi</a></li>
+            @if ($friend != null)
+              <li><a href="{{ URL::route('friend') }}" class="notification-item"><span class="dot bg-danger"></span>You have {{ $friend }} friend request</a></li>
+            @endif
+            @forelse ($team as $teams)
+              <li><a href="{{ URL::route('team-invitation') }}" class="notification-item"><span class="dot bg-success"></span>You've been invited to {{ $teams->name }}</a></li>
+            @empty
+            @endforelse
           </ul>
         </li>
         <li class="dropdown">

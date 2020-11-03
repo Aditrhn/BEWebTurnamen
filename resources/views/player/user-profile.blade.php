@@ -29,12 +29,16 @@
                             <p style="color: white;">Somewhere on earth...</p>
                         @endif
                         <br>
-                        @if ($check->status == "1")
-                            @if($player->contact !== null)
-                            <p style="color: white;">{{ $player->contact }}</p>
-                            @else
-                                <p style="color: white;">I don't have phone</p>
+                        @if ($check != null)
+                            @if ($check->status == "1")
+                                @if($player->contact !== null)
+                                <p style="color: white;">{{ $player->contact }}</p>
+                                @else
+                                    <p style="color: white;">I don't have phone</p>
+                                @endif
                             @endif
+                        @else
+                            <p style="color: white;">I don't have phone</p>
                         @endif
                     </div>
                     <!-- Optional: clear the XS cols if their content doesn't match in height -->
@@ -136,11 +140,26 @@
                                         <p>Gender <span>Unknown</span></p>
                                     @endif
                                     <br>
-                                    <p>E-mail @if ($check->status == "1") <span>{{ $player->email }} @else <span>n/a</span> @endif</p>
+                                    <p>
+                                        E-mail 
+                                        @if ($check != null)    
+                                            @if ($check->status == "1") 
+                                                <span>{{ $player->email }} 
+                                            @else 
+                                                <span>n/a</span> 
+                                            @endif
+                                        @else
+                                            <span>n/a</span>
+                                        @endif
+                                    </p>
                                     <br>
-                                    @if ($check->status == "1")
-                                        @if($player->contact !== null)
-                                            <p>Phone <span>{{ $player->contact }}</span></p>
+                                    @if ($check != null)
+                                        @if ($check->status == "1")
+                                            @if($player->contact !== null)
+                                                <p>Phone <span>{{ $player->contact }}</span></p>
+                                            @else
+                                                <p>Phone <span>n/a</span></p>
+                                            @endif
                                         @else
                                             <p>Phone <span>n/a</span></p>
                                         @endif
