@@ -100,6 +100,14 @@ Route::group(['auth', 'admins'], function () {
         Route::put('super/game/{game}', 'GameController@update')->name('game.update');
         Route::delete('super/game/{game}', 'GameController@destroy')->name('game.destroy');
 
+        //sponsors
+        Route::get('super/sponsors', 'SponsorsController@index')->name('sponsors.index');
+        Route::get('super/sponsors/create', 'SponsorsController@create')->name('sponsors.create');
+        Route::post('super/sponsors', 'SponsorsController@store')->name('sponsors.store');
+        Route::get('super/sponsors/{sponsor}/edit', 'SponsorsController@edit')->name('sponsors.edit');
+        Route::put('super/sponsors/{sponsor}', 'SponsorsController@update')->name('sponsors.update');
+        Route::delete('super/sponsors/{sponsor}', 'SponsorsController@destroy')->name('sponsors.destroy');
+
         //event
         Route::get('super/event', 'EventController@index')->name('event.index');
         Route::get('super/event/create', 'EventController@create')->name('event.create');

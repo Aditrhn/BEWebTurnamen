@@ -16,8 +16,8 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicon.png') }}">
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('assets/img/favicon.png') }}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{ URL::asset('assets/img/favicon.png') }}">
 
 </head>
 
@@ -54,7 +54,7 @@
 						<p>Telp. 0812-2799-3505</p>
 					</div>
 					<div class="col-md-4">
-						<h4>Support By :</h4>
+						<h4>Supported By :</h4>
 						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
 						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
 						<img class="img-support" src="{{ asset('assets/img/gameski.png') }}" alt="">
