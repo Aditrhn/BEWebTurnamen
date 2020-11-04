@@ -344,7 +344,11 @@
             scoreWidth: 50,
             matchMargin: 75,
             roundMargin: 85,
+            @if ($events->bracket_type == '2')
             init: double,
+            @elseif($events->bracket_type == '1')
+            init:single,
+            @endif
             skipConsolationRound: true,
             onMatchClick: onclick
         };
