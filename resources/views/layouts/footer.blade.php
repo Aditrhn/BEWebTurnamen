@@ -3,10 +3,18 @@
         <div class="col-md-4">
             <img class="img-footer" src="{{ asset('assets/img/gameski.png') }}" alt="">
             <div class="row" style="padding-top : 20px;">
-                <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/instagram-white.png') }}" alt="">
-                <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/facebook-white.png') }}" alt="">
-                <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/whatsapp-white.png') }}" alt="">
-                <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/youtube-white.png') }}" alt="">
+                <a href="#">
+                    <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/instagram-white.png') }}" alt="Instagram">
+                </a>
+                <a href="#">
+                    <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/facebook-white.png') }}" alt="Facebook">
+                </a>
+                <a href="#">
+                    <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/whatsapp-white.png') }}" alt="Whatsapp">
+                </a>
+                <a href="#">
+                    <img class="img-sosial" src="{{ URL::asset('assets/img/ICON/youtube-white.png') }}" alt="Youtube">
+                </a>
             </div>
         </div>
         <div class="col-md-4">

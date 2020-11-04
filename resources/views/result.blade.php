@@ -135,8 +135,8 @@
                                             </tr>
                                         </tbody>
                                         <tbody>
+                                            @forelse ($tournament as $tournaments)
                                             <tr>
-                                                @forelse ($tournament as $tournaments)
                                                 <td><img alt="" id="imgGame" src="{{ URL::asset('images/game_icon/'.$tournaments->logo) }}" class="find-image">
                                                 </td>
                                                 <td>
@@ -152,12 +152,12 @@
                                                 <td>
                                                     <h4 class="find-text">{{ $tournaments->participants }} Participants</h4>
                                                 </td>
-                                                @empty
+                                            </tr>
+                                            @empty
                                                 {{-- <div class="panel-friend thText"> --}}
                                                     <h4>Hasil Tidak Ditemukan.</h4>
                                                 {{-- </div> --}}
-                                                @endforelse
-                                            </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

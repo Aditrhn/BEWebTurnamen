@@ -99,6 +99,7 @@
     <!-- End Container -->
   </div>
   <!-- END MAIN CONTENT -->
+  @include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection
