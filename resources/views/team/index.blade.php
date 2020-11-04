@@ -48,6 +48,8 @@
         </div>
     </div>
     <!-- END MAIN CONTENT -->
+    <!--Footer-->
+	@include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection
