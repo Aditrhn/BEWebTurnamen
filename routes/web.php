@@ -134,7 +134,7 @@ Route::group(['auth', 'admins'], function () {
 
         //team-matches
         Route::get('super/event/team-matches', 'MatchController@index')->name('match.index');
-        Route::get('super/event/team-matches/{id}/create', 'MatchController@create')->name('match.create');
+        Route::get('super/event/{id}/team-match/create', 'MatchController@create')->name('match.create');
         Route::post('super/event/team-matches/{id}', 'MatchController@store')->name('match.store');
         Route::get('super/event/team-match/{match}', 'MatchController@edit')->name('match.edit');
         Route::get('super/event/{id}/team-match/time', 'MatchController@time')->name('match.time');

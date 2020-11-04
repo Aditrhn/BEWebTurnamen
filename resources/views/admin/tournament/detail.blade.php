@@ -145,6 +145,10 @@
                                         <h3 class="titleMatch">Match List</h3>
                                         <a href="{{ URL::route('match.create',$events->id) }}"
                                             class="badge badge-primary">Create</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-12">
                                         <h4 class="titleMatch">Round 1</h4>
                                     </div>
                                     <div class="col-md-12">
@@ -207,29 +211,6 @@
                                                         @endif
                                                     </tr>
                                                 @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h4 class="titleMatch">Round 2</h4>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Match</th>
-                                                    <th scope="col"></th>
-                                                    <th scope="col"></th>
-                                                    <th scope="col"></th>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">Time</th>
-                                                    <th scope="col"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -315,27 +296,13 @@
                 [      /* WINNER BRACKET */
                     [
                         [1,2], 
-                        [3,4]], /* first and second matches of the first round */
-                    [
-                        [5,6]
-                    ]         /* second round */
+                        [3,4]
+                    ]       /* second round */
                 ], 
                 [              /* LOSER BRACKET */
                     [
                         [7,8]
-                        ],        /* first round */
-                    [
-                        [9,10]
-                    ]        /* second round */
-                ], 
-                [              /* FINALS */
-                    [
-                        [1,12], 
-                        [13,14]
-                    ],
-                    [
-                        [15,16]
-                    ]       /* LB winner won first round so need a rematch */
+                    ]   /* second round */
                 ]
             ]
         }
@@ -344,7 +311,11 @@
             scoreWidth: 50,
             matchMargin: 75,
             roundMargin: 85,
+            @if ($events->bracket_type == '2')
             init: double,
+            @elseif($events->bracket_type == '1')
+            init:single,
+            @endif
             skipConsolationRound: true,
             onMatchClick: onclick
         };
