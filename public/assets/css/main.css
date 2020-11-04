@@ -397,6 +397,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       background-size: cover;
       border-radius: 10px;
       color: white;
+      background-color: white;
     }
   
     .case-landing__overlay {
