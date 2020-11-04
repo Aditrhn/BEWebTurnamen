@@ -137,6 +137,7 @@ class EventController extends Controller
             ->distinct('round_number')
             ->count('round_number');
 
+        // \dd($count_round);
         $brackets = array();
 
         $rounds = array();
@@ -170,8 +171,7 @@ class EventController extends Controller
             ->select('joins.team_id', 'teams.*')
             ->get();
         // \dd($join);
-        // \dd($rounds);
-        return view('admin.tournament.detail', \compact('matches', 'events', 'rounds', 'join', 'join2'));
+        return view('admin.tournament.detail', \compact('count_round', 'matches', 'events', 'rounds', 'join', 'join2'));
         // return view('admin.tournament.detail');
     }
 
