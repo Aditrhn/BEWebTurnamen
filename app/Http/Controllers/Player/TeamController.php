@@ -8,6 +8,7 @@ use App\Model\Player;
 use App\Model\Game;
 use App\Model\Team;
 use App\Model\Sponsor;
+use App\Model\Join;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -87,7 +88,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {   
         request()->validate([
-            'name' => 'required|unique:teams'
+            'name' => 'required|unique:teams|max:20'
         ],
         [
             'name.required' => 'Team Name is required',
@@ -811,6 +812,11 @@ class TeamController extends Controller
     {
         if (Auth::guard('player')->check()) {
             if ($request->has('teamId')) {
+                $check = DB::table('teams')
+                    ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+                    ->select('teams.id')
+                    ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                    ->first();
                 $team = DB::table('teams')
                     ->join('games', 'games.id', '=', 'teams.games_id')
                     ->select('teams.*', 'games.name as game_name', 'games.icon_url')
@@ -831,8 +837,11 @@ class TeamController extends Controller
                         ])
                     ->get();
             }
-            // dd($team);
-            return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+            if ($check->id == $team->id) {
+                return Redirect('team');
+            } else {
+                return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+            }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -896,19 +905,26 @@ class TeamController extends Controller
     {
         if (Auth::guard('player')->check()) {
             if ($request->has('teamId')) {
-                DB::table('sponsors')
+                $check = Join::select('*')
                     ->where('team_id', '=', $request->teamId)
-                    ->delete();
-                DB::table('contracts')
-                    ->where([
-                        ['teams_id', '=', $request->teamId],
-                    ])
-                    ->delete();
-                DB::table('teams')
-                    ->where('id', '=', $request->teamId)
-                    ->delete();
+                    ->get();
+                if ($check == null) {
+                    DB::table('sponsors')
+                        ->where('team_id', '=', $request->teamId)
+                        ->delete();
+                    DB::table('contracts')
+                        ->where([
+                            ['teams_id', '=', $request->teamId],
+                        ])
+                        ->delete();
+                    DB::table('teams')
+                        ->where('id', '=', $request->teamId)
+                        ->delete();
+                    return redirect('team')->with(['success' => 'Team deleted successfully']);
+                } else {
+                    return redirect('team')->with(['error' => 'You still participating in tournament']);
+                }
             }
-            return redirect('team');
         }
     }
 }

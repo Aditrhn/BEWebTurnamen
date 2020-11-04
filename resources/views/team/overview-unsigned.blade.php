@@ -15,7 +15,7 @@
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
                                     @if ($team->logo_url != null)
-                                    <img src="{{ asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                    <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                     @else
                                     <p>Tidak ada team!!</p>
                                     @endif
@@ -45,7 +45,7 @@
                                 @forelse ($member as $members)
                                 <div class="col-lg-2 col-xs-6 col-lg-offset-1" style="margin-left: 17px">
                                     @if ($members->ava_url != null)
-                                        <img src="{{ asset('images/avatars/'.$members->ava_url) }}">
+                                        <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
                                     @else
                                         <img src="{{ asset('images/avatars/default.png') }}">
                                     @endif
@@ -75,8 +75,7 @@
                                         <div class="row">
                                             <h4 class="pull-left col-lg-12">Game Focus</h4>
                                         </div>
-                                        <img src="assets/img/ML.png"alt="">
-                                        {{-- <img src="{{ asset('images/game_icon/'.$team->icon_url) }}"alt=""> --}}
+                                        <img src="{{ URL::asset('images/game_icon/'.$team->icon_url) }}"alt="">
                                         <p style="text-align: center">{{ $team->game_name }}</p>
                                     </div>
                                 </div>
@@ -87,7 +86,7 @@
                                         </div>
                                         @forelse ($sponsor as $sponsors)
                                             <div class="col-lg-6 col-xs-6">
-                                                <img src="{{ asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
+                                                <img src="{{ URL::asset('images/sponsor_logo/'.$sponsors->logo_url) }}" alt="">
                                             </div>
                                         @empty
                                             <p style="text-align: center; opacity: 50%">No sponsors yet..</p>
@@ -114,6 +113,8 @@
         </div>
     </div>
     <!-- END MAIN CONTENT -->
+    <!--Footer-->
+	@include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection

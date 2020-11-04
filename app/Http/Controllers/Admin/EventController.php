@@ -137,23 +137,25 @@ class EventController extends Controller
             ->distinct('round_number')
             ->count('round_number');
 
+        $brackets = array();
+
         $rounds = array();
         for ($i = 1; $i <= $count_round; $i++) {
-            $mtch = array();
             $scores = DB::table('matches')
-                ->select('round_number', 'match_number', 'score_a', 'score_b')
-                ->where('event_id', $id)
-                ->where('round_number', $i)
-                ->orderBy('match_number', 'asc')
-                ->get()
-                ->toArray();
+            ->select('round_number', 'match_number', 'score_a', 'score_b')
+            ->where('event_id', $id)
+            ->where('round_number', $i)
+            ->orderBy('match_number', 'asc')
+            ->get()
+            ->toArray();
+            $mtch = array();
             foreach ($scores as $score) {
                 $matchscore = array('score_a' => $score->score_a, 'score_b' => $score->score_b);
                 array_push($mtch, $matchscore);
             }
             array_push($rounds, $mtch);
         }
-
+        // \dd($rounds);
 
         $join = DB::table('joins')
             ->join('teams', 'teams.id', '=', 'joins.team_id')

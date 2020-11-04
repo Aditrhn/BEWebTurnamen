@@ -6,11 +6,13 @@
     <div class="main-content">
         <div class="container-fluid">
             @if($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
+                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <ul style="list-style-type: none">
                         @foreach($errors->all() as $error)
-                            <li><strong>{{ $error }}</strong></li>
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -23,19 +25,18 @@
                     <div class="col-md-6">
                         <div class="form-group" id="scrollform-teamcreate">
                             <label for="name">Team Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                id="exampleInputEmail1" name="name">
+                            <input type="text" maxlength="20" class="form-control @error('name') is-invalid @enderror"
+                                id="exampleInputEmail1" name="name" placeholder="Input your team name">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label for="logo_url" id="avatar"> Team Logo (optional)</label>
                         <div class="input-group" id="upload_logo_team">
                             <div class="custom-file" id="browse" style="">
-                                <input type="file" class="custom-file-input @error('ava_url') is-invalid @enderror"
+                                <input type="file" class="custom-file-input"
                                     id="inputGroupavatar" aria-describedby="inputGroupFileAddon01"
-                                    value="{{ asset('/images/avatar/'. Auth::guard('player')->user()->ava_url) }}"
+                                    value="{{ old('logo_url') }}"
                                     name="logo_url">
-
                             </div>
                         </div>
                     </div>
@@ -60,6 +61,8 @@
         </div>
     </div>
     <!-- END MAIN CONTENT -->
+    <!--Footer-->
+	@include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection

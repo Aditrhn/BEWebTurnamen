@@ -36,12 +36,12 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>No.</th>
-                                        <th>Team player</th>
-                                        <th>E-mail kapten</th>
-                                        <th>Nama Kapten</th>
-                                        <th>Tournament yang diikuti</th>
+                                        <th>Team</th>
+                                        <th>E-mail</th>
+                                        <th>Kapten</th>
+                                        <th>Tournament</th>
                                         <th>Active</th>
-                                        <th>Status pembayaran</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>

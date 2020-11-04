@@ -35,20 +35,61 @@ th {
   font-weight: 300; }
 
 footer {
-  position: absolute;
+  color: #fff;
   bottom: 0;
   right: 0;
-  padding-top: 15px;
-  padding-bottom: 10px; }
+  padding-top: 100px;
+  /* padding-bottom: 10px;  */
+}
+
+  .img-footer{
+    width: 160px;
+    height: 35px;
+  }
+
+  .img-sosial{
+    padding: 4px;
+    width: 28px;
+    height: 28px;
+  }
+  .img-sosial:hover{
+    background-color: #26244F;
+  }
+
+  .img-support{
+    padding: 4px;
+    width: 80px;
+    height: 50px;
+  }
+
+  .copyright-font{
+    padding-top: 25px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
 
 .copyright {
+  position: relative;
+  padding-top: 60px;
   margin-bottom: 0;
-  text-align: right;
+  text-align: center;
   font-size: 13px; }
   @media screen and (max-width: 767px) {
     .copyright {
+      padding-top: 10px;
+      padding-left: 0;
       text-align: center;
-      position: relative !important; } }
+      position: relative !important; } 
+      
+    .copyright-font{
+      padding-top: 20px;
+      padding-left: 0;
+      text-align: center;
+      position: relative !important; } 
+  }
 
 /********************
  * LAYOUT
@@ -63,10 +104,8 @@ footer {
 .sidenav {
   height: 100%;
   overflow-x: hidden;
-  padding-top: 20px;
-  margin-top: -20px;
-  background-image: url("../img/claude.jpg");
-  opacity: 0.2;
+  margin-left: 5%;
+  background-image: url("../img/gameski.png");
   z-index: 1;
 }
 
@@ -77,7 +116,23 @@ footer {
 .main {
   padding: 0px 10px;
 }
+@media screen and (max-width: 823px) {
+  #panel-login{
+    background-image: url("../img/gameski.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: 80%;
+    margin-top: 10%;
+  }
+  .login-form .panel-body{
+    margin-top: 50px;
+  }
 
+  .login-form h2{
+    font-size: 24px;
+  }
+
+}
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -97,8 +152,21 @@ footer {
     color: #fff;
   }
 }
+@media screen and (min-width: 768px) and (max-width: 1366px){
+  #panel-login{
+    padding: 100px;
+    background-image: url("../img/gameski.png");
+    background-repeat: no-repeat;
+    background-position-x : center;
+    background-size: 50%;
+    margin-top: 10%;
+  }
+  .login-form .panel-body{
+    margin-top: 50px;
+  }
+}
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 1366px){
   .main{
       margin-left: 40%; 
   }
@@ -107,16 +175,16 @@ footer {
       width: 40%;
       position: fixed;
       overflow: none;
-      background-image: url("../img/claude.jpg");
-      background-size: cover;
-      opacity: 0.2;
+      background-image: url("../img/gameski.png");
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
       z-index: 1;
       left: 0;
   }
 
   .login-form{
-      margin-top: 10%;
-      padding: 0 200px 0 200px;
+      padding: 200px;
   }
 
   .login-form h2{
@@ -134,24 +202,18 @@ footer {
     color: #fff;
     margin-bottom: 30px;
   }
-  .login-form .panel-body .checkbox a{
-    color: #745FF8;
-  }
-  .login-form .panel-body .checkbox a:hover{
-    color: #35346c;
-  }
   .login-form .panel-body a{
     text-align: right;
   }
   .login-form .panel-body p{
     color: #fff;
   }
-  .login-form .panel-body p a{
-    color: #745FF8;
-  }
-  .login-form .panel-body p a:hover{
-    color: #35346c;
-  }
+}
+.login-form .panel-body p a{
+  color: #745FF8;
+}
+.login-form .panel-body p a:hover{
+  color: #35346c;
 }
 
 .login-main-text{
@@ -164,41 +226,14 @@ footer {
   font-weight: 300;
 }
 
- /* END LOGIN*/
- /* SIGN UP */
- .side-image {
-  height: 100%;
-  overflow-x: hidden;
-  padding-top: 20px;
-  margin-top: -20px;
-  background-image: url("../img/gunranger.jpg");
-  opacity: 0.2;
-  z-index: 1;
+.login-form .panel-body .checkbox a{
+  color: #745FF8;
 }
-@media screen and (max-height: 450px) {
-  .side-image {
-    padding-top: 15px;
-    left: 0;
-    overflow-x: hidden;
-  }
+.login-form .panel-body .checkbox a:hover{
+  color: #35346c;
 }
 
- @media screen and (min-width: 768px){
-  .side-image{
-    width: 40%;
-    position: fixed;
-    overflow: none;
-    background-image: url("../img/gunranger.jpg");
-    background-size: cover;
-    opacity: 0.2;
-    z-index: 1;
-    left: 0;
-  }
-}
- .login-form .panel-body .radio{
-   color: #fff;
- }
- /* END SIGN UP */
+ /* END LOGIN*/
 #wrapper .sidebar {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -362,6 +397,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       background-size: cover;
       border-radius: 10px;
       color: white;
+      background-color: white;
     }
   
     .case-landing__overlay {
@@ -463,8 +499,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
 
     .colPanelTeam{
-      top: 100px; 
-      margin-top: 10px;
+      top: 0; 
+      margin-top: 0;
     }
 
     .panel-Create{
@@ -770,27 +806,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   /*End Friend Page*/
 /*Media Screen*/
 @media(min-width:768px) and (max-width:1024px){
-  /* Login */
-  .sidenav{
-    width: 100%;
-    height: 100vh;
-    position: relative !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .main .panel-body .login-form .panel-body{
-    position: absolute;
-    margin-top: -130% !important;
-    width: 130%;
-    left: 15% !important;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-  }
-  #panel-login{
-    margin-top: -20% !important;
-  }
-
-  /* SIGN UP */
   .side-image {
     width: 100%;
     height: 100vh;
@@ -872,10 +887,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .pillsOverview{
       font-size: 100%;
     }
-      /* LOGIN */
+    /* LOGIN */
     .sidenav{
-      
-      height: 100vh;
       position: relative !important;
       background-repeat: no-repeat;
       background-size: cover;
@@ -883,22 +896,9 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .side-image{
       position: fixed;
       width: 100%;
-      height: 100vh;
       position: relative !important;
       background-repeat: no-repeat;
       background-size: cover;
-    }
-    .main .panel-body .login-form .panel-body{
-      position: absolute;
-      margin-top: -100%;
-      width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
-    #panel-login{
-      margin-top: -35%;
     }
     .login-form .panel-body .form-group{
       padding-top: 15px;
@@ -909,12 +909,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .login-form .panel-body .checkbox{
       color: #fff;
       margin-bottom: 30px;
-    }
-    .login-form .panel-body .checkbox a{
-      color: #745FF8;
-    }
-    .login-form .panel-body .checkbox a:hover{
-      color:#6049fa;
     }
     .login-form .panel-body a{
       text-align: right;
@@ -927,6 +921,12 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
     .login-form .panel-body p a:hover{
       color: #6049fa;
+    }
+    .login-form .panel-body .checkbox a{
+      color: #745FF8;
+    }
+    .login-form .panel-body .checkbox a:hover{
+      color:#6049fa;
     }
     /* END */
     /* Banner */
@@ -1122,7 +1122,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 .menu-box .box{
   background-color: #745FF8;
   border-radius: 10px; 
-  padding: 40px 10px;
+  padding: 30px 10px;
   margin: 20px 0px;
   cursor: pointer;
   transition: all 0.5s ease-out;
@@ -1760,23 +1760,28 @@ html.fullscreen-bg #wrapper {
     .navbar-form .input-group button img{
       width: 15px;
     }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     .navbar-form {
       float: left;
-      width: 70%;
-      margin-left: 5px;
-      margin-right: 5px;
+      width: 65%;
+      margin-left: 0;
+      margin-right: 0;
       padding-left: 0;
       padding-right: 0; }
       .navbar-form .input-group {
         width: 70%; }
       .navbar-form input[type="text"] {
-        min-width: 150px; } }
+        min-width: 180px; } }
   @media screen and (max-width: 640px) {
     .navbar-form {
       width: 15%; } 
       .navbar-form input[type="text"] {
-        min-width: 115px; } }
+        min-width: 100px; } }
+  @media screen and (max-width: 325px) {
+    .navbar-form {
+      width: 12%; } 
+      .navbar-form input[type="text"] {
+        min-width: 70px; } }
 
 .navbar-nav .icon-menu {
   display: inline-block;
@@ -2709,6 +2714,7 @@ color: white;
 }
 #scrollform-edit-team > input{
     border-radius: 10px; 
+    width: 100%;
     height: 40px;
     background-color: #35356C;
     border: none; 

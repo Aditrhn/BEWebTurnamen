@@ -13,8 +13,8 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ URL::asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css ">
@@ -24,6 +24,17 @@
     <link rel="stylesheet" href="{{ asset('css/admin/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/custom.css') }}">
+    <style>
+        svg.bi.bi-file-earmark-excel-fill{
+            font-size: 20px;
+            color: black;
+
+        }
+        svg.bi.bi-file-earmark-excel-fill:hover{
+            color: darkolivegreen;
+
+        }
+    </style>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link rel="stylesheet" href="{{ asset('css/admin/datepicker.min.css') }}" />
     {{-- jquery bracket --}}
@@ -45,8 +56,17 @@
                     <li class="{{ Request::url() == url('super/game') ? 'active' : '' }}">
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
+                    <li class="{{ Request::url() == url('super/sponsors') ? 'active' : '' }}">
+                        <a href="{{URL::route('sponsors.index')}}"><i class="menu-icon fa fa-2x fa-handshake-o"></i>Sponsors</a>
+                    </li>
                     <li class="{{ Request::url() == url('super/info-payment') ? 'active' : '' }}">
                         <a href="{{URL::route('info.index')}}"><i class="menu-icon fa fa-2x fa-money"></i>Info Payment</a>
+                    </li>
+                    <li class="{{ Request::url() == url('super/player-list') ? 'active' : '' }}">
+                        <a href="{{URL::route('list.player')}}"><i class="menu-icon fa fa-2x fa-address-book"></i>Player List</a>
+                    </li>
+                    <li class="{{ Request::url() == url('super/team-list') ? 'active' : '' }}">
+                        <a href="{{URL::route('list.team')}}"><i class="menu-icon fa fa-2x fa-users"></i>Team List</a>
                     </li>
                     <hr class="bg-white" width="100%">
                 </ul>
@@ -60,7 +80,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="{{ asset('images/admin/logo.png') }}" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="{{ asset('assets/img/gameski.png') }}" alt="Logo" width="150px"></a>
                     <a class="navbar-brand hidden" href="./"><img src="{{ asset('images/admin/logo2.png') }}" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -78,26 +98,27 @@
                         </div>
 
                         <div class="dropdown for-notification">
+                            <?php 
+                                $payment = DB::table('joins')
+                                    ->select('*')
+                                    ->where('status', '=', '0')
+                                    ->count();
+                            ?>
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
-                                <span class="count bg-danger">3</span>
+                                @if ($payment != null)
+                                    <span class="count bg-danger">{{ $payment }}</span>
+                                @endif
                             </button>
+                            @if ($payment != null)
                             <div class="dropdown-menu" aria-labelledby="notification">
-                                <p class="red">You have 3 Notification</p>
                                 <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-check"></i>
-                                    <p>Server #1 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-info"></i>
-                                    <p>Server #2 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-warning"></i>
-                                    <p>Server #3 overloaded.</p>
+                                    <i class="fa fa-money"></i>
+                                    <p>{{ $payment }} new payment</p>
                                 </a>
                             </div>
+                            @endif
                         </div>
                     </div>
 
@@ -111,13 +132,6 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
                             <a class="nav-link" href="{{ URL::route('super.logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>

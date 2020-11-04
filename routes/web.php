@@ -18,68 +18,69 @@ use Illuminate\Support\Facades\Route;
 //     return view('player.index');
 // });
 // });
-Route::group(['auth', 'players'], function () {
-    Route::get('/', function () {
-        return Redirect('login');
-    });
-    Route::namespace('Player')->group(function () {
-        //Auth Player
-        Route::get('login', 'PlayerAuthController@index')->name('login');
-        Route::post('player-login', 'PlayerAuthController@postLogin')->name('post.login');
-        Route::get('register', 'PlayerAuthController@register')->name('register');
-        Route::post('player-register', 'PlayerAuthController@postRegister')->name('post.register');
-        Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
-        Route::get('logout', 'PlayerAuthController@logout')->name('logout');
-
-        //Profile
-        Route::get('profile', 'PlayerAuthController@profile')->name('profile');
-        Route::get('profile/edit', 'PlayerAuthController@editProfile')->name('profile.edit');
-        Route::put('profile', 'PlayerAuthController@updateProfile')->name('profile.update');
-        Route::get('user-profile/{player}/detail', 'PlayerAuthController@userProfile')->name('user.profile');
-
-        //Friend
-        Route::get('friend', 'FriendController@index')->name('friend');
-        Route::post('unfriend', 'FriendController@unfriend')->name('unfriend');
-        Route::post('add-friend', 'FriendController@add_friend')->name('add-friend');
-        Route::post('accept-friend', 'FriendController@accept_friend')->name('accept-friend');
-        Route::post('decline-friend', 'FriendController@decline_friend')->name('decline-friend');
-
-        //Team
-        Route::get('team', 'TeamController@index')->name('team');
-        Route::get('team-create', 'TeamController@team_create')->name('team-create');
-        Route::post('team-create', 'TeamController@store')->name('team-store');
-        Route::get('team-invitation', 'TeamController@team_invitation')->name('team-invitation');
-        Route::post('team-accept', 'TeamController@team_acc')->name('team-accept');
-        Route::post('teamreq-accept', 'TeamController@teamreq_acc')->name('teamreq-accept');
-        Route::post('team-decline', 'TeamController@team_decline')->name('team-decline');
-        Route::post('teamreq-decline', 'TeamController@teamreq_decline')->name('teamreq-decline');
-        Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
-        Route::post('team-edit', 'TeamController@team_edit')->name('team.edit');
-        Route::post('team-update', 'TeamController@team_update')->name('team.update');
-        // Route::post('teamSponsor-delete', 'TeamController@teamSponsor_delete')->name('teamSponsor.delete');
-        Route::post('team-view', 'TeamController@team_view')->name('team.view');
-        Route::post('team-join', 'TeamController@team_join')->name('team.join');
-        Route::post('team-leave', 'TeamController@team_leave')->name('team.leave');
-        Route::post('team-disband', 'TeamController@team_disband')->name('team.disband');
-        // Route::get('team-search', 'TeamController@team_search')->name('team-search');
-
-        //Tournament
-        Route::get('tournament', 'TournamentController@index')->name('tournament');
-        Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
-        Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
-        Route::get('tournament/payment-success', 'TournamentController@paymentSuccess')->name('tournament.success');
-        // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
-        // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');
-        // Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
-
-        // Route::post('payments/notification', 'PaymentController@notification');
-        // Route::get('payments/completed', 'PaymentController@completed');
-        // Route::get('payments/failed', 'PaymentController@failed');
-        // Route::get('payments/unfinish', 'PaymentController@unfinish');
-    });
-    //Search
-    Route::get('search-result', 'SearchController@index')->name('search');
+// Route::group(['auth', 'players'], function () {
+Route::get('/', function () {
+    return Redirect('login');
 });
+
+Route::namespace('Player')->group(function () {
+    //Auth Player
+    Route::get('login', 'PlayerAuthController@index')->name('login');
+    Route::post('player-login', 'PlayerAuthController@postLogin')->name('post.login');
+    Route::get('register', 'PlayerAuthController@register')->name('register');
+    Route::post('player-register', 'PlayerAuthController@postRegister')->name('post.register');
+    Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
+    Route::get('logout', 'PlayerAuthController@logout')->name('logout');
+
+    //Profile
+    Route::get('profile', 'PlayerAuthController@profile')->name('profile');
+    Route::get('profile/edit', 'PlayerAuthController@editProfile')->name('profile.edit');
+    Route::put('profile', 'PlayerAuthController@updateProfile')->name('profile.update');
+    Route::get('user-profile/{player}/detail', 'PlayerAuthController@userProfile')->name('user.profile');
+
+    //Friend
+    Route::get('friend', 'FriendController@index')->name('friend');
+    Route::post('unfriend', 'FriendController@unfriend')->name('unfriend');
+    Route::post('add-friend', 'FriendController@add_friend')->name('add-friend');
+    Route::post('accept-friend', 'FriendController@accept_friend')->name('accept-friend');
+    Route::post('decline-friend', 'FriendController@decline_friend')->name('decline-friend');
+
+    //Team
+    Route::get('team', 'TeamController@index')->name('team');
+    Route::get('team-create', 'TeamController@team_create')->name('team-create');
+    Route::post('team-create', 'TeamController@store')->name('team-store');
+    Route::get('team-invitation', 'TeamController@team_invitation')->name('team-invitation');
+    Route::post('team-accept', 'TeamController@team_acc')->name('team-accept');
+    Route::post('teamreq-accept', 'TeamController@teamreq_acc')->name('teamreq-accept');
+    Route::post('team-decline', 'TeamController@team_decline')->name('team-decline');
+    Route::post('teamreq-decline', 'TeamController@teamreq_decline')->name('teamreq-decline');
+    Route::post('team', 'TeamController@friendInvite')->name('team.friendInvite');
+    Route::post('team-edit', 'TeamController@team_edit')->name('team.edit');
+    Route::post('team-update', 'TeamController@team_update')->name('team.update');
+    // Route::post('teamSponsor-delete', 'TeamController@teamSponsor_delete')->name('teamSponsor.delete');
+    Route::post('team-view', 'TeamController@team_view')->name('team.view');
+    Route::post('team-join', 'TeamController@team_join')->name('team.join');
+    Route::post('team-leave', 'TeamController@team_leave')->name('team.leave');
+    Route::post('team-disband', 'TeamController@team_disband')->name('team.disband');
+    // Route::get('team-search', 'TeamController@team_search')->name('team-search');
+
+    //Tournament
+    Route::get('tournament', 'TournamentController@index')->name('tournament');
+    Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
+    Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
+    Route::get('tournament/payment-success', 'TournamentController@paymentSuccess')->name('tournament.success');
+    // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
+    // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');
+    // Route::get('payment', 'TournamentController@payment')->name('tournament.payment');
+
+    // Route::post('payments/notification', 'PaymentController@notification');
+    // Route::get('payments/completed', 'PaymentController@completed');
+    // Route::get('payments/failed', 'PaymentController@failed');
+    // Route::get('payments/unfinish', 'PaymentController@unfinish');
+});
+//Search
+Route::get('search-result', 'SearchController@index')->name('search');
+// });
 
 
 //admin
@@ -100,6 +101,14 @@ Route::group(['auth', 'admins'], function () {
         Route::put('super/game/{game}', 'GameController@update')->name('game.update');
         Route::delete('super/game/{game}', 'GameController@destroy')->name('game.destroy');
 
+        //sponsors
+        Route::get('super/sponsors', 'SponsorsController@index')->name('sponsors.index');
+        Route::get('super/sponsors/create', 'SponsorsController@create')->name('sponsors.create');
+        Route::post('super/sponsors', 'SponsorsController@store')->name('sponsors.store');
+        Route::get('super/sponsors/{sponsor}/edit', 'SponsorsController@edit')->name('sponsors.edit');
+        Route::put('super/sponsors/{sponsor}', 'SponsorsController@update')->name('sponsors.update');
+        Route::delete('super/sponsors/{sponsor}', 'SponsorsController@destroy')->name('sponsors.destroy');
+
         //event
         Route::get('super/event', 'EventController@index')->name('event.index');
         Route::get('super/event/create', 'EventController@create')->name('event.create');
@@ -118,9 +127,14 @@ Route::group(['auth', 'admins'], function () {
         Route::put('super/info-payment/{join}', 'InfoPaymentController@update')->name('info.update');
         Route::delete('super/info-payment/{join}', 'InfoPaymentController@destroy')->name('info.destroy');
 
+        //Team-player list
+        Route::get('super/player-list', 'ListController@player')->name('list.player');
+        Route::get('super/team-list', 'ListController@team')->name('list.team');
+        Route::get('super/team-list/excel', 'ListController@exportPlayer')->name('players.export');
+
         //team-matches
         Route::get('super/event/team-matches', 'MatchController@index')->name('match.index');
-        Route::get('super/event/team-matches/{id}/create', 'MatchController@create')->name('match.create');
+        Route::get('super/event/{id}/team-match/create', 'MatchController@create')->name('match.create');
         Route::post('super/event/team-matches/{id}', 'MatchController@store')->name('match.store');
         Route::get('super/event/team-match/{match}', 'MatchController@edit')->name('match.edit');
         Route::get('super/event/{id}/team-match/time', 'MatchController@time')->name('match.time');

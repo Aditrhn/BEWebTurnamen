@@ -7,7 +7,7 @@ use App\Model\Contract;
 use App\Model\Event;
 use App\Model\Join;
 use App\Model\Payment;
-use App\Model\Team;
+use App\Model\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,9 +19,10 @@ class TournamentController extends Controller
         if (Auth::guard('player')->check()) {
             // $tournament = Event::select('title', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC')->paginate(1);
             // $tournament = Event::all('title', 'status', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC');
-            $tournament = Event::query()->paginate(1);
-            // \dd($tournament);
-            return \view('tournament.index', \compact('tournament'));
+            $game = Game::query()->get();
+            $tournament = Event::query()->paginate(5);
+            // \dd($game);
+            return \view('tournament.index', \compact('tournament', 'game'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

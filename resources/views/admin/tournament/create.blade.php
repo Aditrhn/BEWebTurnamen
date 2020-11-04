@@ -93,7 +93,7 @@
                                     </div>
                             @enderror
                         </div>
-                        <small class="form-text text-muted">(MM/DD/YYYY)</small>
+                        <small class="form-text text-muted">(YYYY-MM-DD)</small>
                     </div>
                 </div>
                 <div class="col-6">
@@ -105,7 +105,7 @@
                             data-language="en" data-date-format="yyyy-mm-dd" data-timepicker="true"
                             data-time-format='hh:ii:00' />
                         </div>
-                        <small class="form-text text-muted">(MM/DD/YYYY)</small>
+                        <small class="form-text text-muted">(YYYY-MM-DD)</small>
                     </div>
                 </div>
             </div>
@@ -141,8 +141,8 @@
 @endsection
 @push('tooltip')
     <!-- Date Picker -->
-    <script src="{{ URL::asset('js/admin/datepicker.min.js')}}"></script>
-    <script src="{{ URL::asset('js/admin/i18n/datepicker.en.js')}}"></script>
+    <script src="{{ asset('js/admin/datepicker.min.js')}}"></script>
+    <script src="{{ asset('js/admin/i18n/datepicker.en.js')}}"></script>
     <script>
         $('#start-date').datepicker({
             language: 'en',
@@ -153,5 +153,5 @@
             minDate: new Date() // Now can select only dates, which goes after today
         });
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 @endpush

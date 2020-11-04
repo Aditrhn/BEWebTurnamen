@@ -38,7 +38,14 @@
                             </div>
                             {{-- Contact --}}
                             <div class="form-group" id="scrollform-teamcreate">
-                                <label for="contact">Contact</label>
+                                <label for="contact">E-mail</label>
+                                <input type="text" class="form-control @error('contact') is-invalid @enderror"
+                                    id="exampleInputEmail1" name="mail"
+                                    value="{{ Auth::guard('player')->user()->email }}">
+                            </div>
+                            {{-- Contact --}}
+                            <div class="form-group" id="scrollform-teamcreate">
+                                <label for="contact">Phone</label>
                                 <input type="text" class="form-control @error('contact') is-invalid @enderror"
                                     id="exampleInputEmail1" name="contact"
                                     value="{{ Auth::guard('player')->user()->contact }}">
@@ -52,9 +59,13 @@
                             </div>
                             <div class="form-group" id="scrollform-teamcreate">
                                 <label for="gender">Gender</label>
-                                <input type="text" class="form-control @error('gender') is-invalid @enderror"
-                                    id="exampleInputEmail1" name="gender"
-                                    value="{{ Auth::guard('player')->user()->gender }}">
+                                <div id="custom-select">
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                             </div>
 
                             {{-- Avatar --}}
@@ -105,6 +116,8 @@
             <!--End Konten Pills-->
         </div>
         <!-- End Container -->
+        <!--Footer-->
+		@include('layouts.footer')
     </div>
     <!-- END MAIN CONTENT -->
 </div>

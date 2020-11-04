@@ -23,6 +23,7 @@ class InfoPaymentController extends Controller
             ->join('contracts', 'teams.id', '=', 'contracts.teams_id')
             ->join('players', 'players.id', 'contracts.players_id')
             ->select('players.name as nama', 'players.email as mail', 'teams.name as nama_team', 'events.title as nama_turney', 'joins.team_id', 'joins.event_id', 'joins.status as info_pembayaran', 'joins.join_date', 'joins.payment_due', 'joins.gross_amount', 'joins.cancellation_note', 'joins.id')
+            ->where('contracts.role', '=', '1')
             ->orderBy('join_date', 'DESC')
             ->paginate(10);
         // \dd($info);

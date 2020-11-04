@@ -35,12 +35,38 @@
                                             <a href="{{ URL::route('user.profile',$players->id) }}">
                                                 <div class="panel-body">
                                                     @if ($players->ava_url != null)
-                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$players->ava_url) }}">
+                                                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$players->ava_url) }}">
                                                     @else
                                                       <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
-                                                    <form action="{{ URL::route('add-friend') }}"
+                                                    <?php 
+                                                        $status = DB::table('friends')
+                                                            ->select('status')
+                                                            ->where([
+                                                                ['player_one', '=', $players->id],
+                                                                ['player_two', '=', Auth::guard('player')->user()->id]
+                                                            ])
+                                                            ->orWhere([
+                                                                ['player_one', '=', Auth::guard('player')->user()->id],
+                                                                ['player_two', '=', $players->id]
+                                                            ])->first();
+                                                    ?>
+                                                    @if ($status != null)
+                                                        @if ($status->status == "1")
+                                                        <form action="{{ URL::route('unfriend') }}" method="POST">
+                                                            @csrf
+                                                            <div class="buttons col-md-12 btnAdd">
+                                                                <input type="hidden" name="unfriend" value="{{ $players->id }}">
+                                                                <button class="btn btn-xs btn-danger" id="btnUnfriend"
+                                                                    type="submit">Unfriend</button>
+                                                            </div>
+                                                        </form>
+                                                        @elseif ($status->status == "0")
+                                                            <a href="#" type="button" class="btn btn-xs btn-primary">Friend Request Sent</a>
+                                                        @endif
+                                                    @else
+                                                        <form action="{{ URL::route('add-friend') }}"
                                                         method="POST">
                                                         @csrf
                                                         <div class="buttons col-md-12 btnAdd">
@@ -48,7 +74,8 @@
                                                             <button class="btn btn-xs btn-primary" id="btnAddfriend"
                                                                 type="submit">Add Friend</button>
                                                         </div>
-                                                    </form>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </a>
                                         </div>
@@ -70,7 +97,7 @@
                                         <div class="panel panel-headline panel-friend-detail">
                                             <div class="panel-body">
                                                 <img class="img-panel-friend"
-                                                    src="{{ asset('images/team_logo/'.$teams->logo_url) }}">
+                                                    src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
                                                 <form action="{{ URL::route('team.view',$teams->id) }}"
                                                         method="POST">
@@ -108,9 +135,9 @@
                                             </tr>
                                         </tbody>
                                         <tbody>
+                                            @forelse ($tournament as $tournaments)
                                             <tr>
-                                                @forelse ($tournament as $tournaments)
-                                                <td><img alt="" id="imgGame" src="{{ asset('images/game_icon/'.$tournaments->logo) }}" class="find-image">
+                                                <td><img alt="" id="imgGame" src="{{ URL::asset('images/game_icon/'.$tournaments->logo) }}" class="find-image">
                                                 </td>
                                                 <td>
                                                     <h4 class="find-text">{{ $tournaments->name }}</h4>
@@ -125,12 +152,16 @@
                                                 <td>
                                                     <h4 class="find-text">{{ $tournaments->participants }} Participants</h4>
                                                 </td>
-                                                @empty
+                                            </tr>
+                                            @empty
                                                 {{-- <div class="panel-friend thText"> --}}
                                                     <h4>Hasil Tidak Ditemukan.</h4>
                                                 {{-- </div> --}}
-                                                @endforelse
+<<<<<<< Updated upstream
+=======
                                             </tr>
+>>>>>>> Stashed changes
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -145,6 +176,8 @@
         </div>
         <!-- END MAIN CONTENT -->
     </div>
+    <!--Footer-->
+	@include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection

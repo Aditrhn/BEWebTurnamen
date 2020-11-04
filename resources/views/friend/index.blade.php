@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('asset-toastr')
-<link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
+<link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}">
 @endsection
 @section('main')
 <!-- MAIN -->
@@ -12,7 +12,12 @@
       <div class="col-md-12">
         <ul class="nav nav-pills marginPils">
           <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Friend List</a></li>
-          <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Friend Request</a></li>
+          @if ($count != null)
+            <span class="badge bg-danger">{{$count}}</span>
+          @endif
+          <li class="pillsRequest">
+            <a data-toggle="pill" href="#menu1" class="pillsFriend">Friend Request</a>
+          </li>
         </ul>
       </div>
       <!--Konten Pills-->
@@ -25,7 +30,7 @@
                 <a href="{{ URL::route('user.profile',$item->id) }}">
                   <div class="panel-body">
                     @if ($item->ava_url != null)
-                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$item->ava_url) }}">
                     @else
                       <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                     @endif
@@ -58,7 +63,7 @@
                 <a href="{{ URL::route('user.profile',$item->id) }}">
                   <div class="panel-body">
                     @if ($item->ava_url != null)
-                      <img class="img-panel-friend" src="{{ asset('images/avatars/'.$item->ava_url) }}">
+                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$item->ava_url) }}">
                     @else
                     <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                     @endif
@@ -94,6 +99,11 @@
     <!-- End Container -->
   </div>
   <!-- END MAIN CONTENT -->
+<<<<<<< Updated upstream
+=======
+  <!--Footer-->
+>>>>>>> Stashed changes
+  @include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection

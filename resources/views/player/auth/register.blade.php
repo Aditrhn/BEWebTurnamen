@@ -1,6 +1,6 @@
 @extends('player.auth.main')
 @section('up-main')
-<div class="side-image">
+<div class="sidenav">
 </div>
 @endsection
 @section('main')
@@ -11,13 +11,13 @@
         <div class="panel-body">
           <h2>Sign Up</h2>
           <br>
-          <form accept-charset="UTF-8" role="form" action="{{URL::route('post.register')}}" method="POST">
+          <form accept-charset="UTF-8" role="form" class="text-white" action="{{URL::route('post.register')}}" method="POST">
             {{ csrf_field() }}
           <fieldset>
             <div class="form-group">
               <input class="form-control" placeholder="Your name" name="name" type="text">
               @if ($errors->has('name'))
-                <span>
+                <span style="color: red">
                   {{ $errors->first('name') }}
                 </span>
               @endif
@@ -25,7 +25,7 @@
             <div class="form-group">
               <input class="form-control" placeholder="Password" name="password" type="password">
               @if ($errors->has('password'))
-                <span class="error">
+                <span class="error" style="color: red">
                   {{ $errors->first('password') }}
                 </span>
               @endif
@@ -33,7 +33,7 @@
             <div class="form-group">
               <input class="form-control" placeholder="Your e-mail" name="email" type="email">
               @if ($errors->has('email'))
-                <span>
+                <span style="color: red">
                   {{ $errors->first('email') }}
                 </span>
               @endif
@@ -59,6 +59,10 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
             <br>
             <p class="text-center">Have an account ?  <a href="{{URL::route('login')}}">Log in here</a></p>
+
+            <div class="text-center">
+              <a class="btn btn-primary social-login-btn social-google" href="/auth/google" style="text-align:center;"><i class="fa fa-google-plus text-white" style="font-size: 36px; padding:20px;"></i></a>
+            </div>
           </fieldset>
           </form>
         </div>
