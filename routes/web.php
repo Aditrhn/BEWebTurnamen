@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return Redirect('login');
 });
+
 Route::namespace('Player')->group(function () {
     //Auth Player
     Route::get('login', 'PlayerAuthController@index')->name('login');

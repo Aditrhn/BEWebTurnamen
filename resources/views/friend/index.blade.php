@@ -99,6 +99,11 @@
     <!-- End Container -->
   </div>
   <!-- END MAIN CONTENT -->
+<<<<<<< Updated upstream
+=======
+  <!--Footer-->
+>>>>>>> Stashed changes
+  @include('layouts.footer')
 </div>
 <!-- END MAIN -->
 @endsection

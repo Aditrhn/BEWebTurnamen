@@ -4,7 +4,7 @@
   </div>
   <div class="container-fluid">
     <div class="navbar-btn">
-      <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+      <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-align-justify"></i></button>
     </div>
     <form class="navbar-form navbar-left" action="{{ URL::route('search') }}" method="GET">
       <div class="input-group">
