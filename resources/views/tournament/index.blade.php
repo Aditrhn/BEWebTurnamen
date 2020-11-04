@@ -35,20 +35,62 @@
             <!-- /.carousel -->
             <!-- Card -->
             <h1 class="text-center">GAMES TOURNAMENT</h1>
-            <div class="menu-box">
-                <div class="container-fluid">
-                     <div class="row">
-                        @forelse ($game as $games)
-                            <div class="col-lg-2 col-xs-6 text-center">
-                                <a data-toggle="pill" href="#menu-game">
-                                    <div class="box" id="box-game">
-                                        <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="" style="height: 80px; object-fit: cover; object-position:center center;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="controls team-control-btn pull-right">
+                        <a class="left glyphicon glyphicon-triangle-left team_columns_carousel_control_icons" href="#Carousel"
+                            data-slide="prev"></a>
+                        <a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel" data-slide="next"></a>
+                    </div>
+                </div> 
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12 carousel-landing"><!--Class utama Carousel "carousel-landing"-->
+                    <div id="Carousel" class="carousel slide">
+                    <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+
+                                <div class="menu-box">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @forelse ($game as $games)
+                                                <div class="col-lg-2 col-xs-6 text-center">
+                                                    <a data-toggle="pill" href="#menu-game">
+                                                        <div class="box" id="box-game">
+                                                            <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="" style="height: 80px; object-fit: cover; object-position:center center;">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </div>
                                     </div>
-                                </a>
+                                </div>
                             </div>
-                        @empty
-                            
-                        @endforelse
+                            <div class="item">
+
+                                <div class="menu-box">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @forelse ($game as $games)
+                                                <div class="col-lg-2 col-xs-6 text-center">
+                                                    <a data-toggle="pill" href="#menu-game">
+                                                        <div class="box" id="box-game">
+                                                            <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="" style="height: 80px; object-fit: cover; object-position:center center;">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
