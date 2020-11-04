@@ -59,7 +59,7 @@
                                                 <div class="col-lg-2 col-xs-6 text-center">
                                                     <a data-toggle="pill" href="#menu-game">
                                                         <div class="box" id="box-game">
-                                                            <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="" style="height: 80px; object-fit: cover; object-position:center center;">
+                                                            <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
                                                         </div>
                                                     </a>
                                                 </div>
@@ -70,6 +70,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="item">
 
                                 <div class="menu-box">
@@ -118,8 +119,8 @@
                                                 <h1>{{ $tournaments->title }}</h1>
                                             </div>
                                             <div class="prizepool col-lg-4 col-xs-12">
-                                                <h3 class="panel-title">Prizepool</h3>
-                                                <h4>IDR {{ $tournaments->prize_pool }}</h4>
+                                                <h3>Prizepool</h3>
+                                                <h4 class="panel-title">IDR {{ $tournaments->prize_pool }}</h4>
                                             </div>
                                             <div class="col-lg-8 col-xs-12">
                                                 <table class="table">
