@@ -38,7 +38,7 @@ footer {
   color: #fff;
   bottom: 0;
   right: 0;
-  padding-top: 15px;
+  padding-top: 100px;
   /* padding-bottom: 10px;  */
 }
 
@@ -53,7 +53,7 @@ footer {
     height: 28px;
   }
   .img-sosial:hover{
-    background-color: #745FF8;
+    background-color: #26244F;
   }
 
   .img-support{
@@ -1759,23 +1759,28 @@ html.fullscreen-bg #wrapper {
     .navbar-form .input-group button img{
       width: 15px;
     }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     .navbar-form {
       float: left;
-      width: 70%;
-      margin-left: 5px;
-      margin-right: 5px;
+      width: 65%;
+      margin-left: 0;
+      margin-right: 0;
       padding-left: 0;
       padding-right: 0; }
       .navbar-form .input-group {
         width: 70%; }
       .navbar-form input[type="text"] {
-        min-width: 150px; } }
+        min-width: 180px; } }
   @media screen and (max-width: 640px) {
     .navbar-form {
       width: 15%; } 
       .navbar-form input[type="text"] {
-        min-width: 115px; } }
+        min-width: 100px; } }
+  @media screen and (max-width: 325px) {
+    .navbar-form {
+      width: 12%; } 
+      .navbar-form input[type="text"] {
+        min-width: 70px; } }
 
 .navbar-nav .icon-menu {
   display: inline-block;

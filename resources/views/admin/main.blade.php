@@ -57,16 +57,16 @@
                         <a href="{{URL::route('game.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Games</a>
                     </li>
                     <li class="{{ Request::url() == url('super/sponsors') ? 'active' : '' }}">
-                        <a href="{{URL::route('sponsors.index')}}"><i class="menu-icon fa fa-2x fa-gamepad"></i>Sponsors</a>
+                        <a href="{{URL::route('sponsors.index')}}"><i class="menu-icon fa fa-2x fa-handshake-o"></i>Sponsors</a>
                     </li>
                     <li class="{{ Request::url() == url('super/info-payment') ? 'active' : '' }}">
                         <a href="{{URL::route('info.index')}}"><i class="menu-icon fa fa-2x fa-money"></i>Info Payment</a>
                     </li>
                     <li class="{{ Request::url() == url('super/player-list') ? 'active' : '' }}">
-                        <a href="{{URL::route('list.player')}}"><i class="menu-icon fa fa-2x fa-money"></i>Player List</a>
+                        <a href="{{URL::route('list.player')}}"><i class="menu-icon fa fa-2x fa-address-book"></i>Player List</a>
                     </li>
                     <li class="{{ Request::url() == url('super/team-list') ? 'active' : '' }}">
-                        <a href="{{URL::route('list.team')}}"><i class="menu-icon fa fa-2x fa-money"></i>Team List</a>
+                        <a href="{{URL::route('list.team')}}"><i class="menu-icon fa fa-2x fa-users"></i>Team List</a>
                     </li>
                     <hr class="bg-white" width="100%">
                 </ul>

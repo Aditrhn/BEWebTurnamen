@@ -1,3 +1,4 @@
+<footer>
 <div class="container-fluid" style="background-color: #35346c; color: white; margin-top: 40px;">
     <div class="row copyright">
         <div class="col-md-4">
@@ -39,3 +40,5 @@
     </div>
     <p class="copyright-font">&copy; 2020 Gameskii.</p>
 </div>
+</footer>
+
