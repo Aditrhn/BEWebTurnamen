@@ -35,7 +35,7 @@ class PlayerAuthController extends Controller
         //cek jika user belum logout maka akan redirect back
         if(!Auth::guard('player')->check()){
             return \view('player.auth.register'); //view register
-        }else{
+        } else {
             return redirect()->back();
         }
     }
