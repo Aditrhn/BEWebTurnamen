@@ -46,10 +46,10 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             <br>
             <p>Not a member yet ?  <a href="{{URL::route('register')}}" class="primary">Sign Up</a></p>
-            
+
             <div class="text-center">
 
-              <a class="btn btn-primary social-login-btn social-google" href="/auth/google" style="text-align:center;"><i class="fa fa-google-plus text-white" style="font-size: 36px; padding:20px;"></i></a>
+              <a class="btn btn-primary social-login-btn social-google" href="{{ URL::route('auth.google') }}" style="text-align:center;"><i class="fa fa-google-plus text-white" style="font-size: 36px; padding:20px;"></i></a>
             </div>
 
           </fieldset>

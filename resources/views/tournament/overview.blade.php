@@ -97,9 +97,8 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <p><span class="panel-title">Join Tournament</span></p>
-                                    <p><span class="panel-title">{{$event->id}}</span></p>
                                     <div class="time">
-                                        <p>Sign ups open 25 Jul 2020, 17:26 WIB</p>
+                                        <p>Sign ups open {{ $event->registration_open }} WIB</p>
                                     </div>
                                 </div>
                                 {{-- <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">JOIN TOURNAMENT</a> --}}
@@ -116,8 +115,8 @@
                                     @else
                                         <button class="col-md-12 btn btn-success btn-block btn-lg" >Buat tim terlebih dahulu!!</button>
                                     @endif
-                                    
-                                
+
+
                                 <!-- The modal -->
                                 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">

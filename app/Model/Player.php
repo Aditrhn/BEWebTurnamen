@@ -11,7 +11,7 @@ class Player extends Authenticatable
 {
     use Notifiable;
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'contact', 'ava_url', 'city', 'province', 'status', 'gender'
+        'google_id', 'name', 'email', 'password', 'address', 'contact', 'ava_url', 'city', 'province', 'status', 'gender'
     ];
     protected $hidden = [
         'password', 'remember_token',
