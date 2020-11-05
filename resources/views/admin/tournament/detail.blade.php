@@ -279,37 +279,40 @@
                 @endif
             ],
             results: [
+                @foreach($brackets as $rounds)
                 [
                     @foreach($rounds as $round)
                     [
-                        @foreach($round as $matches)
-                            [{{$matches['score_a']}},{{$matches['score_b']}}],
+                        @foreach($round as $mtch)
+                            [{{$mtch['score_a']}},{{$mtch['score_b']}}],
                         @endforeach
                     ],
                     @endforeach
-                ]
+                ],
+                @endforeach
             ]
         };
         var double = {
-            teams : [
-            ["Team 1", "Team 2"],
-            ["Team 3", "Team 4"]
+            teams: [
+                @foreach($matches as $match)
+                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @endforeach
+                @if(count($matches) % 2 != 0)
+                    [null, null]
+                @endif
             ],
             results : [
-                [      /* WINNER BRACKET */
-                    [
-                        [1,2], 
-                        [3,4]
-                    ]       /* second round */
-                ], 
-                [              /* LOSER BRACKET */
-                    [
-                        [7,8]
-                    ]   /* second round */
-                ],
+                @foreach($brackets as $rounds)
                 [
-
-                ]
+                    @foreach($rounds as $round)
+                    [
+                        @foreach($round as $mtch)
+                            [{{$mtch['score_a']}},{{$mtch['score_b']}}],
+                        @endforeach
+                    ],
+                    @endforeach
+                ],
+                @endforeach
             ]
         }
         var bracket = {

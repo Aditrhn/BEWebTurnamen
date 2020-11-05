@@ -64,8 +64,9 @@
                                     <div class="form-group" id="round">
                                         <select name="bracket" id="exampleInputEmail1" class="form-control @error('bracket') @enderror">
                                             <option disabled selected>bracket</option>
-                                            <option value="wb">winner bracket</option>
-                                            <option value="lb">loser bracket</option>
+                                            <option value="1">winner bracket</option>
+                                            <option value="2">loser bracket</option>
+                                            <option value="3">final round</option>
                                         </select>
                                     </div>
                                 </div>

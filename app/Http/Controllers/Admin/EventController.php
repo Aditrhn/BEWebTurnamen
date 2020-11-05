@@ -139,8 +139,8 @@ class EventController extends Controller
 
         $count_bracket = DB::table('matches')
             ->where('matches.event_id', $id)
-            ->distinct('bracket')
-            ->count('bracket');
+            ->distinct('bracket_number')
+            ->count('bracket_number');
             
         $brackets = array();
         for ($i = 1; $i <= $count_bracket; $i++){
@@ -150,6 +150,7 @@ class EventController extends Controller
                 ->select('round_number', 'match_number', 'score_a', 'score_b')
                 ->where('event_id', $id)
                 ->where('round_number', $j)
+                ->where('bracket_number', $i)
                 ->orderBy('match_number', 'asc')
                 ->get()
                 ->toArray();
@@ -162,7 +163,7 @@ class EventController extends Controller
             }
             array_push($brackets, $rounds);
         }
-        \dd($brackets);
+        // \dd($brackets);
 
         $join = DB::table('joins')
             ->join('teams', 'teams.id', '=', 'joins.team_id')
@@ -177,7 +178,7 @@ class EventController extends Controller
             ->select('joins.team_id', 'teams.*')
             ->get();
         // \dd($join);
-        return view('admin.tournament.detail', \compact('count_round', 'matches', 'events', 'rounds', 'join', 'join2'));
+        return view('admin.tournament.detail', \compact('count_round', 'matches', 'events', 'brackets', 'join', 'join2'));
         // return view('admin.tournament.detail');
     }
 
