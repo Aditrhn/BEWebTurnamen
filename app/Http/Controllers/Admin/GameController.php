@@ -28,7 +28,9 @@ class GameController extends Controller
             ]);
             // \dd($array, $game);
             return \view('admin.game.index', \compact('game', 'array'));
-        }
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -38,7 +40,11 @@ class GameController extends Controller
      */
     public function create()
     {
-        return \view('admin.game.create');
+        if (Auth::guard('admin')->check()) {
+            return \view('admin.game.create');
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -49,22 +55,26 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'platform' => 'required',
-            'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
-        $file = $request->file('icon_url');
-        $name_icon = \time() . "_" . $file->getClientOriginalName();
-        $tujuan_upload = 'images/game_icon/';
-        $file->move($tujuan_upload, $name_icon);
-        // Game::create($request->all());
-        Game::create([
-            'name' => $request->name,
-            'platform' => $request->platform,
-            'icon_url' => $name_icon
-        ]);
-        return \redirect('super/game')->with(['success' => 'Game created successfully']);
+        if (Auth::guard('admin')->check()) {
+            $this->validate($request, [
+                'name' => 'required',
+                'platform' => 'required',
+                'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+            $file = $request->file('icon_url');
+            $name_icon = \time() . "_" . $file->getClientOriginalName();
+            $tujuan_upload = 'images/game_icon/';
+            $file->move($tujuan_upload, $name_icon);
+            // Game::create($request->all());
+            Game::create([
+                'name' => $request->name,
+                'platform' => $request->platform,
+                'icon_url' => $name_icon
+            ]);
+            return \redirect('super/game')->with(['success' => 'Game created successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -89,7 +99,11 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('admin.game.edit', \compact('game'));
+        if (Auth::guard('admin')->check()) {
+            return view('admin.game.edit', \compact('game'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -101,32 +115,36 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'platform' => 'required',
-            // 'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
-        // Game::where('id', $game->id)->update(
-        //     [
-        //         'name' => $request->name,
-        //         'platform' => $request->platform,
-        //     ]
-        // );
-        $game = Game::find($game->id);
-        $name_icon = $game->icon_url;
-        if ($request->hasFile('icon_url')) {
-            $file = $request->file('icon_url');
-            $name_icon = \time() . "_" . $file->getClientOriginalName();
-            $tujuan_upload = 'images/game_icon/';
-            $file->move($tujuan_upload, $name_icon);
-            File::delete('images/game_icon/' . $game->icon_url);
-        }
-        $game->update([
-            'name' => $request->name,
-            'platform' => $request->platform,
-            'icon_url' => $name_icon
-        ]);
-        return \redirect('super/game')->with(['success' => 'Game updated successfully']);
+        if (Auth::guard('admin')->check()) {
+            $this->validate($request, [
+                'name' => 'required',
+                'platform' => 'required',
+                // 'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+            // Game::where('id', $game->id)->update(
+            //     [
+            //         'name' => $request->name,
+            //         'platform' => $request->platform,
+            //     ]
+            // );
+            $game = Game::find($game->id);
+            $name_icon = $game->icon_url;
+            if ($request->hasFile('icon_url')) {
+                $file = $request->file('icon_url');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/game_icon/';
+                $file->move($tujuan_upload, $name_icon);
+                File::delete('images/game_icon/' . $game->icon_url);
+            }
+            $game->update([
+                'name' => $request->name,
+                'platform' => $request->platform,
+                'icon_url' => $name_icon
+            ]);
+            return \redirect('super/game')->with(['success' => 'Game updated successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -137,7 +155,11 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        Game::destroy($game->id);
-        return \redirect()->back()->with(['success' => 'Game deleted successfully']);
+        if (Auth::guard('admin')->check()) {
+            Game::destroy($game->id);
+            return \redirect()->back()->with(['success' => 'Game deleted successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 }

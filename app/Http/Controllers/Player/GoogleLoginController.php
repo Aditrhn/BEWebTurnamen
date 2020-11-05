@@ -12,10 +12,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleLoginController extends Controller
 {
-    public function index()
-    {
-        return \view('welcome');
-    }
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -25,7 +21,7 @@ class GoogleLoginController extends Controller
 
         // jika user masih login lempar ke home
         if (Auth::guard('player')->check()) {
-            return redirect('/dashboard');
+            return redirect('dashboard');
         }
         $oauthUser = Socialite::driver('google')->user();
         $player = Player::where('google_id', $oauthUser->id)->first();
