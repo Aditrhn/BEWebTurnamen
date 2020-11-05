@@ -397,6 +397,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       background-size: cover;
       border-radius: 10px;
       color: white;
+      background-color: white;
     }
   
     .case-landing__overlay {
@@ -1121,7 +1122,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 .menu-box .box{
   background-color: #745FF8;
   border-radius: 10px; 
-  padding: 40px 10px;
+  padding: 30px 10px;
   margin: 20px 0px;
   cursor: pointer;
   transition: all 0.5s ease-out;
