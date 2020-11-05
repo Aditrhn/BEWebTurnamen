@@ -58,7 +58,7 @@
 										</div><!--.row-->
 									</div>
 									
-									<div class="item">
+									{{-- <div class="item">
 										<div class="row rowDashboard">
 												<div class="case-landing landing1" style="background-image: url('https://duniaesports.org/wp-content/uploads/2019/12/t_5dd64b08483f2.jpg');">
 													<div class="case-landing__overlay">
@@ -76,7 +76,7 @@
 													</div>
 												</div>
 										</div><!--.row-->
-									</div>
+									</div> --}}
 									
 								</div>
 							</div>

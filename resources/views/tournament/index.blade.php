@@ -18,13 +18,13 @@
 
                         <div class="carousel-inner">
                         <div class="item active">
-                            <img src="{{ asset('assets/img/valor-banner.png') }}" style="width:100%" data-src="holder.js/900x500/auto/#7cbf00:#fff/text: " alt="First slide">
+                            <img src="{{ URL::asset('assets/img/valor-banner.png') }}" style="width:100%" data-src="holder.js/900x500/auto/#7cbf00:#fff/text: " alt="First slide">
                         </div>
                         <div class="item">
-                            <img src="{{ asset('assets/img/dota2-banner.png') }}" style="width:100%" data-src="" alt="Second    slide">
+                            <img src="{{ URL::asset('assets/img/dota2-banner.png') }}" style="width:100%" data-src="" alt="Second    slide">
                         </div>
                         <div class="item">
-                            <img src="{{ asset('assets/img/apex-banner.png') }}" style="width:100%" data-src="" alt="Third slide">
+                            <img src="{{ URL::asset('assets/img/apex-banner.png') }}" style="width:100%" data-src="" alt="Third slide">
                         </div>
                         </div>
                            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -106,9 +106,9 @@
                             <div id="menu-game" class="product">
                                 <div class="img-container">
                                     @if ($tournaments->banner_url)
-                                    <img src="{{ asset('images/events/'.$tournaments->banner_url) }}">
+                                    <img src="{{ URL::asset('images/events/'.$tournaments->banner_url) }}">
                                     @else
-                                    <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
+                                    <img src="{{ URL::asset('assets/img/maxresdefault.jpg') }}">
                                     @endif
                                 </div>
                                 <div class="product-info">
@@ -119,7 +119,7 @@
                                             </div>
                                             <div class="prizepool col-lg-4 col-xs-12">
                                                 <h3 class="panel-title">Prizepool</h3>
-                                                <h4>IDR {{ $tournaments->prize_pool }}</h4>
+                                                <h2>IDR {{ $tournaments->prize_pool }}</h2>
                                             </div>
                                             <div class="col-lg-8 col-xs-12">
                                                 <table class="table">

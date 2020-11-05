@@ -64,32 +64,10 @@ class PlayerAuthController extends Controller
         if (Auth::guard('player')->check()) {
             // $notif = $this->notifFriend();
             $cek = new Controller();
-            $notifFriend = DB::table('friends')
-                ->join('players', 'players.id', '=', 'friends.player_one')
-                ->where('friends.player_two', Auth::guard('player')->user()->id)
-                ->where('friends.status', '0')
-                ->count();
-            // \dd($notifFriend);
-            $notifTeams = DB::table('teams')
-                ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-                ->select('teams.id', 'teams.name', 'teams.logo_url')
-                ->where([
-                    ['contracts.players_id', '=', Auth::guard('player')->user()->id],
-                    ['contracts.status', '=', '0']
-                ])
-                ->get();
-            $notifTeams2 = DB::table('teams')
-                ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-                ->select('teams.id', 'teams.name', 'teams.logo_url')
-                ->where([
-                    ['contracts.players_id', '=', Auth::guard('player')->user()->id],
-                    ['contracts.status', '=', '0']
-                ])
-                ->count();
-            $notif = $notifFriend + $notifTeams2;
+            $game = Game::query()->get();
             // \dd($notif);
             // \dd($notifTeams);
-            return view('player.dashboard', \compact('notifFriend', 'notifTeams', 'notif')); //view dashboard
+            return view('player.dashboard', \compact('game')); //view dashboard
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
