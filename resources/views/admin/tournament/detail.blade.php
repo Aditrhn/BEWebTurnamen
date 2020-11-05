@@ -1,5 +1,4 @@
 @extends('admin.main')
-@section('admin-name', 'suwarno')
 @section('title','Tournament Create')
 @section('main')
 <!-- Modal -->
@@ -147,6 +146,9 @@
                                             class="badge badge-primary">Create</a>
                                         </div>
                                     </div>
+                                    @if ($count_round == 0)
+                                            <h5 class="mt-2">No matches have been made yet, go click create button above</h5>
+                                    @else
                                     <div class="row">
                                     <div class="col-md-12">
                                         <h4 class="titleMatch">Round 1</h4>
@@ -175,7 +177,7 @@
                                                         </td>
                                                         <td>
                                                             <h4 class="padMatch">
-                                                                @if ($match->score_a && $match->score_b != null)
+                                                                @if ($match->score_a || $match->score_b != null)
                                                                     {{$match->score_a}} - {{$match->score_b}}
                                                                 @else
                                                                     VS
@@ -201,7 +203,7 @@
                                                             </h4>
                                                         </td>
                                                         @endif
-                                                        @if ($match->score_a && $match->score_b != null)
+                                                        @if ($match->score_a || $match->score_b != null)
                                                         <td style="padding-top : 25px;">&nbsp;</td>
                                                         @else
                                                         <td style="padding-top : 25px;">
@@ -215,6 +217,7 @@
                                         </table>
                                     </div>
                                 </div>
+                                    @endif
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel"
                                 aria-labelledby="pills-bracket-tab">
@@ -303,6 +306,9 @@
                     [
                         [7,8]
                     ]   /* second round */
+                ],
+                [
+
                 ]
             ]
         }

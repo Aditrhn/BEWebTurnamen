@@ -32,6 +32,11 @@ class TournamentController extends Controller
     {
         if (Auth::guard('player')->check()) {
             // $this->initPaymentGateway();
+            $game = DB::table('games')
+                ->join('events', 'events.game_id', '=', 'games.id')
+                ->select('games.name')
+                ->where('events.id', '=', $id)
+                ->first();
             $event = Event::find($id);
             $contract = DB::table('contracts')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
@@ -78,7 +83,11 @@ class TournamentController extends Controller
             // $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             $team = DB::table('teams')->get();
+<<<<<<< HEAD
             return \view('tournament.overview', \compact('contract', 'event', 'team'));
+=======
+            return \view('tournament.overview', \compact('contract','event', 'team', 'game'));
+>>>>>>> 5a84338db8e69eaa04bc086c9a7b12c024677a9a
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

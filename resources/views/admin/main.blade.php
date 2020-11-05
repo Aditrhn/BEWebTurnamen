@@ -127,7 +127,7 @@
                             aria-expanded="false">
                             <div style="width: 0px; height: 50%; border: 1px gray solid;">
                             </div>
-                            <span class="ml-3 mr-2">@yield('admin-name')</span>
+                            <span class="ml-3 mr-2">{{Auth::guard('admin')->user()->name}}</span>
                             <img class="user-avatar rounded-circle" src="{{ asset('images/admin/admin.jpg') }}" alt="User Avatar">
                         </a>
 

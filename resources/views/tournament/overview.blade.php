@@ -7,8 +7,8 @@
         <div class="container-fluid">
             <!-- Jumbotron -->
             <div class="jumbotron bg-cover text-white">
-                <h1>NONGSKI</h1>
-                <p>Tournament Dota 2 Batch 1</p>
+                <h1>{{ $event->title }}</h1>
+                <p>{{ $game->name }}</p>
                 <!-- <p><a class="btn btn-primary btn-lg">JOIN</a></p> -->
             </div>
             <!-- /.Jumbotron -->
@@ -30,18 +30,10 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>{{ $event->title }}</h4>
+                                        <h4>Rules</h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        <p>Tournament Format</p>
-                                        <p>First Place</p>
-                                        <p>Pause</p>
-                                        <h4><a data-toggle="pill" data-target="#rules"> SEE RULES</a></h4>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>Single Bracket</p>
-                                        <p>5 vs 5</p>
-                                        <p>Twice/team</p>
+                                    <div class="col-md-8">
+                                        <p>{{ $event->rules }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -49,17 +41,14 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>Mobile Legends</h4>
+                                        <h4>Prizes</h4>
                                     </div>
                                     <div class="col-md-4">
-                                        <p>Tournament Format</p>
-                                        <p>First Place</p>
-                                        <p>Pause</p>
-                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"> SEE RULES</a></h4>													</div>
-                                    <div class="col-md-4">
-                                        <p>Single Bracket</p>
-                                        <p>5 vs 5</p>
-                                        <p>Twice/team</p>
+                                        <p>Total Prizes</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h2>Rp {{ $event->prize_pool }}</h2>
+                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"></a></h4>
                                     </div>
                                 </div>
                             </div>
@@ -67,19 +56,23 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>Mobile Legends</h4>
+                                        <h4>Schedule</h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        @foreach ($team as $item)
+                                    <div class="col-md-4" id="turneyoverview">
+                                        {{-- @foreach ($team as $item)
                                         <p>{{ $item->name }}</p>
-                                        @endforeach
-                                        <p>First Place</p>
-                                        <p>Pause</p>
-                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"> SEE RULES</a></h4>													</div>
+                                        @endforeach --}}
+                                        <p>Sign up starts</p>
+                                        <p>Sign up ends</p>
+                                        <p>Starts</p>
+                                        <p>Ends</p>
+                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"></a></h4>
+                                    </div>
                                     <div class="col-md-4">
-                                        <p>Single Bracket</p>
-                                        <p>5 vs 5</p>
-                                        <p>Twice/team</p>
+                                        <p>{{ $event->registration_open }}</p>
+                                        <p>{{ $event->registration_close }}</p>
+                                        <p>{{ $event->start_date }}</p>
+                                        <p>{{ $event->end_date }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -1163,6 +1163,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   width: 150px; 
   margin: 20px;
 }
+
+#turneyoverview p{
+  opacity: 60%;
+}
 /* END TOURNAMENT */
   /* Product */
   .container-fluid {

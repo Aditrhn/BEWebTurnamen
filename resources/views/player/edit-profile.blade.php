@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-md-6" id="button-editprofile">
                         <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button">Save</a>
-                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button">Cancel</a>
+                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="{{ URL::route('profile') }}" role="button">Cancel</a>
                     </div>
                 </div>
             </div>
