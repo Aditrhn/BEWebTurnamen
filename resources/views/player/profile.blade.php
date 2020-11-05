@@ -60,14 +60,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse ($game as $games)
+                                    @forelse ($history as $histories)
                                         <tr>
-                                            <td>{{ $games->platform }}</td>
-                                            <td>{{ $games->name }}</td>
-                                            <td>August 13, 2020 @3:00 am</td>
-                                            <td>Liquor</td>
-                                            <td>164 participants</td>
-                                            <td>winner</td>
+                                            <td>{{ $histories->game }}</td>
+                                            <td>{{ $histories->name }}</td>
+                                            <td>{{ $histories->date }}</td>
+                                            <td>{{ $histories->team }}</td>
+                                            <td>{{ $histories->participant }} </td>
+                                            <td>{{ $histories->status }}</td>
                                         </tr>
                                     @empty
                                         <tr>
