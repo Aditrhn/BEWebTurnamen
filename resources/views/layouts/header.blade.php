@@ -15,7 +15,7 @@
     <div id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <?php 
+          <?php
             $friend = DB::table('friends')
               ->select('*')
               ->where([
@@ -77,10 +77,10 @@
                     @endif
                 @endguest
             </a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ URL::route('profile') }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-            <li><a href="{{URL::route('logout')}}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
-          </ul>
+            <ul class="dropdown-menu">
+                <li><a href="{{ URL::route('profile') }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                <li><a href="{{URL::route('logout')}}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
+            </ul>
         </li>
       </ul>
     </div>

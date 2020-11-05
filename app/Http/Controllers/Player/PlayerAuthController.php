@@ -7,6 +7,7 @@ use App\Model\Contract;
 use App\Model\Team;
 use App\Model\Friend;
 use App\Model\Game;
+use App\Model\HistoryTournament;
 use App\Model\Player;
 use App\Model\PlayerGame;
 use Illuminate\Http\Request;
@@ -34,8 +35,7 @@ class PlayerAuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        $player = Player::where('email', $request->email)->first();
-
+        // $player = Player::where('email', $request->email)->first();
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard'); //redirect to url link dashboard
         } else {
@@ -49,8 +49,14 @@ class PlayerAuthController extends Controller
             'email' => 'required|email|unique:players',
             'password' => 'required|min:8',
         ]);
-        $data = $request->all();
-        $check = $this->create($data);
+        // $data = $request->all();
+        // $check = $this->create($data);
+        Player::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        // \dd(Auth::guard('player')->user());
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard')->with(['success' => 'Register success']); //redirect to url link dashboard
         } else {
@@ -113,8 +119,9 @@ class PlayerAuthController extends Controller
                 ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                 ->get();
 
+            $history = HistoryTournament::all();
             // dd($team);
-            return \view('player.profile', \compact('game', 'friend', 'team'));
+            return \view('player.profile', \compact('game', 'friend', 'team', 'history'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
