@@ -7,6 +7,7 @@ use App\Model\Event;
 use App\Model\TemporaryEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {

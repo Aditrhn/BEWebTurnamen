@@ -24,19 +24,19 @@ class PlayerAuthController extends Controller
     public function index()
     {
         //cek jika user belum logout maka akan redirect back
-        if(Auth::guard('player')->check()){
-            return redirect()->back();
-        }else{
+        if(!Auth::guard('player')->check()){
             return \view('player.auth.login'); //view login
+        } else {
+            return redirect()->back();
         }
     }
     public function register()
     {
         //cek jika user belum logout maka akan redirect back
-        if(Auth::guard('player')->check()){
-            return redirect()->back();
-        }else{
+        if(!Auth::guard('player')->check()){
             return \view('player.auth.register'); //view register
+        }else{
+            return redirect()->back();
         }
     }
     public function postLogin(Request $request)
