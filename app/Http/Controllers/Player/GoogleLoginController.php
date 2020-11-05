@@ -20,46 +20,31 @@ class GoogleLoginController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-    public function callbackPlayer(Request $request)
+    public function callbackPlayer()
     {
+
+        // jika user masih login lempar ke home
+        if (Auth::guard('player')->check()) {
+            return redirect('/dashboard');
+        }
         $oauthUser = Socialite::driver('google')->user();
-        // \dd($oauthUser->id);
-        $finduser = Player::where('google_id', $oauthUser->id)
-            ->first();
-        // \dd($google);
-        if ($finduser) {
-            \request()->validate([
-                'email' => 'required',
-                'password' => 'required',
-            ]);
-            Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'));
-            return \redirect('dashboard'); //redirect to url link dashboard
-            // Auth::login($finduser);
-            // return redirect('dashboard');
+        $player = Player::where('google_id', $oauthUser->id)->first();
+        if ($player) {
+            // Auth::loginUsingId($player->id, \true);
+            Auth::guard('player')->login($player);
+            return redirect('dashboard');
         } else {
-            \request()->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:players',
-                'password' => 'required|min:8',
-            ]);
-            Player::create([
+            $newUser = Player::create([
                 'google_id' => $oauthUser->id,
                 'name' => $oauthUser->name,
                 'email' => $oauthUser->email,
-                'password' => \md5($oauthUser->token),
+                'ava_url' => $oauthUser->avatar,
+                // password tidak akan digunakan ;)
+                'password' => md5($oauthUser->token),
             ]);
-
             // Auth::login($newUser);
-            // \dd($newUser);
-            // \dd(Auth::guard('player')->user());
-            Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'));
-            return \redirect('dashboard'); //redirect to url link dashboard
-
-            // Auth::guard('player')->attempt($newUser);
-            // return redirect('dashboard');
-            // \dd('failed');
-            // return Redirect::to("login"); //routing login jika user tidak ada
-
+            Auth::guard('player')->login($newUser);
+            return redirect('dashboard');
         }
     }
 }

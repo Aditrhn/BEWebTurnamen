@@ -31,7 +31,6 @@ Route::namespace('Player')->group(function () {
     Route::post('player-register', 'PlayerAuthController@postRegister')->name('post.register');
     Route::get('auth/google', 'GoogleLoginController@redirectToGoogle')->name('auth.google');
     Route::get('callback/google', 'GoogleLoginController@callbackPlayer');
-    Route::get('index', 'GoogleLoginController@index');
     Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
     Route::get('logout', 'PlayerAuthController@logout')->name('logout');
 

@@ -52,7 +52,6 @@ class PlayerAuthController extends Controller
         // $data = $request->all();
         // $check = $this->create($data);
         Player::create([
-            'google_id' => $request->id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
