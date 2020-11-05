@@ -13,10 +13,10 @@ use File;
 
 class GoogleLoginController extends Controller
 {
-    function getSocialAvatar($file, $path){
-        $fileContents = file_get_contents($file);
-        return File::put(public_path('images/avatars/') . $path . $user->getId() . ".jpg", $fileContents);
-    }
+    // function getSocialAvatar($file, $path){
+    //     $fileContents = file_get_contents($file);
+    //     return File::put(public_path('images/avatars/') . $path . $user->getId() . ".jpg", $fileContents);
+    // }
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -40,7 +40,8 @@ class GoogleLoginController extends Controller
                 'google_id' => $oauthUser->id,
                 'name' => $oauthUser->name,
                 'email' => $oauthUser->email,
-                'ava_url' => getSocialAvatar($oauthUser->getAvatar(),$path),
+                // 'ava_url' => getSocialAvatar($oauthUser->getAvatar(),$path),
+                'ava_url' => $oauthUser->avatar,
                 // password tidak akan digunakan ;)
                 'password' => md5($oauthUser->token),
             ]);
