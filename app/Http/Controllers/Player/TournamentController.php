@@ -83,11 +83,7 @@ class TournamentController extends Controller
             // $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             $team = DB::table('teams')->get();
-<<<<<<< HEAD
-            return \view('tournament.overview', \compact('contract', 'event', 'team'));
-=======
             return \view('tournament.overview', \compact('contract','event', 'team', 'game'));
->>>>>>> 5a84338db8e69eaa04bc086c9a7b12c024677a9a
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
