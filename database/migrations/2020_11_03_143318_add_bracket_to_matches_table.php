@@ -14,7 +14,7 @@ class AddBracketToMatchesTable extends Migration
     public function up()
     {
         Schema::table('matches', function (Blueprint $table) {
-            $table->enum('bracket',['wb','lb'])->default('wb');
+            $table->enum('bracket',['wb','lb','fb'])->default('wb');
         });
     }
 
