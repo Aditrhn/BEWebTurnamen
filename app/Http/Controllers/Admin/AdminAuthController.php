@@ -15,13 +15,13 @@ class AdminAuthController extends Controller
 {
     public function login()
     {
-        if (!Auth::guard('admin')->check()) {
-            return \view('admin.auth.login');
-        } else {
-            // return view('admin.atuh.login'); //view dashboard
-            // return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-            return Redirect()->back();
-        }        
+        // if (!Auth::guard('admin')->check()) {
+        return \view('admin.auth.login');
+        // } else {
+        //     // return view('admin.atuh.login'); //view dashboard
+        //     // return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        //     return Redirect()->back();
+        // }
     }
     public function postLogin(Request $request)
     {
