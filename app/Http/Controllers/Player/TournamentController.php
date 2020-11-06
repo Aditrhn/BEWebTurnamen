@@ -8,6 +8,7 @@ use App\Model\Event;
 use App\Model\Join;
 use App\Model\Payment;
 use App\Model\Game;
+use App\Model\HistoryTournament;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -61,37 +62,46 @@ class TournamentController extends Controller
             $contract = DB::table('contracts')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+                ->join('games', 'games.id', '=', 'teams.games_id')
                 ->where('players.id', Auth::guard('player')->user()->id)
-                ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
+                ->select('players.name', 'players.email', 'teams.id as team_id', 'teams.name as name_team', 'games.name as name_game', 'contracts.id')
                 ->first();
             // dd($contract);
-            
+
             $team = DB::table('joins')
-             ->join('teams','teams.id','=','joins.team_id')
-             ->where('team_id', $contract->team_id)
-             ->select('status')
-             ->first();
+                ->join('teams', 'teams.id', '=', 'joins.team_id')
+                ->where('team_id', $contract->team_id)
+                ->select('status', 'teams.name as name_team')
+                ->first();
             // dd($team);
-             $check_team = DB::table('joins')
+            $check_team = DB::table('joins')
                 ->select('team_id', 'event_id')
                 ->where([
                     ['team_id', '=', $contract->team_id],
                     ['event_id', '=', $id]
-            ])->first();
+                ])->first();
             // dd($check_team);
 
             if ($check_team == null) {
                 $join = Join::create([
-                     'team_id' => $contract->team_id,
-                     'event_id' => $id,
-                     'join_date' => \now(),
-                     'payment_due' => \now(),
-                     'gross_amount' => $event->fee,
-                     'cancellation_note' => 'none'
-               ]);
-            //    dd($join);
-            }             
-            
+                    'team_id' => $contract->team_id,
+                    'event_id' => $id,
+                    'join_date' => \now(),
+                    'payment_due' => \now(),
+                    'gross_amount' => $event->fee,
+                    'cancellation_note' => 'none'
+                ]);
+                $history = HistoryTournament::create([
+                    'game' => $contract->name_game,
+                    'name' => $contract->name,
+                    'team' => $contract->name_team,
+                    'date' => $event->start_date,
+                    'participant' => $event->participant,
+                    'status' => 'kosong',
+                ]);
+                //    dd($join);
+            }
+
 
             // $detail_payment = DB::table('joins')
             //     ->join('contracts', 'contracts.id', '=', 'joins.team_id')
@@ -189,7 +199,7 @@ class TournamentController extends Controller
     public function paymentSuccess()
     {
         if (Auth::guard('player')->check()) {
-            
+
             $tournament = DB::table('events')
                 ->join('joins', 'joins.event_id', '=', 'events.id')
                 ->join('contracts', 'contracts.teams_id', '=', 'joins.team_id')

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBracketToMatchesTable extends Migration
+class AddColumnToPlayersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddBracketToMatchesTable extends Migration
      */
     public function up()
     {
-        Schema::table('matches', function (Blueprint $table) {
-            $table->unsignedInteger('bracket_number');
+        Schema::table('players', function (Blueprint $table) {
+            $table->string('google_id')->nullable()->after('id');
         });
     }
 
@@ -25,7 +25,7 @@ class AddBracketToMatchesTable extends Migration
      */
     public function down()
     {
-        Schema::table('matches', function (Blueprint $table) {
+        Schema::table('players', function (Blueprint $table) {
             //
         });
     }

@@ -16,18 +16,22 @@ class InfoPaymentController extends Controller
      */
     public function index()
     {
-        //SELECT players.name,joins.*,teams.id,events.id,events.title, contracts.teams_id FROM `joins` join teams on teams.id=joins.team_id JOIN events on events.id=joins.event_id JOIN contracts on teams.id=contracts.teams_id JOIN players on  players.id=contracts.players_id
-        $info = DB::table('joins')
-            ->join('teams', 'teams.id', '=', 'joins.team_id')
-            ->join('events', 'events.id', '=', 'joins.event_id')
-            ->join('contracts', 'teams.id', '=', 'contracts.teams_id')
-            ->join('players', 'players.id', 'contracts.players_id')
-            ->select('players.name as nama', 'players.email as mail', 'teams.name as nama_team', 'events.title as nama_turney', 'joins.team_id', 'joins.event_id', 'joins.status as info_pembayaran', 'joins.join_date', 'joins.payment_due', 'joins.gross_amount', 'joins.cancellation_note', 'joins.id')
-            ->where('contracts.role', '=', '1')
-            ->orderBy('join_date', 'DESC')
-            ->paginate(10);
-        // \dd($info);
-        return \view('admin.info-payment.index', \compact('info'));
+        if (Auth::guard('admin')->check()) {
+            //SELECT players.name,joins.*,teams.id,events.id,events.title, contracts.teams_id FROM `joins` join teams on teams.id=joins.team_id JOIN events on events.id=joins.event_id JOIN contracts on teams.id=contracts.teams_id JOIN players on  players.id=contracts.players_id
+            $info = DB::table('joins')
+                ->join('teams', 'teams.id', '=', 'joins.team_id')
+                ->join('events', 'events.id', '=', 'joins.event_id')
+                ->join('contracts', 'teams.id', '=', 'contracts.teams_id')
+                ->join('players', 'players.id', 'contracts.players_id')
+                ->select('players.name as nama', 'players.email as mail', 'teams.name as nama_team', 'events.title as nama_turney', 'joins.team_id', 'joins.event_id', 'joins.status as info_pembayaran', 'joins.join_date', 'joins.payment_due', 'joins.gross_amount', 'joins.cancellation_note', 'joins.id')
+                ->where('contracts.role', '=', '1')
+                ->orderBy('join_date', 'DESC')
+                ->paginate(10);
+            // \dd($info);
+            return \view('admin.info-payment.index', \compact('info'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -81,17 +85,21 @@ class InfoPaymentController extends Controller
      */
     public function update(Request $request, Join $join)
     {
-        Join::where('id', $join->id)
-            ->update([
-                'team_id' => $request->team_id,
-                'event_id' => $request->event_id,
-                'status' => $request->status,
-                'join_date' => $request->join_date,
-                'payment_due' => $request->payment_due,
-                'gross_amount' => $request->gross_amount,
-                'cancellation_note' => $request->cancellation_note
-            ]);
-        return \redirect()->back()->with(['msg' => 'status pembayaran diubah!!']);
+        if (Auth::guard('admin')->check()) {
+            Join::where('id', $join->id)
+                ->update([
+                    'team_id' => $request->team_id,
+                    'event_id' => $request->event_id,
+                    'status' => $request->status,
+                    'join_date' => $request->join_date,
+                    'payment_due' => $request->payment_due,
+                    'gross_amount' => $request->gross_amount,
+                    'cancellation_note' => $request->cancellation_note
+                ]);
+            return \redirect()->back()->with(['msg' => 'status pembayaran diubah!!']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -102,7 +110,11 @@ class InfoPaymentController extends Controller
      */
     public function destroy(Join $join)
     {
-        Join::destroy($join->id);
-        return \redirect()->back()->with(['msg' => 'Berhasil menghapus pembayaran!!']);
+        if (Auth::guard('admin')->check()) {
+            Join::destroy($join->id);
+            return \redirect()->back()->with(['msg' => 'Berhasil menghapus pembayaran!!']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 }

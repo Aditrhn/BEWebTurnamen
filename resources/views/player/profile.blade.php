@@ -38,13 +38,13 @@
         <!--Nav-Pills-->
             <div class="col-md-12">
                 <ul class="nav nav-pills marginPils">
-                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
-                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
+                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Overview</a></li>
+                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Tournament</a></li>
                 </ul>
             </div>
         <!--Nav-Pills Konten-->
             <div class="tab-content tabKonten thText">
-                <div id="friendList" class="tab-pane fade in active">
+                <div id="menu1" class="tab-pane fade ">
                     <div class="col-md-12">
                         <div class="container-fluid" >
                             <div class="table-responsive">
@@ -60,14 +60,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse ($game as $games)
+                                    @forelse ($history as $histories)
                                         <tr>
-                                            <td>{{ $games->platform }}</td>
-                                            <td>{{ $games->name }}</td>
-                                            <td>August 13, 2020 @3:00 am</td>
-                                            <td>Liquor</td>
-                                            <td>164 participants</td>
-                                            <td>winner</td>
+                                            <td>{{ $histories->game }}</td>
+                                            <td>{{ $histories->name }}</td>
+                                            <td>{{ $histories->date }}</td>
+                                            <td>{{ $histories->team }}</td>
+                                            <td>{{ $histories->participant }} </td>
+                                            <td>{{ $histories->status }}</td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <div id="menu1" class="tab-pane fade">
+                <div id="friendList" class="tab-pane fade in active">
                     <div class="col-md-5">
                         <!-- PANEL HEADLINE -->
                         <h4>Bio</h4>
@@ -145,14 +145,55 @@
                                             <img src="assets/img/user3.png" >
                                             <img src="assets/img/user3.png" >
                                             <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
                                             <img src="assets/img/favicon.png" > --}}
+                                            <button type="button" id="btn-circle-profile" class="btn btn-primary btn-circle btn-lg" data-target="#viewfriend" data-toggle="modal" >+</button>
                                         </center>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!--View Friends-->
+                            <div class="modal fade" id="viewfriend" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header title-friend">
+                            <button type="button" class="close btn-friend-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                            <label for=""> Friends </label>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <!--Friend List-->
+                                <div class="friend-list">
+                                <div class="col-xs-12 friend-modal">
+                                            <div class="col-xs-3">
+                                                    <img class="img-friend" src="assets/img/gameski-small.png">
+                                            </div>
+                                            <div class="col-xs-4 friend-modal text-friend">
+                                                <h4>Sutejo</h4>
+                                            </div>
+                                            <form >
+                                                
+                                                <div class="col-xs-5 friend-btn">
+                                                    <input type="hidden" name="friendId" >
+                                                    <input type="hidden" name="teamId">
+                                                    <button type="submit" class="btn btn-primary nextBtn pull-right">View Profile</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="panel-friend not-found" style="color: #fff">
+                                            <h4>There are no friend</h4>
+                                        </div>
+                                    
+                                </div>
+                                <!--End Friend List-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
                             <div class="col-md-6">
                                 <h4>Status</h4>
                                 <div class="panel">
@@ -173,20 +214,19 @@
                             <div class="panel-heading padding-top-30 padding-bottom-30">
                                 <div class="row" >
                                     @forelse ($team as $item)
-                                        <div class="col-md-5" id="teampanel" >
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <img src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
-                                                    <a class="btn btn-primary" id="btnviewteam" href="{{ URL::route('team') }}" role="button">View Team</a>
-                                                </div>
-                                                <div class="col-md-7">
+                                    <center>
+                                        <div class="col-md-5" id="teampanel">
+                                                <div class="col-md-12" style="margin-left: -5px;">
+                                                    <img id="team-profile" src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
+                                                    
                                                     <b><h4 style="font-weight: bold;">{{ $item->name }}</h4></b>
                                                     <p id="descprofile">
                                                         {{ $item->description }}
                                                     </p>
+                                                    <a class="btn btn-primary" id="btnviewteam" href="{{ URL::route('team') }}" role="button">View Team</a>
                                                 </div>
-                                            </div>
                                         </div>
+                                    </center>
                                     @empty
                                         <div class="panel-friend thText">
                                             <h4 style="text-align: justify; opacity: 50%; padding-left: 20px">You haven't join any team yet..</h4>

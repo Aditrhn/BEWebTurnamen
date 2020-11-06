@@ -711,20 +711,25 @@ class TeamController extends Controller
     }
     public function friendInvite(Request $request)
     {
-        if ($request->has('friendId') && $request->has('teamId')) {
-            Contract::create([
-                'role' => "2",
-                'status' => "0",
-                'teams_id' => $request->teamId,
-                'players_id' => $request->friendId
-            ]);
-
-            return \redirect('team')->with(['success' => 'Friend invited successfully']);
-        };
+        if (Auth::guard('player')->check()){
+            if ($request->has('friendId') && $request->has('teamId')) {
+                Contract::create([
+                    'role' => "2",
+                    'status' => "0",
+                    'teams_id' => $request->teamId,
+                    'players_id' => $request->friendId
+                ]);
+    
+                return \redirect('team')->with(['success' => 'Friend invited successfully']);
+            };
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
     }
     public function team_invitation()
     {
-        $teams = DB::table('teams')
+        if (Auth::guard('player')->check()) {
+            $teams = DB::table('teams')
             ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
             ->select('teams.id', 'teams.name', 'teams.logo_url')
             ->where([
@@ -733,7 +738,10 @@ class TeamController extends Controller
             ])
             ->get();
         // dd($team);
-        return view('team.team-invitation', \compact('teams'));
+            return view('team.team-invitation', \compact('teams'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }       
     }
     public function team_acc(Request $request)
     {
