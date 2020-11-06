@@ -54,14 +54,14 @@
             @endforelse
           </ul>
         </li>
-        <li class="dropdown">
+        {{-- <li class="dropdown">
           <ul class="dropdown-menu">
             <li><a href="#">Basic Use</a></li>
             <li><a href="#">Working With Data</a></li>
             <li><a href="#">Security</a></li>
             <li><a href="#">Troubleshooting</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @guest

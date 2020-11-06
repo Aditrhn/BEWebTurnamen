@@ -24,31 +24,33 @@ class PlayerAuthController extends Controller
     public function index()
     {
         //cek jika user belum logout maka akan redirect back
-        if(!Auth::guard('player')->check()){
-            return \view('player.auth.login'); //view login
-        } else {
-            return redirect()->back();
-        }
+        // if(!Auth::guard('player')->check()){
+        return \view('player.auth.login'); //view login
+        // } else {
+        //     return redirect()->back();
+        // }
     }
     public function register()
     {
         //cek jika user belum logout maka akan redirect back
-        if(!Auth::guard('player')->check()){
-            return \view('player.auth.register'); //view register
-        } else {
-            return redirect()->back();
-        }
+        // if(!Auth::guard('player')->check()){
+        return \view('player.auth.register'); //view register
+        // } else {
+        //     return redirect()->back();
+        // }
     }
     public function postLogin(Request $request)
     {
-        \request()->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ],
-        [
-            'email.required' => 'Email is required',
-            'password.required' => 'Password is required'
-        ]);
+        \request()->validate(
+            [
+                'email' => 'required',
+                'password' => 'required',
+            ],
+            [
+                'email.required' => 'Email is required',
+                'password.required' => 'Password is required'
+            ]
+        );
         // $player = Player::where('email', $request->email)->first();
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard'); //redirect to url link dashboard
@@ -85,9 +87,10 @@ class PlayerAuthController extends Controller
             // $notif = $this->notifFriend();
             $cek = new Controller();
             $game = Game::query()->get();
+            $count = Game::query()->count();
             // \dd($notif);
             // \dd($notifTeams);
-            return view('player.dashboard', \compact('game')); //view dashboard
+            return view('player.dashboard', \compact('game', 'count')); //view dashboard
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -114,7 +117,7 @@ class PlayerAuthController extends Controller
                 ->select('players.*', 'player_games.*')
                 ->get();
             $friend = DB::select('select p.name, p.ava_url, p.id from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
-            
+
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                 ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
@@ -209,7 +212,7 @@ class PlayerAuthController extends Controller
                 'province' => $request->province,
                 'status' => $request->status
             ]);
-            
+
             return \redirect('profile')->with(['success' => 'Profile updated successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login

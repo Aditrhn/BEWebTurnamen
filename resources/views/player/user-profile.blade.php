@@ -219,8 +219,11 @@
                                         <div class="col-md-5" id="teampanel">
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <img
-                                                        src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
+                                                    @if ($item->logo_url != null)
+                                                        <img src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
+                                                    @else
+                                                        <img src="{{ URL::asset('images/team_logo/default.png') }}">
+                                                    @endif
                                                     <form action="{{ URL::route('team.view',$item->id) }}"
                                                             method="POST">
                                                         @csrf

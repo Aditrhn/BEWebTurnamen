@@ -223,8 +223,11 @@
                                     <center>
                                         <div class="col-md-5" id="teampanel">
                                                 <div class="col-md-12" style="margin-left: -5px;">
-                                                    <img id="team-profile" src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
-                                                    
+                                                    @if ($item->logo_url != null)
+                                                        <img id="team-profile" src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
+                                                    @else
+                                                        <img id="team-profile" src="{{ URL::asset('images/team_logo/default.png') }}">
+                                                    @endif
                                                     <b><h4 style="font-weight: bold;">{{ $item->name }}</h4></b>
                                                     <p id="descprofile">
                                                         {{ $item->description }}

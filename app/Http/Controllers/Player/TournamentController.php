@@ -21,9 +21,10 @@ class TournamentController extends Controller
             // $tournament = Event::select('title', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC')->paginate(1);
             // $tournament = Event::all('title', 'status', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC');
             $game = Game::query()->get();
+            $count = Game::query()->count();
             $tournament = Event::query()->paginate(5);
             // \dd($game);
-            return \view('tournament.index', \compact('tournament', 'game'));
+            return \view('tournament.index', \compact('tournament', 'game', 'count'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

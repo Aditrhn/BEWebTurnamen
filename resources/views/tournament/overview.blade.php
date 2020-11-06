@@ -58,18 +58,18 @@
                                     <div class="col-md-4">
                                         <h4>Schedule</h4>
                                     </div>
-                                    <div class="col-md-4" id="turneyoverview">
+                                    <div class="col-md-3" id="turneyoverview">
                                         <p>Sign up starts</p>
                                         <p>Sign up ends</p>
                                         <p>Starts</p>
                                         <p>Ends</p>
                                         <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"></a></h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        <p>{{\Carbon\Carbon::parse($event->registration_open)->translatedFormat('D, j M Y, H:i') }}</p>
-                                        <p>{{\Carbon\Carbon::parse($event->registration_close)->translatedFormat('D, j M Y, H:i') }}</p>
-                                        <p>{{\Carbon\Carbon::parse($event->start_date)->translatedFormat('D, j M Y, H:i') }}</p>
-                                        <p>{{\Carbon\Carbon::parse($event->end_date)->translatedFormat('D, j M Y, H:i') }}</p>
+                                    <div class="col-md-5">
+                                        <p>{{\Carbon\Carbon::parse($event->registration_open)->translatedFormat('D, j M Y, H:i') }} WIB</p>
+                                        <p>{{\Carbon\Carbon::parse($event->registration_close)->translatedFormat('D, j M Y, H:i') }} WIB</p>
+                                        <p>{{\Carbon\Carbon::parse($event->start_date)->translatedFormat('D, j M Y, H:i') }} WIB</p>
+                                        <p>{{\Carbon\Carbon::parse($event->end_date)->translatedFormat('D, j M Y, H:i') }} WIB</p>
                                     </div>
                                 </div>
                             </div>
@@ -97,13 +97,13 @@
                                             <form action="{{ URL::route('tournament.join',$event->id) }}" method="POST">
                                                 @csrf
                                                 {{ csrf_field() }}
-                                                <button class="col-md-12 btn btn-success btn-block btn-lg" type="submit">JOIN TOURNAMENT</button>
+                                                <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" type="submit">JOIN TOURNAMENT</button>
                                             </form>
                                         @else
-                                            <button class="col-md-12 btn btn-success btn-block btn-lg" >Pendaftaran sudah ditutup!!</button>
+                                            <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" >Registration is closed</button>
                                         @endif
                                     @else
-                                        <button class="col-md-12 btn btn-success btn-block btn-lg" >Buat tim terlebih dahulu!!</button>
+                                        <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" >Please create or join team first</button>
                                     @endif
                             </div>
                             <!-- END PANEL NO PADDING -->
