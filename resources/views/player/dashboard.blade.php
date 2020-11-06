@@ -141,7 +141,7 @@
 												<div class="col-md-4">
 													<div class="case-landing landing2" style="background-image: url('https://duniaesports.org/wp-content/uploads/2019/12/t_5dd64b08483f2.jpg');">
 														<div class="case-landing__overlay">
-														<h2 class="case-landing__title">Mobile Legend Squad Yogyakarta</h2>
+														<h2 class="case-landing__title">Mobile Legend Nasional Invitation</h2>
 														</div>
 													</div>
 												</div>
