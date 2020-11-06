@@ -184,7 +184,9 @@ footer {
   }
 
   .login-form{
-      padding: 200px;
+      padding: 30px 200px 0px 200px;
+      display: fixed;
+      overflow: hidden;
   }
 
   .login-form h2{

@@ -47,11 +47,11 @@
             </span>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             <br>
-            <p>Not a member yet ?  <a href="{{URL::route('register')}}" class="primary">Sign Up</a></p>
-
-            <div class="text-center">
-
-              <a class="btn btn-primary social-login-btn social-google" href="{{ URL::route('auth.google') }}" style="text-align:center;"><i class="fa fa-google-plus text-white" style="font-size: 36px; padding:20px;"></i></a>
+            
+            <div class="text-center text-white">
+              <p style="padding-bottom: 10px">Or</a></p>
+              <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block;"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i></a>
+              <p style="padding: 20px 0">Not a member yet ?  <a href="{{URL::route('register')}}" class="primary">Sign Up</a></p>
             </div>
 
           </fieldset>
