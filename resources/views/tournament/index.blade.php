@@ -192,27 +192,36 @@
                     </div>
                 </div>
                 {{--  GAME!  --}}
-                {{-- <div id="[game]" class="tab-pane fade in">
+                <?php $i = 1 ?>
+                @forelse ($game as $games)
+                <?php
+                    $gametournament = DB::table('events')->select('*')->where('game_id', '=', $games->id)->get();
+                ?>
+                <div id="menu-game{{$i}}" class="tab-pane fade in">
                     <div class="row">
-                        @forelse ($tournament as $tournaments)
+                        @forelse ($gametournament as $gametournaments)
+                        <?php 
+                        $fee = number_format($gametournaments->fee);
+                        $prize_pool = number_format($gametournaments->prize_pool);
+                        ?>
                         <div class="col-lg-12">
                             <div id="menu-game" class="product">
                                 <div class="img-container">
-                                    @if ($tournaments->banner_url)
-                                    <img src="{{ asset('images/events/'.$tournaments->banner_url) }}">
+                                    @if ($gametournaments->banner_url)
+                                    <img src="{{ URL::asset('images/events/'.$gametournaments->banner_url) }}">
                                     @else
-                                    <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
+                                    <img src="{{ URL::asset('assets/img/maxresdefault.jpg') }}">
                                     @endif
                                 </div>
                                 <div class="product-info">
                                     <a href="tournament-overview.html">
                                         <div class="product-content">
                                             <div class="col-lg-8 col-xs-12">
-                                                <h1>{{ $tournaments->title }}</h1>
+                                                <h1>{{ $gametournaments->title }}</h1>
                                             </div>
                                             <div class="prizepool col-lg-4 col-xs-12">
                                                 <h3 class="panel-title">Prizepool</h3>
-                                                <h4>IDR {{ $tournaments->prize_pool }}</h4>
+                                                <h3>IDR {{ $prize_pool }}</h3>
                                             </div>
                                             <div class="col-lg-8 col-xs-12">
                                                 <table class="table">
@@ -235,16 +244,16 @@
                                                     <tbody>
                                                         <tr class="">
                                                             <td>
-                                                                {{ $tournaments->fee }}
+                                                                IDR {{ $fee }}
                                                             </td>
                                                             <td>
-                                                                {{ $tournaments->participant }}
+                                                                {{ $gametournaments->participant }}
                                                             </td>
                                                             <td>
-                                                                {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('d F') }}
+                                                                {{\Carbon\Carbon::parse($gametournaments->start_date)->translatedFormat('j F') }}
                                                             </td>
                                                             <td>
-                                                                {{\Carbon\Carbon::parse($tournaments->start_date)->translatedFormat('h:i') }} WIB
+                                                                {{\Carbon\Carbon::parse($gametournaments->start_date)->translatedFormat('h:i') }} WIB
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -259,17 +268,27 @@
                             </div>
                         </div>
                         @empty
-                        <div class="col-lg-12">
-                            <div class="tab-content">
-                                <div id="menu-error" class="product">
-                                    <h1>Tidak Ada Turnamen!!</h1>
+                            <div class="col-lg-12">
+                                <div class="tab-content">
+                                    <div id="menu-error" class="product">
+                                        <h1>Tidak Ada Turnamen</h1>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforelse
                         {{ $tournament->links() }}
                     </div>
-                </div> --}}
+                </div>
+                <?php $i++ ?>
+                @empty
+                    <div class="col-lg-12">
+                        <div class="tab-content">
+                            <div id="menu-error" class="product">
+                                <h1>Tidak Ada Turnamen!!!</h1>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
             </div>
             <!-- END TOURNAMENT BANNER -->
         </div>

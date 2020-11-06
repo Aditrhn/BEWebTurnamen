@@ -97,11 +97,11 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Fee</label>
-                                        <h5>{{ $events->fee }}</h5>
+                                        <h5>Rp {{ $fee }}</h5>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Prizepool</label>
-                                        <h5>{{ $events->prize_pool }}</h5>
+                                        <h5>Rp {{ $prize_pool }}</h5>
                                     </div>
                                 </div>
 
@@ -129,11 +129,11 @@
                                 <div class="row padRule">
                                     <div class="col-md-6">
                                         <label class="labelOverview" for="">Rules</label>
-                                        <h5>{{ $events->rules }}</h5>
+                                        <h5 style="text-align: justify">{{ $events->rules }}</h5>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="labelOverview" for="">Term and Agreement</label>
-                                        <h5>{{ $events->form_message }}</h5>
+                                        <h5 style="text-align: justify">{{ $events->form_message }}</h5>
                                     </div>
                                 </div>
                             </div>

@@ -109,24 +109,12 @@ class PlayerAuthController extends Controller
     public function profile()
     {
         if (Auth::guard('player')->check()) {
-            // $player_game = PlayerGame::all()->join('games','player_games.players_id');
-            // $game = Game::select('name', 'platform')->get();
             $game = DB::table('players')
                 ->join('player_games', 'player_games.players_id', '=', 'players.id')
                 ->select('players.*', 'player_games.*')
                 ->get();
-
-            // SQL
-            //SELECT p.name FROM friends f join players p on p.id = f.player_one OR p.id = f.player_two WHERE p.id != '1' AND (f.player_one = '1' OR f.player_two = '1') AND f.status = '1'
-            // $friend = Friend::select('players.name')->join('players', function ($join) {
-            //     $join->on('players.id', '=', 'friends.player_one');
-            //     $join->orOn('players.id', '=', 'friends.player_two');
-            // })->where('players.id', '!=', Auth::guard('player')->user()->id)->where(function ($query) {
-            //     $query->where('friends.player_one', Auth::guard('player')->user()->id);
-            //     $query->orWhere('friends.player_two', Auth::guard('player')->user()->id);
-            // })->where('friends.status', 1)->get();
-            $friend = DB::select('select p.name,p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
-
+            $friend = DB::select('select p.name, p.ava_url, p.id from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
+            
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                 ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
@@ -199,18 +187,7 @@ class PlayerAuthController extends Controller
     public function updateProfile(Request $request)
     {
         if (Auth::guard('player')->check()) {
-            // $this->validate($request, [
-            //     'name' => 'required',
-            //     // 'email' => 'required|email|unique:players',
-            //     // 'password' => 'required|min:6',
-            //     // 'address' => 'required',
-            //     // 'contact' => 'required|max:15',
-            //     // 'gender' => ' required'
-            //     // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // ]);
-
             $player = Auth::guard('player')->user();
-            // \dd($player);
             $ava_name = Auth::guard('player')->user()->ava_url;
             if ($request->hasFile('ava_url')) {
                 $ava = $request->ava_url;
@@ -219,14 +196,7 @@ class PlayerAuthController extends Controller
                 $player->ava_url = 'images/avatars/' . $ava_name;
                 File::delete('avatars/' . $player->ava_url);
             }
-            // if ($request->hasFile('ava_url')) {
-            //     $file = $request->file('ava_url');
-            //     $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
-            //     $path = $request->file('ava_url')->store('images/avatars/' . $request->user());
-            //     $file->move($path, $ava_name);
-            //     File::delete('avatars/' . $player->ava_url);
-            // }
-            // \dd($path);
+
             $player->update([
                 'name' => $request->name,
                 // 'email' => $request->email,
@@ -239,10 +209,7 @@ class PlayerAuthController extends Controller
                 'province' => $request->province,
                 'status' => $request->status
             ]);
-            // dd($player);
-            // $request->user()->update(
-            //     $request->all()
-            // );
+            
             return \redirect('profile')->with(['success' => 'Profile updated successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login

@@ -117,7 +117,13 @@ class EventController extends Controller
                     'registration_close' => 'required',
                     'form_message' => 'required',
                 ]);
-                Event::create($request->all());
+                
+                $file = $request->file('banner');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/events/';
+                $file->move($tujuan_upload, $name_icon);
+
+                Event::create([$request->all(), 'banner_url' => $name_icon]);
                 TemporaryEvent::destroy($request->id);
                 return redirect()->route('event.index');
             }
@@ -140,6 +146,8 @@ class EventController extends Controller
             ->where('events.id', $id)
             ->select('events.*', 'games.id as games_id')->first();
             $events = Event::find($id);
+            $fee = number_format($event->fee);
+            $prize_pool = number_format($event->prize_pool);
 
             $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
             (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id, m.score_a, m.score_b, m.date
@@ -193,7 +201,7 @@ class EventController extends Controller
                 ->select('joins.team_id', 'teams.*')
                 ->get();
             // \dd($join);
-            return view('admin.tournament.detail', \compact('count_round', 'matches', 'events', 'brackets', 'join', 'join2'));
+            return view('admin.tournament.detail', \compact('count_round', 'matches', 'events', 'brackets', 'join', 'join2', 'fee', 'prize_pool'));
             // return view('admin.tournament.detail');
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login

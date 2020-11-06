@@ -34,7 +34,7 @@ class AdminAuthController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('super-dashboard'); //redirect to url link dashboard
         } else {
-            return Redirect::to("super-login"); //routing login jika user tidak ada
+            return \redirect('super-login')->with(['success' => 'Email or password is incorrect']); //routing login jika user tidak ada
         }
     }
     public function createAdmin()

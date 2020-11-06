@@ -33,7 +33,7 @@
                                         <h4>Rules</h4>
                                     </div>
                                     <div class="col-md-8">
-                                        <p>{{ $event->rules }}</p>
+                                        <p style="text-align: justify">{{ $event->rules }}</p>
                                     </div>
                                 </div>
                             </div>

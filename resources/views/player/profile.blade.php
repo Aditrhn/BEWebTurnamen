@@ -128,25 +128,20 @@
                                 <div class="panel">
                                     <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
                                         <center>
+                                            <?php $i = 0; ?>
                                             @forelse ($friend as $friends)
                                                 @if ($friends->ava_url != null)
                                                 <img src="{{ URL::asset('images/avatars/'.$friends->ava_url) }}" alt="{{ $friends->name }}">
                                                 @else
                                                 <img src="{{ asset('images/avatars/default.png') }}" alt="{{ $friends->name }}">
                                                 @endif
+                                                <button type="button" id="btn-circle-profile" class="btn btn-primary btn-circle btn-lg" data-target="#viewfriend" data-toggle="modal" >+</button>
+                                                @if ($i++ == 5)
+                                                    <?php break; ?>
+                                                @endif
                                             @empty
                                             <p style="text-align: justify; opacity: 50%">Making friend soon..</p>
-                                            @endforelse
-                                            {{-- @foreach ($friend as $item)
-                                            <p>{{ $item->name }}</p>
-                                            <img src="{{ asset('images/avatars/'.$item->ava_url) }}" >
-                                            @endforeach --}}
-                                            {{-- <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/favicon.png" > --}}
-                                            <button type="button" id="btn-circle-profile" class="btn btn-primary btn-circle btn-lg" data-target="#viewfriend" data-toggle="modal" >+</button>
+                                            @endforelse 
                                         </center>
                                     </div>
                                 </div>
@@ -154,44 +149,55 @@
                             
                             <!--View Friends-->
                             <div class="modal fade" id="viewfriend" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header title-friend">
-                            <button type="button" class="close btn-friend-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
-                            <label for=""> Friends </label>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <!--Friend List-->
-                                <div class="friend-list">
-                                <div class="col-xs-12 friend-modal">
-                                            <div class="col-xs-3">
-                                                    <img class="img-friend" src="assets/img/gameski-small.png">
-                                            </div>
-                                            <div class="col-xs-4 friend-modal text-friend">
-                                                <h4>Sutejo</h4>
-                                            </div>
-                                            <form >
-                                                
-                                                <div class="col-xs-5 friend-btn">
-                                                    <input type="hidden" name="friendId" >
-                                                    <input type="hidden" name="teamId">
-                                                    <button type="submit" class="btn btn-primary nextBtn pull-right">View Profile</button>
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header title-friend">
+                                            <button type="button" class="close btn-friend-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                                            <label for=""> Friendlists </label>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <!--Friend List-->
+                                                <div class="friend-list">
+                                                    @forelse ($friend as $friends)
+                                                        <div class="col-xs-12 friend-modal">
+                                                            <div class="col-xs-3">
+                                                                @if ($friends->ava_url != null)
+                                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/'.$friends->ava_url) }}">
+                                                                @else
+                                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/default.png') }}">
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-xs-6 friend-modal text-friend">
+                                                                <h4>{{ $friends->name }}</h4>
+                                                            </div>
+                                                            <div class="col-xs-3">
+                                                                <?php 
+                                                                    $friendteam = DB::table('teams')
+                                                                        ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+                                                                        ->select('teams.name', 'teams.logo_url')
+                                                                        ->where('contracts.players_id', '=', $friends->id)
+                                                                        ->first();
+                                                                ?>
+                                                                @if ($friendteam != null)
+                                                                    <img class="img-friend" src="{{ URL::asset('images/team_logo/'.$friendteam->logo_url) }}">
+                                                                @else
+                                                                    <p></p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @empty
+                                                        <div class="panel-friend not-found" style="color: #fff">
+                                                            <h4>There are no friend</h4>
+                                                        </div>
+                                                    @endforelse
                                                 </div>
-                                            </form>
+                                                <!--End Friend List-->
+                                            </div>
                                         </div>
-                                    
-                                        <div class="panel-friend not-found" style="color: #fff">
-                                            <h4>There are no friend</h4>
-                                        </div>
-                                    
+                                    </div>
                                 </div>
-                                <!--End Friend List-->
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
                             <div class="col-md-6">
@@ -229,7 +235,7 @@
                                     </center>
                                     @empty
                                         <div class="panel-friend thText">
-                                            <h4 style="text-align: justify; opacity: 50%; padding-left: 20px">You haven't join any team yet..</h4>
+                                            <p style="text-align: justify; opacity: 50%; padding-left: 20px">You haven't join any team yet..</p>
                                         </div>
                                     @endforelse
                                     &nbsp;
