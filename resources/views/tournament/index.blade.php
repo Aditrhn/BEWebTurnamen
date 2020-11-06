@@ -65,8 +65,8 @@
                                             <?php $i = 1 ?>
                                             @forelse ($game as $games)
                                                 <div class="col-lg-2 col-xs-6 text-center">
-                                                    <a data-toggle="pill" href="#menu-game{{$i}}" title="{{ $games->name }}">
-                                                        <div class="box" id="box-game">
+                                                    <a class="active" data-toggle="pill" href="#menu-game{{$i}}" title="{{ $games->name }}">
+                                                        <div class="box" id="box-game active">
                                                             <img src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
                                                         </div>
                                                     </a>
@@ -179,14 +179,14 @@
                                 </div>
                             </div>
                         </div>
-                        @empty
                         <div class="col-lg-12">
                             <div class="tab-content">
-                                <div id="menu-error" class="product">
+                                <div id="" class="menu-error">
                                     <h1>Tidak Ada Turnamen!!</h1>
                                 </div>
                             </div>
                         </div>
+                        @empty
                         @endforelse
                         {{ $tournament->links() }}
                     </div>
