@@ -8,6 +8,7 @@ use App\Model\Player;
 use App\Model\Contract;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
 
 class ListController extends Controller
 {

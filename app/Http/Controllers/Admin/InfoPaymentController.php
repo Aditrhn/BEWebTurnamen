@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Join;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class InfoPaymentController extends Controller
 {
