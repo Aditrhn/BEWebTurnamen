@@ -81,6 +81,7 @@ class MatchController extends Controller
 
             $this->validate($request, [
                 'round_number' => 'required',
+                'bracket_number' => 'required',
                 'date' => 'required',
                 'team_a' => 'required',
                 'team_b' => 'required',
@@ -88,6 +89,7 @@ class MatchController extends Controller
             Match::create([
                 'event_id' => $event->id,
                 'round_number' => $request->round_number,
+                'bracket_number' => $request->bracket_number,
                 'date' => $request->date,
                 'team_a' => $request->team_a,
                 'team_b' => $request->team_b
