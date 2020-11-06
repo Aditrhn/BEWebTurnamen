@@ -1123,12 +1123,18 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 }
 /* MENU GAME */
 .menu-box .box{
-  background-color: #5648b1;
+  background-color: #35346D;
   border-radius: 10px; 
   padding: 30px 10px;
   margin: 20px 0px;
   cursor: pointer;
   transition: all 0.5s ease-out;
+}
+.menu-box .box:hover{
+  background-color: #5648b1;
+}
+.menu-box .box #box-game-default:hover{
+  background-color: #5648b1;
 }
 .menu-box #box-game{
   background-color:#35346D !important;
@@ -1303,7 +1309,12 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
 
   /* End Jumbotron */
-
+#btn-join{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
   /* Collapse */
 .wrapper_bu {
     position: absolute;
@@ -2317,7 +2328,8 @@ fieldset[disabled] .btn {
     }
     .panel button {
       margin-top: -20px;
-      outline: none; }
+      outline: none; 
+    }
   .panel .panel-note {
     font-size: 13px;
     line-height: 2.6;

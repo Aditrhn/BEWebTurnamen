@@ -85,9 +85,10 @@ class PlayerAuthController extends Controller
             // $notif = $this->notifFriend();
             $cek = new Controller();
             $game = Game::query()->get();
+            $count = Game::query()->count();
             // \dd($notif);
             // \dd($notifTeams);
-            return view('player.dashboard', \compact('game')); //view dashboard
+            return view('player.dashboard', \compact('game', 'count')); //view dashboard
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

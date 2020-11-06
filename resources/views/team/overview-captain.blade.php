@@ -25,7 +25,11 @@
                                 <div class="overview">
                                     <div class="col-lg-5 col-sm-4">
                                         <div class="thumbex">
-                                            <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                            @if ($team->logo_url != null)
+                                                <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                            @else
+                                                <img src="{{ URL::asset('images/team_logo/default.png') }}" alt="">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="team-overview col-lg-7 col-sm-8">
@@ -256,7 +260,11 @@
                         <div class="panel-body" id="overview" style="height: 159px">
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
-                                    <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                    @if ($team->logo_url != null)
+                                        <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                    @else
+                                        <img src="{{ URL::asset('images/team_logo/default.png') }}" alt="">
+                                    @endif
                                 </div>
                                 <div class="team-overview col-lg-7 col-sm-8">
                                     <h3>{{ $team->name }}</h3>

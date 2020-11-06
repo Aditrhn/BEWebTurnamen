@@ -101,21 +101,30 @@ class TeamController extends Controller
             $this->validate($request, [
                 'name' => 'required'
             ]);
-            $file = $request->file('logo_url');
-            $name_icon = \time() . "_" . $file->getClientOriginalName();
-            $tujuan_upload = 'images/team_logo/';
-            $file->move($tujuan_upload, $name_icon);
-            Team::create([
-                'name' => $request->name,
-                'max_member' => 5,
-                'logo_url' => $name_icon,
-                'description' => $request->teamDesc,
-                'games_id' => $games_id->id
-            ]);
+            if ($request->has('logo_url')){
+                $file = $request->file('logo_url');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/team_logo/';
+                $file->move($tujuan_upload, $name_icon);
+                Team::create([
+                    'name' => $request->name,
+                    'max_member' => 5,
+                    'logo_url' => $name_icon,
+                    'description' => $request->teamDesc,
+                    'games_id' => $games_id->id
+                ]);
+            } else {
+                Team::create([
+                    'name' => $request->name,
+                    'max_member' => 5,
+                    'description' => $request->teamDesc,
+                    'games_id' => $games_id->id
+                ]);
+            }
 
             $player_id = Auth::guard('player')->user()->id;
             // $teams = Team::where('name', 'LIKE', '%' . $request->name . '%')->first();
-            $teams = Team::where('logo_url', '=', $name_icon)->first();
+            $teams = Team::where('name', '=', $request->name)->first();
             
             Contract::create([
                 'role' => "1",
