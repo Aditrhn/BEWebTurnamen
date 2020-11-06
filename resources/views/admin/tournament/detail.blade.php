@@ -58,7 +58,7 @@
 </div>
 <div class="content">
     <div class="col-md-12" style="background-color: black; text-align: center;">
-        <img class="bannerOverview" src="{{ asset('assets/img/ML.png') }}" alt="">
+        <img class="bannerOverview" src="{{ URL::asset('images/events/'. $events->banner_url) }}" alt="">
     </div>
     <ul class="nav nav-pills mb-3 padNav" id="pills-tab" role="tablist">
         <li class="nav-item padPills">

@@ -8,10 +8,12 @@
   <div class="col-md-12 col-sm-12">
     <div class="div panel-body">
         {{-- notifikasi harus login ketika sudah logout --}}
-        @if ($sukses = Session::get('msg'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $sukses }}</strong>
+        @if(session('success'))
+        <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('success') }}
         </div>
         @endif
       <div class="login-form">
@@ -24,7 +26,7 @@
             <div class="form-group">
               <input class="form-control" placeholder="Username or email" name="email" type="text">
               @if ($errors->has('email'))
-              <span class="error">
+              <span class="error" style="color: red">
                 {{ $errors->first('email') }}
               </span>
               @endif
@@ -32,7 +34,7 @@
             <div class="form-group">
               <input class="form-control" placeholder="Password" name="password" type="password">
               @if ($errors->has('password'))
-                <span class="error">
+                <span class="error" style="color: red">
                   {{ $errors->first('password') }}
                 </span>
               @endif

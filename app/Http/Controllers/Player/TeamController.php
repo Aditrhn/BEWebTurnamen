@@ -126,7 +126,7 @@ class TeamController extends Controller
 
             return \redirect('team')->with(['success' => 'Team created successfully']);
         } else {
-            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+            return Redirect('login')->with(['success' => 'Anda harus login']); //routing login
         }
     }
     public function team_edit(Request $request)

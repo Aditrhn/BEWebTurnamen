@@ -33,13 +33,17 @@ class PlayerAuthController extends Controller
         \request()->validate([
             'email' => 'required',
             'password' => 'required',
+        ],
+        [
+            'email.required' => 'Email is required',
+            'password.required' => 'Password is required'
         ]);
         $player = Player::where('email', $request->email)->first();
 
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard'); //redirect to url link dashboard
         } else {
-            return Redirect::to("login"); //routing login jika user tidak ada
+            return \redirect('login')->with(['success' => 'Email or password is incorrect']); //routing login jika user tidak ada
         }
     }
     public function postRegister(Request $request)
