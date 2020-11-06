@@ -397,7 +397,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       display: inline-block;
       width: 100%;
       margin: 20px;
-      background-size: cover;
+      background-size: 300px 250px;
       border-radius: 10px;
       color: white;
       background-color: white;
@@ -413,7 +413,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     
     .case-landing__title {
       text-align: center;
-      font-size: large;
+      font-size: medium;
       font-weight: bold;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
@@ -503,7 +503,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 
     .colPanelTeam{
       top: 0; 
-      margin-top: 0;
+      margin-top: 8%;
     }
 
     .panel-Create{
@@ -873,6 +873,12 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       width: 280px;
       height: 180px;
     }
+    .case-landing {
+      background-size: 280px 180px;
+    }
+    .case-landing__title {
+      font-size: small;
+    }
     
     .pillsRequest{
       margin-left: 3% !important; 
@@ -1064,6 +1070,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     .landing2 {
       width: 250px;
       height: 180px;
+    }
+
+    .case-landing {
+      background-size: 250px 180px;
     }
 
     .case-landing__overlay {
@@ -1810,7 +1820,19 @@ html.fullscreen-bg #wrapper {
     .navbar-form {
       width: 12%; } 
       .navbar-form input[type="text"] {
-        min-width: 70px; } }
+        min-width: 70px; }
+      
+    .landing1 {
+      width: 200px;
+      height: 150px;
+    }
+    .landing2 {
+      width: 200px;
+      height: 180px;
+    }
+    .case-landing {
+      background-size: 200px 180px;
+    }}
 
 .navbar-nav .icon-menu {
   display: inline-block;
