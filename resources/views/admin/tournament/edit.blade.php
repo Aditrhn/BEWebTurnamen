@@ -14,7 +14,7 @@
 <div class="content">
     <div class="card">
         <div class="card-body">
-            <form action="{{ URL::route('event.update-and-store') }}" method="post">
+            <form action="{{ URL::route('event.update-and-store') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $tempevent->id }}">
                 <div class="form-group">
@@ -64,10 +64,10 @@
         <div class="col-6">
             <div class="form-group">
                 <div class="col col-md-3">
-                    <label for="banner" class=" form-control-label">Banner</label>
+                    <label for="banner_url" class=" form-control-label">Banner</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="file" id="file-input" name="banner" class="form-control-file">
+                    <input type="file" id="file-input" name="banner_url" class="form-control-file">
                 </div>
 
             </div>

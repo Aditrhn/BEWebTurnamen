@@ -55,7 +55,6 @@ class EventController extends Controller
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
-        
     }
 
     /**
@@ -67,18 +66,31 @@ class EventController extends Controller
     public function tempStore(Request $request)
     {
         if (Auth::guard('admin')->check()) {
-            $request->validate([
+            $this->validate($request, [
                 'title' => 'required',
                 'game_id' => 'required',
+                'banner_url' => 'required',
                 'participant' => 'required',
                 'start_date' => 'required',
                 'description' => 'required'
             ]);
-            $tempevent = TemporaryEvent::create($request->all());
+            $file = $request->file('banner_url');
+            $name_banner = \time() . "_" . $file->getClientOriginalName();
+            $tujuan_upload = 'images/events/';
+            $file->move($tujuan_upload, $name_banner);
+            // \dd($name_banner);
+            $tempevent = TemporaryEvent::create([
+                'title' => $request->title,
+                'game_id' => $request->game_id,
+                'banner_url' => $name_banner,
+                'participant' => $request->participant,
+                'start_date' => $request->start_date,
+                'description' => $request->description,
+            ]);
             return redirect()->route('temporary-event.edit', [$tempevent->id]);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        }       
+        }
     }
 
     public function updateAndStore(Request $request)
@@ -117,14 +129,19 @@ class EventController extends Controller
                     'registration_close' => 'required',
                     'form_message' => 'required',
                 ]);
-                
-                Event::create($request->all());
+
+                $file = $request->file('banner');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/events/';
+                $file->move($tujuan_upload, $name_icon);
+
+                Event::create([$request->all(), 'banner_url' => $name_icon]);
                 TemporaryEvent::destroy($request->id);
                 return redirect()->route('event.index');
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        }         
+        }
     }
 
     /**
@@ -137,9 +154,9 @@ class EventController extends Controller
     {
         if (Auth::guard('admin')->check()) {
             $event = DB::table('events')
-            ->join('games', 'events.game_id', '=', 'games.id')
-            ->where('events.id', $id)
-            ->select('events.*', 'games.id as games_id', 'games.name as games_name')->first();
+                ->join('games', 'events.game_id', '=', 'games.id')
+                ->where('events.id', $id)
+                ->select('events.*', 'games.id as games_id', 'games.name as games_name')->first();
             $events = Event::find($id);
             $fee = number_format($event->fee);
             $prize_pool = number_format($event->prize_pool);
@@ -159,19 +176,19 @@ class EventController extends Controller
                 ->where('matches.event_id', $id)
                 ->distinct('bracket_number')
                 ->count('bracket_number');
-                
+
             $brackets = array();
-            for ($i = 1; $i <= $count_bracket; $i++){
+            for ($i = 1; $i <= $count_bracket; $i++) {
                 $rounds = array();
                 for ($j = 1; $j <= $count_round; $j++) {
                     $scores = DB::table('matches')
-                    ->select('round_number', 'match_number', 'score_a', 'score_b')
-                    ->where('event_id', $id)
-                    ->where('round_number', $j)
-                    ->where('bracket_number', $i)
-                    ->orderBy('match_number', 'asc')
-                    ->get()
-                    ->toArray();
+                        ->select('round_number', 'match_number', 'score_a', 'score_b')
+                        ->where('event_id', $id)
+                        ->where('round_number', $j)
+                        ->where('bracket_number', $i)
+                        ->orderBy('match_number', 'asc')
+                        ->get()
+                        ->toArray();
                     $mtch = array();
                     foreach ($scores as $score) {
                         $matchscore = array('score_a' => $score->score_a, 'score_b' => $score->score_b);
@@ -200,8 +217,7 @@ class EventController extends Controller
             // return view('admin.tournament.detail');
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
-        
+        }
     }
 
     /**
@@ -217,7 +233,7 @@ class EventController extends Controller
             return view('admin.tournament.edit', \compact('tempevent', 'games'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        }         
+        }
     }
 
     /**
@@ -236,11 +252,11 @@ class EventController extends Controller
                     'platform' => $request->platform,
                 ]
             );
-    
+
             return \redirect('/game')->with(['success' => 'Game updated successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 
     /**
