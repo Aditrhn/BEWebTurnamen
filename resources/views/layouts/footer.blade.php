@@ -1,5 +1,5 @@
 <footer>
-<div class="container-fluid" style="background-color: #35346c; color: white; margin-top: 10%;">
+<div class="container-fluid" style="background-color: #35346c; color: white; margin-top: 6%;">
     <div class="row copyright">
         <div class="col-md-4">
             <img class="img-footer" src="{{ asset('assets/img/gameski.png') }}" alt="">
