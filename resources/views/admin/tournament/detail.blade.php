@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Game</label>
-                                        <h5>{{ $events->name }}</h5>
+                                        <h5>{{ $event->games_name }}</h5>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Fee</label>

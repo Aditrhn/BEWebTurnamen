@@ -4,6 +4,14 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">

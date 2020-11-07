@@ -38,6 +38,7 @@ Route::namespace('Player')->group(function () {
     Route::get('profile', 'PlayerAuthController@profile')->name('profile');
     Route::get('profile/edit', 'PlayerAuthController@editProfile')->name('profile.edit');
     Route::put('profile', 'PlayerAuthController@updateProfile')->name('profile.update');
+    Route::put('profile/password', 'PlayerAuthController@updatePassword')->name('password.update');
     Route::get('user-profile/{player}/detail', 'PlayerAuthController@userProfile')->name('user.profile');
 
     //Friend

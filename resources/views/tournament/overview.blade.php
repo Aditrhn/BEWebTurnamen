@@ -100,10 +100,10 @@
                                                 <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" type="submit">JOIN TOURNAMENT</button>
                                             </form>
                                         @else
-                                            <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" >Registration is closed</button>
+                                            <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" disabled style="opacity: 100%">Registration is closed</button>
                                         @endif
                                     @else
-                                        <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" >Please create or join team first</button>
+                                        <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" disabled style="opacity: 100%">Please create or join team first</button>
                                     @endif
                             </div>
                             <!-- END PANEL NO PADDING -->

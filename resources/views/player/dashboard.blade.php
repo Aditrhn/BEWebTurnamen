@@ -92,7 +92,9 @@
 															<?php continue; ?>
 														@endif
 														<div class="col-md-4">
-															<div class="case-landing landing2" style="background-image: url('{{ URL::asset('images/game_icon/'. $games->icon_url) }}'); background-color: black;">
+															<div class="case-landing landing2" 
+															style="background-image: url('{{ URL::asset('images/game_icon/'. $games->icon_url) }}'); 
+															background-color: black;">
 																<div class="case-landing__overlay">
 																	<h2 class="case-landing__title">{{ $games->name }}</h2>
 																</div>
