@@ -10,6 +10,7 @@ use App\Model\Game;
 use App\Model\HistoryTournament;
 use App\Model\Player;
 use App\Model\PlayerGame;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Validator, Redirect, Response;
 use App\User;
@@ -216,6 +217,27 @@ class PlayerAuthController extends Controller
             return \redirect('profile')->with(['success' => 'Profile updated successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function updatePassword(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            $player = Auth::guard('player')->user();
+            $request->validate([
+                'recentpass' => ['required', new MatchOldPassword],
+                'newpass' => ['required'],
+                'connewpass' => ['same:newpass'],
+            ],
+            [
+                'recentpass.required' => 'Current password is required',
+                'newpass.required' => 'New password is required',
+                'connewpass.same' => 'Password not match with new password'
+            ]
+            );
+
+            $player->update(['password'=> Hash::make($request->newpass)]);
+
+            return Redirect('profile')->with(['success' => 'Password updated successfully']);
         }
     }
 }

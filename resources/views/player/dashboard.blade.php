@@ -34,10 +34,10 @@
 
 							</div> 
 						</div>
-						<div class="carousel-landing"><!--Class utama Carousel "carousel-landing"-->
+						<div class="carousel-landing">
 							<div id="Carousel" class="carousel slide">
 							<!-- Carousel items -->
-								<div class="carousel-inner">
+								<div class="carousel-inner" data-interval="false">
 									<div class="item active">
 										<div class="col-md-12  rowDashboard">
 											<?php $i = 1 ?>
@@ -92,7 +92,9 @@
 															<?php continue; ?>
 														@endif
 														<div class="col-md-4">
-															<div class="case-landing landing2" style="background-image: url('{{ URL::asset('images/game_icon/'. $games->icon_url) }}'); background-color: black;">
+															<div class="case-landing landing2" 
+															style="background-image: url('{{ URL::asset('images/game_icon/'. $games->icon_url) }}'); 
+															background-color: black;">
 																<div class="case-landing__overlay">
 																	<h2 class="case-landing__title">{{ $games->name }}</h2>
 																</div>
@@ -131,10 +133,10 @@
 								</div>
 							</div> 
 						</div>
-						<div class="carousel-landing"> <!--Class utama Carousel "carousel-landing"-->
+						<div class="carousel-landing">
 							<div id="Carousel-Feature" class="carousel slide">
 							<!-- Carousel items -->
-								<div class="carousel-inner">
+								<div class="carousel-inner" data-interval="false">
 									<div class="item active">
 										<div class="item active">
 											<div class="col-md-12  rowDashboard">

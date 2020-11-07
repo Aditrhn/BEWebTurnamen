@@ -40,11 +40,18 @@ class TournamentController extends Controller
                 ->first();
             $event = Event::find($id);
             $contract = DB::table('contracts')
-            ->join('players', 'players.id', '=', 'contracts.players_id')
-            ->join('teams', 'teams.id', '=', 'contracts.teams_id')
-            ->where('players.id', Auth::guard('player')->user()->id)
-            ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
-            ->first();
+                ->join('players', 'players.id', '=', 'contracts.players_id')
+                ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+                ->where([
+                    ['players.id', Auth::guard('player')->user()->id],
+                    ['contracts.status', '=', '1']
+                    ])
+                ->orWhere([
+                    ['players.id', Auth::guard('player')->user()->id],
+                    ['contracts.status', '=', '2']
+                    ])
+                ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
+                ->first();
 
             $fee = number_format($event->fee);
             $prize_pool = number_format($event->prize_pool);
