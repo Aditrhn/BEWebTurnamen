@@ -34,7 +34,7 @@
 
 							</div> 
 						</div>
-						<div class="carousel-landing"><!--Class utama Carousel "carousel-landing"-->
+						<div class="carousel-landing">
 							<div id="Carousel" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner" data-interval="false">
@@ -133,7 +133,7 @@
 								</div>
 							</div> 
 						</div>
-						<div class="carousel-landing"> <!--Class utama Carousel "carousel-landing"-->
+						<div class="carousel-landing">
 							<div id="Carousel-Feature" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner" data-interval="false">
