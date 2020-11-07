@@ -5,7 +5,7 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<div class="row rowSucces">
-				<img alt=""  src="assets/img/ICON/error.png">
+				<img alt=""  src="{{ URL::asset('assets/img/ICON/error.png') }}">
 				<h3 class="fontSucces">Oopps ! Something went wrong</h3>
 				<h5 class="fontSucces">Your payment could not be processed</h5>
 

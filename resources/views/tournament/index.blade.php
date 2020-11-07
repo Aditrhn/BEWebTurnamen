@@ -40,7 +40,8 @@
                     <div class="controls team-control-btn pull-right">
                         <a class="left glyphicon glyphicon-triangle-left team_columns_carousel_control_icons" href="#Carousel"
                             data-slide="prev"></a>
-                        <a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel" data-slide="next"></a>
+                        <a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel"
+                                data-slide="next"></a>
                     </div>
                 </div> 
             </div>
@@ -49,7 +50,7 @@
                 <div class="col-md-12 carousel-landing"><!--Class utama Carousel "carousel-landing"-->
                     <div id="Carousel" class="carousel slide">
                     <!-- Carousel items -->
-                        <div class="carousel-inner" data-interval="false">
+                        <div class="carousel-inner">
                             <div class="item active">
                                 <div class="menu-box">
                                     <div class="container-fluid">
