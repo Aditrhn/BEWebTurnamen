@@ -291,52 +291,67 @@
 
                 <div id="rules" class="tab-pane fade">
                     <!-- PANEL RULES -->
-                    <div class="col-md-4">
-                        <!-- PANEL HEADLINE -->
-                        <div class="panel panel-headline">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">1. Format</h3>
-                                <h3 class="panel-title">2. Join Tournament</h3>
-                                <h3 class="panel-title">3. Prizes</h3>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- PANEL HEADLINE -->
+                            <nav id="myScrollspy">
+                                <div class="panel panel-headline">
+                                    <div class="panel-heading" >
+                                        <ul class="nav nav-pills nav-stacked" style="position: fixed;">
+                                        <li><a href="#section1"><h4 class="panel-title">1. Format</h4>
+                                        </a></li>
+                                        <li><a href="#section2"><h4 class="panel-title">2. Join Tournament</h4>
+                                        </a></li>
+                                        <li><a href="#section3"><h4 class="panel-title">3. Prizes</h4>
+                                        </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
                         </div>
-                    </div>
-                    <!-- END PANEL HEADLINE -->
-                    <div class="col-md-8">
-                        <!-- PANEL HEADLINE -->
-                        <div class="panel panel-headline">
-                            <div class="panel-heading">
-                                <h3>1. Format</h3>
-                                <p>Game</p>
-                                <p>{{ $game->name }}</p>
-                                <br>
-                                <p>Total Team</p>
-                                <p>{{ $event->participant }} teams</p>
-                                <hr>
-                                <h3>2. Join Tournament</h3>
-                                <p>Type</p>
-                                <p>Public</p>
-                                <br>
-                                <p>Entry Fee</p>
-                                @if ($event->fee == "free")  
-                                    <p>{{ $event->fee }}</p>
-                                @else
-                                    <p>IDR {{ $fee }}</p>
-                                @endif
-                                <hr>
-                                <h3>3. Prizes</h3>
-                                <p>Prizepool</p>
-                                <p>Rp {{ $prize_pool }}</p>
-                                <p>Winner</p>
-                                <p>Rp. 5.000.000,00</p>
-                                <p>Runner Up</p>
-                                <p>Rp. 3.500.000,00</p>
-                                <p>Third</p>
-                                <p>Rp. 1.500.000,00</p>
-                                <hr>
+                        <!-- END PANEL HEADLINE -->
+                        <div class="col-md-8">
+                            <!-- PANEL HEADLINE -->
+                            <div class="panel panel-headline">
+                                <div class="panel-heading">
+                                    <div id="section1">
+                                        <h3>1. Format</h3>
+                                        <p>Game</p>
+                                        <p>{{ $game->name }}</p>
+                                        <br>
+                                        <p>Total Team</p>
+                                        <p>{{ $event->participant }} teams</p>
+                                        <hr>
+                                    </div>
+                                    <div id="section2">
+                                        <h3>2. Join Tournament</h3>
+                                        <p>Type</p>
+                                        <p>Public</p>
+                                        <br>
+                                        <p>Entry Fee</p>
+                                        @if ($event->fee == "free")  
+                                            <p>{{ $event->fee }}</p>
+                                        @else
+                                            <p>IDR {{ $fee }}</p>
+                                        @endif
+                                        <hr>
+                                    </div>
+                                    <div id="section3">
+                                        <h3>3. Prizes</h3>
+                                        <p>Prizepool</p>
+                                        <p>Rp {{ $prize_pool }}</p>
+                                        <p>Winner</p>
+                                        <p>Rp. 5.000.000,00</p>
+                                        <p>Runner Up</p>
+                                        <p>Rp. 3.500.000,00</p>
+                                        <p>Third</p>
+                                        <p>Rp. 1.500.000,00</p>
+                                        <hr>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- END PANEL NO PADDING -->
                         </div>
-                        <!-- END PANEL NO PADDING -->
                     </div>
                 </div>
             </div>
