@@ -140,15 +140,16 @@
             <div class="input-group-prepend" id="button-addon3">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary active" onclick="myFunction()">
-                      <input type="radio" name="fee-option" id="paid" checked> free
+                        <input type="radio" name="fee-option" id="paid" checked> free
                     </label>
                     <label class="btn btn-secondary" onclick="myFunction1()">
-                      <input type="radio" name="fee-option" id="free"> paid
+                        <input type="radio" name="fee-option" id="free"> paid
                     </label>
-                  </div>
+                </div>
             </div>
-            <input type="text" name="fee" id="fee_paid" class="form-control" placeholder="fee" readonly value="{{$tempevent->fee}}">
-          </div>
+            <input type="text" name="fee" id="fee_paid" class="form-control" placeholder="fee" readonly
+                value="{{ $tempevent->fee }}">
+        </div>
 
         <div class="form-group">
             <label for="prizepool" class=" form-control-label">Prizepool</label>
@@ -255,15 +256,18 @@
             language: 'en',
             minDate: new Date() // Now can select only dates, which goes after today
         });
+
         function myFunction() {
             var x = document.getElementById("fee_paid");
             x.readOnly = true;
             x.value = 0;
         }
+
         function myFunction1() {
             var x = document.getElementById("fee_paid");
             x.readOnly = false;
         }
+
     </script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 @endpush
