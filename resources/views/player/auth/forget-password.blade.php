@@ -28,7 +28,7 @@
             {{ csrf_field() }}
           <fieldset>
             <div class="form-group">
-              <input class="form-control" placeholder="Email or Phone" name="Eforget-password pagemailorPhone" type="text">
+              <input class="form-control" placeholder="Email or Phone" name="EmailorPhone" type="text">
               @if ($errors->has('email'))
               <span class="error" style="color: red">
                 {{ $errors->first('email') }}
