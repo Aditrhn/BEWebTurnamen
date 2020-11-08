@@ -78,13 +78,27 @@
                                             <p style="margin-top: 31px"></p>
                                         @endif
                                         @if ($members->ava_url != null)
-                                        <div class="thumbex">
-                                            <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
-                                        </div>
+                                            <a 
+                                                @if($members->id != Auth::guard('player')->user()->id)
+                                                    href="{{ URL::route('user.profile',$members->id) }}"
+                                                @else
+                                                    href="{{ URL::route('profile') }}"
+                                                @endif>
+                                                <div class="thumbex">
+                                                    <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
+                                                </div>
+                                            </a>
                                         @else
-                                        <div class="thumbex">
-                                            <img src="{{ asset('images/avatars/default.png') }}">
-                                        </div>
+                                            <a 
+                                                @if($members->id != Auth::guard('player')->user()->id)
+                                                    href="{{ URL::route('user.profile',$members->id) }}"
+                                                @else
+                                                    href="{{ URL::route('profile') }}"
+                                                @endif>
+                                                <div class="thumbex">
+                                                    <img src="{{ asset('images/avatars/default.png') }}">
+                                                </div>
+                                            </a>
                                         @endif
                                         <h4>{{ $members->name }}</h4>
                                     </div>
