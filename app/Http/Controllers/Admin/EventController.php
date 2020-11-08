@@ -70,22 +70,21 @@ class EventController extends Controller
             $this->validate($request, [
                 'title' => 'required',
                 'game_id' => 'required',
-                'banner_url' => 'required',
                 'participant' => 'required',
                 'start_date' => 'required',
                 'description' => 'required'
             ]);
             $file = $request->file('banner_url');
-            $name_banner = \time() . "_" . $file->getClientOriginalName();
+            $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
             $tujuan_upload = 'images/events/';
             $file->move($tujuan_upload, $name_banner);
-            // \dd($name_banner);
             $tempevent = TemporaryEvent::create([
                 'title' => $request->title,
                 'game_id' => $request->game_id,
                 'banner_url' => $name_banner,
                 'participant' => $request->participant,
                 'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'description' => $request->description,
             ]);
             return redirect()->route('temporary-event.edit', [$tempevent->id]);
@@ -113,6 +112,17 @@ class EventController extends Controller
                     $file->move($tujuan_upload, $name_banner);
                     File::delete('images/events/' . $tempevent->banner_url);
                 }
+                $tempevent->update([
+                    'title'=>$request->title,
+                    'game_id'=>$request->game_id,
+                    'participant'=>$request->participant,
+                    'banner_url'=>$name_banner,
+                    'start_date'=>$request->start_date,
+                    'end_date'=>$request->end_date,
+                    'description'=>$request->description,
+                    'fee'=>$request->fee,
+                    
+                ]);
 
                 $tempevent->title = $request->title;
                 $tempevent->game_id = $request->game_id;
@@ -141,7 +151,6 @@ class EventController extends Controller
                     'fee' => 'required',
                     'prize_pool' => 'required',
                     'rules' => 'required',
-                    'img' => 'required',
                     'bracket_type' => 'required',
                     'registration_open' => 'required',
                     'registration_close' => 'required',
@@ -163,12 +172,15 @@ class EventController extends Controller
                     'start_date' => $tempevent->start_date,
                     'description' => $tempevent->description,
                     'fee' => $tempevent->fee,
-                    'prize_pool' => 'required',
-                    'rules' => 'required',
-                    'bracket_type' => 'required',
-                    'registration_open' => 'required',
-                    'registration_close' => 'required',
-                    'form_message' => 'required',
+                    'prize_pool' => $tempevent->prize_pool,
+                    'rules' => $tempevent->rules,
+                    'bracket_type' => $tempevent->bracket_type,
+                    'registration_open' => $tempevent->registration_open,
+                    'registration_close' => $tempevent->registration_close,
+                    'form_message' => $tempevent->form_message,
+                    'comeback' => $request->comeback,
+                    'admin_id' => Auth::guard('admin')->user()->id,
+                    'game_id' => $tempevent->game_id,
                 ]);
                 TemporaryEvent::destroy($tempevent->id);
                 return redirect()->route('event.index');

@@ -40,7 +40,7 @@
                                                       <img class="img-panel-friend" src="{{ URL::asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
-                                                    <?php 
+                                                    <?php
                                                         $status = DB::table('friends')
                                                             ->select('status')
                                                             ->where([
@@ -102,15 +102,10 @@
                                                     <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/default.png') }}">
                                                 @endif
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
-                                                <form action="{{ URL::route('team.view',$teams->id) }}"
-                                                        method="get">
-                                                    @csrf
                                                     <div class="buttons col-md-12 btnAdd">
-                                                        <input type="hidden" name="teamId" value="{{ $teams->id }}">
-                                                        <button class="btn btn-xs btn-primary" id="btnTeamview"
-                                                            type="submit">Team View</button>
+                                                        <a href="{{ URL::route('team.view',$teams->id) }}"
+                                                            class="btn btn-xs btn-primary" id="btnTeamview">Team View</a>
                                                     </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>

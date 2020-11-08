@@ -61,7 +61,7 @@ Route::namespace('Player')->group(function () {
     Route::post('team-edit', 'TeamController@team_edit')->name('team.edit');
     Route::post('team-update', 'TeamController@team_update')->name('team.update');
     // Route::post('teamSponsor-delete', 'TeamController@teamSponsor_delete')->name('teamSponsor.delete');
-    Route::get('team-view', 'TeamController@team_view')->name('team.view');
+    Route::get('team-view/{id}', 'TeamController@team_view')->name('team.view');
     Route::post('team-join', 'TeamController@team_join')->name('team.join');
     Route::post('team-leave', 'TeamController@team_leave')->name('team.leave');
     Route::post('team-disband', 'TeamController@team_disband')->name('team.disband');

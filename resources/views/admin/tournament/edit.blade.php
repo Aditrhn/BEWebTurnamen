@@ -68,7 +68,7 @@
                     <label for="banner_url" class=" form-control-label">Banner <span style="color: silver; scale: 0.4%;">biarkan kosong jika tidak ingin diganti</span></label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="file" id="file-input" name="banner_url" class="form-control-file"><span>
+                    <input type="file" id="file-input" name="banner_url" class="form-control-file" value="{{ asset('images/events/'.$tempevent->banner_url) }}"><span>
                     <img style="width: 50%;" class="mt-2" src="{{ asset('images/events/'.$tempevent->banner_url) }}" alt="{{ $tempevent->banner_url }}">
                 </div>
 
