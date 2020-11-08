@@ -832,7 +832,10 @@ class TeamController extends Controller
                 $check = DB::table('teams')
                     ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                     ->select('teams.id')
-                    ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                    ->where([
+                        ['contracts.players_id', '=', Auth::guard('player')->user()->id],
+                        ['contracts.status', '=', '1']
+                        ])
                     ->first();
                 $team = DB::table('teams')
                     ->join('games', 'games.id', '=', 'teams.games_id')
@@ -854,8 +857,12 @@ class TeamController extends Controller
                         ])
                     ->get();
             }
-            if ($check->id == $team->id) {
-                return Redirect('team');
+            if ($check != null) {
+                if ($check->id == $team->id) {
+                    return Redirect('team');
+                } else {
+                    return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                }
             } else {
                 return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
             }
@@ -880,25 +887,39 @@ class TeamController extends Controller
                         ['contracts.status', '=', '1']
                     ])
                     ->get();
+                $sponsor = Sponsor::select('*')
+                    ->where([
+                        ['team_id', '=', $request->id],
+                        ['status', '=', '1']
+                        ])
+                    ->get();
+
                 $check = DB::table('contracts')
-                ->select('*')
-                ->where([
-                    ['teams_id', '=', $request->teamId],
-                    ['players_id', '=', Auth::guard('player')->user()->id],
-                    ['status', '=', '2']
-                    ])
-                ->first();
-    
-                if ($check == null) {
-                    Contract::create([
-                        'role' => "2",
-                        'status' => "2",
-                        'teams_id' => $request->teamId,
-                        'players_id' => Auth::guard('player')->user()->id
-                    ]);
+                    ->select('*')
+                    ->where([
+                        ['teams_id', '=', $request->teamId],
+                        ['players_id', '=', Auth::guard('player')->user()->id],
+                        ['status', '=', '2']
+                        ])
+                    ->first();
+                
+                $isjoin = Contract::select('*')->where('players_id', '=', Auth::guard('player')->user()->id)->first();
+                
+                if ($isjoin == null) {
+                    if ($check == null) {
+                        Contract::create([
+                            'role' => "2",
+                            'status' => "2",
+                            'teams_id' => $request->teamId,
+                            'players_id' => Auth::guard('player')->user()->id
+                        ]);
+                        return \view('team.overview-unsigned', \compact('team', 'member', 'sponsor'))
+                            ->with('success', 'Your request has been sent');
+                    }
                 }
     
-                return \view('team.overview-unsigned', \compact('team', 'member'));
+                return \view('team.overview-unsigned', \compact('team', 'member', 'sponsor'))
+                    ->with(['error' => 'You already joined a team']);
             };
         }
     }

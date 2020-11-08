@@ -14,7 +14,10 @@ class SearchController extends Controller
     {
         if (Auth::guard('player')->check()){
             if ($request->has('cari')) {
-                $player = Player::where('name', 'LIKE', '%' . $request->cari . '%')->get();
+                $player = Player::where([
+                    ['name', 'LIKE', '%' . $request->cari . '%'],
+                    ['name', 'not LIKE', '%' . Auth::guard('player')->user()->name . '%']
+                    ])->get();
                 $team = Team::where('name', 'LIKE', '%' . $request->cari . '%')->get();
                 $tournament = DB::table('events')
                     ->join('games', 'games.id', '=', 'events.game_id')

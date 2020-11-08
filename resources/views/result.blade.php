@@ -37,7 +37,7 @@
                                                     @if ($players->ava_url != null)
                                                       <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$players->ava_url) }}">
                                                     @else
-                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                                                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
                                                     <?php 
@@ -96,11 +96,14 @@
                                     <div class="col-md-3 friend-page">
                                         <div class="panel panel-headline panel-friend-detail">
                                             <div class="panel-body">
-                                                <img class="img-panel-friend"
-                                                    src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
+                                                @if ($teams->logo_url != null)
+                                                    <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
+                                                @else
+                                                    <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/default.png') }}">
+                                                @endif
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
                                                 <form action="{{ URL::route('team.view',$teams->id) }}"
-                                                        method="POST">
+                                                        method="get">
                                                     @csrf
                                                     <div class="buttons col-md-12 btnAdd">
                                                         <input type="hidden" name="teamId" value="{{ $teams->id }}">
