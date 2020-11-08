@@ -104,7 +104,7 @@ class EventController extends Controller
                 // $tujuan_upload = 'images/events/';
                 // $file->move($tujuan_upload, $name_banner);
 
-                $name_banner = $tempevent->name_banner;
+                $name_banner = $tempevent->banner_url;
                 if ($request->hasFile('banner_url')) {
                     $file = $request->file('banner_url');
                     $name_banner = \time() . "_" . $file->getClientOriginalName();
@@ -113,39 +113,42 @@ class EventController extends Controller
                     File::delete('images/events/' . $tempevent->banner_url);
                 }
                 $tempevent->update([
-                    'title'=>$request->title,
-                    'game_id'=>$request->game_id,
-                    'participant'=>$request->participant,
-                    'banner_url'=>$name_banner,
-                    'start_date'=>$request->start_date,
-                    'end_date'=>$request->end_date,
-                    'description'=>$request->description,
-                    'fee'=>$request->fee,
-                    
+                    'title' => $request->title,
+                    'game_id' => $request->game_id,
+                    'participant' => $request->participant,
+                    'banner_url' => $name_banner,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
+                    'description' => $request->description,
+                    'fee' => $request->fee,
+                    'prize_pool' => $request->prize_pool,
+                    'rules' => $request->rules,
+                    'bracket_type' => $request->bracket_type,
+                    'registration_open' => $request->registration_open,
+                    'registration_close' => $request->registration_close,
+                    'form_message' => $request->form_message,
                 ]);
 
-                $tempevent->title = $request->title;
-                $tempevent->game_id = $request->game_id;
-                $tempevent->participant = $request->participant;
-                $tempevent->banner_url = $name_banner;
-                $tempevent->start_date = $request->start_date;
-                $tempevent->end_date = $request->end_date;
-                $tempevent->description = $request->description;
-                $tempevent->fee = $request->fee;
-                $tempevent->prize_pool = $request->prize_pool;
-                $tempevent->rules = $request->rules;
-                $tempevent->bracket_type = $request->bracket_type;
-                $tempevent->registration_open = $request->registration_open;
-                $tempevent->registration_close = $request->registration_close;
-                $tempevent->form_message = $request->form_message;
-                // \dd($tempevent);
-                $tempevent->save();
+                // $tempevent->title = $request->title;
+                // $tempevent->game_id = $request->game_id;
+                // $tempevent->participant = $request->participant;
+                // $tempevent->banner_url = $name_banner;
+                // $tempevent->start_date = $request->start_date;
+                // $tempevent->end_date = $request->end_date;
+                // $tempevent->description = $request->description;
+                // $tempevent->fee = $request->fee;
+                // $tempevent->prize_pool = $request->prize_pool;
+                // $tempevent->rules = $request->rules;
+                // $tempevent->bracket_type = $request->bracket_type;
+                // $tempevent->registration_open = $request->registration_open;
+                // $tempevent->registration_close = $request->registration_close;
+                // $tempevent->form_message = $request->form_message;
+                // $tempevent->save();
                 return back(); //save and go back to card
             } else if ($request->input('action') == 'publish') {
                 $this->validate($request, [
                     'title' => 'required',
                     'participant' => 'required',
-                    'banner_url' => 'required',
                     'start_date' => 'required',
                     'description' => 'required',
                     'fee' => 'required',
@@ -158,9 +161,14 @@ class EventController extends Controller
                 ]);
                 $tempevent = TemporaryEvent::find($id);
                 // \dd($tempevent);
+                // $file = $request->file('banner_url');
+                // $name_banner = $request->file('banner_url')->getClientOriginalName();
+                // $tujuan_upload = 'images/events/';
+                // $file->move($tujuan_upload, $name_banner);
+
                 $file = $request->file('banner_url');
-                // $name_banner = \time() . "_" . $file->getClientOriginalExtension();
-                $name_banner = $request->file('banner_url')->getClientOriginalName();
+                $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
+                // \dd($name_banner);
                 $tujuan_upload = 'images/events/';
                 $file->move($tujuan_upload, $name_banner);
 
@@ -178,7 +186,6 @@ class EventController extends Controller
                     'registration_open' => $tempevent->registration_open,
                     'registration_close' => $tempevent->registration_close,
                     'form_message' => $tempevent->form_message,
-                    'comeback' => $request->comeback,
                     'admin_id' => Auth::guard('admin')->user()->id,
                     'game_id' => $tempevent->game_id,
                 ]);
