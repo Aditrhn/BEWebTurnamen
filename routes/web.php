@@ -29,6 +29,8 @@ Route::namespace('Player')->group(function () {
     Route::post('player-login', 'PlayerAuthController@postLogin')->name('post.login');
     Route::get('register', 'PlayerAuthController@register')->name('register');
     Route::post('player-register', 'PlayerAuthController@postRegister')->name('post.register');
+    Route::get('auth/google', 'GoogleLoginController@redirectToGoogle')->name('auth.google');
+    Route::get('callback/google', 'GoogleLoginController@callbackPlayer');
     Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
     Route::get('logout', 'PlayerAuthController@logout')->name('logout');
 
@@ -36,6 +38,7 @@ Route::namespace('Player')->group(function () {
     Route::get('profile', 'PlayerAuthController@profile')->name('profile');
     Route::get('profile/edit', 'PlayerAuthController@editProfile')->name('profile.edit');
     Route::put('profile', 'PlayerAuthController@updateProfile')->name('profile.update');
+    Route::put('profile/password', 'PlayerAuthController@updatePassword')->name('password.update');
     Route::get('user-profile/{player}/detail', 'PlayerAuthController@userProfile')->name('user.profile');
 
     //Friend
@@ -112,9 +115,9 @@ Route::group(['auth', 'admins'], function () {
         //event
         Route::get('super/event', 'EventController@index')->name('event.index');
         Route::get('super/event/create', 'EventController@create')->name('event.create');
-        Route::post('super/event', 'EventController@updateAndStore')->name('event.update-and-store');
         Route::post('super/tempevent', 'EventController@tempStore')->name('temporary-event.store');
         Route::get('super/event/{tempevent}/edit', 'EventController@edit')->name('temporary-event.edit');
+        Route::post('super/event', 'EventController@updateAndStore')->name('event.update-and-store');
         Route::put('super/event/{event}', 'EventController@update')->name('event.update');
         Route::get('super/event/{event}', 'EventController@show')->name('event.show');
         Route::delete('super/event/{event}', 'EventController@destroy')->name('event.destroy');

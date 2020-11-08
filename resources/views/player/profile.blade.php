@@ -4,6 +4,14 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="col-md-12" style="background-color: #35356C; border-radius: 20px; box-shadow: 7px 7px 10px 2px #22224F ">
                 <div class="row">
                 <div class="col-xs-6 col-sm-4">
@@ -38,13 +46,13 @@
         <!--Nav-Pills-->
             <div class="col-md-12">
                 <ul class="nav nav-pills marginPils">
-                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
-                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
+                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Overview</a></li>
+                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Tournament</a></li>
                 </ul>
             </div>
         <!--Nav-Pills Konten-->
             <div class="tab-content tabKonten thText">
-                <div id="friendList" class="tab-pane fade in active">
+                <div id="menu1" class="tab-pane fade ">
                     <div class="col-md-12">
                         <div class="container-fluid" >
                             <div class="table-responsive">
@@ -60,14 +68,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse ($game as $games)
+                                    @forelse ($history as $histories)
                                         <tr>
-                                            <td>{{ $games->platform }}</td>
-                                            <td>{{ $games->name }}</td>
-                                            <td>August 13, 2020 @3:00 am</td>
-                                            <td>Liquor</td>
-                                            <td>164 participants</td>
-                                            <td>winner</td>
+                                            <td>{{ $histories->game }}</td>
+                                            <td>{{ $histories->name }}</td>
+                                            <td>{{ $histories->date }}</td>
+                                            <td>{{ $histories->team }}</td>
+                                            <td>{{ $histories->participant }} </td>
+                                            <td>{{ $histories->status }}</td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -81,7 +89,7 @@
                     </div>
                 </div>
 
-                <div id="menu1" class="tab-pane fade">
+                <div id="friendList" class="tab-pane fade in active">
                     <div class="col-md-5">
                         <!-- PANEL HEADLINE -->
                         <h4>Bio</h4>
@@ -128,31 +136,78 @@
                                 <div class="panel">
                                     <div class="panel-heading padding-top-30 padding-bottom-30" id="panelimg">
                                         <center>
+                                            <?php $i = 0; ?>
                                             @forelse ($friend as $friends)
                                                 @if ($friends->ava_url != null)
                                                 <img src="{{ URL::asset('images/avatars/'.$friends->ava_url) }}" alt="{{ $friends->name }}">
                                                 @else
                                                 <img src="{{ asset('images/avatars/default.png') }}" alt="{{ $friends->name }}">
                                                 @endif
+                                                <button type="button" id="btn-circle-profile" class="btn btn-primary btn-circle btn-lg" data-target="#viewfriend" data-toggle="modal" >+</button>
+                                                @if ($i++ == 5)
+                                                    <?php break; ?>
+                                                @endif
                                             @empty
                                             <p style="text-align: justify; opacity: 50%">Making friend soon..</p>
-                                            @endforelse
-                                            {{-- @foreach ($friend as $item)
-                                            <p>{{ $item->name }}</p>
-                                            <img src="{{ asset('images/avatars/'.$item->ava_url) }}" >
-                                            @endforeach --}}
-                                            {{-- <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/user3.png" >
-                                            <img src="assets/img/favicon.png" > --}}
+                                            @endforelse 
                                         </center>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!--View Friends-->
+                            <div class="modal fade" id="viewfriend" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header title-friend">
+                                            <button type="button" class="close btn-friend-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                                            <label for=""> Friendlists </label>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <!--Friend List-->
+                                                <div class="friend-list">
+                                                    @forelse ($friend as $friends)
+                                                        <div class="col-xs-12 friend-modal">
+                                                            <div class="col-xs-3">
+                                                                @if ($friends->ava_url != null)
+                                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/'.$friends->ava_url) }}">
+                                                                @else
+                                                                    <img class="img-friend" src="{{ URL::asset('images/avatars/default.png') }}">
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-xs-6 friend-modal text-friend">
+                                                                <h4>{{ $friends->name }}</h4>
+                                                            </div>
+                                                            <div class="col-xs-3">
+                                                                <?php 
+                                                                    $friendteam = DB::table('teams')
+                                                                        ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+                                                                        ->select('teams.name', 'teams.logo_url')
+                                                                        ->where('contracts.players_id', '=', $friends->id)
+                                                                        ->first();
+                                                                ?>
+                                                                @if ($friendteam != null)
+                                                                    <img class="img-friend" src="{{ URL::asset('images/team_logo/'.$friendteam->logo_url) }}">
+                                                                @else
+                                                                    <p></p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @empty
+                                                        <div class="panel-friend not-found" style="color: #fff">
+                                                            <h4>There are no friend</h4>
+                                                        </div>
+                                                    @endforelse
+                                                </div>
+                                                <!--End Friend List-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="col-md-6">
                                 <h4>Status</h4>
                                 <div class="panel">
@@ -173,23 +228,25 @@
                             <div class="panel-heading padding-top-30 padding-bottom-30">
                                 <div class="row" >
                                     @forelse ($team as $item)
-                                        <div class="col-md-5" id="teampanel" >
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <img src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
-                                                    <a class="btn btn-primary" id="btnviewteam" href="{{ URL::route('team') }}" role="button">View Team</a>
-                                                </div>
-                                                <div class="col-md-7">
+                                    <center>
+                                        <div class="col-md-5" id="teampanel">
+                                                <div class="col-md-12" style="margin-left: -5px;">
+                                                    @if ($item->logo_url != null)
+                                                        <img id="team-profile" src="{{ URL::asset('images/team_logo/'.$item->logo_url) }}">
+                                                    @else
+                                                        <img id="team-profile" src="{{ URL::asset('images/team_logo/default.png') }}">
+                                                    @endif
                                                     <b><h4 style="font-weight: bold;">{{ $item->name }}</h4></b>
                                                     <p id="descprofile">
                                                         {{ $item->description }}
                                                     </p>
+                                                    <a class="btn btn-primary" id="btnviewteam" href="{{ URL::route('team') }}" role="button">View Team</a>
                                                 </div>
-                                            </div>
                                         </div>
+                                    </center>
                                     @empty
                                         <div class="panel-friend thText">
-                                            <h4 style="text-align: justify; opacity: 50%; padding-left: 20px">You haven't join any team yet..</h4>
+                                            <p style="text-align: justify; opacity: 50%; padding-left: 20px">You haven't join any team yet..</p>
                                         </div>
                                     @endforelse
                                     &nbsp;

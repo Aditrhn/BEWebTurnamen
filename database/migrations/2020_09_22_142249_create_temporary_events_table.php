@@ -21,15 +21,15 @@ class CreateTemporaryEventsTable extends Migration
             $table->string('banner_url')->nullable();
             $table->dateTime('start_date', 0);
             $table->dateTime('end_date', 0)->nullable();
-            $table->string('description');
+            $table->string('description', 3000);
             $table->integer('fee')->default(0);
             $table->integer('prize_pool')->nullable();
-            $table->string('rules')->nullable();
+            $table->string('rules', 3000)->nullable();
             $table->enum('bracket_type', ['1','2'])->default('1');
             $table->enum('comeback', ['0','1'])->default('0');
             $table->dateTime('registration_open')->nullable();
             $table->dateTime('registration_close')->nullable();
-            $table->string('form_message')->nullable();
+            $table->string('form_message', 3000)->nullable();
             $table->timestamps();
         });
     }

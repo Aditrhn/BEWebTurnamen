@@ -15,9 +15,9 @@
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
                                     @if ($team->logo_url != null)
-                                    <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                        <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
                                     @else
-                                    <p>Tidak ada team!!</p>
+                                        <img src="{{ URL::asset('images/team_logo/default.png') }}" alt="">
                                     @endif
                                 </div>
                                 <div class="team-overview col-lg-7 col-sm-8">

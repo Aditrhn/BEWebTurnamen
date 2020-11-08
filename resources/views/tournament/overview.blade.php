@@ -6,9 +6,9 @@
     <div class="main-content">
         <div class="container-fluid">
             <!-- Jumbotron -->
-            <div class="jumbotron bg-cover text-white">
-                <h1>NONGSKI</h1>
-                <p>Tournament Dota 2 Batch 1</p>
+            <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.6) 0%,rgba(20, 20, 20, 0.6) 100%), url({{URL::asset('images/events/'. $event->banner_url)}});">
+                <h1>{{ $event->title }}</h1>
+                <p>{{ $game->name }}</p>
                 <!-- <p><a class="btn btn-primary btn-lg">JOIN</a></p> -->
             </div>
             <!-- /.Jumbotron -->
@@ -30,18 +30,10 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>{{ $event->title }}</h4>
+                                        <h4>Rules</h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        <p>Tournament Format</p>
-                                        <p>First Place</p>
-                                        <p>Pause</p>
-                                        <h4><a data-toggle="pill" data-target="#rules"> SEE RULES</a></h4>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>Single Bracket</p>
-                                        <p>5 vs 5</p>
-                                        <p>Twice/team</p>
+                                    <div class="col-md-8">
+                                        <p style="text-align: justify">{{ $event->rules }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -49,17 +41,14 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>Mobile Legends</h4>
+                                        <h4>Prizes</h4>
                                     </div>
                                     <div class="col-md-4">
-                                        <p>Tournament Format</p>
-                                        <p>First Place</p>
-                                        <p>Pause</p>
-                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"> SEE RULES</a></h4>													</div>
-                                    <div class="col-md-4">
-                                        <p>Single Bracket</p>
-                                        <p>5 vs 5</p>
-                                        <p>Twice/team</p>
+                                        <p>Total Prizes</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h2>IDR {{ $prize_pool }}</h2>
+                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"></a></h4>
                                     </div>
                                 </div>
                             </div>
@@ -67,19 +56,20 @@
                             <div class="panel panel-headline">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4>Mobile Legends</h4>
+                                        <h4>Schedule</h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        @foreach ($team as $item)
-                                        <p>{{ $item->name }}</p>
-                                        @endforeach
-                                        <p>First Place</p>
-                                        <p>Pause</p>
-                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"> SEE RULES</a></h4>													</div>
-                                    <div class="col-md-4">
-                                        <p>Single Bracket</p>
-                                        <p>5 vs 5</p>
-                                        <p>Twice/team</p>
+                                    <div class="col-md-3" id="turneyoverview">
+                                        <p>Sign up starts</p>
+                                        <p>Sign up ends</p>
+                                        <p>Starts</p>
+                                        <p>Ends</p>
+                                        <h4><a data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree"></a></h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p>{{\Carbon\Carbon::parse($event->registration_open)->translatedFormat('D, j M Y, H:i') }} WIB</p>
+                                        <p>{{\Carbon\Carbon::parse($event->registration_close)->translatedFormat('D, j M Y, H:i') }} WIB</p>
+                                        <p>{{\Carbon\Carbon::parse($event->start_date)->translatedFormat('D, j M Y, H:i') }} WIB</p>
+                                        <p>{{\Carbon\Carbon::parse($event->end_date)->translatedFormat('D, j M Y, H:i') }} WIB</p>
                                     </div>
                                 </div>
                             </div>
@@ -97,9 +87,8 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <p><span class="panel-title">Join Tournament</span></p>
-                                    <p><span class="panel-title">{{$event->id}}</span></p>
                                     <div class="time">
-                                        <p>Sign ups open 25 Jul 2020, 17:26 WIB</p>
+                                        <p>Sign ups open {{\Carbon\Carbon::parse($event->registration_open)->translatedFormat('D, j M Y, H:i') }} WIB</p>
                                     </div>
                                 </div>
                                 {{-- <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">JOIN TOURNAMENT</a> --}}
@@ -108,123 +97,14 @@
                                             <form action="{{ URL::route('tournament.join',$event->id) }}" method="POST">
                                                 @csrf
                                                 {{ csrf_field() }}
-                                                <button class="col-md-12 btn btn-success btn-block btn-lg" type="submit">JOIN TOURNAMENT</button>
+                                                <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" type="submit">JOIN TOURNAMENT</button>
                                             </form>
                                         @else
-                                            <button class="col-md-12 btn btn-success btn-block btn-lg" >Pendaftaran sudah ditutup!!</button>
+                                            <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" disabled style="opacity: 100%">Registration is closed</button>
                                         @endif
                                     @else
-                                        <button class="col-md-12 btn btn-success btn-block btn-lg" >Buat tim terlebih dahulu!!</button>
+                                        <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" disabled style="opacity: 100%">Please create or join team first</button>
                                     @endif
-                                    
-                                
-                                <!-- The modal -->
-                                <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <div class="stepwizard">
-                                                    <div class="stepwizard-row setup-panel">
-                                                        <div class="stepwizard-step col-xs-2 col-xs-offset-1">
-                                                            <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
-                                                        </div>
-                                                        <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                                                        </div>
-                                                        <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled"></a>
-                                                        </div>
-                                                        {{-- <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"></a>
-                                                        </div>
-                                                        <div class="stepwizard-step col-xs-2">
-                                                            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled"></a>
-                                                        </div> --}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form role="form">
-                                                    <div class="setup-content" id="step-1">
-                                                        <div class="form-group float-label-control">
-                                                            <div class="bank">
-                                                                <div class="bank-item">
-                                                                    <div class="payment">
-                                                                        <h4>Terms of Agreement</h4>
-                                                                        <br>
-                                                                        <p>Payment agreements are used in business relationships when one party agrees to pay another. Freelancers and independent contractors often use payment agreements with their clients to ensure that they will be paid fairly and on time. Many payment agreements also fall under other categories, such as service agreements.
-                                                                        A car rental agreement is a type of payment agreement. Car rental agreements likely will cover insurance information, contain a description of the vehicle and its registration information, list the odometer reading, and note any existing wear and tear so the renter is not liable.
-                                                                        </p>
-                                                                        <p>
-                                                                            A vendor agreement is another type of payment agreement used when a vendor at a fair or market must enter into an agreement with the hosting party. In a vendor agreement, the vendor may pay for their space up-front, but then keep any profits from the event, or may agree to pay a commission of their profits to the host.
-                                                                            These agreements cover payments, but also line up terms and conditions of what is expected of both parties.
-                                                                        </p>
-                                                                        <br>
-                                                                    </div>
-                                                                </div>
-                                                                <input name="remember" type="checkbox" value="Remember me" style="margin-top: 20px;" required>
-                                                                I agree to the <a href="">Terms & Conditions</a> and <a href="">Privacy Policy</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" value="Cancel" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
-                                                            <input type="button" value="Accept" class="btn btn-primary nextBtn pull-right">
-                                                        </div>
-                                                    </div>
-                                                    <div class="setup-content" id="step-2">
-                                                        <div class="form-group float-label-control">
-                                                            <label for="">Select Your Team	</label>
-                                                            <select id="country" class="form-control">
-                                                                @foreach ($team as $item)
-                                                                <option>{{ $item->name }}</option>
-                                                                @endforeach
-                                                                {{-- <option>PUBGM</option>
-                                                                <option>DOTA2</option>
-                                                                <option>VALORANT</option>
-                                                                <option>APEX</option>
-                                                                <option>FREE FIRE</option>
-                                                                <option>COC</option>
-                                                                <option>POINT BLANK</option> --}}
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group float-label-control">
-                                                            <label for="">Nickname Ingame</label>
-                                                            <input type="text" class="form-control" placeholder="Input Your Nickname" required="Fill this field">
-                                                        </div>
-                                                        <div class="form-group float-label-control">
-                                                            <label for="">Game ID</label>
-                                                            <input type="text" class="form-control" placeholder="Input Your Game ID" required="Fill this field">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" value="Back" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
-                                                            <input type="button" value="Next" class="btn btn-primary nextBtn pull-right">
-                                                        </div>
-                                                    </div>
-                                                    <div class="setup-content" id="step-3">
-                                                        <div class="form-group float-label-control">
-                                                            <label for="">Summary</label>
-                                                            <div class="bank">
-                                                                <div class="bank-item pb-3">
-                                                                    <div class="col-md-4">
-                                                                        <p>Total</p>
-                                                                    </div>
-                                                                    <div class="summary">
-                                                                        <p>{{ $event->fee }}</p>
-                                                                    </div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" value="Done" class="btn btn-primary nextBtn pull-right col-md-12" data-dismiss="modal" aria-label="Close" id="pay-button">
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <!-- END PANEL NO PADDING -->
                         </div>
@@ -411,49 +291,67 @@
 
                 <div id="rules" class="tab-pane fade">
                     <!-- PANEL RULES -->
-                    <div class="col-md-4">
-                        <!-- PANEL HEADLINE -->
-                        <div class="panel panel-headline">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">1. Format</h3>
-                                <h3 class="panel-title">2. Join Tournament</h3>
-                                <h3 class="panel-title">3. Prizes</h3>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- PANEL HEADLINE -->
+                            <nav id="myScrollspy">
+                                <div class="panel panel-headline">
+                                    <div class="panel-heading" >
+                                        <ul class="nav nav-pills nav-stacked" style="position: fixed;">
+                                        <li><a href="#section1"><h4 class="panel-title">1. Format</h4>
+                                        </a></li>
+                                        <li><a href="#section2"><h4 class="panel-title">2. Join Tournament</h4>
+                                        </a></li>
+                                        <li><a href="#section3"><h4 class="panel-title">3. Prizes</h4>
+                                        </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
                         </div>
-                    </div>
-                    <!-- END PANEL HEADLINE -->
-                    <div class="col-md-8">
-                        <!-- PANEL HEADLINE -->
-                        <div class="panel panel-headline">
-                            <div class="panel-heading">
-                                <h3>1. Format</h3>
-                                <br>
-                                <p>Game</p>
-                                <p>Mobile Legends</p>
-                                <br>
-                                <p>Team</p>
-                                <p>5 VS 5 + 1 Substitutes</p>
-                                <hr>
-                                <h3>2. Join Tournament</h3>
-                                <br>
-                                <p>Type</p>
-                                <p>Public</p>
-                                <br>
-                                <p>Entry Fee</p>
-                                <p>Free</p>
-                                <hr>
-                                <h3>3. Prizes</h3>
-                                <br>
-                                <p>Winner</p>
-                                <p>Rp. 5.000.000,00</p>
-                                <p>Runner Up</p>
-                                <p>Rp. 3.500.000,00</p>
-                                <p>Third</p>
-                                <p>Rp. 1.500.000,00</p>
-                                <hr>
+                        <!-- END PANEL HEADLINE -->
+                        <div class="col-md-8">
+                            <!-- PANEL HEADLINE -->
+                            <div class="panel panel-headline">
+                                <div class="panel-heading">
+                                    <div id="section1">
+                                        <h3>1. Format</h3>
+                                        <p>Game</p>
+                                        <p>{{ $game->name }}</p>
+                                        <br>
+                                        <p>Total Team</p>
+                                        <p>{{ $event->participant }} teams</p>
+                                        <hr>
+                                    </div>
+                                    <div id="section2">
+                                        <h3>2. Join Tournament</h3>
+                                        <p>Type</p>
+                                        <p>Public</p>
+                                        <br>
+                                        <p>Entry Fee</p>
+                                        @if ($event->fee == "free")  
+                                            <p>{{ $event->fee }}</p>
+                                        @else
+                                            <p>IDR {{ $fee }}</p>
+                                        @endif
+                                        <hr>
+                                    </div>
+                                    <div id="section3">
+                                        <h3>3. Prizes</h3>
+                                        <p>Prizepool</p>
+                                        <p>Rp {{ $prize_pool }}</p>
+                                        <p>Winner</p>
+                                        <p>Rp. 5.000.000,00</p>
+                                        <p>Runner Up</p>
+                                        <p>Rp. 3.500.000,00</p>
+                                        <p>Third</p>
+                                        <p>Rp. 1.500.000,00</p>
+                                        <hr>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- END PANEL NO PADDING -->
                         </div>
-                        <!-- END PANEL NO PADDING -->
                     </div>
                 </div>
             </div>

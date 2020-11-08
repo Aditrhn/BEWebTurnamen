@@ -1,5 +1,4 @@
 @extends('admin.main')
-@section('admin-name', 'suwarno')
 @section('title','Tournament Create')
 @section('main')
 <!-- Modal -->
@@ -59,7 +58,7 @@
 </div>
 <div class="content">
     <div class="col-md-12" style="background-color: black; text-align: center;">
-        <img class="bannerOverview" src="{{ asset('assets/img/ML.png') }}" alt="">
+        <img class="bannerOverview" src="{{ URL::asset('images/events/'. $events->banner_url) }}" alt="">
     </div>
     <ul class="nav nav-pills mb-3 padNav" id="pills-tab" role="tablist">
         <li class="nav-item padPills">
@@ -94,15 +93,15 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Game</label>
-                                        <h5>{{ $events->name }}</h5>
+                                        <h5>{{ $event->games_name }}</h5>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Fee</label>
-                                        <h5>{{ $events->fee }}</h5>
+                                        <h5>Rp {{ $fee }}</h5>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="labelOverview" for="">Prizepool</label>
-                                        <h5>{{ $events->prize_pool }}</h5>
+                                        <h5>Rp {{ $prize_pool }}</h5>
                                     </div>
                                 </div>
 
@@ -130,11 +129,11 @@
                                 <div class="row padRule">
                                     <div class="col-md-6">
                                         <label class="labelOverview" for="">Rules</label>
-                                        <h5>{{ $events->rules }}</h5>
+                                        <h5 style="text-align: justify">{{ $events->rules }}</h5>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="labelOverview" for="">Term and Agreement</label>
-                                        <h5>{{ $events->form_message }}</h5>
+                                        <h5 style="text-align: justify">{{ $events->form_message }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -147,6 +146,9 @@
                                             class="badge badge-primary">Create</a>
                                         </div>
                                     </div>
+                                    @if ($count_round == 0)
+                                            <h5 class="mt-2">No matches have been made yet, go click create button above</h5>
+                                    @else
                                     <div class="row">
                                     <div class="col-md-12">
                                         <h4 class="titleMatch">Round 1</h4>
@@ -175,7 +177,7 @@
                                                         </td>
                                                         <td>
                                                             <h4 class="padMatch">
-                                                                @if ($match->score_a && $match->score_b != null)
+                                                                @if ($match->score_a || $match->score_b != null)
                                                                     {{$match->score_a}} - {{$match->score_b}}
                                                                 @else
                                                                     VS
@@ -201,7 +203,7 @@
                                                             </h4>
                                                         </td>
                                                         @endif
-                                                        @if ($match->score_a && $match->score_b != null)
+                                                        @if ($match->score_a || $match->score_b != null)
                                                         <td style="padding-top : 25px;">&nbsp;</td>
                                                         @else
                                                         <td style="padding-top : 25px;">
@@ -215,6 +217,7 @@
                                         </table>
                                     </div>
                                 </div>
+                                    @endif
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel"
                                 aria-labelledby="pills-bracket-tab">
@@ -276,34 +279,40 @@
                 @endif
             ],
             results: [
+                @foreach($brackets as $rounds)
                 [
                     @foreach($rounds as $round)
                     [
-                        @foreach($round as $matches)
-                            [{{$matches['score_a']}},{{$matches['score_b']}}],
+                        @foreach($round as $mtch)
+                            [{{$mtch['score_a']}},{{$mtch['score_b']}}],
                         @endforeach
                     ],
                     @endforeach
-                ]
+                ],
+                @endforeach
             ]
         };
         var double = {
-            teams : [
-            ["Team 1", "Team 2"],
-            ["Team 3", "Team 4"]
+            teams: [
+                @foreach($matches as $match)
+                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @endforeach
+                @if(count($matches) % 2 != 0)
+                    [null, null]
+                @endif
             ],
             results : [
-                [      /* WINNER BRACKET */
+                @foreach($brackets as $rounds)
+                [
+                    @foreach($rounds as $round)
                     [
-                        [1,2], 
-                        [3,4]
-                    ]       /* second round */
-                ], 
-                [              /* LOSER BRACKET */
-                    [
-                        [7,8]
-                    ]   /* second round */
-                ]
+                        @foreach($round as $mtch)
+                            [{{$mtch['score_a']}},{{$mtch['score_b']}}],
+                        @endforeach
+                    ],
+                    @endforeach
+                ],
+                @endforeach
             ]
         }
         var bracket = {

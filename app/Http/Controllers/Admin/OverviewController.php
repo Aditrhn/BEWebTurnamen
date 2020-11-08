@@ -7,6 +7,7 @@ use App\Model\Event;
 use App\Model\TemporaryEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {
@@ -17,24 +18,28 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        // $event = Event::all();
-        // $temporaryEvent = TemporaryEvent::all();
-        $total =  Event::count() + TemporaryEvent::count();
-        $onGoing = Event::where('status', 1)->count();
-        $finished = Event::where('status', 0)->count();
-        $draft = TemporaryEvent::count();
-        // $status_0 = Event::where('status', 0)->get();
-        $status_1 = DB::table('events')
-            ->join('games', 'events.game_id', '=', 'games.id')
-            ->select('events.title as judul', 'events.participant as jml_peserta', 'events.start_date as tgl_mulai', 'events.bracket_type as mode', 'games.name as nama')->where('events.status', 1)
-            ->get();
-        // $status_1 = Event::where('status', 1)->get();
-        $status_0 = DB::table('events')
-            ->join('games', 'events.game_id', '=', 'games.id')
-            ->select('events.title as judul', 'events.participant as jml_peserta', 'events.start_date as tgl_mulai', 'events.bracket_type as mode', 'games.name as nama')->where('events.status', 0)
-            ->get();
-        // \dd($temporaryEvent);
-        return \view('admin.overview', \compact('total', 'draft', 'onGoing', 'finished', 'status_0', 'status_1'));
+        if (Auth::guard('admin')->check()) {
+            // $event = Event::all();
+            // $temporaryEvent = TemporaryEvent::all();
+            $total =  Event::count() + TemporaryEvent::count();
+            $onGoing = Event::where('status', 1)->count();
+            $finished = Event::where('status', 0)->count();
+            $draft = TemporaryEvent::count();
+            // $status_0 = Event::where('status', 0)->get();
+            $status_1 = DB::table('events')
+                ->join('games', 'events.game_id', '=', 'games.id')
+                ->select('events.title as judul', 'events.participant as jml_peserta', 'events.start_date as tgl_mulai', 'events.bracket_type as mode', 'games.name as nama')->where('events.status', 1)
+                ->get();
+            // $status_1 = Event::where('status', 1)->get();
+            $status_0 = DB::table('events')
+                ->join('games', 'events.game_id', '=', 'games.id')
+                ->select('events.title as judul', 'events.participant as jml_peserta', 'events.start_date as tgl_mulai', 'events.bracket_type as mode', 'games.name as nama')->where('events.status', 0)
+                ->get();
+            // \dd($temporaryEvent);
+            return \view('admin.overview', \compact('total', 'draft', 'onGoing', 'finished', 'status_0', 'status_1'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**

@@ -28,7 +28,9 @@ class SponsorsController extends Controller
             ]);
             // \dd($array, $game);
             return \view('admin.sponsors.index', \compact('sponsor'));
-        }
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -38,7 +40,11 @@ class SponsorsController extends Controller
      */
     public function create()
     {
-        return \view('admin.sponsors.create');
+        if (Auth::guard('admin')->check()) {
+            return \view('admin.sponsors.create');
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -49,19 +55,23 @@ class SponsorsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'logo_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
-        $file = $request->file('logo_url');
-        $name_icon = \time() . "_" . $file->getClientOriginalName();
-        $tujuan_upload = 'images/admin/sponsors/';
-        $file->move($tujuan_upload, $name_icon);
-        AdminSponsor::create([
-            'name' => $request->name,
-            'logo_url' => $name_icon
-        ]);
-        return \redirect('super/sponsors')->with(['success' => 'Sponsors created successfully']);
+        if (Auth::guard('admin')->check()) {
+            $this->validate($request, [
+                'name' => 'required',
+                'logo_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+            $file = $request->file('logo_url');
+            $name_icon = \time() . "_" . $file->getClientOriginalName();
+            $tujuan_upload = 'images/admin/sponsors/';
+            $file->move($tujuan_upload, $name_icon);
+            AdminSponsor::create([
+                'name' => $request->name,
+                'logo_url' => $name_icon
+            ]);
+            return \redirect('super/sponsors')->with(['success' => 'Sponsors created successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -86,7 +96,11 @@ class SponsorsController extends Controller
      */
     public function edit(AdminSponsor $sponsor)
     {
-        return view('admin.sponsors.edit', \compact('sponsor'));
+        if (Auth::guard('admin')->check()) {
+            return view('admin.sponsors.edit', \compact('sponsor'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -98,23 +112,27 @@ class SponsorsController extends Controller
      */
     public function update(Request $request, AdminSponsor $sponsor)
     {
-        $this->validate($request, [
-            'name' => 'required',
-        ]);
-        $sponsor = AdminSponsor::find($sponsor->id);
-        $name_icon = $sponsor->logo_url;
-        if ($request->hasFile('logo_url')) {
-            $file = $request->file('logo_url');
-            $name_icon = \time() . "_" . $file->getClientOriginalName();
-            $tujuan_upload = 'images/admin/sponsors/';
-            $file->move($tujuan_upload, $name_icon);
-            File::delete('images/admin/sponsors/' . $sponsor->icon_url);
-        }
-        $sponsor->update([
-            'name' => $request->name,
-            'logo_url' => $name_icon
-        ]);
-        return \redirect('super/sponsors')->with(['success' => 'Sponsor updated successfully']);
+        if (Auth::guard('admin')->check()) {
+            $this->validate($request, [
+                'name' => 'required',
+            ]);
+            $sponsor = AdminSponsor::find($sponsor->id);
+            $name_icon = $sponsor->logo_url;
+            if ($request->hasFile('logo_url')) {
+                $file = $request->file('logo_url');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/admin/sponsors/';
+                $file->move($tujuan_upload, $name_icon);
+                File::delete('images/admin/sponsors/' . $sponsor->icon_url);
+            }
+            $sponsor->update([
+                'name' => $request->name,
+                'logo_url' => $name_icon
+            ]);
+            return \redirect('super/sponsors')->with(['success' => 'Sponsor updated successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 
     /**
@@ -125,7 +143,11 @@ class SponsorsController extends Controller
      */
     public function destroy(AdminSponsor $sponsor)
     {
-        AdminSponsor::destroy($sponsor->id);
-        return \redirect()->back()->with(['success' => 'Sponsor deleted successfully']);
+        if (Auth::guard('admin')->check()) {
+            AdminSponsor::destroy($sponsor->id);
+            return \redirect()->back()->with(['success' => 'Sponsor deleted successfully']);
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        } 
     }
 }

@@ -96,7 +96,11 @@
                                             @endif
                                         </tr>
                                     @empty
-                                        <p><strong>Data masih kosong</strong></p>
+                                        <tr>
+                                            <td colspan="7">
+                                                <p><strong>Data masih kosong</strong></p>
+                                            </td>
+                                        </tr>
                                     @endforelse
                                     <tr>
 

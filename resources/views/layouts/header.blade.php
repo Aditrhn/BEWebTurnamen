@@ -15,7 +15,7 @@
     <div id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <?php 
+          <?php
             $friend = DB::table('friends')
               ->select('*')
               ->where([
@@ -54,14 +54,14 @@
             @endforelse
           </ul>
         </li>
-        <li class="dropdown">
+        {{-- <li class="dropdown">
           <ul class="dropdown-menu">
             <li><a href="#">Basic Use</a></li>
             <li><a href="#">Working With Data</a></li>
             <li><a href="#">Security</a></li>
             <li><a href="#">Troubleshooting</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @guest
@@ -69,7 +69,7 @@
                         @if (Auth::guard('player')->user()->ava_url != null)
                         <img src="{{ URL::asset('images/avatars/'.Auth::guard('player')->user()->ava_url) }}" class="avatar" alt="Avatar">
                         @else
-                        <img src="{{ asset('images/avatars/default.png') }}" class="avatar" alt="Avatar">
+                        <img src="{{ URL::asset('images/avatars/default.png') }}" class="avatar" alt="Avatar">
                         @endif
                         <span>{{ Auth::guard('player')->user()->name }}</span>
                         <i class="icon-submenu lnr lnr-chevron-down"></i>
@@ -77,10 +77,10 @@
                     @endif
                 @endguest
             </a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ URL::route('profile') }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-            <li><a href="{{URL::route('logout')}}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
-          </ul>
+            <ul class="dropdown-menu">
+                <li><a href="{{ URL::route('profile') }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                <li><a href="{{URL::route('logout')}}"><i class="lnr lnr-exit" class="more"></i> <span>Logout</span></a></li>
+            </ul>
         </li>
       </ul>
     </div>

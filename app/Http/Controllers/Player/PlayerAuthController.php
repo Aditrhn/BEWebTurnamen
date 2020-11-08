@@ -7,8 +7,10 @@ use App\Model\Contract;
 use App\Model\Team;
 use App\Model\Friend;
 use App\Model\Game;
+use App\Model\HistoryTournament;
 use App\Model\Player;
 use App\Model\PlayerGame;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Validator, Redirect, Response;
 use App\User;
@@ -22,24 +24,39 @@ class PlayerAuthController extends Controller
 {
     public function index()
     {
+        //cek jika user belum logout maka akan redirect back
+        // if(!Auth::guard('player')->check()){
         return \view('player.auth.login'); //view login
+        // } else {
+        //     return redirect()->back();
+        // }
     }
     public function register()
     {
+        //cek jika user belum logout maka akan redirect back
+        // if(!Auth::guard('player')->check()){
         return \view('player.auth.register'); //view register
+        // } else {
+        //     return redirect()->back();
+        // }
     }
     public function postLogin(Request $request)
     {
-        \request()->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        $player = Player::where('email', $request->email)->first();
-
+        \request()->validate(
+            [
+                'email' => 'required',
+                'password' => 'required',
+            ],
+            [
+                'email.required' => 'Email is required',
+                'password.required' => 'Password is required'
+            ]
+        );
+        // $player = Player::where('email', $request->email)->first();
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard'); //redirect to url link dashboard
         } else {
-            return Redirect::to("login"); //routing login jika user tidak ada
+            return \redirect('login')->with(['success' => 'Email or password is incorrect']); //routing login jika user tidak ada
         }
     }
     public function postRegister(Request $request)
@@ -49,8 +66,14 @@ class PlayerAuthController extends Controller
             'email' => 'required|email|unique:players',
             'password' => 'required|min:8',
         ]);
-        $data = $request->all();
-        $check = $this->create($data);
+        // $data = $request->all();
+        // $check = $this->create($data);
+        Player::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        // \dd(Auth::guard('player')->user());
         if (Auth::guard('player')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('dashboard')->with(['success' => 'Register success']); //redirect to url link dashboard
         } else {
@@ -64,32 +87,11 @@ class PlayerAuthController extends Controller
         if (Auth::guard('player')->check()) {
             // $notif = $this->notifFriend();
             $cek = new Controller();
-            $notifFriend = DB::table('friends')
-                ->join('players', 'players.id', '=', 'friends.player_one')
-                ->where('friends.player_two', Auth::guard('player')->user()->id)
-                ->where('friends.status', '0')
-                ->count();
-            // \dd($notifFriend);
-            $notifTeams = DB::table('teams')
-                ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-                ->select('teams.id', 'teams.name', 'teams.logo_url')
-                ->where([
-                    ['contracts.players_id', '=', Auth::guard('player')->user()->id],
-                    ['contracts.status', '=', '0']
-                ])
-                ->get();
-            $notifTeams2 = DB::table('teams')
-                ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-                ->select('teams.id', 'teams.name', 'teams.logo_url')
-                ->where([
-                    ['contracts.players_id', '=', Auth::guard('player')->user()->id],
-                    ['contracts.status', '=', '0']
-                ])
-                ->count();
-            $notif = $notifFriend + $notifTeams2;
+            $game = Game::query()->get();
+            $count = Game::query()->count();
             // \dd($notif);
             // \dd($notifTeams);
-            return view('player.dashboard', \compact('notifFriend', 'notifTeams', 'notif')); //view dashboard
+            return view('player.dashboard', \compact('game', 'count')); //view dashboard
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -111,23 +113,11 @@ class PlayerAuthController extends Controller
     public function profile()
     {
         if (Auth::guard('player')->check()) {
-            // $player_game = PlayerGame::all()->join('games','player_games.players_id');
-            // $game = Game::select('name', 'platform')->get();
             $game = DB::table('players')
                 ->join('player_games', 'player_games.players_id', '=', 'players.id')
                 ->select('players.*', 'player_games.*')
                 ->get();
-
-            // SQL
-            //SELECT p.name FROM friends f join players p on p.id = f.player_one OR p.id = f.player_two WHERE p.id != '1' AND (f.player_one = '1' OR f.player_two = '1') AND f.status = '1'
-            // $friend = Friend::select('players.name')->join('players', function ($join) {
-            //     $join->on('players.id', '=', 'friends.player_one');
-            //     $join->orOn('players.id', '=', 'friends.player_two');
-            // })->where('players.id', '!=', Auth::guard('player')->user()->id)->where(function ($query) {
-            //     $query->where('friends.player_one', Auth::guard('player')->user()->id);
-            //     $query->orWhere('friends.player_two', Auth::guard('player')->user()->id);
-            // })->where('friends.status', 1)->get();
-            $friend = DB::select('select p.name,p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
+            $friend = DB::select('select p.name, p.ava_url, p.id from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
 
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
@@ -135,8 +125,9 @@ class PlayerAuthController extends Controller
                 ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                 ->get();
 
+            $history = HistoryTournament::all();
             // dd($team);
-            return \view('player.profile', \compact('game', 'friend', 'team'));
+            return \view('player.profile', \compact('game', 'friend', 'team', 'history'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -200,18 +191,7 @@ class PlayerAuthController extends Controller
     public function updateProfile(Request $request)
     {
         if (Auth::guard('player')->check()) {
-            // $this->validate($request, [
-            //     'name' => 'required',
-            //     // 'email' => 'required|email|unique:players',
-            //     // 'password' => 'required|min:6',
-            //     // 'address' => 'required',
-            //     // 'contact' => 'required|max:15',
-            //     // 'gender' => ' required'
-            //     // 'ava_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // ]);
-
             $player = Auth::guard('player')->user();
-            // \dd($player);
             $ava_name = Auth::guard('player')->user()->ava_url;
             if ($request->hasFile('ava_url')) {
                 $ava = $request->ava_url;
@@ -220,14 +200,7 @@ class PlayerAuthController extends Controller
                 $player->ava_url = 'images/avatars/' . $ava_name;
                 File::delete('avatars/' . $player->ava_url);
             }
-            // if ($request->hasFile('ava_url')) {
-            //     $file = $request->file('ava_url');
-            //     $ava_name = \time() . "_" . $request->file('ava_url')->getClientOriginalName();
-            //     $path = $request->file('ava_url')->store('images/avatars/' . $request->user());
-            //     $file->move($path, $ava_name);
-            //     File::delete('avatars/' . $player->ava_url);
-            // }
-            // \dd($path);
+
             $player->update([
                 'name' => $request->name,
                 // 'email' => $request->email,
@@ -240,13 +213,31 @@ class PlayerAuthController extends Controller
                 'province' => $request->province,
                 'status' => $request->status
             ]);
-            // dd($player);
-            // $request->user()->update(
-            //     $request->all()
-            // );
+
             return \redirect('profile')->with(['success' => 'Profile updated successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function updatePassword(Request $request)
+    {
+        if (Auth::guard('player')->check()) {
+            $player = Auth::guard('player')->user();
+            $request->validate([
+                'recentpass' => ['required', new MatchOldPassword],
+                'newpass' => ['required'],
+                'connewpass' => ['same:newpass'],
+            ],
+            [
+                'recentpass.required' => 'Current password is required',
+                'newpass.required' => 'New password is required',
+                'connewpass.same' => 'Password not match with new password'
+            ]
+            );
+
+            $player->update(['password'=> Hash::make($request->newpass)]);
+
+            return Redirect('profile')->with(['success' => 'Password updated successfully']);
         }
     }
 }

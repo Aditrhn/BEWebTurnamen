@@ -101,21 +101,30 @@ class TeamController extends Controller
             $this->validate($request, [
                 'name' => 'required'
             ]);
-            $file = $request->file('logo_url');
-            $name_icon = \time() . "_" . $file->getClientOriginalName();
-            $tujuan_upload = 'images/team_logo/';
-            $file->move($tujuan_upload, $name_icon);
-            Team::create([
-                'name' => $request->name,
-                'max_member' => 5,
-                'logo_url' => $name_icon,
-                'description' => $request->teamDesc,
-                'games_id' => $games_id->id
-            ]);
+            if ($request->has('logo_url')){
+                $file = $request->file('logo_url');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/team_logo/';
+                $file->move($tujuan_upload, $name_icon);
+                Team::create([
+                    'name' => $request->name,
+                    'max_member' => 5,
+                    'logo_url' => $name_icon,
+                    'description' => $request->teamDesc,
+                    'games_id' => $games_id->id
+                ]);
+            } else {
+                Team::create([
+                    'name' => $request->name,
+                    'max_member' => 5,
+                    'description' => $request->teamDesc,
+                    'games_id' => $games_id->id
+                ]);
+            }
 
             $player_id = Auth::guard('player')->user()->id;
             // $teams = Team::where('name', 'LIKE', '%' . $request->name . '%')->first();
-            $teams = Team::where('logo_url', '=', $name_icon)->first();
+            $teams = Team::where('name', '=', $request->name)->first();
             
             Contract::create([
                 'role' => "1",
@@ -126,7 +135,7 @@ class TeamController extends Controller
 
             return \redirect('team')->with(['success' => 'Team created successfully']);
         } else {
-            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+            return Redirect('login')->with(['success' => 'Anda harus login']); //routing login
         }
     }
     public function team_edit(Request $request)
@@ -711,20 +720,25 @@ class TeamController extends Controller
     }
     public function friendInvite(Request $request)
     {
-        if ($request->has('friendId') && $request->has('teamId')) {
-            Contract::create([
-                'role' => "2",
-                'status' => "0",
-                'teams_id' => $request->teamId,
-                'players_id' => $request->friendId
-            ]);
-
-            return \redirect('team')->with(['success' => 'Friend invited successfully']);
-        };
+        if (Auth::guard('player')->check()){
+            if ($request->has('friendId') && $request->has('teamId')) {
+                Contract::create([
+                    'role' => "2",
+                    'status' => "0",
+                    'teams_id' => $request->teamId,
+                    'players_id' => $request->friendId
+                ]);
+    
+                return \redirect('team')->with(['success' => 'Friend invited successfully']);
+            };
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
     }
     public function team_invitation()
     {
-        $teams = DB::table('teams')
+        if (Auth::guard('player')->check()) {
+            $teams = DB::table('teams')
             ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
             ->select('teams.id', 'teams.name', 'teams.logo_url')
             ->where([
@@ -733,7 +747,10 @@ class TeamController extends Controller
             ])
             ->get();
         // dd($team);
-        return view('team.team-invitation', \compact('teams'));
+            return view('team.team-invitation', \compact('teams'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }       
     }
     public function team_acc(Request $request)
     {
