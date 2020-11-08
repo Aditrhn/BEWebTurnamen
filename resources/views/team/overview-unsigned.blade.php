@@ -4,21 +4,21 @@
 <div class="main">
     <!-- MAIN CONTENT -->
     <div class="main-content">
-        @if(session('success'))
+        {{-- @if(session('success')) --}}
         <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            {{ session('success') }}
+            {{-- {{ session('success') }} --}}
         </div>
-        @elseif(session('error'))
+        {{-- @elseif(session('error')) --}}
         <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            {{ session('error') }}
+            {{-- {{ session('error') }} --}}
         </div>
-        @endif
+        {{-- @endif --}}
         <div class="container-fluid">
             <!-- PANEL DETAILS -->
             <div class="panel panel-default">
