@@ -41,7 +41,7 @@ class TeamController extends Controller
                     ->first();
                 $member = DB::table('players')
                     ->join('contracts', 'contracts.players_id', '=', 'players.id')
-                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->select('players.id', 'players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
                     ->where([
                         ['contracts.teams_id', '=', $team->id],
                         ['contracts.status', '=', '1']
@@ -844,7 +844,7 @@ class TeamController extends Controller
                     ->first();
                 $member = DB::table('players')
                     ->join('contracts', 'contracts.players_id', '=', 'players.id')
-                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->select('players.id', 'players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
                     ->where([
                         ['contracts.teams_id', '=', $request->teamId],
                         ['contracts.status', '=', '1']

@@ -2681,7 +2681,7 @@ ul.activity-list > li {
 }
  
 #team-profile{
-  width: 150px;
+  width: 50%;
   margin-top: 10px;
 }
 
@@ -2721,6 +2721,7 @@ color: white;
 #teampanel{
   background-color: #25254F;
   margin-left: 5%; 
+  margin-right: 5%;
   border-radius: 15px;
 }
 #teampanel .col-md-5 img{

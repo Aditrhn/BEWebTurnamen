@@ -9,7 +9,7 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
-            <h3 style="color: grey;">Search Result for "{{ $cari }}"</h3>
+            <h3 style="color: grey;">Search Result for: {{ $cari }}</h3>
             <div class="row">
                 <div class="col-md-2" style="padding-top: 2%;">
                     <div class="panel panel-headline">

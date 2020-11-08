@@ -30,9 +30,13 @@
                             <div class="overview">
                                 <div class="col-lg-5 col-sm-4">
                                     @if ($team->logo_url != null)
-                                        <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                        <div class="thumbex">
+                                            <img src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}" alt="">
+                                        </div>
                                     @else
-                                        <img src="{{ URL::asset('images/team_logo/default.png') }}" alt="">
+                                        <div class="thumbex">
+                                            <img src="{{ URL::asset('images/team_logo/default.png') }}" alt="">
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="team-overview col-lg-7 col-sm-8">
@@ -65,9 +69,17 @@
                                         <p style="margin-top: 31px"></p>
                                     @endif
                                     @if ($members->ava_url != null)
-                                        <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
+                                        <a href="{{ URL::route('user.profile',$members->id) }}">
+                                            <div class="thumbex">
+                                                <img src="{{ URL::asset('images/avatars/'.$members->ava_url) }}">
+                                            </div>
+                                        </a>
                                     @else
-                                        <img src="{{ asset('images/avatars/default.png') }}">
+                                        <a href="{{ URL::route('user.profile',$members->id) }}">
+                                            <div class="thumbex">
+                                                <img src="{{ asset('images/avatars/default.png') }}">
+                                            </div>
+                                        </a>
                                     @endif
                                     <h4>{{ $members->name }}</h4>
                                 </div>
