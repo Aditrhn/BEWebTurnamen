@@ -853,11 +853,11 @@ class TeamController extends Controller
                         ['status', '=', '1']
                         ])
                     ->get();
-            }
-            if ($check->id == $team->id) {
-                return Redirect('team');
-            } else {
-                return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                if (isset($check)) {
+                        return Redirect('team');
+                } else {
+                        return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                }
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
