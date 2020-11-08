@@ -141,7 +141,7 @@ class EventController extends Controller
                     'fee' => 'required',
                     'prize_pool' => 'required',
                     'rules' => 'required',
-                    'img'=>'required',
+                    'img' => 'required',
                     'bracket_type' => 'required',
                     'registration_open' => 'required',
                     'registration_close' => 'required',
@@ -169,7 +169,7 @@ class EventController extends Controller
                     'registration_open' => 'required',
                     'registration_close' => 'required',
                     'form_message' => 'required',
-                ])
+                ]);
                 TemporaryEvent::destroy($tempevent->id);
                 return redirect()->route('event.index');
             }
