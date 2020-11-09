@@ -50,18 +50,18 @@
                 <div class="col-md-12 carousel-landing"><!--Class utama Carousel "carousel-landing"-->
                     <div id="Carousel" class="carousel slide">
                     <!-- Carousel items -->
-                        <div class="carousel-inner">
+                    <div class="carousel-inner">
+                        <div class="col-lg-2 col-xs-6 text-center" style="z-index: 1">
+                            <a data-toggle="pill" href="#menu-game" title="Show all">
+                                <div class="box" id="box-game-default">
+                                    <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
+                                </div>
+                            </a>
+                        </div>
                             <div class="item active">
                                 <div class="menu-box">
                                     <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-lg-2 col-xs-6 text-center">
-                                                <a data-toggle="pill" href="#menu-game" title="Show all">
-                                                    <div class="box" id="box-game-default">
-                                                        <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
-                                                    </div>
-                                                </a>
-                                            </div>
+                                        
                                             <?php $i = 1 ?>
                                             @forelse ($game as $games)
                                                 <div class="col-lg-2 col-xs-6 text-center">
@@ -77,7 +77,7 @@
                                             @empty
                                                 
                                             @endforelse
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -87,14 +87,13 @@
                                     <div class="item">
                                         <div class="menu-box">
                                             <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-lg-2 col-xs-6 text-center">
+                                                    {{-- <div class="col-lg-2 col-xs-6 text-center">
                                                         <a data-toggle="pill" href="#menu-game" title="Show all">
                                                             <div class="box" id="box-game-default">
                                                                 <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
                                                             </div>
                                                         </a>
-                                                    </div>
+                                                    </div> --}}
                                                     @foreach ($game as $key => $games)
                                                         @if ($key <= $count-($count-$l))
                                                             <?php continue; ?> 
@@ -111,7 +110,7 @@
                                                             <?php break; ?>
                                                         @endif
                                                     @endforeach
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
