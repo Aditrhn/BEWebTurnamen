@@ -61,7 +61,7 @@ Route::namespace('Player')->group(function () {
     Route::post('team-edit', 'TeamController@team_edit')->name('team.edit');
     Route::post('team-update', 'TeamController@team_update')->name('team.update');
     // Route::post('teamSponsor-delete', 'TeamController@teamSponsor_delete')->name('teamSponsor.delete');
-    Route::post('team-view', 'TeamController@team_view')->name('team.view');
+    Route::get('team-view/{id}', 'TeamController@team_view')->name('team.view');
     Route::post('team-join', 'TeamController@team_join')->name('team.join');
     Route::post('team-leave', 'TeamController@team_leave')->name('team.leave');
     Route::post('team-disband', 'TeamController@team_disband')->name('team.disband');
@@ -117,7 +117,7 @@ Route::group(['auth', 'admins'], function () {
         Route::get('super/event/create', 'EventController@create')->name('event.create');
         Route::post('super/tempevent', 'EventController@tempStore')->name('temporary-event.store');
         Route::get('super/event/{tempevent}/edit', 'EventController@edit')->name('temporary-event.edit');
-        Route::post('super/event', 'EventController@updateAndStore')->name('event.update-and-store');
+        Route::put('super/event/{id}', 'EventController@updateAndStore')->name('event.update-and-store');
         Route::put('super/event/{event}', 'EventController@update')->name('event.update');
         Route::get('super/event/{event}', 'EventController@show')->name('event.show');
         Route::delete('super/event/{event}', 'EventController@destroy')->name('event.destroy');

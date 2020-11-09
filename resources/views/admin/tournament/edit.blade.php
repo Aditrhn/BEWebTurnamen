@@ -14,9 +14,10 @@
 <div class="content">
     <div class="card">
         <div class="card-body">
-            <form action="{{ URL::route('event.update-and-store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ URL::route('event.update-and-store',$tempevent->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <input type="hidden" name="id" value="{{ $tempevent->id }}">
+                @method('put')
+                {{-- <input type="hidden" name="id" value="{{ $tempevent->id }}"> --}}
                 <div class="form-group">
                     <label for="title" class=" form-control-label">Tournament Name</label>
                     <input type="text" name="title" id="company" placeholder="Enter your tournament name"
@@ -63,11 +64,12 @@
         </div>
         <div class="col-6">
             <div class="form-group">
-                <div class="col col-md-3">
-                    <label for="banner_url" class=" form-control-label">Banner</label>
+                <div class="col col-md-12">
+                    <label for="banner_url" class=" form-control-label">Banner <span style="color: silver; scale: 0.4%;">biarkan kosong jika tidak ingin diganti</span></label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="file" id="file-input" name="banner_url" class="form-control-file">
+                    <input type="file" id="file-input" name="banner_url" class="form-control-file" value="{{ asset('images/events/'.$tempevent->banner_url) }}"><span>
+                    <img style="width: 50%;" class="mt-2" src="{{ asset('images/events/'.$tempevent->banner_url) }}" alt="{{ $tempevent->banner_url }}">
                 </div>
 
             </div>

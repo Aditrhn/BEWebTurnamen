@@ -30,7 +30,7 @@ class GameController extends Controller
             return \view('admin.game.index', \compact('game', 'array'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 
     /**
@@ -44,7 +44,7 @@ class GameController extends Controller
             return \view('admin.game.create');
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 
     /**
@@ -74,7 +74,7 @@ class GameController extends Controller
             return \redirect('super/game')->with(['success' => 'Game created successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 
     /**
@@ -103,7 +103,7 @@ class GameController extends Controller
             return view('admin.game.edit', \compact('game'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 
     /**
@@ -119,7 +119,6 @@ class GameController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 'platform' => 'required',
-                // 'icon_url' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
             ]);
             // Game::where('id', $game->id)->update(
             //     [
@@ -144,7 +143,7 @@ class GameController extends Controller
             return \redirect('super/game')->with(['success' => 'Game updated successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 
     /**
@@ -160,6 +159,6 @@ class GameController extends Controller
             return \redirect()->back()->with(['success' => 'Game deleted successfully']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        } 
+        }
     }
 }

@@ -28,11 +28,9 @@
         svg.bi.bi-file-earmark-excel-fill{
             font-size: 20px;
             color: black;
-
         }
         svg.bi.bi-file-earmark-excel-fill:hover{
             color: darkolivegreen;
-
         }
     </style>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
@@ -98,7 +96,7 @@
                         </div>
 
                         <div class="dropdown for-notification">
-                            <?php 
+                            <?php
                                 $payment = DB::table('joins')
                                     ->select('*')
                                     ->where('status', '=', '0')
