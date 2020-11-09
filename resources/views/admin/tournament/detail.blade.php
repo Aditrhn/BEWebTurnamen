@@ -149,9 +149,22 @@
                                     @if ($count_round == 0)
                                             <h5 class="mt-2">No matches have been made yet, go click create button above</h5>
                                     @else
+                                    @foreach($brackets as $bracket)
                                     <div class="row">
                                     <div class="col-md-12">
-                                        <h4 class="titleMatch">Round 1</h4>
+                                        <h4 class="titleMatch">
+                                            @if($loop->iteration == 1)
+                                                Winner Bracket
+                                            @elseif($loop->iteration == 2)
+                                                Loser Bracket
+                                            @else
+                                                Final Round
+                                            @endif
+                                        </h4>
+                                    </div>
+                                    @foreach($bracket as $round)
+                                    <div class="col-md-12">
+                                        <h4 class="titleMatch">Round {{$loop->iteration}}</h4>
                                     </div>
                                     <div class="col-md-12">
                                         <table class="table">
@@ -167,18 +180,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($matches as $match)
+                                                @foreach($round as $match)
                                                     <tr>
                                                         <td>
-                                                            <h4 class="padMatch">{{ $match->team_a }}</h4>
+                                                            <h4 class="padMatch">{{ $match['team_a'] }}</h4>
                                                         </td>
                                                         <td><img id="imgMatch" class="card-img-top imgMatch"
                                                                 src="{{ asset('assets/img/navi.png') }}">
                                                         </td>
                                                         <td>
                                                             <h4 class="padMatch">
-                                                                @if ($match->score_a || $match->score_b != null)
-                                                                    {{$match->score_a}} - {{$match->score_b}}
+                                                                @if ($match['score_a'] || $match['score_b'] != null)
+                                                                    {{$match['score_a']}} - {{$match['score_b']}}
                                                                 @else
                                                                     VS
                                                                 @endif
@@ -188,12 +201,12 @@
                                                                 src="{{ asset('assets/img/navi.png') }}">
                                                         </td>
                                                         <td>
-                                                            <h4 class="padMatch">{{ $match->team_b }}</h4>
+                                                            <h4 class="padMatch">{{ $match['team_a'] }}</h4>
                                                         </td>
-                                                        @if($match->date != null)
+                                                        @if($match['date'] != null)
                                                         <td>
                                                             <h4 class="padMatch">
-                                                                {{ $match->date }}
+                                                                {{ $match['date'] }}
                                                             </h4>
                                                         </td>
                                                         @else
@@ -203,11 +216,11 @@
                                                             </h4>
                                                         </td>
                                                         @endif
-                                                        @if ($match->score_a || $match->score_b != null)
+                                                        @if ($match['score_a'] || $match['score_b'] != null)
                                                         <td style="padding-top : 25px;">&nbsp;</td>
                                                         @else
                                                         <td style="padding-top : 25px;">
-                                                            <a href="{{ URL::route('match.score',$match->id) }}"
+                                                            <a href="{{ URL::route('match.score',$match['id']) }}"
                                                                 class="btn btn-setScore">Set Score</a>
                                                         </td>
                                                         @endif
@@ -216,8 +229,10 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    @endforeach
                                 </div>
-                                    @endif
+                                @endforeach
+                                @endif
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel"
                                 aria-labelledby="pills-bracket-tab">
@@ -271,10 +286,10 @@
     <script>
         var single = {
             teams: [
-                @foreach($matches as $match)
-                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @foreach($brackets[0][0] as $match)
+                    ["{{$match['team_a']}}", "{{$match['team_b']}}"],
                 @endforeach
-                @if(count($matches) % 2 != 0)
+                @if(count($brackets[0][0]) % 2 != 0)
                     [null, null]
                 @endif
             ],
@@ -294,10 +309,10 @@
         };
         var double = {
             teams: [
-                @foreach($matches as $match)
-                    ["{{$match->team_a}}", "{{$match->team_b}}"],
+                @foreach($brackets[0][0] as $match)
+                    ["{{$match['team_a']}}", "{{$match['team_a']}}"],
                 @endforeach
-                @if(count($matches) % 2 != 0)
+                @if(count($brackets[0][0]) % 2 != 0)
                     [null, null]
                 @endif
             ],

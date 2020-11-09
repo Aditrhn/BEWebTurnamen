@@ -214,10 +214,10 @@ class EventController extends Controller
             $fee = number_format($event->fee);
             $prize_pool = number_format($event->prize_pool);
 
-            $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
-            (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id, m.score_a, m.score_b, m.date
-            FROM matches m JOIN events e ON m.event_id = e.id
-            WHERE m.event_id = ' . $id);
+            // $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
+            // (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id, m.score_a, m.score_b, m.date
+            // FROM matches m JOIN events e ON m.event_id = e.id
+            // WHERE m.event_id = ' . $id);
             // \dd($matches);
 
             $count_round = DB::table('matches')
@@ -234,24 +234,32 @@ class EventController extends Controller
             for ($i = 1; $i <= $count_bracket; $i++) {
                 $rounds = array();
                 for ($j = 1; $j <= $count_round; $j++) {
-                    $scores = DB::table('matches')
-                        ->select('round_number', 'match_number', 'score_a', 'score_b')
-                        ->where('event_id', $id)
-                        ->where('round_number', $j)
-                        ->where('bracket_number', $i)
-                        ->orderBy('match_number', 'asc')
-                        ->get()
-                        ->toArray();
+                    $scores = DB::select('SELECT 
+                        (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
+                        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, 
+                        m.id, m.score_a, m.score_b, m.date
+                        FROM matches m 
+                        JOIN events e 
+                        ON m.event_id = e.id
+                        WHERE m.event_id = '.$id.
+                        ' AND m.round_number = '.$j.
+                        ' AND m.bracket_number = '.$i.
+                        ' ORDER BY m.match_number ASC');
                     $mtch = array();
                     foreach ($scores as $score) {
-                        $matchscore = array('score_a' => $score->score_a, 'score_b' => $score->score_b);
+                        $matchscore = array('id' => $score->id,
+                                            'team_a' => $score->team_a,
+                                            'team_b' => $score->team_b,
+                                            'score_a' => $score->score_a, 
+                                            'score_b' => $score->score_b,
+                                            'date' => $score->date);
                         array_push($mtch, $matchscore);
                     }
                     array_push($rounds, $mtch);
                 }
                 array_push($brackets, $rounds);
             }
-            // \dd($brackets);
+            // \dd($brackets[0][0]);
 
             $join = DB::table('joins')
                 ->join('teams', 'teams.id', '=', 'joins.team_id')
@@ -266,7 +274,7 @@ class EventController extends Controller
                 ->select('joins.team_id', 'teams.*')
                 ->get();
             // \dd($join);
-            return view('admin.tournament.detail', \compact('count_round', 'matches', 'event', 'events', 'brackets', 'join', 'join2', 'fee', 'prize_pool'));
+            return view('admin.tournament.detail', \compact('count_round', 'event', 'events', 'brackets', 'join', 'join2', 'fee', 'prize_pool'));
             // return view('admin.tournament.detail');
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
