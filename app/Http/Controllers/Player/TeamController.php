@@ -883,7 +883,7 @@ class TeamController extends Controller
                     ->first();
                 $member = DB::table('players')
                     ->join('contracts', 'contracts.players_id', '=', 'players.id')
-                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->select('players.id', 'players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
                     ->where([
                         ['contracts.teams_id', '=', $request->teamId],
                         ['contracts.status', '=', '1']
@@ -915,11 +915,11 @@ class TeamController extends Controller
                             'teams_id' => $request->teamId,
                             'players_id' => Auth::guard('player')->user()->id
                         ]);
-                        return redirect()->route('team.view', $request->teamId)     
+                        return redirect()->route('team.view', $request->teamId)
                             ->with('success', 'Your request has been sent');
                     }
                 }
-                return \view('team.overview-unsigned', \compact('team', 'member', 'sponsor'))
+                return redirect()->route('team.view', $request->teamId)
                     ->with(['error' => 'You already joined a team']);
             };
         }
