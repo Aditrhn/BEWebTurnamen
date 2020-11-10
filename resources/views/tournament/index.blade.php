@@ -51,7 +51,7 @@
                     <div id="Carousel" class="carousel slide">
                     <!-- Carousel items -->
                     <div class="carousel-inner">
-                        <div class="col-lg-2 col-xs-6 text-center" style="z-index: 1">
+                        <div class="col-lg-2 col-xs-12 text-center" style="z-index: 1">
                             <a data-toggle="pill" href="#menu-game" title="Show all">
                                 <div class="box" id="box-game-active">
                                     <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
@@ -60,7 +60,6 @@
                         </div>
                             <div class="item active">
                                 <div class="menu-box">
-                                    <div class="container-fluid">
                                         
                                             <?php $i = 1 ?>
                                             @forelse ($game as $games)
@@ -78,7 +77,6 @@
                                                 
                                             @endforelse
                                         
-                                    </div>
                                 </div>
                             </div>
                             @if ($count > 5)
@@ -86,7 +84,6 @@
                                 @for ($j = 1; $j < $sum; $j++)
                                     <div class="item">
                                         <div class="menu-box">
-                                            <div class="container-fluid">
                                                     {{-- <div class="col-lg-2 col-xs-6 text-center">
                                                         <a data-toggle="pill" href="#menu-game" title="Show all">
                                                             <div class="box" id="box-game-default">
@@ -111,7 +108,6 @@
                                                         @endif
                                                     @endforeach
                                                 
-                                            </div>
                                         </div>
                                     </div>
                                 @endfor
