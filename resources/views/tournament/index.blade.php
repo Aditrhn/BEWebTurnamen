@@ -53,7 +53,7 @@
                     <div class="carousel-inner">
                         <div class="col-lg-2 col-xs-6 text-center" style="z-index: 1">
                             <a data-toggle="pill" href="#menu-game" title="Show all">
-                                <div class="box" id="box-game-default">
+                                <div class="box" id="box-game-active">
                                     <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
                                 </div>
                             </a>
