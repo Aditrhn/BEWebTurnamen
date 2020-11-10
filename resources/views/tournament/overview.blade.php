@@ -297,7 +297,7 @@
                             <nav id="myScrollspy">
                                 <div class="panel panel-headline">
                                     <div class="panel-heading" >
-                                        <ul class="nav nav-pills nav-stacked" style="position: fixed;">
+                                        <ul class="nav nav-pills nav-stacked">
                                         <li><a href="#section1"><h4 class="panel-title">1. Format</h4>
                                         </a></li>
                                         <li><a href="#section2"><h4 class="panel-title">2. Join Tournament</h4>

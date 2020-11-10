@@ -80,7 +80,6 @@
                                                 
                                             @endforelse
                                         
-                                    </div>
                                 </div>
                             </div>
                             @if ($count > 5)
@@ -88,7 +87,6 @@
                                 @for ($j = 1; $j < $sum; $j++)
                                     <div class="item">
                                         <div class="menu-box">
-                                            <div class="container-fluid">
                                                     {{-- <div class="col-lg-2 col-xs-6 text-center">
                                                         <a data-toggle="pill" href="#menu-game" title="Show all">
                                                             <div class="box" id="box-game-default">
@@ -113,7 +111,6 @@
                                                         @endif
                                                     @endforeach
                                                 
-                                            </div>
                                         </div>
                                     </div>
                                 @endfor
@@ -150,14 +147,14 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-content">
-                                        <div class="col-lg-8 col-xs-12">
+                                        <div class="title col-lg-8 col-md-8 col-xs-8">
                                             <h1>{{ $tournaments->title }}</h1>
                                         </div>
-                                        <div class="prizepool col-lg-4 col-xs-12">
+                                        <div class="prizepool col-lg-4 col-md-4 col-xs-4">
                                             <h3 class="panel-title">Prizepool</h3>
                                             <h3>IDR {{ $prize_pool }}</h3>
                                         </div>
-                                        <div class="col-lg-8 col-xs-12">
+                                        <div class="details col-lg-8 col-md-8 col-xs-12">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -197,7 +194,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-lg-4 col-xs-12 buttons">
+                                        <div class="col-lg-4 col-md-4 col-xs-12 buttons">
                                             @if ($slot == null)
                                                 <a class="button buy btn-danger" href="#" disabled style="opacity: 100%">CLOSED</a>
                                             @else
