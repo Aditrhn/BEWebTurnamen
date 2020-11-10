@@ -148,14 +148,14 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-content">
-                                        <div class="col-lg-8 col-md-8 col-xs-12">
+                                        <div class="title col-lg-8 col-md-8 col-xs-8">
                                             <h1>{{ $tournaments->title }}</h1>
                                         </div>
-                                        <div class="prizepool col-lg-4 col-md-4 col-xs-12">
+                                        <div class="prizepool col-lg-4 col-md-4 col-xs-4">
                                             <h3 class="panel-title">Prizepool</h3>
                                             <h3>IDR {{ $prize_pool }}</h3>
                                         </div>
-                                        <div class="col-lg-8 col-md-8 col-xs-12">
+                                        <div class="details col-lg-8 col-md-8 col-xs-12">
                                             <table class="table">
                                                 <thead>
                                                     <tr>

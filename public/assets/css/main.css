@@ -1122,7 +1122,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       opacity: 0.8;
     }
     .prizepool h3{
-      margin-right: 20px;
     }
     .prizepool h4{
       margin-right: 20px;
@@ -1143,14 +1142,34 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
   @media(min-width:768px) and (max-width:1023px){
     .prizepool{
-      margin-top: 30px;
+      margin-top: 20px;
       opacity: 0.8;
     }
     .container-fluid .product .product-info .product-content .table{
-      margin-top: 20px;
+      margin-top: 60px;
     }
     .container-fluid .product .product-info .product-content .buttons{
       display: block;
+    }
+    .container-fluid .product .product-info .product-content .buttons .buy{
+      text-align: center;
+      display: block;
+    }
+    .prizepool h3{
+      font-size: medium;
+    }
+  }
+  @media(min-width:360px) and (max-width:767px){
+    .title{
+      width: 100% !important;
+      margin: 0 !important;
+    }
+    .prizepool{
+      width: 100% !important;
+      margin: 30px 0 30px 0;
+    }
+    .details{
+      width: 100% !important;
     }
   }
 /* MENU GAME */
@@ -1305,7 +1324,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   .container-fluid .product .product-info .product-content .buttons .buy {
     border-radius: 30px;
     font-size: 16px;
-    margin-right: 20px;
     padding: 5px 30px 5px 30px;
     border: 1px #fff solid;
   }
@@ -1508,7 +1526,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
 .title {
     font-size: 15px;
     color: #fff;
-    margin: 25px 0px 0px 0px;
     text-transform: uppercase;
 }
 
