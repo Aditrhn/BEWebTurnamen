@@ -862,7 +862,8 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
 
     .case-landing {
-      margin-left : 8%;
+      margin-left : 0;
+      background-size: 280px 180px;
     }
 
     .landing1 {
@@ -873,9 +874,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       width: 280px;
       height: 180px;
     }
-    .case-landing {
-      background-size: 280px 180px;
-    }
+
     .case-landing__title {
       font-size: small;
     }
