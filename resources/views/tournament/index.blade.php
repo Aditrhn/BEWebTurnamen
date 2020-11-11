@@ -51,19 +51,16 @@
                     <div id="Carousel" class="carousel slide">
                     <!-- Carousel items -->
                     <div class="carousel-inner">
-                        {{-- <div class="menu-box">
-                            
-                        </div> --}}
+                        <div class="col-lg-2 col-xs-12 text-center" style="z-index: 1">
+                            <a data-toggle="pill" href="#menu-game" title="Show all">
+                                <div class="box" id="box-game-active">
+                                    <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
+                                </div>
+                            </a>
+                        </div>
                             <div class="item active">
                                 <div class="menu-box">
-                                    <div class="container-fluid">
-                                        <div class="col-lg-2 col-xs-6 text-center" style="z-index: 1">
-                                            <a data-toggle="pill" href="#menu-game" title="Show all">
-                                                <div class="box" id="box-game-default">
-                                                    <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
-                                                </div>
-                                            </a>
-                                        </div>
+                                        
                                             <?php $i = 1 ?>
                                             @forelse ($game as $games)
                                                 <div class="col-lg-2 col-xs-6 text-center">
@@ -218,7 +215,7 @@
                     </div>
                 </div>
                 {{--  GAME!  --}}
-                <?php $i = 1?>
+                <?php $i = 1; $j = 0?>
                 @forelse ($game as $games)
                     <?php
                         $gametournament = DB::table('events')->select('*')->where('game_id', '=', $games->id)->get();
@@ -226,71 +223,71 @@
                     <div id="menu-game{{$i}}" class="tab-pane fade in">
                         <div class="row">
                             @forelse ($gametournament as $gametournaments)
-                            <?php 
-                                $fee = number_format($gametournaments->fee);
-                                $prize_pool = number_format($gametournaments->prize_pool);
-                            ?>
-                            <div class="col-lg-12">
-                                <div id="menu-game" class="product">
-                                    <div class="img-container">
-                                        @if ($gametournaments->banner_url)
-                                            <img src="{{ URL::asset('images/events/'.$gametournaments->banner_url) }}">
-                                        @else
-                                            <img src="{{ URL::asset('assets/img/maxresdefault.jpg') }}">
-                                        @endif
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-content">
-                                            <div class="col-lg-8 col-xs-12">
-                                                <h1>{{ $gametournaments->title }}</h1>
-                                            </div>
-                                            <div class="prizepool col-lg-4 col-xs-12">
-                                                <h3 class="panel-title">Prizepool</h3>
-                                                <h3>IDR {{ $prize_pool }}</h3>
-                                            </div>
-                                            <div class="col-lg-8 col-xs-12">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
-                                                                Register
-                                                            </th>
-                                                            <th>
-                                                                Slot
-                                                            </th>
-                                                            <th>
-                                                                Date
-                                                            </th>
-                                                            <th>
-                                                                Time
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="">
-                                                            <td>
-                                                                IDR {{ $fee }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $gametournaments->participant }}
-                                                            </td>
-                                                            <td>
-                                                                {{\Carbon\Carbon::parse($gametournaments->start_date)->translatedFormat('j F') }}
-                                                            </td>
-                                                            <td>
-                                                                {{\Carbon\Carbon::parse($gametournaments->start_date)->translatedFormat('h:i') }} WIB
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-lg-4 col-xs-12 buttons">
-                                                <a class="button buy btn-success" href="{{ URL::route('tournament.overview',$tournaments->id) }}">OPEN</a>
+                                <?php 
+                                    $fee = number_format($gametournaments->fee);
+                                    $prize_pool = number_format($gametournaments->prize_pool);
+                                ?>
+                                <div class="col-lg-12">
+                                    <div id="menu-game" class="product">
+                                        <div class="img-container">
+                                            @if ($gametournaments->banner_url)
+                                                <img src="{{ URL::asset('images/events/'.$gametournaments->banner_url) }}">
+                                            @else
+                                                <img src="{{ URL::asset('assets/img/maxresdefault.jpg') }}">
+                                            @endif
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-content">
+                                                <div class="col-lg-8 col-xs-12">
+                                                    <h1>{{ $gametournaments->title }}</h1>
+                                                </div>
+                                                <div class="prizepool col-lg-4 col-xs-12">
+                                                    <h3 class="panel-title">Prizepool</h3>
+                                                    <h3>IDR {{ $prize_pool }}</h3>
+                                                </div>
+                                                <div class="col-lg-8 col-xs-12">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Register
+                                                                </th>
+                                                                <th>
+                                                                    Slot
+                                                                </th>
+                                                                <th>
+                                                                    Date
+                                                                </th>
+                                                                <th>
+                                                                    Time
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="">
+                                                                <td>
+                                                                    IDR {{ $fee }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $gametournaments->participant }}
+                                                                </td>
+                                                                <td>
+                                                                    {{\Carbon\Carbon::parse($gametournaments->start_date)->translatedFormat('j F') }}
+                                                                </td>
+                                                                <td>
+                                                                    {{\Carbon\Carbon::parse($gametournaments->start_date)->translatedFormat('h:i') }} WIB
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-lg-4 col-xs-12 buttons">
+                                                    <a class="button buy btn-success" href="{{ URL::route('tournament.overview',$tournaments->id) }}">OPEN</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @empty
                                 <div class="col-lg-12">
                                     <div class="tab-content">
