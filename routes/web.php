@@ -120,7 +120,7 @@ Route::group(['auth', 'admins'], function () {
         Route::put('super/event/{id}', 'EventController@updateAndStore')->name('event.update-and-store');
         Route::put('super/event/{event}', 'EventController@update')->name('event.update');
         Route::get('super/event/{event}', 'EventController@show')->name('event.show');
-        Route::delete('super/event/{event}', 'EventController@destroy')->name('event.destroy');
+        Route::delete('super/event/{id}', 'EventController@destroy')->name('event.destroy');
 
         //overview
         Route::get('super/overview', 'OverviewController@index')->name('overview.index');

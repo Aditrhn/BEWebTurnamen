@@ -173,7 +173,7 @@ class EventController extends Controller
                 $file->move($tujuan_upload, $name_banner);
 
                 // Event::create([$request->all(), 'banner_url' => $name_banner]);
-                Event::create([
+                $event = Event::create([
                     'title' => $tempevent->title,
                     'participant' => $tempevent->participant,
                     'banner_url' => $name_banner,
@@ -190,7 +190,7 @@ class EventController extends Controller
                     'game_id' => $tempevent->game_id,
                 ]);
                 TemporaryEvent::destroy($tempevent->id);
-                return redirect()->route('event.index');
+                return redirect()->route('event.index', \compact('event'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -234,25 +234,27 @@ class EventController extends Controller
             for ($i = 1; $i <= $count_bracket; $i++) {
                 $rounds = array();
                 for ($j = 1; $j <= $count_round; $j++) {
-                    $scores = DB::select('SELECT 
+                    $scores = DB::select('SELECT
                         (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
-                        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, 
+                        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b,
                         m.id, m.score_a, m.score_b, m.date
-                        FROM matches m 
-                        JOIN events e 
+                        FROM matches m
+                        JOIN events e
                         ON m.event_id = e.id
-                        WHERE m.event_id = '.$id.
-                        ' AND m.round_number = '.$j.
-                        ' AND m.bracket_number = '.$i.
+                        WHERE m.event_id = ' . $id .
+                        ' AND m.round_number = ' . $j .
+                        ' AND m.bracket_number = ' . $i .
                         ' ORDER BY m.match_number ASC');
                     $mtch = array();
                     foreach ($scores as $score) {
-                        $matchscore = array('id' => $score->id,
-                                            'team_a' => $score->team_a,
-                                            'team_b' => $score->team_b,
-                                            'score_a' => $score->score_a, 
-                                            'score_b' => $score->score_b,
-                                            'date' => $score->date);
+                        $matchscore = array(
+                            'id' => $score->id,
+                            'team_a' => $score->team_a,
+                            'team_b' => $score->team_b,
+                            'score_a' => $score->score_a,
+                            'score_b' => $score->score_b,
+                            'date' => $score->date
+                        );
                         array_push($mtch, $matchscore);
                     }
                     array_push($rounds, $mtch);
@@ -329,6 +331,11 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::guard('admin')->check()) {
+            Event::destroy($id);
+            return \redirect()->route('event.index')->with(['success' => 'berhasil menghapus data']);
+        } else {
+            return \redirect('login')->with(['msg' => 'Anda harus login']);
+        }
     }
 }
