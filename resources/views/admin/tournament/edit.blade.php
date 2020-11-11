@@ -69,7 +69,6 @@
                 </div>
                 <div class="col-12 col-md-9">
                     <input type="file" id="file-input" name="banner_url" class="form-control-file" value="{{ URL::asset('images/events/'.$tempevent->banner_url) }}">
-                    <img style="width: 50%;" class="mt-2" src="{{ asset('images/events/'.$tempevent->banner_url) }}" alt="{{ $tempevent->banner_url }}">
                 </div>
 
             </div>

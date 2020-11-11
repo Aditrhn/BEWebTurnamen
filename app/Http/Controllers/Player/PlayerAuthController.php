@@ -184,7 +184,10 @@ class PlayerAuthController extends Controller
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                 ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
-                ->where('contracts.players_id', '=', $player->id)
+                ->where([
+                    ['contracts.players_id', '=', $player->id],
+                    ['contracts.status', '=', '1']
+                    ])
                 ->get();
             // $request->user();
             // \dd($player);
