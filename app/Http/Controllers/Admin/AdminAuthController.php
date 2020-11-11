@@ -15,7 +15,13 @@ class AdminAuthController extends Controller
 {
     public function login()
     {
+        // if (!Auth::guard('admin')->check()) {
         return \view('admin.auth.login');
+        // } else {
+        //     // return view('admin.atuh.login'); //view dashboard
+        //     // return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        //     return Redirect()->back();
+        // }
     }
     public function postLogin(Request $request)
     {
@@ -28,7 +34,7 @@ class AdminAuthController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return \redirect('super-dashboard'); //redirect to url link dashboard
         } else {
-            return Redirect::to("super-login"); //routing login jika user tidak ada
+            return \redirect('super-login')->with(['success' => 'Email or password is incorrect']); //routing login jika user tidak ada
         }
     }
     public function createAdmin()

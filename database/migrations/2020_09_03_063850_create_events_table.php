@@ -21,16 +21,16 @@ class CreateEventsTable extends Migration
             $table->string('banner_url')->nullable();
             $table->dateTime('start_date', 0);
             $table->dateTime('end_date', 0)->nullable();
-            $table->string('description');
+            $table->string('description', 3000);
             $table->integer('fee')->default(0);
             $table->integer('prize_pool')->nullable();
-            $table->string('rules');
+            $table->string('rules', 3000);
             $table->string('img')->nullable();
             $table->enum('bracket_type', ['1', '2'])->default('1');
             $table->enum('comeback', ['0', '1'])->default('0');
             $table->dateTime('registration_open');
             $table->dateTime('registration_close');
-            $table->string('form_message');
+            $table->string('form_message', 3000);
             $table->timestamps();
         });
     }

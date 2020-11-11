@@ -17,7 +17,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body card-block p-5">
-                        <form action="{{ URL::route('temporary-event.store') }}" method="post">
+                        <form action="{{ URL::route('temporary-event.store') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="title" class=" form-control-label">Tournament Name</label>
@@ -64,12 +64,11 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div class="col col-md-3">
-                                <label for="banner" class=" form-control-label">Banner</label>
+                                <label for="banner_url" class=" form-control-label">Banner</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="file" id="file-input" name="banner" class="form-control-file">
+                                <input type="file" id="file-input" name="banner_url" class="form-control-file">
                             </div>
-
                         </div>
                     </div>
                 </div>

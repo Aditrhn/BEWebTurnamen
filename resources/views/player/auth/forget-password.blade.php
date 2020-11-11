@@ -18,39 +18,27 @@
         @endif
       <div class="login-form">
         <div class="panel-body">
-          <h2>Login to website</h2>
+          <h3>Forgot Password ?</h3>
+          <br>
+          <p>Enter the email or phone number you used</p>
+          <p>when you joined and we will send you confirmation</p>
+          <br>
           <br>
           <form accept-charset="UTF-8" role="form" action="{{URL::route('post.login')}}" method="POST">
             {{ csrf_field() }}
           <fieldset>
             <div class="form-group">
-              <input class="form-control" placeholder="Username or email" name="email" type="text">
+              <input class="form-control" placeholder="Email or Phone" name="EmailorPhone" type="text">
               @if ($errors->has('email'))
               <span class="error" style="color: red">
                 {{ $errors->first('email') }}
               </span>
               @endif
             </div>
-            <div class="form-group">
-              <input class="form-control" placeholder="Password" name="password" type="password">
-              @if ($errors->has('password'))
-                <span class="error" style="color: red">
-                  {{ $errors->first('password') }}
-                </span>
-              @endif
-            </div>
-            <span class="checkbox">
-              {{-- <label>
-              <input disabled name="remember" type="checkbox" value="Remember me"> Remember Me
-              </label> --}}
-              <a href="" class="pull-right" style="margin-bottom: 20px">Forgot Password?</a>
-            </span>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
             <br>
             
             <div class="text-center text-white">
-              <p style="padding-bottom: 10px">Or</a></p>
-              <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block;"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i></a>
               <p style="padding: 20px 0">Not a member yet ?  <a href="{{URL::route('register')}}" class="primary">Sign Up</a></p>
             </div>
 

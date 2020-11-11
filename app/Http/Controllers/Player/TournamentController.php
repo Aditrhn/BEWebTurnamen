@@ -21,9 +21,10 @@ class TournamentController extends Controller
             // $tournament = Event::select('title', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC')->paginate(1);
             // $tournament = Event::all('title', 'status', 'participant', 'banner_url', 'start_date', 'description', 'fee', 'prize_pool')->where('start_date', 'ASC');
             $game = Game::query()->get();
+            $count = Game::query()->count();
             $tournament = Event::query()->paginate(5);
             // \dd($game);
-            return \view('tournament.index', \compact('tournament', 'game'));
+            return \view('tournament.index', \compact('tournament', 'game', 'count'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -41,49 +42,22 @@ class TournamentController extends Controller
             $contract = DB::table('contracts')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
-                ->where('players.id', Auth::guard('player')->user()->id)
+                ->where([
+                    ['players.id', Auth::guard('player')->user()->id],
+                    ['contracts.status', '=', '1']
+                    ])
+                ->orWhere([
+                    ['players.id', Auth::guard('player')->user()->id],
+                    ['contracts.status', '=', '2']
+                    ])
                 ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
                 ->first();
-            // dd($contract);
-            // $contract = DB::table('joins')
-            //     ->join('contracts', 'contracts.id', '=', 'joins.team_id')
-            //     ->join('players', 'players.id', '=', 'contracts.players_id')
-            //     ->where('players.id', Auth::guard('player')->user()->id)
-            //     ->select('joins.team_id', 'joins.event_id', 'contracts.*')
-            //     ->first();
 
-            // penting
-            // $contract = DB::table('contracts')
-            //     ->join('players', 'players.id', '=', 'contracts.players_id')
-            //     ->where('players.id', Auth::guard('player')->user()->id)
-            //     ->select('players.*', 'contracts.teams_id', 'contracts.id')
-            //     ->first();
-            // \dd($contract);
-
-            // $join = Join::create([
-            //     'team_id' => $contract->id,
-            //     'event_id' => $id,
-            //     'join_date' => \now(),
-            //     'payment_due' => \now(),
-            //     'cancellation_note' => 'note'
-            // ]);
-
-            // $params = array(
-            //     'transaction_details' => array(
-            //         'order_id' => rand() . '_' . $event->id . '_' . $contract->teams_id,
-            //         'gross_amount' => $event->fee,
-            //     ),
-            //     'customer_details' => array(
-            //         'first_name' => Auth::guard('player')->user()->name,
-            //         'last_name' => $contract->teams_id,
-            //         'email' => Auth::guard('player')->user()->email,
-            //         'phone' => Auth::guard('player')->user()->contact,
-            //     ),
-            // );
-            // $snapToken = \Midtrans\Snap::getSnapToken($params);
+            $fee = number_format($event->fee);
+            $prize_pool = number_format($event->prize_pool);
 
             $team = DB::table('teams')->get();
-            return \view('tournament.overview', \compact('contract','event', 'team', 'game'));
+            return \view('tournament.overview', \compact('contract','event', 'team', 'game', 'fee', 'prize_pool'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }

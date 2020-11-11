@@ -37,11 +37,11 @@ class TeamController extends Controller
                     ->where([
                         ['contracts.players_id', '=', Auth::guard('player')->user()->id],
                         ['contracts.status', '=', '1']
-                        ])
+                    ])
                     ->first();
                 $member = DB::table('players')
                     ->join('contracts', 'contracts.players_id', '=', 'players.id')
-                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->select('players.id', 'players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
                     ->where([
                         ['contracts.teams_id', '=', $team->id],
                         ['contracts.status', '=', '1']
@@ -60,13 +60,13 @@ class TeamController extends Controller
                     ->where([
                         ['players_id', '=', Auth::guard('player')->user()->id],
                         ['teams_id', '=', $team->id]
-                        ])
+                    ])
                     ->first();
                 $sponsor = Sponsor::select('*')
                     ->where([
                         ['team_id', '=', $team->id],
                         ['status', '=', '1']
-                        ])
+                    ])
                     ->get();
 
                 return view('team.overview-captain', \compact('team', 'member', 'friends', 'request', 'role', 'sponsor'));
@@ -86,14 +86,16 @@ class TeamController extends Controller
         }
     }
     public function store(Request $request)
-    {   
-        request()->validate([
-            'name' => 'required|unique:teams|max:20'
-        ],
-        [
-            'name.required' => 'Team Name is required',
-            'name.unique' => 'Team Name is taken'
-        ]);
+    {
+        request()->validate(
+            [
+                'name' => 'required|unique:teams|max:20'
+            ],
+            [
+                'name.required' => 'Team Name is required',
+                'name.unique' => 'Team Name is taken'
+            ]
+        );
 
         if (Auth::guard('player')->check()) {
             $games_id = Game::where('name', 'LIKE', '%' . $request->teamGame . '%')->first();
@@ -101,22 +103,31 @@ class TeamController extends Controller
             $this->validate($request, [
                 'name' => 'required'
             ]);
-            $file = $request->file('logo_url');
-            $name_icon = \time() . "_" . $file->getClientOriginalName();
-            $tujuan_upload = 'images/team_logo/';
-            $file->move($tujuan_upload, $name_icon);
-            Team::create([
-                'name' => $request->name,
-                'max_member' => 5,
-                'logo_url' => $name_icon,
-                'description' => $request->teamDesc,
-                'games_id' => $games_id->id
-            ]);
+            if ($request->has('logo_url')) {
+                $file = $request->file('logo_url');
+                $name_icon = \time() . "_" . $file->getClientOriginalName();
+                $tujuan_upload = 'images/team_logo/';
+                $file->move($tujuan_upload, $name_icon);
+                Team::create([
+                    'name' => $request->name,
+                    'max_member' => 5,
+                    'logo_url' => $name_icon,
+                    'description' => $request->teamDesc,
+                    'games_id' => $games_id->id
+                ]);
+            } else {
+                Team::create([
+                    'name' => $request->name,
+                    'max_member' => 5,
+                    'description' => $request->teamDesc,
+                    'games_id' => $games_id->id
+                ]);
+            }
 
             $player_id = Auth::guard('player')->user()->id;
             // $teams = Team::where('name', 'LIKE', '%' . $request->name . '%')->first();
-            $teams = Team::where('logo_url', '=', $name_icon)->first();
-            
+            $teams = Team::where('name', '=', $request->name)->first();
+
             Contract::create([
                 'role' => "1",
                 'status' => "1",
@@ -126,7 +137,7 @@ class TeamController extends Controller
 
             return \redirect('team')->with(['success' => 'Team created successfully']);
         } else {
-            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+            return Redirect('login')->with(['success' => 'Anda harus login']); //routing login
         }
     }
     public function team_edit(Request $request)
@@ -177,7 +188,7 @@ class TeamController extends Controller
             // Sponsor add & update
             if ($count == 0) {
                 // Create Sponsor 1
-                if ($request->hasFile('sponsor_url1')){
+                if ($request->hasFile('sponsor_url1')) {
                     $file = $request->file('sponsor_url1');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -189,18 +200,18 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName1,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
 
                 // Create Sponsor 2
-                if ($request->hasFile('sponsor_url2')){
+                if ($request->hasFile('sponsor_url2')) {
                     $file = $request->file('sponsor_url2');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -212,18 +223,18 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName2,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
 
                 // Create Sponsor 3
-                if ($request->hasFile('sponsor_url3')){
+                if ($request->hasFile('sponsor_url3')) {
                     $file = $request->file('sponsor_url3');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -235,18 +246,18 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName3,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
 
                 // Create Sponsor 4
-                if ($request->hasFile('sponsor_url4')){
+                if ($request->hasFile('sponsor_url4')) {
                     $file = $request->file('sponsor_url4');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -258,19 +269,19 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName4,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
             } elseif ($count == 1) {
                 // Update Sponsor 1
                 // Update logo Sponsor 1
-                if ($request->hasFile('sponsor_url1')){
+                if ($request->hasFile('sponsor_url1')) {
                     $sponsor_logo = $sponsor[0]->logo_url;
                     $logo = $request->sponsor_url1;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -279,7 +290,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[0]->logo_url);
                     $sponsor[0]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 1
                 $sponsor[0]->update([
@@ -291,14 +302,14 @@ class TeamController extends Controller
                     $sponsor[0]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[0]->update([
                         'status' => '0'
                     ]);
                 }
 
                 // Create Sponsor 2
-                if ($request->hasFile('sponsor_url2')){
+                if ($request->hasFile('sponsor_url2')) {
                     $file = $request->file('sponsor_url2');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -310,18 +321,18 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName2,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
 
                 // Create Sponsor 3
-                if ($request->hasFile('sponsor_url3')){
+                if ($request->hasFile('sponsor_url3')) {
                     $file = $request->file('sponsor_url3');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -333,18 +344,18 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName3,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
 
                 // Create Sponsor 4
-                if ($request->hasFile('sponsor_url4')){
+                if ($request->hasFile('sponsor_url4')) {
                     $file = $request->file('sponsor_url4');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -356,19 +367,19 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName4,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
             } elseif ($count == 2) {
                 // Update Sponsor 1
                 // Update logo Sponsor 1
-                if ($request->hasFile('sponsor_url1')){
+                if ($request->hasFile('sponsor_url1')) {
                     $sponsor_logo = $sponsor[0]->logo_url;
                     $logo = $request->sponsor_url1;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -377,7 +388,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[0]->logo_url);
                     $sponsor[0]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 1
                 $sponsor[0]->update([
@@ -389,7 +400,7 @@ class TeamController extends Controller
                     $sponsor[0]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[0]->update([
                         'status' => '0'
                     ]);
@@ -397,7 +408,7 @@ class TeamController extends Controller
 
                 // Update Sponsor 2
                 // Update Logo Sponsor 2
-                if ($request->hasFile('sponsor_url2')){
+                if ($request->hasFile('sponsor_url2')) {
                     $sponsor_logo = $sponsor[1]->logo_url;
                     $logo = $request->sponsor_url2;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -406,7 +417,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[1]->logo_url);
                     $sponsor[1]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 2
                 $sponsor[1]->update([
@@ -418,14 +429,14 @@ class TeamController extends Controller
                     $sponsor[1]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[1]->update([
                         'status' => '0'
                     ]);
                 }
 
                 // Create Sponsor 3
-                if ($request->hasFile('sponsor_url3')){
+                if ($request->hasFile('sponsor_url3')) {
                     $file = $request->file('sponsor_url3');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -437,18 +448,18 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName3,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
 
                 // Create Sponsor 4
-                if ($request->hasFile('sponsor_url4')){
+                if ($request->hasFile('sponsor_url4')) {
                     $file = $request->file('sponsor_url4');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -460,19 +471,19 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName4,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
             } elseif ($count == 3) {
                 // Update Sponsor 1
                 // Update logo Sponsor 1
-                if ($request->hasFile('sponsor_url1')){
+                if ($request->hasFile('sponsor_url1')) {
                     $sponsor_logo = $sponsor[0]->logo_url;
                     $logo = $request->sponsor_url1;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -481,7 +492,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[0]->logo_url);
                     $sponsor[0]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 1
                 $sponsor[0]->update([
@@ -493,7 +504,7 @@ class TeamController extends Controller
                     $sponsor[0]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[0]->update([
                         'status' => '0'
                     ]);
@@ -501,7 +512,7 @@ class TeamController extends Controller
 
                 // Update Sponsor 2
                 // Update Logo Sponsor 2
-                if ($request->hasFile('sponsor_url2')){
+                if ($request->hasFile('sponsor_url2')) {
                     $sponsor_logo = $sponsor[1]->logo_url;
                     $logo = $request->sponsor_url2;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -510,7 +521,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[1]->logo_url);
                     $sponsor[1]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 2
                 $sponsor[1]->update([
@@ -522,7 +533,7 @@ class TeamController extends Controller
                     $sponsor[1]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[1]->update([
                         'status' => '0'
                     ]);
@@ -530,7 +541,7 @@ class TeamController extends Controller
 
                 // Update Sponsor 3
                 // Update Logo Sponsor 3
-                if ($request->hasFile('sponsor_url3')){
+                if ($request->hasFile('sponsor_url3')) {
                     $sponsor_logo = $sponsor[2]->logo_url;
                     $logo = $request->sponsor_url3;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -539,7 +550,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[2]->logo_url);
                     $sponsor[2]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 3
                 $sponsor[2]->update([
@@ -551,14 +562,14 @@ class TeamController extends Controller
                     $sponsor[2]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[2]->update([
                         'status' => '0'
                     ]);
                 }
 
                 // Create Sponsor 4
-                if ($request->hasFile('sponsor_url4')){
+                if ($request->hasFile('sponsor_url4')) {
                     $file = $request->file('sponsor_url4');
                     $name_icon = \time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/sponsor_logo/';
@@ -570,19 +581,19 @@ class TeamController extends Controller
                             'team_id' => $request->teamId,
                             'status' => '1'
                         ]);
-                     } else {
+                    } else {
                         Sponsor::create([
                             'name' => $request->sponsorName4,
                             'logo_url' => $name_icon,
                             'team_id' => $request->teamId,
                             'status' => '0'
                         ]);
-                     }
+                    }
                 }
             } else {
                 // Update Sponsor 1
                 // Update logo Sponsor 1
-                if ($request->hasFile('sponsor_url1')){
+                if ($request->hasFile('sponsor_url1')) {
                     $sponsor_logo = $sponsor[0]->logo_url;
                     $logo = $request->sponsor_url1;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -591,7 +602,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[0]->logo_url);
                     $sponsor[0]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 1
                 $sponsor[0]->update([
@@ -603,7 +614,7 @@ class TeamController extends Controller
                     $sponsor[0]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[0]->update([
                         'status' => '0'
                     ]);
@@ -611,7 +622,7 @@ class TeamController extends Controller
 
                 // Update Sponsor 2
                 // Update Logo Sponsor 2
-                if ($request->hasFile('sponsor_url2')){
+                if ($request->hasFile('sponsor_url2')) {
                     $sponsor_logo = $sponsor[1]->logo_url;
                     $logo = $request->sponsor_url2;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -620,7 +631,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[1]->logo_url);
                     $sponsor[1]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 2
                 $sponsor[1]->update([
@@ -632,7 +643,7 @@ class TeamController extends Controller
                     $sponsor[1]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[1]->update([
                         'status' => '0'
                     ]);
@@ -640,7 +651,7 @@ class TeamController extends Controller
 
                 // Update Sponsor 3
                 // Update Logo Sponsor 3
-                if ($request->hasFile('sponsor_url3')){
+                if ($request->hasFile('sponsor_url3')) {
                     $sponsor_logo = $sponsor[2]->logo_url;
                     $logo = $request->sponsor_url3;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -649,7 +660,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[2]->logo_url);
                     $sponsor[2]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 3
                 $sponsor[2]->update([
@@ -661,7 +672,7 @@ class TeamController extends Controller
                     $sponsor[2]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[2]->update([
                         'status' => '0'
                     ]);
@@ -669,7 +680,7 @@ class TeamController extends Controller
 
                 // Update Sponsor 4
                 // Update Logo Sponsor 4
-                if ($request->hasFile('sponsor_url4')){
+                if ($request->hasFile('sponsor_url4')) {
                     $sponsor_logo = $sponsor[3]->logo_url;
                     $logo = $request->sponsor_url4;
                     $sponsor_logo = \time() . "_" . $logo->getClientOriginalName();
@@ -678,7 +689,7 @@ class TeamController extends Controller
                     File::delete('sponsor_logo/' . $sponsor[3]->logo_url);
                     $sponsor[3]->update([
                         'logo_url' => $sponsor_logo
-                        ]);
+                    ]);
                 }
                 // Update Data Sponsor 4
                 $sponsor[3]->update([
@@ -690,7 +701,7 @@ class TeamController extends Controller
                     $sponsor[3]->update([
                         'status' => '1'
                     ]);
-                 } else {
+                } else {
                     $sponsor[3]->update([
                         'status' => '0'
                     ]);
@@ -711,29 +722,37 @@ class TeamController extends Controller
     }
     public function friendInvite(Request $request)
     {
-        if ($request->has('friendId') && $request->has('teamId')) {
-            Contract::create([
-                'role' => "2",
-                'status' => "0",
-                'teams_id' => $request->teamId,
-                'players_id' => $request->friendId
-            ]);
+        if (Auth::guard('player')->check()) {
+            if ($request->has('friendId') && $request->has('teamId')) {
+                Contract::create([
+                    'role' => "2",
+                    'status' => "0",
+                    'teams_id' => $request->teamId,
+                    'players_id' => $request->friendId
+                ]);
 
-            return \redirect('team')->with(['success' => 'Friend invited successfully']);
-        };
+                return \redirect('team')->with(['success' => 'Friend invited successfully']);
+            };
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
     }
     public function team_invitation()
     {
-        $teams = DB::table('teams')
-            ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
-            ->select('teams.id', 'teams.name', 'teams.logo_url')
-            ->where([
-                ['contracts.players_id', '=', Auth::guard('player')->user()->id],
-                ['contracts.status', '=', '0']
-            ])
-            ->get();
-        // dd($team);
-        return view('team.team-invitation', \compact('teams'));
+        if (Auth::guard('player')->check()) {
+            $teams = DB::table('teams')
+                ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
+                ->select('teams.id', 'teams.name', 'teams.logo_url')
+                ->where([
+                    ['contracts.players_id', '=', Auth::guard('player')->user()->id],
+                    ['contracts.status', '=', '0']
+                ])
+                ->get();
+            // dd($team);
+            return view('team.team-invitation', \compact('teams'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
     }
     public function team_acc(Request $request)
     {
@@ -757,7 +776,7 @@ class TeamController extends Controller
     {
         if (Auth::guard('player')->check()) {
             if ($request->has('teamId') && $request->has('friendId')) {
-                
+
                 DB::table('contracts')
                     ->where([
                         ['teams_id', '=', $request->teamId],
@@ -808,39 +827,42 @@ class TeamController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function team_view(Request $request)
+    public function team_view($id)
     {
         if (Auth::guard('player')->check()) {
-            if ($request->has('teamId')) {
+            if (isset($id)) {
                 $check = DB::table('teams')
                     ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                     ->select('teams.id')
-                    ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
+                    ->where([
+                        ['contracts.players_id', '=', Auth::guard('player')->user()->id],
+                        ['contracts.status', '=', '1']
+                    ])
                     ->first();
                 $team = DB::table('teams')
                     ->join('games', 'games.id', '=', 'teams.games_id')
                     ->select('teams.*', 'games.name as game_name', 'games.icon_url')
-                    ->where('teams.id', '=', $request->teamId)
+                    ->where('teams.id', '=', $id)
                     ->first();
                 $member = DB::table('players')
                     ->join('contracts', 'contracts.players_id', '=', 'players.id')
-                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->select('players.id', 'players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
                     ->where([
-                        ['contracts.teams_id', '=', $request->teamId],
+                        ['contracts.teams_id', '=', $id],
                         ['contracts.status', '=', '1']
                     ])
                     ->get();
                 $sponsor = Sponsor::select('*')
                     ->where([
-                        ['team_id', '=', $request->teamId],
+                        ['team_id', '=', $id],
                         ['status', '=', '1']
-                        ])
+                    ])
                     ->get();
-            }
-            if ($check->id == $team->id) {
-                return Redirect('team');
-            } else {
-                return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                if (isset($check)) {
+                        return Redirect('team');
+                } else {
+                        return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                }
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -857,31 +879,44 @@ class TeamController extends Controller
                     ->first();
                 $member = DB::table('players')
                     ->join('contracts', 'contracts.players_id', '=', 'players.id')
-                    ->select('players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
+                    ->select('players.id', 'players.name', 'players.ava_url', 'contracts.role', 'contracts.status')
                     ->where([
                         ['contracts.teams_id', '=', $request->teamId],
                         ['contracts.status', '=', '1']
                     ])
                     ->get();
-                $check = DB::table('contracts')
-                ->select('*')
-                ->where([
-                    ['teams_id', '=', $request->teamId],
-                    ['players_id', '=', Auth::guard('player')->user()->id],
-                    ['status', '=', '2']
+                $sponsor = Sponsor::select('*')
+                    ->where([
+                        ['team_id', '=', $request->id],
+                        ['status', '=', '1']
                     ])
-                ->first();
-    
-                if ($check == null) {
-                    Contract::create([
-                        'role' => "2",
-                        'status' => "2",
-                        'teams_id' => $request->teamId,
-                        'players_id' => Auth::guard('player')->user()->id
-                    ]);
+                    ->get();
+
+                $check = DB::table('contracts')
+                    ->select('*')
+                    ->where([
+                        ['teams_id', '=', $request->teamId],
+                        ['players_id', '=', Auth::guard('player')->user()->id],
+                        ['status', '=', '2']
+                    ])
+                    ->first();
+
+                $isjoin = Contract::select('*')->where('players_id', '=', Auth::guard('player')->user()->id)->first();
+
+                if ($isjoin == null) {
+                    if ($check == null) {
+                        Contract::create([
+                            'role' => "2",
+                            'status' => "2",
+                            'teams_id' => $request->teamId,
+                            'players_id' => Auth::guard('player')->user()->id
+                        ]);
+                        return redirect()->route('team.view', $request->teamId)
+                            ->with('success', 'Your request has been sent');
+                    }
                 }
-    
-                return \view('team.overview-unsigned', \compact('team', 'member'));
+                return redirect()->route('team.view', $request->teamId)
+                    ->with(['error' => 'You already joined a team']);
             };
         }
     }

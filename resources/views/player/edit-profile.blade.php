@@ -95,22 +95,44 @@
                 </div>
 
                 <div id="menu1" class="tab-pane fade">
-                    <div class="form-group" id="scrollform-teamcreate">
-                        <label for="exampleInputEmail1">Recent Password</label>
-                        <input type="password" class="form-control" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group" id="scrollform-teamcreate">
-                        <label for="exampleInputEmail1">New Password</label>
-                        <input type="password" class="form-control" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group" id="scrollform-teamcreate">
-                        <label for="exampleInputEmail1">Confirm New Password</label>
-                        <input type="password" class="form-control" id="exampleInputEmail1">
-                    </div>
-                    <div class="col-md-6" id="button-editprofile">
-                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="#" role="button">Save</a>
-                        <a class="btn btn-primary" id="btnsubmit_editprofile" href="{{ URL::route('profile') }}" role="button">Cancel</a>
-                    </div>
+                    <form 
+                        action="{{ URL::route('password.update', Auth::guard('player')->check()) }}" 
+                        method="POST" enctype="multipart/form-data" id="password">
+                        {{ csrf_token() }}
+                        @method('PUT')
+                        @csrf
+                        <div class="form-group" id="scrollform-teamcreate">
+                            <label for="exampleInputEmail1">Recent Password</label>
+                            <input type="password" class="form-control" id="exampleInputEmail1" name="recentpass">
+                            @if ($errors->has('recentpass'))
+                                <span class="error" style="color: red">
+                                  {{ $errors->first('recentpass') }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group" id="scrollform-teamcreate">
+                            <label for="exampleInputEmail1">New Password</label>
+                            <input type="password" class="form-control" id="exampleInputEmail1" name="newpass">
+                            @if ($errors->has('newpass'))
+                                <span class="error" style="color: red">
+                                  {{ $errors->first('newpass') }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group" id="scrollform-teamcreate">
+                            <label for="exampleInputEmail1">Confirm New Password</label>
+                            <input type="password" class="form-control" id="exampleInputEmail1" name="connewpass">
+                            @if ($errors->has('connewpass'))
+                                <span class="error" style="color: red">
+                                  {{ $errors->first('connewpass') }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="col-md-6" id="button-editprofile">
+                            <button class="btn btn-primary" id="btnsubmit_editprofile" type="submit" form="password">Save</button>
+                            <a class="btn btn-primary" id="btnsubmit_editprofile" href="{{ URL::route('profile') }}" role="button">Cancel</a>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!--End Konten Pills-->

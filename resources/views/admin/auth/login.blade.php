@@ -34,6 +34,14 @@
 </head>
 
 <body>
+    @if(session('success'))
+        <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container">
         <img id="imglogin" src="{{ asset('assets/img/gameski.png') }} " width="30%">
         <div class="title mt-5">

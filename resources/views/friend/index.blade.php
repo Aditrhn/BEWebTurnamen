@@ -65,7 +65,7 @@
                     @if ($item->ava_url != null)
                       <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$item->ava_url) }}">
                     @else
-                    <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                     @endif
                     <h4 class="panel-friend" data-toggle="modal">{{ $item->name }}</h4>
                     <form action="{{ URL::route('accept-friend') }}" method="POST">
@@ -99,10 +99,7 @@
     <!-- End Container -->
   </div>
   <!-- END MAIN CONTENT -->
-<<<<<<< Updated upstream
-=======
   <!--Footer-->
->>>>>>> Stashed changes
   @include('layouts.footer')
 </div>
 <!-- END MAIN -->
