@@ -2622,7 +2622,7 @@ ul.activity-list > li {
 }
  
 #team-profile{
-  width: 150px;
+  max-width: 150px;
   margin-top: 10px;
 }
 
