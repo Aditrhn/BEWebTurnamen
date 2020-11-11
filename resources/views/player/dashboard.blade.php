@@ -37,8 +37,8 @@
 						<div class="carousel-landing">
 							<div id="Carousel" class="carousel slide">
 							<!-- Carousel items -->
-								<div class="carousel-inner" data-interval="false">
-									<div class="item active">
+								<div class="carousel-inner">
+									<div class="item active" data-interval="false">
 										<div class="col-md-12  rowDashboard">
 											<?php $i = 1 ?>
 											@forelse ($game as $games)
@@ -136,8 +136,8 @@
 						<div class="carousel-landing">
 							<div id="Carousel-Feature" class="carousel slide">
 							<!-- Carousel items -->
-								<div class="carousel-inner" data-interval="false">
-									<div class="item active">
+								<div class="carousel-inner">
+									<div class="item active" data-interval="false">
 										<div class="item active">
 											<div class="col-md-12  rowDashboard">
 												<div class="col-md-4">
