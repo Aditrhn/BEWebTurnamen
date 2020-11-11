@@ -2771,7 +2771,7 @@ ul.activity-list > li {
 }
  
 #team-profile{
-  width: 50%;
+  max-width: 150px;
   margin-top: 10px;
 }
 
