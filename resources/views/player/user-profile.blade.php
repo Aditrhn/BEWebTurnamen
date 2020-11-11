@@ -94,14 +94,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($game as $games)
+                                        @forelse ($history as $histories)
                                             <tr>
-                                                <td>{{ $games->platform }}</td>
-                                                <td>{{ $games->name }}</td>
-                                                <td>August 13, 2020 @3:00 am</td>
-                                                <td>Liquor</td>
-                                                <td>164 participants</td>
-                                                <td>winner</td>
+                                                <td>{{ $histories->game }}</td>
+                                                <td>{{ $histories->name }}</td>
+                                                <td>{{ $histories->date }}</td>
+                                                <td>{{ $histories->team }}</td>
+                                                <td>{{ $histories->participant }} </td>
+                                                <td>{{ $histories->status }}</td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -141,12 +141,12 @@
                                     @endif
                                     <br>
                                     <p>
-                                        E-mail 
-                                        @if ($check != null)    
-                                            @if ($check->status == "1") 
-                                                <span>{{ $player->email }} 
-                                            @else 
-                                                <span>n/a</span> 
+                                        E-mail
+                                        @if ($check != null)
+                                            @if ($check->status == "1")
+                                                <span>{{ $player->email }}
+                                            @else
+                                                <span>n/a</span>
                                             @endif
                                         @else
                                             <span>n/a</span>
@@ -184,7 +184,7 @@
                                             <?php $i = 0; ?>
                                             @forelse($friend as $friends)
                                                 @if($friends->ava_url != null)
-                                                    <a 
+                                                    <a
                                                         @if($friends->id != Auth::guard('player')->user()->id)
                                                             href="{{ URL::route('user.profile',$friends->id) }}"
                                                             title="{{$friends->name}}"
@@ -196,7 +196,7 @@
                                                             alt="{{ $friends->name }}" style="margin-bottom: 10px">
                                                     </a>
                                                 @else
-                                                    <a 
+                                                    <a
                                                         @if($friends->id != Auth::guard('player')->user()->id)
                                                             href="{{ URL::route('user.profile',$friends->id) }}"
                                                             title="{{$friends->name}}"
@@ -215,8 +215,8 @@
                                                 <p style="text-align: justify; opacity: 50%">Making friend soon..</p>
                                             @endforelse
                                             @if ($friend != null && $count > 7)
-                                                <button 
-                                                    type="button" id="btn-circle-profile" class="btn btn-primary btn-circle btn-lg" 
+                                                <button
+                                                    type="button" id="btn-circle-profile" class="btn btn-primary btn-circle btn-lg"
                                                     data-target="#viewfriend" data-toggle="modal" style="margin-bottom: 10px">
                                                     <p style="margin-top: 7px;margin-right: 4px;">+{{$count-($i-1)}}</p>
                                                 </button>
@@ -240,7 +240,7 @@
                                                 <div class="friend-list">
                                                     @forelse ($friend as $key => $friends)
                                                         @if ($key < 6)
-                                                            <?php continue; ?> 
+                                                            <?php continue; ?>
                                                         @endif
                                                         <div class="col-xs-12 friend-modal">
                                                             <div class="col-xs-4">
@@ -254,7 +254,7 @@
                                                                 <h4>{{ $friends->name }}</h4>
                                                             </div>
                                                             <div class="col-xs-1">
-                                                                <?php 
+                                                                <?php
                                                                     $friendteam = DB::table('teams')
                                                                         ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                                                                         ->select('teams.*')

@@ -192,7 +192,9 @@ class PlayerAuthController extends Controller
             // return view('player.user-profile', [
             //     'user' => $request->user()
             // ], \compact('player'));
-            return \view('player.user-profile', \compact('player', 'game', 'friend', 'team', 'check', 'checks', 'count'));
+            $history = HistoryTournament::all();
+
+            return \view('player.user-profile', \compact('player', 'game', 'friend', 'team', 'check', 'checks', 'count','history'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
