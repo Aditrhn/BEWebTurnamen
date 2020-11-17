@@ -9,7 +9,7 @@ composer install
 ## Touch or copy file
 cp .env.example .env
 
-##lalu
+## lalu
 php artisan key:generate
 
 ## Running migration and seeding
