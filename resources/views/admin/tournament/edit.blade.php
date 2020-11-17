@@ -10,7 +10,14 @@
         </div>
     </div>
 </div>
-
+@if(session('msg'))
+        <div class="alert alert-success alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('msg') }}
+        </div>
+    @endif
 <div class="content">
     <div class="card">
         <div class="card-body">
@@ -65,7 +72,7 @@
         <div class="col-6">
             <div class="form-group">
                 <div class="col col-md-12">
-                    <label for="banner_url" class=" form-control-label">Banner <span style="color: silver; scale: 0.4%;">biarkan kosong jika tidak ingin diganti</span></label>
+                    <label for="banner_url" class=" form-control-label">Banner <span style="color: silver; scale: 0.4%;">wajib diisi jika ingin di publish</span></label>
                 </div>
                 <div class="col-12 col-md-9">
                     <input type="file" id="file-input" name="banner_url" class="form-control-file" value="{{ URL::asset('images/events/'.$tempevent->banner_url) }}">
@@ -227,18 +234,31 @@
         &nbsp;
         <input class="btn btn-success" type="submit" name="action" value="publish">
     </div>
-    <div class="col float-right text-right">
-        <form action="{{ URL::route('event.destroy',$tempevent->id) }}" method="POST" class="badge">
+    {{-- <div class="col float-right text-right"> --}}
+        {{-- <form action="{{ URL::route('event.destroy',$tempevent->id) }}" method="POST" class="badge">
             @method('delete')
-            @csrf
-            <button class="btn btn-danger" style="border-color: transparent; padding: 0;">
+            @csrf --}}
+            {{-- <button class="btn btn-danger" style="border-color: transparent; padding: 0;">
                 <span class="badge badge-danger">Delete</span>
-            </button>
-        </form>
+            </button> --}}
+        {{-- </form> --}}
         {{-- <a class="btn btn-danger" href="{{ URL::route('event.destroy') }}">delete</a> --}}
-    </div>
+    {{-- </div> --}}
 </div>
 </form>
+<div class="col float-right text-right">
+    <form action="{{ URL::route('event.destroy',$tempevent->id) }}" method="POST" class="badge">
+        @method('delete')
+        @csrf
+        <button class="btn btn-danger" style="border-color: transparent; padding: 0;">
+            <span class="badge badge-danger">Delete</span>
+        </button>
+    </form>
+    {{-- <a class="btn btn-danger" href="{{ URL::route('event.destroy') }}">delete</a> --}}
+</div>
+{{-- <div class="col float-rigth text-right">
+    <button class="btn btn-danger">delete</button>
+</div> --}}
 </div><!-- .content -->
 @endsection
 @push('tooltip')

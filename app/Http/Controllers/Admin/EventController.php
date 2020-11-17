@@ -72,21 +72,24 @@ class EventController extends Controller
                 'game_id' => 'required',
                 'participant' => 'required',
                 'start_date' => 'required',
-                'description' => 'required'
+                'description' => 'required',
+                // 'banner_url' => 'required',
             ]);
-            $file = $request->file('banner_url');
-            $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
-            $tujuan_upload = 'images/events/';
-            $file->move($tujuan_upload, $name_banner);
+            
+            // $file = $request->file('banner_url');
+            // $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
+            // $tujuan_upload = 'images/events/';
+            // $file->move($tujuan_upload, $name_banner);
             $tempevent = TemporaryEvent::create([
                 'title' => $request->title,
                 'game_id' => $request->game_id,
-                'banner_url' => $name_banner,
+                // 'banner_url' => $name_banner,
                 'participant' => $request->participant,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'description' => $request->description,
             ]);
+            
             return redirect()->route('temporary-event.edit', [$tempevent->id]);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -104,19 +107,19 @@ class EventController extends Controller
                 // $tujuan_upload = 'images/events/';
                 // $file->move($tujuan_upload, $name_banner);
 
-                $name_banner = $tempevent->banner_url;
-                if ($request->hasFile('banner_url')) {
-                    $file = $request->file('banner_url');
-                    $name_banner = \time() . "_" . $file->getClientOriginalName();
-                    $tujuan_upload = 'images/events/';
-                    $file->move($tujuan_upload, $name_banner);
-                    File::delete('images/events/' . $tempevent->banner_url);
-                }
+                // $name_banner = $tempevent->banner_url;
+                // if ($request->hasFile('banner_url')) {
+                //     $file = $request->file('banner_url');
+                //     $name_banner = \time() . "_" . $file->getClientOriginalName();
+                //     $tujuan_upload = 'images/events/';
+                //     $file->move($tujuan_upload, $name_banner);
+                //     File::delete('images/events/' . $tempevent->banner_url);
+                // }
                 $tempevent->update([
                     'title' => $request->title,
                     'game_id' => $request->game_id,
                     'participant' => $request->participant,
-                    'banner_url' => $name_banner,
+                    // 'banner_url' => $name_banner,
                     'start_date' => $request->start_date,
                     'end_date' => $request->end_date,
                     'description' => $request->description,
@@ -129,6 +132,7 @@ class EventController extends Controller
                     'form_message' => $request->form_message,
                 ]);
 
+                // dd($tempevent);
                 // $tempevent->title = $request->title;
                 // $tempevent->game_id = $request->game_id;
                 // $tempevent->participant = $request->participant;
@@ -144,7 +148,7 @@ class EventController extends Controller
                 // $tempevent->registration_close = $request->registration_close;
                 // $tempevent->form_message = $request->form_message;
                 // $tempevent->save();
-                return back(); //save and go back to card
+                return redirect()->back()->with(['msg'=>'berhasil diubah!!']); //save and go back to card
             } else if ($request->input('action') == 'publish') {
                 $this->validate($request, [
                     'title' => 'required',
@@ -158,38 +162,61 @@ class EventController extends Controller
                     'registration_open' => 'required',
                     'registration_close' => 'required',
                     'form_message' => 'required',
+                    'banner_url'=>'required',
                 ]);
                 $tempevent = TemporaryEvent::find($id);
-                // \dd($tempevent);
+                // \dd($request->all());
                 // $file = $request->file('banner_url');
                 // $name_banner = $request->file('banner_url')->getClientOriginalName();
                 // $tujuan_upload = 'images/events/';
                 // $file->move($tujuan_upload, $name_banner);
 
-                $file = $request->file('banner_url');
-                $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
-                // \dd($name_banner);
-                $tujuan_upload = 'images/events/';
-                $file->move($tujuan_upload, $name_banner);
+                if($request->hasFile('banner_url')){
+                    $file = $request->file('banner_url');
+                    $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
+                    // \dd($name_banner);
+                    $tujuan_upload = 'images/events/';
+                    $file->move($tujuan_upload, $name_banner);
+                }
 
                 // Event::create([$request->all(), 'banner_url' => $name_banner]);
-                $event = Event::create([
-                    'title' => $tempevent->title,
-                    'participant' => $tempevent->participant,
-                    'banner_url' => $name_banner,
-                    'start_date' => $tempevent->start_date,
-                    'description' => $tempevent->description,
-                    'fee' => $tempevent->fee,
-                    'prize_pool' => $tempevent->prize_pool,
-                    'rules' => $tempevent->rules,
-                    'bracket_type' => $tempevent->bracket_type,
-                    'registration_open' => $tempevent->registration_open,
-                    'registration_close' => $tempevent->registration_close,
-                    'form_message' => $tempevent->form_message,
-                    'admin_id' => Auth::guard('admin')->user()->id,
-                    'game_id' => $tempevent->game_id,
-                ]);
+                // if($request->banner_url == null){
+                    $event = Event::create([
+                        'title' => $tempevent->title,
+                        'participant' => $tempevent->participant,
+                        'banner_url' => $name_banner,
+                        'start_date' => $tempevent->start_date,
+                        'end_date'=>$tempevent->end_date,
+                        'description' => $tempevent->description,
+                        'fee' => $request->fee,
+                        'prize_pool' => $request->prize_pool,
+                        'rules' => $request->rules,
+                        'bracket_type' => $request->bracket_type,
+                        'registration_open' => $request->registration_open,
+                        'registration_close' => $request->registration_close,
+                        'form_message' => $request->form_message,
+                        'admin_id' => Auth::guard('admin')->user()->id,
+                        'game_id' => $tempevent->game_id,
+                    ]);
+                // }
+                // $event = Event::create([
+                //     'title' => $tempevent->title,
+                //     'participant' => $tempevent->participant,
+                //     'banner_url' => $name_banner,
+                //     'start_date' => $tempevent->start_date,
+                //     'description' => $tempevent->description,
+                //     'fee' => $tempevent->fee,
+                //     'prize_pool' => $tempevent->prize_pool,
+                //     'rules' => $tempevent->rules,
+                //     'bracket_type' => $tempevent->bracket_type,
+                //     'registration_open' => $tempevent->registration_open,
+                //     'registration_close' => $tempevent->registration_close,
+                //     'form_message' => $tempevent->form_message,
+                //     'admin_id' => Auth::guard('admin')->user()->id,
+                //     'game_id' => $tempevent->game_id,
+                // ]);
                 TemporaryEvent::destroy($tempevent->id);
+                // dd($cek);
                 return redirect()->route('event.index', \compact('event'));
             }
         } else {
@@ -332,8 +359,10 @@ class EventController extends Controller
     public function destroy($id)
     {
         if (Auth::guard('admin')->check()) {
-            Event::destroy($id);
-            return \redirect()->route('event.index')->with(['success' => 'berhasil menghapus data']);
+            // dd(TemporaryEvent::find($id));
+            $event = TemporaryEvent::destroy($id);
+            // dd($event);
+            return \redirect()->route('event.index')->with(['delete' => 'berhasil menghapus data']);
         } else {
             return \redirect('login')->with(['msg' => 'Anda harus login']);
         }
