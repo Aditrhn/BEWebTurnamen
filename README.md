@@ -1,3 +1,23 @@
+## First Setup
+git clone https://github.com/Aditrhn/BEWebTurnamen.git webturney =>(optional)
+cd webturney => (optional)
+
+## Install package of laravel with composer
+composer install
+## Touch or copy file
+cp .env.example .env
+php artisan key:generate
+
+## Running migration and seeding
+php artisan migrate
+php artisan db:seed
+
+## or u can running (optional)
+php artisan migrate:fresh --seed
+
+## Running project
+php artisan serve --port=9999 => (optional)
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
