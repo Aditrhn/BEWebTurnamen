@@ -1,11 +1,15 @@
 ## First Setup
 git clone https://github.com/Aditrhn/BEWebTurnamen.git webturney =>(optional)
+
+##
 cd webturney => (optional)
 
 ## Install package of laravel with composer
 composer install
 ## Touch or copy file
 cp .env.example .env
+
+##lalu
 php artisan key:generate
 
 ## Running migration and seeding
