@@ -228,7 +228,7 @@
         <input class="btn btn-success" type="submit" name="action" value="publish">
     </div>
     <div class="col float-right text-right">
-        <form action="{{ URL::route('event.destroy',$event->id) }}" method="POST" class="badge">
+        <form action="{{ URL::route('event.destroy',$tempevent->id) }}" method="POST" class="badge">
             @method('delete')
             @csrf
             <button class="btn btn-danger" style="border-color: transparent; padding: 0;">
