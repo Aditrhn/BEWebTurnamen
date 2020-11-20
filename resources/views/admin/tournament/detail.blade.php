@@ -236,7 +236,7 @@
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel"
                                 aria-labelledby="pills-bracket-tab">
-                                <div id="bracket"></div>
+                                {{-- <div id="bracket"></div> --}}
                             </div>
                             <div class="tab-pane fade" id="pills-participant" role="tabpanel"
                                 aria-labelledby="pills-participant-tab">
@@ -286,10 +286,14 @@
     <script>
         var single = {
             teams: [
+                @if($brackets != null)
                 @foreach($brackets[0][0] as $match)
                     ["{{$match['team_a']}}", "{{$match['team_b']}}"],
                 @endforeach
                 @if(count($brackets[0][0]) % 2 != 0)
+                    [null, null]
+                @endif
+                @else
                     [null, null]
                 @endif
             ],
@@ -309,10 +313,14 @@
         };
         var double = {
             teams: [
+                @if($brackets != null)
                 @foreach($brackets[0][0] as $match)
-                    ["{{$match['team_a']}}", "{{$match['team_a']}}"],
+                    ["{{$match['team_a']}}", "{{$match['team_b']}}"],
                 @endforeach
                 @if(count($brackets[0][0]) % 2 != 0)
+                    [null, null]
+                @endif
+                @else
                     [null, null]
                 @endif
             ],
