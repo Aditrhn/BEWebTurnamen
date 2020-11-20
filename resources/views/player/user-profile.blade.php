@@ -72,13 +72,13 @@
             <!--Nav-Pills-->
             <div class="col-md-12">
                 <ul class="nav nav-pills marginPils">
-                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Tournament</a></li>
-                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Overview</a></li>
+                    <li class="active pillsFriend"><a data-toggle="pill" href="#friendList">Overview</a></li>
+                    <li class="pillsRequest"><a data-toggle="pill" href="#menu1" class="pillsFriend">Tournament</a></li>
                 </ul>
             </div>
             <!--Nav-Pills Konten-->
             <div class="tab-content tabKonten thText">
-                <div id="friendList" class="tab-pane fade in active">
+                <div id="menu1" class="tab-pane fade in active">
                     <div class="col-md-12">
                         <div class="container-fluid">
                             <div class="table-responsive">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <div id="menu1" class="tab-pane fade">
+                <div id="friendList" class="tab-pane fade">
                     <div class="col-md-5">
                         <!-- PANEL HEADLINE -->
                         <h4>Bio</h4>
