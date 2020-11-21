@@ -50,7 +50,7 @@
             
             <div class="text-center text-white">
               <p style="padding-bottom: 10px">Or</a></p>
-              <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block;"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i></a>
+              <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block; position: center"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i><span style="font-size: 1.7em;">Sign in with Google</span></a>
               <p style="padding: 20px 0">Not a member yet ?  <a href="{{URL::route('register')}}" class="primary">Sign Up</a></p>
             </div>
 

@@ -61,7 +61,7 @@
 
             <div class="text-center text-white">
               <p style="padding-bottom: 10px">Or</a></p>
-              <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block;"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i></a>
+              <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block;"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i><span style="font-size: 1.7em;">Sign up with Google</span></a>
               <p style="padding: 20px 0">Have an account ?  <a href="{{URL::route('login')}}" class="primary">Log in here</a></p>
             </div>
           </fieldset>
