@@ -9,7 +9,7 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
-            <h3 style="color: grey;">Search Result for "{{ $cari }}"</h3>
+            <h3 style="color: grey;">Search Result for: {{ $cari }}</h3>
             <div class="row">
                 <div class="col-md-2" style="padding-top: 2%;">
                     <div class="panel panel-headline">
@@ -37,10 +37,10 @@
                                                     @if ($players->ava_url != null)
                                                       <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$players->ava_url) }}">
                                                     @else
-                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                                                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
-                                                    <?php 
+                                                    <?php
                                                         $status = DB::table('friends')
                                                             ->select('status')
                                                             ->where([
@@ -96,18 +96,16 @@
                                     <div class="col-md-3 friend-page">
                                         <div class="panel panel-headline panel-friend-detail">
                                             <div class="panel-body">
-                                                <img class="img-panel-friend"
-                                                    src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
+                                                @if ($teams->logo_url != null)
+                                                    <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
+                                                @else
+                                                    <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/default.png') }}">
+                                                @endif
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
-                                                <form action="{{ URL::route('team.view',$teams->id) }}"
-                                                        method="POST">
-                                                    @csrf
                                                     <div class="buttons col-md-12 btnAdd">
-                                                        <input type="hidden" name="teamId" value="{{ $teams->id }}">
-                                                        <button class="btn btn-xs btn-primary" id="btnTeamview"
-                                                            type="submit">Team View</button>
+                                                        <a href="{{ URL::route('team.view',$teams->id) }}"
+                                                            class="btn btn-xs btn-primary" id="btnTeamview">Team View</a>
                                                     </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>

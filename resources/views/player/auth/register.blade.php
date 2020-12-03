@@ -52,9 +52,9 @@
             </div> --}}
             <div class="checkbox">
               <label>
-              <input name="remember" type="checkbox" value="Remember me"> 
+              <input disabled name="remember" type="checkbox" value="Remember me">
               I agree to the <a href="">Terms & Conditions</a> and <a href="">Privacy Policy</a>
-              </label> 
+              </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
             <br>
