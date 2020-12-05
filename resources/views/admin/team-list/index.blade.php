@@ -34,11 +34,16 @@
                                 <tbody>
                                     <?php $i = 0 ?>
                                     @forelse($team as $teams)
+                                    <?php 
+                                        $member = DB::table('contracts')
+                                            ->select('*')
+                                            ->where('teams_id', '=', $teams->id)
+                                            ->count()
+                                    ?>
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $teams->team_name }}</td>
-                                            <td>{{ $member[$i] }}/{{ $teams->max_member }}</td>
-                                            {{-- <td>{{ $teams->description }}</td> --}}
+                                            <td>{{ $member }}/{{ $teams->max_member }}</td>
                                             <td>{{ $teams->game_name }}</td>
                                         </tr>
                                     <?php $i++ ?>
