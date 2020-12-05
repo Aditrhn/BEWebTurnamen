@@ -15,12 +15,12 @@ class PlayerSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        for($i=1;$i<=10;$i++){
+        for ($i = 1; $i <= 10; $i++) {
             $name = $faker->firstName();
             DB::table('players')->insert([
                 'name' => strtolower($name),
-                'email' => strtolower($name).'@mail.com',
-                'password' => Hash::make('qwerty1234'),    
+                'email' => strtolower($name) . '@mail.com',
+                'password' => Hash::make('qwerty1234'),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

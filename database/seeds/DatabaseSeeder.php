@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // PlayerSeeder::class,
             AdminSeeder::class,
-            // GameSeeder::class,
+            GameSeeder::class,
             // FriendSeeder::class,
             // TeamSeeder::class,
-            // EventSeeder::class
+            EventSeeder::class
         ]);
     }
 }
