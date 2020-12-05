@@ -23,16 +23,13 @@
 									Tournament By Game</h3>
 							</div>
 							<!-- Control-->
-
 							<div class="col-md-3">
 								<div class="controls team-control-btn pull-right">
 									<a class="left glyphicon glyphicon-triangle-left team_columns_carousel_control_icons" href="#Carousel"
 										data-slide="prev"></a>
 									<a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel"
-											data-slide="next"></a>
-								</div>
-
-							</div> 
+										data-slide="next"></a>
+							</div>
 						</div>
 						<div class="carousel-landing">
 							<div id="Carousel" class="carousel slide">
@@ -123,15 +120,14 @@
 								<h3 class="head-text">
 									Featured Tournament</h3>
 							</div>
-							<!-- Controls Carousel-->
+							<!-- Control-->
 							<div class="col-md-3">
 								<div class="controls team-control-btn pull-right">
 									<a class="left glyphicon glyphicon-triangle-left team_columns_carousel_control_icons" href="#Carousel-Feature"
 										data-slide="prev"></a>
 									<a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel-Feature"
-											data-slide="next"></a>
-								</div>
-							</div> 
+										data-slide="next"></a>
+							</div>
 						</div>
 						<div class="carousel-landing">
 							<div id="Carousel-Feature" class="carousel slide">
