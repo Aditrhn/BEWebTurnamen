@@ -218,45 +218,6 @@ class TournamentController extends Controller
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
-    public function payment(Request $request)
-    {
-        if (Auth::guard('player')->check()) {
-            $detail_payment = DB::table('joins')
-                ->join('contracts', 'contracts.id', '=', 'joins.team_id')
-                ->join('teams', 'teams.id', '=', 'contracts.teams_id')
-                ->join('events', 'events.id', '=', 'joins.event_id')
-                ->join('players', 'players.id', '=', 'contracts.players_id')
-                ->where('players.id', Auth::guard('player')->user()->id)
-                ->select('teams.name as name_team', 'teams.id as team_id', 'events.id as id_event', 'events.title as title_turney', 'events.fee as prise', 'players.name as captain', 'players.email as mail', 'players.contact as telp')->first();
-            $this->initPaymentGateway();
-            $params = array(
-                'enable_payments' => Payment::PAYMENT_CHANNELS,
-                'transaction_details' => array(
-                    'order_id' => rand() . '_from_' . $detail_payment->captain,
-                    'gross_amount' => $detail_payment->prise,
-                ),
-                'customer_details' => array(
-                    'first_name' => $detail_payment->captain,
-                    'last_name' => $detail_payment->name_team,
-                    'email' => $detail_payment->mail,
-                    'phone' => $detail_payment->telp,
-                ),
-                'expiry' => array(
-                    'start_time' => date('Y-m-d H:i:s T'),
-                    'unit' => \App\Model\Payment::EXPIRY_UNIT,
-                    'duration' => \App\Model\Payment::EXPIRY_DURATION,
-                ),
-            );
-
-            // \dd($params);
-            $snap = \Midtrans\Snap::createTransaction($params);
-            // $snapToken = \Midtrans\Snap::getSnapToken($params);
-            // \dd($params, $snapToken);
-            return view('snap', \compact('snapToken', 'detail_payment'));
-        } else {
-            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
-        }
-    }
     public function paymentSuccess()
     {
         if (Auth::guard('player')->check()) {
@@ -267,7 +228,7 @@ class TournamentController extends Controller
                 ->select('events.id')
                 ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                 ->first();
-            // dd($tournament);
+            dd($tournament);
             return \view('tournament.success', \compact('tournament'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login

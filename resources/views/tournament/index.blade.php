@@ -139,7 +139,7 @@
                                     @if ($tournaments->banner_url)
                                     <img src="{{ URL::asset('images/events/'.$tournaments->banner_url) }}">
                                     @else
-                                    <img src="{{ URL::asset('assets/img/maxresdefault.jpg') }}">
+                                    <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
                                     @endif
                                 </div>
                                 <div class="product-info">
