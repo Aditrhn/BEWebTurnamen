@@ -71,6 +71,7 @@ Route::namespace('Player')->group(function () {
     Route::get('tournament', 'TournamentController@index')->name('tournament');
     Route::get('tournament/overview/{id}', 'TournamentController@detailTournament')->name('tournament.overview');
     Route::post('tournament/{id}/payment', 'TournamentController@joinTournament')->name('tournament.join');
+    Route::post('tournament/{id}/payment', 'TournamentController@FeeForFree')->name('tournament.free');
     Route::get('tournament/payment-success', 'TournamentController@paymentSuccess')->name('tournament.success');
     // Route::post('tournament/payment/unfinish', 'TournamentController@payment')->name('tournament.payment');
     // Route::get('/tournament/payment/payment/error', 'TournamentController@payment')->name('tournament.payment');

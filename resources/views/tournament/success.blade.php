@@ -5,7 +5,7 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<div class="row rowSucces">
-				<img alt=""  src="{{ URL::asset('assets/img/ICON/succes.png') }}">
+				<img alt=""  src="{{ asset('assets/img/ICON/succes.png') }}">
 				<h3 class="fontSucces">Yey ! Your payment was successfull</h3>
 				<h5 class="fontSucces">Your payment information has been sent to your email</h5>
 

@@ -195,6 +195,7 @@ class TournamentController extends Controller
                 $join = Join::create([
                     'team_id' => $contract->team_id,
                     'event_id' => $id,
+                    'status' => 1,
                     'join_date' => \now(),
                     'payment_due' => \now(),
                     'gross_amount' => $event->fee,
@@ -210,6 +211,8 @@ class TournamentController extends Controller
                 ]);
                 //    dd($join);
             }
+            // return \view('tournament.success', \compact('contract', 'detail_payment', 'snapToken', 'team'));
+
             return \redirect()->route('tournament.success')->with(['msg' => 'success']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
