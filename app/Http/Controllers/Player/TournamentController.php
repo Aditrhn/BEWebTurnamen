@@ -45,11 +45,11 @@ class TournamentController extends Controller
                 ->where([
                     ['players.id', Auth::guard('player')->user()->id],
                     ['contracts.status', '=', '1']
-                    ])
+                ])
                 ->orWhere([
                     ['players.id', Auth::guard('player')->user()->id],
                     ['contracts.status', '=', '2']
-                    ])
+                ])
                 ->select('players.name', 'players.email', 'teams.id as team_id', 'contracts.id')
                 ->first();
 
@@ -57,7 +57,7 @@ class TournamentController extends Controller
             $prize_pool = number_format($event->prize_pool);
 
             $team = DB::table('teams')->get();
-            return \view('tournament.overview', \compact('contract','event', 'team', 'game', 'fee', 'prize_pool'));
+            return \view('tournament.overview', \compact('contract', 'event', 'team', 'game', 'fee', 'prize_pool'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -128,7 +128,7 @@ class TournamentController extends Controller
                     ['players.id', '=', Auth::guard('player')->user()->id],
                     ['teams.id', '=', $contract->team_id]
                 ])->first();
-            // dd($detail_payment);
+            dd($detail_payment);
             $this->initPaymentGateway();
             $params = array(
                 'enable_payments' => Payment::PAYMENT_CHANNELS,
@@ -161,6 +161,55 @@ class TournamentController extends Controller
             //     // 'status_code'=>
             // ]);
             return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken', 'team'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function FeeForFree($id)
+    {
+        if (Auth::guard('player')->check()) {
+            $event = Event::find($id);
+            dd($event->id);
+            $contract = DB::table('contracts')
+                ->join('players', 'players.id', '=', 'contracts.players_id')
+                ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+                ->join('games', 'games.id', '=', 'teams.games_id')
+                ->where('players.id', Auth::guard('player')->user()->id)
+                ->select('players.name', 'players.email', 'teams.id as team_id', 'teams.name as name_team', 'games.name as name_game', 'contracts.id')
+                ->first();
+            $team = DB::table('joins')
+                ->join('teams', 'teams.id', '=', 'joins.team_id')
+                ->where('team_id', $contract->team_id)
+                ->select('status', 'teams.name as name_team')
+                ->first();
+            // dd($team);
+            $check_team = DB::table('joins')
+                ->select('team_id', 'event_id')
+                ->where([
+                    ['team_id', '=', $contract->team_id],
+                    ['event_id', '=', $id]
+                ])->first();
+            // dd($check_team);
+            if ($check_team == null && $event->fee == 0) {
+                $join = Join::create([
+                    'team_id' => $contract->team_id,
+                    'event_id' => $id,
+                    'join_date' => \now(),
+                    'payment_due' => \now(),
+                    'gross_amount' => $event->fee,
+                    'cancellation_note' => 'none'
+                ]);
+                $history = HistoryTournament::create([
+                    'game' => $contract->name_game,
+                    'name' => $contract->name,
+                    'team' => $contract->name_team,
+                    'date' => $event->start_date,
+                    'participant' => $event->participant,
+                    'status' => 'kosong',
+                ]);
+                //    dd($join);
+            }
+            return \redirect()->route('tournament.success')->with(['msg' => 'success']);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
