@@ -43,9 +43,9 @@
                         <a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel"
                                 data-slide="next"></a>
                     </div>
-                </div> 
+                </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-12 carousel-landing"><!--Class utama Carousel "carousel-landing"-->
                     <div id="Carousel" class="carousel slide">
@@ -54,13 +54,13 @@
                         <div class="col-lg-2 col-xs-12 text-center" style="z-index: 1">
                             <a data-toggle="pill" href="#menu-game" title="Show all">
                                 <div class="box" id="box-game-active">
-                                    <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
+                                    <img src="{{ asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
                                 </div>
                             </a>
                         </div>
                             <div class="item active">
                                 <div class="menu-box">
-                                        
+
                                             <?php $i = 1 ?>
                                             @forelse ($game as $games)
                                                 <div class="col-lg-2 col-xs-6 text-center">
@@ -74,9 +74,9 @@
                                                     <?php break; ?>
                                                 @endif
                                             @empty
-                                                
+
                                             @endforelse
-                                        
+
                                 </div>
                             </div>
                             @if ($count > 5)
@@ -93,7 +93,7 @@
                                                     </div> --}}
                                                     @foreach ($game as $key => $games)
                                                         @if ($key <= $count-($count-$l))
-                                                            <?php continue; ?> 
+                                                            <?php continue; ?>
                                                         @endif
                                                         <div class="col-lg-2 col-xs-6 text-center">
                                                             <a data-toggle="pill" href="#menu-game{{$i}}">
@@ -107,7 +107,7 @@
                                                             <?php break; ?>
                                                         @endif
                                                     @endforeach
-                                                
+
                                         </div>
                                     </div>
                                 @endfor
@@ -124,7 +124,7 @@
                 <div id="menu-game" class="tab-pane fade in active">
                     <div class="row">
                         @forelse ($tournament as $tournaments)
-                        <?php 
+                        <?php
                             $fee = number_format($tournaments->fee);
                             $prize_pool = number_format($tournaments->prize_pool);
                             $join = DB::table('joins')
@@ -223,7 +223,7 @@
                     <div id="menu-game{{$i}}" class="tab-pane fade in">
                         <div class="row">
                             @forelse ($gametournament as $gametournaments)
-                                <?php 
+                                <?php
                                     $fee = number_format($gametournaments->fee);
                                     $prize_pool = number_format($gametournaments->prize_pool);
                                 ?>
