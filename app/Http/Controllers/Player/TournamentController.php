@@ -39,6 +39,7 @@ class TournamentController extends Controller
                 ->where('events.id', '=', $id)
                 ->first();
             $event = Event::find($id);
+            // \dd($event);
             $contract = DB::table('contracts')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
