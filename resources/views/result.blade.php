@@ -155,10 +155,6 @@
                                                 {{-- <div class="panel-friend thText"> --}}
                                                     <h4>Hasil Tidak Ditemukan.</h4>
                                                 {{-- </div> --}}
-<<<<<<< Updated upstream
-=======
-                                            </tr>
->>>>>>> Stashed changes
                                             @endforelse
                                         </tbody>
                                     </table>
