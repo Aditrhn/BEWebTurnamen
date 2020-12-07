@@ -858,9 +858,13 @@ class TeamController extends Controller
                         ['status', '=', '1']
                     ])
                     ->get();
-                if ($check != null) {
-                    if ($id != $check->id) {
+                if ($check == null) {
+                    return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                } elseif ($check != null) {
+                    if ($check->id != $id) {
                         return view('team.overview-unsigned', \compact('team', 'member', 'sponsor'));
+                    } else {
+                        return Redirect('team');
                     }
                 } else {
                     return Redirect('team');
