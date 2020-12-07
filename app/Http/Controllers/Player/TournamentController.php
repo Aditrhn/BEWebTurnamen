@@ -228,7 +228,7 @@ class TournamentController extends Controller
                 ->select('events.id')
                 ->where('contracts.players_id', '=', Auth::guard('player')->user()->id)
                 ->first();
-            dd($tournament);
+            // dd($tournament);
             return \view('tournament.success', \compact('tournament'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
