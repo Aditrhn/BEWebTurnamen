@@ -37,7 +37,7 @@
                                                     @if ($players->ava_url != null)
                                                       <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$players->ava_url) }}">
                                                     @else
-                                                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/default.png') }}">
+                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
                                                     <?php
