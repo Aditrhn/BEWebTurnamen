@@ -170,9 +170,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="">
+                                                    <tr>
                                                         <td>
+                                                            @if ($fee == 0)
+                                                            <p>Free</p>
+                                                            @else
                                                             IDR {{ $fee }}
+                                                            @endif
                                                         </td>
                                                         <td>
                                                             @if ($slot == 0)
