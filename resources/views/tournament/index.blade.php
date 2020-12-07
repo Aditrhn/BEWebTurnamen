@@ -18,13 +18,13 @@
 
                         <div class="carousel-inner">
                         <div class="item active">
-                            <img src="{{ URL::asset('assets/img/valor-banner.png') }}" style="width:100%" data-src="holder.js/900x500/auto/#7cbf00:#fff/text: " alt="First slide">
+                            <img src="{{ asset('assets/img/valor-banner.png') }}" style="width:100%" data-src="holder.js/900x500/auto/#7cbf00:#fff/text: " alt="First slide">
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('assets/img/dota2-banner.png') }}" style="width:100%" data-src="" alt="Second    slide">
+                            <img src="{{ asset('assets/img/dota2-banner.png') }}" style="width:100%" data-src="" alt="Second    slide">
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('assets/img/apex-banner.png') }}" style="width:100%" data-src="" alt="Third slide">
+                            <img src="{{ asset('assets/img/apex-banner.png') }}" style="width:100%" data-src="" alt="Third slide">
                         </div>
                         </div>
                            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
