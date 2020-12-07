@@ -126,9 +126,10 @@ class TournamentController extends Controller
                 ->select('teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
                 ->where([
                     ['players.id', '=', Auth::guard('player')->user()->id],
-                    ['teams.id', '=', $contract->team_id]
+                    ['teams.id', '=', $contract->team_id],
+                    ['events.id', '=', $id]
                 ])->first();
-            dd($detail_payment);
+            // dd($detail_payment);
             $this->initPaymentGateway();
             $params = array(
                 'enable_payments' => Payment::PAYMENT_CHANNELS,
