@@ -129,7 +129,7 @@ class TournamentController extends Controller
                     ['teams.id', '=', $contract->team_id],
                     ['events.id', '=', $id]
                 ])->first();
-            dd($detail_payment);
+            // dd($detail_payment);
             $this->initPaymentGateway();
             $params = array(
                 'enable_payments' => Payment::PAYMENT_CHANNELS,
