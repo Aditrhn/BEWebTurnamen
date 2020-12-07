@@ -170,7 +170,7 @@ class TournamentController extends Controller
     {
         if (Auth::guard('player')->check()) {
             $event = Event::find($id);
-            dd($event->id);
+            // dd($event->id);
             $contract = DB::table('contracts')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
@@ -192,7 +192,7 @@ class TournamentController extends Controller
                 ])->first();
             // dd($check_team);
             if ($check_team == null && $event->fee == 0) {
-                $join = Join::create([
+                Join::create([
                     'team_id' => $contract->team_id,
                     'event_id' => $id,
                     'status' => 1,
@@ -201,7 +201,7 @@ class TournamentController extends Controller
                     'gross_amount' => $event->fee,
                     'cancellation_note' => 'none'
                 ]);
-                $history = HistoryTournament::create([
+                HistoryTournament::create([
                     'game' => $contract->name_game,
                     'name' => $contract->name,
                     'team' => $contract->name_team,
