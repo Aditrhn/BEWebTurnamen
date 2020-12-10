@@ -94,11 +94,19 @@
                                 {{-- <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">JOIN TOURNAMENT</a> --}}
                                     @if ($contract !== null)
                                         @if ($event->regis_status == '0')
+                                            @if ($event->fee != 0)
                                             <form action="{{ URL::route('tournament.join',$event->id) }}" method="POST">
                                                 @csrf
                                                 {{ csrf_field() }}
                                                 <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" type="submit">JOIN TOURNAMENT</button>
                                             </form>
+                                            @else
+                                            <form action="{{ URL::route('tournament.free',$event->id) }}" method="POST">
+                                                @csrf
+                                                {{ csrf_field() }}
+                                                <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" type="submit">JOIN TOURNAMENT</button>
+                                            </form>
+                                            @endif
                                         @else
                                             <button class="col-md-12 btn btn-success btn-block btn-lg" id="btn-join" disabled style="opacity: 100%">Registration is closed</button>
                                         @endif
@@ -297,7 +305,7 @@
                             <nav id="myScrollspy">
                                 <div class="panel panel-headline">
                                     <div class="panel-heading" >
-                                        <ul class="nav nav-pills nav-stacked" style="position: fixed;">
+                                        <ul class="nav nav-pills nav-stacked">
                                         <li><a href="#section1"><h4 class="panel-title">1. Format</h4>
                                         </a></li>
                                         <li><a href="#section2"><h4 class="panel-title">2. Join Tournament</h4>
@@ -329,7 +337,7 @@
                                         <p>Public</p>
                                         <br>
                                         <p>Entry Fee</p>
-                                        @if ($event->fee == "free")  
+                                        @if ($event->fee == "free")
                                             <p>{{ $event->fee }}</p>
                                         @else
                                             <p>IDR {{ $fee }}</p>

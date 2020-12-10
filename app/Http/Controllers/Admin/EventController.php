@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Arr;
+use File;
 
 class EventController extends Controller
 {
@@ -69,54 +70,87 @@ class EventController extends Controller
             $this->validate($request, [
                 'title' => 'required',
                 'game_id' => 'required',
-                'banner_url' => 'required',
                 'participant' => 'required',
                 'start_date' => 'required',
-                'description' => 'required'
+                'description' => 'required',
+                // 'banner_url' => 'required',
             ]);
-            $file = $request->file('banner_url');
-            $name_banner = \time() . "_" . $file->getClientOriginalName();
-            $tujuan_upload = 'images/events/';
-            $file->move($tujuan_upload, $name_banner);
-            // \dd($name_banner);
+            
+            // $file = $request->file('banner_url');
+            // $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
+            // $tujuan_upload = 'images/events/';
+            // $file->move($tujuan_upload, $name_banner);
             $tempevent = TemporaryEvent::create([
                 'title' => $request->title,
                 'game_id' => $request->game_id,
-                'banner_url' => $name_banner,
+                // 'banner_url' => $name_banner,
                 'participant' => $request->participant,
                 'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'description' => $request->description,
             ]);
+            
             return redirect()->route('temporary-event.edit', [$tempevent->id]);
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
     }
 
-    public function updateAndStore(Request $request)
+    public function updateAndStore(Request $request, $id)
     {
         if (Auth::guard('admin')->check()) {
             if ($request->input('action') == 'save') {
-                $tempevent = TemporaryEvent::find($request->id);
-                $tempevent->title = $request->title;
-                $tempevent->game_id = $request->game_id;
-                $tempevent->participant = $request->participant;
-                $tempevent->banner_url = $request->banner;
-                $tempevent->start_date = $request->start_date;
-                $tempevent->end_date = $request->end_date;
-                $tempevent->description = $request->description;
-                $tempevent->fee = $request->fee;
-                $tempevent->prize_pool = $request->prize_pool;
-                $tempevent->rules = $request->rules;
-                $tempevent->bracket_type = $request->bracket_type;
-                $tempevent->registration_open = $request->registration_open;
-                $tempevent->registration_close = $request->registration_close;
-                $tempevent->form_message = $request->form_message;
-                $tempevent->save();
-                return back(); //save and go back to card
+                $tempevent = TemporaryEvent::find($id);
+                // \dd($tempevent);
+                // $file = $request->file('banner_url');
+                // $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
+                // $tujuan_upload = 'images/events/';
+                // $file->move($tujuan_upload, $name_banner);
+
+                // $name_banner = $tempevent->banner_url;
+                // if ($request->hasFile('banner_url')) {
+                //     $file = $request->file('banner_url');
+                //     $name_banner = \time() . "_" . $file->getClientOriginalName();
+                //     $tujuan_upload = 'images/events/';
+                //     $file->move($tujuan_upload, $name_banner);
+                //     File::delete('images/events/' . $tempevent->banner_url);
+                // }
+                $tempevent->update([
+                    'title' => $request->title,
+                    'game_id' => $request->game_id,
+                    'participant' => $request->participant,
+                    // 'banner_url' => $name_banner,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
+                    'description' => $request->description,
+                    'fee' => $request->fee,
+                    'prize_pool' => $request->prize_pool,
+                    'rules' => $request->rules,
+                    'bracket_type' => $request->bracket_type,
+                    'registration_open' => $request->registration_open,
+                    'registration_close' => $request->registration_close,
+                    'form_message' => $request->form_message,
+                ]);
+
+                // dd($tempevent);
+                // $tempevent->title = $request->title;
+                // $tempevent->game_id = $request->game_id;
+                // $tempevent->participant = $request->participant;
+                // $tempevent->banner_url = $name_banner;
+                // $tempevent->start_date = $request->start_date;
+                // $tempevent->end_date = $request->end_date;
+                // $tempevent->description = $request->description;
+                // $tempevent->fee = $request->fee;
+                // $tempevent->prize_pool = $request->prize_pool;
+                // $tempevent->rules = $request->rules;
+                // $tempevent->bracket_type = $request->bracket_type;
+                // $tempevent->registration_open = $request->registration_open;
+                // $tempevent->registration_close = $request->registration_close;
+                // $tempevent->form_message = $request->form_message;
+                // $tempevent->save();
+                return redirect()->back()->with(['msg'=>'berhasil diubah!!']); //save and go back to card
             } else if ($request->input('action') == 'publish') {
-                $request->validate([
-                    'title' => 'game_id',
+                $this->validate($request, [
                     'title' => 'required',
                     'participant' => 'required',
                     'start_date' => 'required',
@@ -128,16 +162,62 @@ class EventController extends Controller
                     'registration_open' => 'required',
                     'registration_close' => 'required',
                     'form_message' => 'required',
+                    'banner_url'=>'required',
                 ]);
+                $tempevent = TemporaryEvent::find($id);
+                // \dd($request->all());
+                // $file = $request->file('banner_url');
+                // $name_banner = $request->file('banner_url')->getClientOriginalName();
+                // $tujuan_upload = 'images/events/';
+                // $file->move($tujuan_upload, $name_banner);
 
-                $file = $request->file('banner');
-                $name_icon = \time() . "_" . $file->getClientOriginalName();
-                $tujuan_upload = 'images/events/';
-                $file->move($tujuan_upload, $name_icon);
+                if($request->hasFile('banner_url')){
+                    $file = $request->file('banner_url');
+                    $name_banner = \time() . "_" . $request->file('banner_url')->getClientOriginalName();
+                    // \dd($name_banner);
+                    $tujuan_upload = 'images/events/';
+                    $file->move($tujuan_upload, $name_banner);
+                }
 
-                Event::create([$request->all(), 'banner_url' => $name_icon]);
-                TemporaryEvent::destroy($request->id);
-                return redirect()->route('event.index');
+                // Event::create([$request->all(), 'banner_url' => $name_banner]);
+                // if($request->banner_url == null){
+                    $event = Event::create([
+                        'title' => $tempevent->title,
+                        'participant' => $tempevent->participant,
+                        'banner_url' => $name_banner,
+                        'start_date' => $tempevent->start_date,
+                        'end_date'=>$tempevent->end_date,
+                        'description' => $tempevent->description,
+                        'fee' => $request->fee,
+                        'prize_pool' => $request->prize_pool,
+                        'rules' => $request->rules,
+                        'bracket_type' => $request->bracket_type,
+                        'registration_open' => $request->registration_open,
+                        'registration_close' => $request->registration_close,
+                        'form_message' => $request->form_message,
+                        'admin_id' => Auth::guard('admin')->user()->id,
+                        'game_id' => $tempevent->game_id,
+                    ]);
+                // }
+                // $event = Event::create([
+                //     'title' => $tempevent->title,
+                //     'participant' => $tempevent->participant,
+                //     'banner_url' => $name_banner,
+                //     'start_date' => $tempevent->start_date,
+                //     'description' => $tempevent->description,
+                //     'fee' => $tempevent->fee,
+                //     'prize_pool' => $tempevent->prize_pool,
+                //     'rules' => $tempevent->rules,
+                //     'bracket_type' => $tempevent->bracket_type,
+                //     'registration_open' => $tempevent->registration_open,
+                //     'registration_close' => $tempevent->registration_close,
+                //     'form_message' => $tempevent->form_message,
+                //     'admin_id' => Auth::guard('admin')->user()->id,
+                //     'game_id' => $tempevent->game_id,
+                // ]);
+                TemporaryEvent::destroy($tempevent->id);
+                // dd($cek);
+                return redirect()->route('event.index', \compact('event'));
             }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -161,10 +241,10 @@ class EventController extends Controller
             $fee = number_format($event->fee);
             $prize_pool = number_format($event->prize_pool);
 
-            $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
-            (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id, m.score_a, m.score_b, m.date
-            FROM matches m JOIN events e ON m.event_id = e.id
-            WHERE m.event_id = ' . $id);
+            // $matches = DB::select('SELECT (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
+            // (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b, m.id, m.score_a, m.score_b, m.date
+            // FROM matches m JOIN events e ON m.event_id = e.id
+            // WHERE m.event_id = ' . $id);
             // \dd($matches);
 
             $count_round = DB::table('matches')
@@ -181,24 +261,34 @@ class EventController extends Controller
             for ($i = 1; $i <= $count_bracket; $i++) {
                 $rounds = array();
                 for ($j = 1; $j <= $count_round; $j++) {
-                    $scores = DB::table('matches')
-                        ->select('round_number', 'match_number', 'score_a', 'score_b')
-                        ->where('event_id', $id)
-                        ->where('round_number', $j)
-                        ->where('bracket_number', $i)
-                        ->orderBy('match_number', 'asc')
-                        ->get()
-                        ->toArray();
+                    $scores = DB::select('SELECT
+                        (SELECT t.name FROM teams t WHERE t.id = m.team_a) as team_a,
+                        (SELECT t.name FROM teams t WHERE t.id = m.team_b) as team_b,
+                        m.id, m.score_a, m.score_b, m.date
+                        FROM matches m
+                        JOIN events e
+                        ON m.event_id = e.id
+                        WHERE m.event_id = ' . $id .
+                        ' AND m.round_number = ' . $j .
+                        ' AND m.bracket_number = ' . $i .
+                        ' ORDER BY m.match_number ASC');
                     $mtch = array();
                     foreach ($scores as $score) {
-                        $matchscore = array('score_a' => $score->score_a, 'score_b' => $score->score_b);
+                        $matchscore = array(
+                            'id' => $score->id,
+                            'team_a' => $score->team_a,
+                            'team_b' => $score->team_b,
+                            'score_a' => $score->score_a,
+                            'score_b' => $score->score_b,
+                            'date' => $score->date
+                        );
                         array_push($mtch, $matchscore);
                     }
                     array_push($rounds, $mtch);
                 }
                 array_push($brackets, $rounds);
             }
-            // \dd($brackets);
+            // \dd($brackets[0][0]);
 
             $join = DB::table('joins')
                 ->join('teams', 'teams.id', '=', 'joins.team_id')
@@ -213,7 +303,7 @@ class EventController extends Controller
                 ->select('joins.team_id', 'teams.*')
                 ->get();
             // \dd($join);
-            return view('admin.tournament.detail', \compact('count_round', 'matches', 'event', 'events', 'brackets', 'join', 'join2', 'fee', 'prize_pool'));
+            return view('admin.tournament.detail', \compact('count_round', 'event', 'events', 'brackets', 'join', 'join2', 'fee', 'prize_pool'));
             // return view('admin.tournament.detail');
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -230,6 +320,7 @@ class EventController extends Controller
     {
         if (Auth::guard('admin')->check()) {
             $games = Game::orderBy('created_at', 'ASC')->get();
+            // \dd($tempevent);
             return view('admin.tournament.edit', \compact('tempevent', 'games'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
@@ -267,6 +358,13 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::guard('admin')->check()) {
+            // dd(TemporaryEvent::find($id));
+            $event = TemporaryEvent::destroy($id);
+            // dd($event);
+            return \redirect()->route('event.index')->with(['delete' => 'berhasil menghapus data']);
+        } else {
+            return \redirect('login')->with(['msg' => 'Anda harus login']);
+        }
     }
 }

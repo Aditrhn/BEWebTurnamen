@@ -67,7 +67,7 @@
                                 <label for="banner_url" class=" form-control-label">Banner</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="file" id="file-input" name="banner_url" class="form-control-file">
+                                <input disabled type="file" id="file-input" name="banner_url" class="form-control-file">
                             </div>
                         </div>
                     </div>

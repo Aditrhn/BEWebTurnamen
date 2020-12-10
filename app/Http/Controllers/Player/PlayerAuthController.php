@@ -118,7 +118,16 @@ class PlayerAuthController extends Controller
                 ->select('players.*', 'player_games.*')
                 ->get();
             $friend = DB::select('select p.name, p.ava_url, p.id from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . Auth::guard('player')->user()->id . ' and (f.player_one = ' . Auth::guard('player')->user()->id . ' or f.player_two = ' . Auth::guard('player')->user()->id . ') and f.status = "1"');
-
+            $count = DB::table('friends')
+                ->select('*')
+                ->where([
+                    ['player_two', '=', Auth::guard('player')->user()->id],
+                    ['status', '=', '1']
+                ])
+                ->orWhere([
+                    ['player_one', '=', Auth::guard('player')->user()->id],
+                    ['status', '=', '1']
+                ])->count();
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                 ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
@@ -127,7 +136,7 @@ class PlayerAuthController extends Controller
 
             $history = HistoryTournament::all();
             // dd($team);
-            return \view('player.profile', \compact('game', 'friend', 'team', 'history'));
+            return \view('player.profile', \compact('game', 'friend', 'team', 'history', 'count'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -161,11 +170,24 @@ class PlayerAuthController extends Controller
                 ->join('player_games', 'player_games.players_id', '=', 'players.id')
                 ->select('players.*', 'player_games.*')
                 ->get();
-            $friend = DB::select('select p.name, p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . $player->id . ' and (f.player_one = ' . $player->id . ' or f.player_two = ' . $player->id . ') and f.status = "1"');
+            $friend = DB::select('select p.id, p.name, p.ava_url from friends f join players p on p.id = f.player_one or p.id = player_two where not p.id = ' . $player->id . ' and (f.player_one = ' . $player->id . ' or f.player_two = ' . $player->id . ') and f.status = "1"');
+            $count = DB::table('friends')
+                ->select('*')
+                ->where([
+                    ['player_two', '=', $player->id],
+                    ['status', '=', '1']
+                ])
+                ->orWhere([
+                    ['player_one', '=', $player->id],
+                    ['status', '=', '1']
+                ])->count();
             $team = DB::table('teams')
                 ->join('contracts', 'contracts.teams_id', '=', 'teams.id')
                 ->select('teams.id', 'teams.name', 'teams.logo_url', 'teams.description')
-                ->where('contracts.players_id', '=', $player->id)
+                ->where([
+                    ['contracts.players_id', '=', $player->id],
+                    ['contracts.status', '=', '1']
+                    ])
                 ->get();
             // $request->user();
             // \dd($player);
@@ -173,7 +195,9 @@ class PlayerAuthController extends Controller
             // return view('player.user-profile', [
             //     'user' => $request->user()
             // ], \compact('player'));
-            return \view('player.user-profile', \compact('player', 'game', 'friend', 'team', 'check', 'checks'));
+            $history = HistoryTournament::all();
+
+            return \view('player.user-profile', \compact('player', 'game', 'friend', 'team', 'check', 'checks', 'count','history'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
