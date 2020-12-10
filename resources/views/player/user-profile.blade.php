@@ -78,7 +78,7 @@
             </div>
             <!--Nav-Pills Konten-->
             <div class="tab-content tabKonten thText">
-                <div id="menu1" class="tab-pane fade in active">
+                <div id="menu1" class="tab-pane fade">
                     <div class="col-md-12">
                         <div class="container-fluid">
                             <div class="table-responsive">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <div id="friendList" class="tab-pane fade">
+                <div id="friendList" class="tab-pane fade in active">
                     <div class="col-md-5">
                         <!-- PANEL HEADLINE -->
                         <h4>Bio</h4>
