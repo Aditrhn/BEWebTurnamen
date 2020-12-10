@@ -37,7 +37,7 @@
                                                     @if ($players->ava_url != null)
                                                       <img class="img-panel-friend" src="{{ URL::asset('images/avatars/'.$players->ava_url) }}">
                                                     @else
-                                                      <img class="img-panel-friend" src="{{ URL::asset('images/avatars/default.png') }}">
+                                                      <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
                                                     @endif
                                                     <h4 class="panel-friend">{{ $players->name }}</h4>
                                                     <?php
@@ -99,7 +99,7 @@
                                                 @if ($teams->logo_url != null)
                                                     <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/'.$teams->logo_url) }}">
                                                 @else
-                                                    <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/default.png') }}">
+                                                    <img class="img-panel-friend" src="{{ asset('images/team_logo/default.png') }}">
                                                 @endif
                                                 <h4 class="panel-friend">{{ $teams->name }}</h4>
                                                     <div class="buttons col-md-12 btnAdd">
@@ -155,10 +155,6 @@
                                                 {{-- <div class="panel-friend thText"> --}}
                                                     <h4>Hasil Tidak Ditemukan.</h4>
                                                 {{-- </div> --}}
-<<<<<<< Updated upstream
-=======
-                                            </tr>
->>>>>>> Stashed changes
                                             @endforelse
                                         </tbody>
                                     </table>

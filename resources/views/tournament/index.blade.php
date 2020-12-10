@@ -18,13 +18,13 @@
 
                         <div class="carousel-inner">
                         <div class="item active">
-                            <img src="{{ URL::asset('assets/img/valor-banner.png') }}" style="width:100%" data-src="holder.js/900x500/auto/#7cbf00:#fff/text: " alt="First slide">
+                            <img src="{{ asset('assets/img/valor-banner.png') }}" style="width:100%" data-src="holder.js/900x500/auto/#7cbf00:#fff/text: " alt="First slide">
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('assets/img/dota2-banner.png') }}" style="width:100%" data-src="" alt="Second    slide">
+                            <img src="{{ asset('assets/img/dota2-banner.png') }}" style="width:100%" data-src="" alt="Second    slide">
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('assets/img/apex-banner.png') }}" style="width:100%" data-src="" alt="Third slide">
+                            <img src="{{ asset('assets/img/apex-banner.png') }}" style="width:100%" data-src="" alt="Third slide">
                         </div>
                         </div>
                            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -43,9 +43,9 @@
                         <a class="right glyphicon glyphicon-triangle-right team_columns_carousel_control_icons" href="#Carousel"
                                 data-slide="next"></a>
                     </div>
-                </div> 
+                </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-12 carousel-landing"><!--Class utama Carousel "carousel-landing"-->
                     <div id="Carousel" class="carousel slide">
@@ -54,13 +54,13 @@
                         <div class="col-lg-2 col-xs-12 text-center" style="z-index: 1">
                             <a data-toggle="pill" href="#menu-game" title="Show all">
                                 <div class="box" id="box-game-active">
-                                    <img src="{{ URL::asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
+                                    <img src="{{ asset('assets/img/bars-white.png') }}" alt="" style="height: 60px; object-fit: cover; object-position:center center;">
                                 </div>
                             </a>
                         </div>
                             <div class="item active">
                                 <div class="menu-box">
-                                        
+
                                             <?php $i = 1 ?>
                                             @forelse ($game as $games)
                                                 <div class="col-lg-2 col-xs-6 text-center">
@@ -74,9 +74,9 @@
                                                     <?php break; ?>
                                                 @endif
                                             @empty
-                                                
+
                                             @endforelse
-                                        
+
                                 </div>
                             </div>
                             @if ($count > 5)
@@ -93,7 +93,7 @@
                                                     </div> --}}
                                                     @foreach ($game as $key => $games)
                                                         @if ($key <= $count-($count-$l))
-                                                            <?php continue; ?> 
+                                                            <?php continue; ?>
                                                         @endif
                                                         <div class="col-lg-2 col-xs-6 text-center">
                                                             <a data-toggle="pill" href="#menu-game{{$i}}">
@@ -107,7 +107,7 @@
                                                             <?php break; ?>
                                                         @endif
                                                     @endforeach
-                                                
+
                                         </div>
                                     </div>
                                 @endfor
@@ -124,7 +124,7 @@
                 <div id="menu-game" class="tab-pane fade in active">
                     <div class="row">
                         @forelse ($tournament as $tournaments)
-                        <?php 
+                        <?php
                             $fee = number_format($tournaments->fee);
                             $prize_pool = number_format($tournaments->prize_pool);
                             $join = DB::table('joins')
@@ -139,7 +139,7 @@
                                     @if ($tournaments->banner_url)
                                     <img src="{{ URL::asset('images/events/'.$tournaments->banner_url) }}">
                                     @else
-                                    <img src="{{ URL::asset('assets/img/maxresdefault.jpg') }}">
+                                    <img src="{{ asset('assets/img/maxresdefault.jpg') }}">
                                     @endif
                                 </div>
                                 <div class="product-info">
@@ -170,9 +170,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="">
+                                                    <tr>
                                                         <td>
+                                                            @if ($fee == 0)
+                                                            <p>Free</p>
+                                                            @else
                                                             IDR {{ $fee }}
+                                                            @endif
                                                         </td>
                                                         <td>
                                                             @if ($slot == 0)
@@ -223,7 +227,7 @@
                     <div id="menu-game{{$i}}" class="tab-pane fade in">
                         <div class="row">
                             @forelse ($gametournament as $gametournaments)
-                                <?php 
+                                <?php
                                     $fee = number_format($gametournaments->fee);
                                     $prize_pool = number_format($gametournaments->prize_pool);
                                 ?>

@@ -484,6 +484,15 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       width: 90px; 
       height: 80px;
     }
+    .table-modal-img{
+      width: 70px; 
+      height: 60px;
+    }
+
+    .font-modal{
+      padding-top: 10px;
+      font-weight: bold;
+    }
 
     .text-versus{
       padding-top: 20px; 
@@ -811,7 +820,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
   }
   
   /*End Friend Page*/
-/*Media Screen*/
+/*All Media Screen*/
 @media(min-width:768px) and (max-width:1024px){
   .side-image {
     width: 100%;
@@ -1049,11 +1058,20 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       font-size: 100%;
     }
 
+    .font-modal{
+      padding-top: 5px;
+    }
+
     .pillsRequest{
       margin-left: 4% !important; 
     }
     .pillsBracket{
       margin-left: 4% !important; 
+    }
+
+    .table-modal-img{
+      width: 60px; 
+      height: 50px;
     }
 
     .panel-friend-detail{

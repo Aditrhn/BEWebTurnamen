@@ -15,9 +15,9 @@
 					<div class="panel panel-headline panel-friend-detail">
 						<div class="panel-body">
 							@if ($team->logo_url != null)
-                  			  <img class="img-panel-friend" src="{{ asset('images/team_logo/'.$team->logo_url) }}">
+                  			  <img class="img-panel-friend" src="{{ URL::asset('images/team_logo/'.$team->logo_url) }}">
                   			@else
-                  			  <img class="img-panel-friend" src="{{ asset('images/avatars/default.png') }}">
+                  			  <img class="img-panel-friend" src="{{ asset('images/team_logo/default.png') }}">
                   			@endif
 							<h4 class="panel-friend" data-toggle="modal">{{ $team->name }}</h4>
 							<form action="{{ URL::route('team-accept') }}" method="POST">

@@ -24,7 +24,7 @@
             {{ csrf_field() }}
           <fieldset>
             <div class="form-group">
-              <input class="form-control" placeholder="Username or email" name="email" type="text">
+              <input class="form-control" placeholder="Email" name="email" type="text">
               @if ($errors->has('email'))
               <span class="error" style="color: red">
                 {{ $errors->first('email') }}
@@ -47,7 +47,7 @@
             </span>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             <br>
-            
+
             <div class="text-center text-white">
               <p style="padding-bottom: 10px">Or</a></p>
               <a class="btn btn-primary social-login-btn social-google d-block" href="{{ URL::route('auth.google') }}" style="text-align:center; display:block; position: center"><i class="fa fa-google text-white" style="font-size: 24px; padding: 10px;"></i><span style="font-size: 1.7em;">Sign in with Google</span></a>
