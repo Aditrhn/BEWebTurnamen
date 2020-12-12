@@ -20,16 +20,25 @@
         </div>
     </div>
 </div>
-@if(session('delete'))
-    <div class="alert alert-success alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
+
+<!-- Content -->
+<div class="content">
+    @if(session('delete'))
+    <div class="alert alert-danger alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         {{ session('delete') }}
     </div>
-@endif
-<!-- Content -->
-<div class="content">
+    @endif
+    @if(session('msg'))
+    <div class="alert alert-success alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ session('msg') }}
+    </div>
+    @endif
     <!-- Animated -->
     <div class="animated fadeIn">
         <div class="row">
