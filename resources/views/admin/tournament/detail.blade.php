@@ -139,6 +139,22 @@
                             </div>
                             <div class="tab-pane fade" id="pills-match" role="tabpanel"
                                 aria-labelledby="pills-match-tab">
+                                <ul class="nav nav-pills mb-3 padNav" id="pills-tab-match" role="tablist">
+                                    <li class="nav-item padPills">
+                                        <a class="nav-link active" id="pills-match-group-tab" data-toggle="pill" href="#pills-match-group" role="tab"
+                                            aria-controls="pills-match-group" aria-selected="true">Group</a>
+                                    </li>
+                                    <li class="nav-item padPills">
+                                        <a class="nav-link" id="pills-match-knockout-tab" data-toggle="pill" href="#pills-match-knockout" role="tab"
+                                            aria-controls="pills-match-knocout" aria-selected="false">Knockout</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-pane fade" id="pills-match-group" role="tabpanel"
+                                aria-labelledby="pills-match-group-tab">
+                                hehe
+                                </div>
+                                <div class="tab-pane fade" id="pills-match-knockout" role="tabpanel"
+                                aria-labelledby="pills-match-knockout-tab">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3 class="titleMatch">Match List</h3>
@@ -233,10 +249,28 @@
                                 </div>
                                 @endforeach
                                 @endif
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel"
                                 aria-labelledby="pills-bracket-tab">
-                                {{-- <div id="bracket"></div> --}}
+                                <ul class="nav nav-pills mb-3 padNav" id="pills-tab-bracket" role="tablist">
+                                    <li class="nav-item padPills">
+                                        <a class="nav-link active" id="pills-bracket-group-tab" data-toggle="pill" href="#pills-bracket-group" role="tab"
+                                            aria-controls="pills-bracket-group" aria-selected="true">Group</a>
+                                    </li>
+                                    <li class="nav-item padPills">
+                                        <a class="nav-link" id="pills-bracket-knockout-tab" data-toggle="pill" href="#pills-bracket-knockout" role="tab"
+                                            aria-controls="pills-bracket-knocout" aria-selected="false">Knockout</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-pane fade" id="pills-bracket-group" role="tabpanel"
+                                aria-labelledby="pills-bracket-group-tab">
+                                <div id="bracket"></div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-bracket-group" role="tabpanel"
+                                aria-labelledby="pills-bracket-group-tab">
+                                <div id="bracket"></div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="pills-participant" role="tabpanel"
                                 aria-labelledby="pills-participant-tab">
