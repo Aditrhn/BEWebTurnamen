@@ -46,6 +46,11 @@
   font-weight: bold;
 }
 
+.pillsInside{
+  padding-left: 28%;
+  font-weight: bold;
+}
+
 .labelOverview{
   font-weight: bold; 
   font-size: 120%;

@@ -140,11 +140,11 @@
                             <div class="tab-pane fade" id="pills-match" role="tabpanel"
                                 aria-labelledby="pills-match-tab">
                                 <ul class="nav nav-pills mb-3 padNav" id="pills-tab-match" role="tablist">
-                                    <li class="nav-item padPills">
+                                    <li class="nav-item pillsInside">
                                         <a class="nav-link active" id="pills-match-group-tab" data-toggle="pill" href="#pills-match-group" role="tab"
                                             aria-controls="pills-match-group" aria-selected="true">Group</a>
                                     </li>
-                                    <li class="nav-item padPills">
+                                    <li class="nav-item pillsInside">
                                         <a class="nav-link" id="pills-match-knockout-tab" data-toggle="pill" href="#pills-match-knockout" role="tab"
                                             aria-controls="pills-match-knocout" aria-selected="false">Knockout</a>
                                     </li>
@@ -254,11 +254,11 @@
                             <div class="tab-pane fade" id="pills-bracket" role="tabpanel"
                                 aria-labelledby="pills-bracket-tab">
                                 <ul class="nav nav-pills mb-3 padNav" id="pills-tab-bracket" role="tablist">
-                                    <li class="nav-item padPills">
+                                    <li class="nav-item pillsInside">
                                         <a class="nav-link active" id="pills-bracket-group-tab" data-toggle="pill" href="#pills-bracket-group" role="tab"
                                             aria-controls="pills-bracket-group" aria-selected="true">Group</a>
                                     </li>
-                                    <li class="nav-item padPills">
+                                    <li class="nav-item pillsInside">
                                         <a class="nav-link" id="pills-bracket-knockout-tab" data-toggle="pill" href="#pills-bracket-knockout" role="tab"
                                             aria-controls="pills-bracket-knocout" aria-selected="false">Knockout</a>
                                     </li>
