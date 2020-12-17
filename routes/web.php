@@ -18,33 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('player.index');
 // });
 // });
-<<<<<<< Updated upstream
-Route::group(['auth', 'players'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
-    Route::namespace('Player')->group(function () {
-        //Auth Player
-        Route::get('login', 'PlayerAuthController@index')->name('login');
-        Route::post('player-login', 'PlayerAuthController@postLogin')->name('post.login');
-        Route::get('register', 'PlayerAuthController@register')->name('register');
-        Route::post('player-register', 'PlayerAuthController@postRegister')->name('post.register');
-        Route::get('dashboard', 'PlayerAuthController@dashboard')->name('dashboard');
-        Route::get('logout', 'PlayerAuthController@logout')->name('logout');
-
-        //Profile
-        Route::get('profile', 'PlayerAuthController@profile')->name('profile');
-
-        //Friend
-        Route::get('friend', 'FriendController@index')->name('friend');
-        Route::post('unfriend', 'FriendController@unfriend')->name('unfriend');
-        Route::post('add-friend', 'FriendController@add_friend')->name('add-friend');
-        Route::post('accept-friend', 'FriendController@accept_friend')->name('accept-friend');
-        Route::post('decline-friend', 'FriendController@decline_friend')->name('decline-friend');
-    });
-    //Search
-    Route::get('search-result', 'SearchController@index')->name('search');
-=======
 // Route::group(['auth', 'players'], function () {
 Route::get('/', function () {
     return Redirect('login');
@@ -108,7 +81,6 @@ Route::namespace('Player')->group(function () {
     // Route::get('payments/completed', 'PaymentController@completed');
     // Route::get('payments/failed', 'PaymentController@failed');
     // Route::get('payments/unfinish', 'PaymentController@unfinish');
->>>>>>> Stashed changes
 });
 
 
