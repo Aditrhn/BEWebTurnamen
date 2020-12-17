@@ -10,15 +10,15 @@
         </div>
     </div>
 </div>
-@if(session('msg'))
-        <div class="alert alert-success alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            {{ session('msg') }}
-        </div>
-    @endif
 <div class="content">
+    @if(session('msg'))
+    <div class="alert alert-success alert-dismissible fade show position-relativ" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ session('msg') }}
+    </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <form action="{{ URL::route('event.update-and-store',$tempevent->id) }}" method="post" enctype="multipart/form-data">
@@ -45,9 +45,15 @@
             </div>
             <div class="col-12 col-md-12">
                 <select name="game_id" id="select" class="form-control">
+                    {{-- <option value="{{ $games->id }}">{{ $games->name }}</option> --}}
                     @foreach($games as $game)
-                        <option value="{{ $game->id }}">{{ $game->name }}</option>
+                        <option value="{{ $game->id }}" {{ $game->id  ? 'selected' : ''}}>{{ $game->name }}</option>
                     @endforeach
+                    {{-- <select class="js-states browser-default select2" name="shopping_id" required id="shopping_id">
+                        @foreach($games as $shopping)
+                            <option value="{{ $shopping->id }}" {{$shopping->id  ? 'selected' : ''}}>{{ $shopping->name}}</option>
+                        @endforeach
+                    </select> --}}
                 </select>
             </div>
         </div>
@@ -56,7 +62,7 @@
                 <div class="form-group">
                     <label for="participant" class=" form-control-label">Size Teams</label>
                     <input type="number" name="participant" id="city" placeholder="Enter your size team"
-                        class="form-control" value="{{ $tempevent->participant }}">
+                        class="form-control @error('participant') is-invalid @enderror" value="{{ $tempevent->participant }}">
                     @error('participant')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ $message }}
@@ -72,12 +78,17 @@
         <div class="col-6">
             <div class="form-group">
                 <div class="col col-md-12">
-                    <label for="banner_url" class=" form-control-label">Banner <span style="color: silver; scale: 0.4%;">wajib diisi jika ingin di publish</span></label>
+                    <label for="banner_url" class=" form-control-label">Banner
+                        <span style="color: red; scale: 0.4%;">
+                            @error('banner_url')
+                            <strong>{{ $message }}</strong>
+                            @enderror
+                        </span>
+                    </label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="file" id="file-input" name="banner_url" class="form-control-file" value="{{ URL::asset('images/events/'.$tempevent->banner_url) }}">
+                    <input type="file" id="file-input" name="banner_url" class="form-control-file @error('banner_url') is-invalid @enderror" value="{{ old('banner_url') }}">
                 </div>
-
             </div>
         </div>
     </div>
@@ -99,8 +110,6 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        {{-- <div class="alert alert-danger">{{ $message }}
-                </div> --}}
                 @enderror
             </div>
             <small class="form-text text-muted">(MM/DD/YYYY)</small>
@@ -124,8 +133,13 @@
         <label for="textarea-input" class=" form-control-label">Description</label>
     </div>
     <div class="col-12 col-md-12">
+        @if ($tempevent->description != null)
         <textarea name="description" id="textarea-input" rows="5" placeholder="Enter your description..."
-            class="form-control">{{ $tempevent->description }}</textarea>
+        class="form-control">{{ $tempevent->description }}</textarea>
+        @else
+        <textarea name="description" id="textarea-input" rows="5" placeholder="Enter your description..."
+        class="form-control">{{ old('description') }}</textarea>
+        @endif
     </div>
     @error('description')
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -134,9 +148,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {{-- <div class="alert alert-danger">{{ $message }}
-</div> --}}
-@enderror
+    @enderror
 </div>
 </div>
 </div>
@@ -161,16 +173,41 @@
 
         <div class="form-group">
             <label for="prizepool" class=" form-control-label">Prizepool</label>
-            <input type="text" id="prize_pool" name="prize_pool" class="form-control"
-                value="{{ $tempevent->prize_pool }}">
+            @if ($tempevent->prize_pool != null)
+            <input type="text" id="prize_pool" name="prize_pool" class="form-control @error('prize_pool') is-invalid @enderror"
+            value="{{ $tempevent->prize_pool }}">
+            @else
+            <input type="text" id="prize_pool" name="prize_pool" class="form-control @error('prize_pool') is-invalid @enderror"
+            value="{{ old('prize_pool') }}">
+            @endif
             <span class="help-block"></span>
+            @error('prize_pool')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
         </div>
         <div class="row form-group pb-4">
             <div class="col col-md-12">
                 <label for="rules" class=" form-control-label">Rules</label>
             </div>
             <div class="col-12 col-md-12">
-                <textarea name="rules" id="rules" rows="5" class="form-control">{{ $tempevent->rules }}</textarea>
+                @if ($tempevent->rules != null)
+                <textarea name="rules" id="rules" rows="5" class="form-control @error('rules') is-invalid @enderror">{{ $tempevent->rules }}</textarea>
+                @else
+                <textarea name="rules" id="rules" rows="5" class="form-control @error('rules') is-invalid @enderror">{{ old('rules') }}</textarea>
+                @endif
+                @error('rules')
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -180,13 +217,57 @@
         <h4><strong>Structure</strong></h4>
         <div class="row mt-4">
             <div class="col-md-12">
-                <div class=""><label for="bracket_type" class=" form-control-label">Format</label></div>
+                <div class=""><label for="bracket_model" class=" form-control-label">Elimination</label></div>
                 <div class="">
-                    <select name="bracket_type" id="bracket_type" class="form-control">
-                        <option value="1">Single Elimination</option>
-                        <option value="2">Double Elimination</option>
+                    <select name="bracket_model" id="bracket_model" class="form-control @error('bracket_model') is-invalid @enderror">
+                        <option value="group">Group & Knockout Elimination</option>
+                        <option value="knockout">Knockout Elimination Only</option>
                     </select>
                 </div>
+                @error('bracket_model')
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @enderror
+            </div>
+            <div class="col-md-12">
+                <div class=""><label for="bracket_type" class=" form-control-label">Format</label></div>
+                <div class="">
+                    <select name="bracket_type" id="bracket_type" class="form-control @error('bracket_type') is-invalid @enderror" onchange="bracketType()">
+                        @if ($tempevent->bracket_type == null)
+                        <option value="1">Single Elimination</option>
+                        <option value="2">Double Elimination</option>
+                        @else
+                            @if ($tempevent->bracket_type == "1")
+                            <option selected value="1">Single Elimination</option>
+                            <option value="2">Double Elimination</option>
+                            @else
+                            <option value="1">Single Elimination</option>
+                            <option selected value="2">Double Elimination</option>
+                            @endif
+                        @endif
+                    </select>
+                </div>
+                @error('bracket_type')
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @enderror
+            </div>
+            {{-- <input type="checkbox" name="comeback[0]" value="0" /> --}}
+            <div class="col-md-12">
+                <div class="form-check">
+                    <input class="form-check-input" {{ $tempevent->comeback ? 'checked' : '' }} type="checkbox" value="1" id="comeback" name="comeback" disabled="true">
+                    <label class="form-check-label" for="comeback">
+                      Comeback from Loser Bracket
+                    </label>
+                  </div>
             </div>
         </div>
     </div>
@@ -234,16 +315,6 @@
         &nbsp;
         <input class="btn btn-success" type="submit" name="action" value="publish">
     </div>
-    {{-- <div class="col float-right text-right"> --}}
-        {{-- <form action="{{ URL::route('event.destroy',$tempevent->id) }}" method="POST" class="badge">
-            @method('delete')
-            @csrf --}}
-            {{-- <button class="btn btn-danger" style="border-color: transparent; padding: 0;">
-                <span class="badge badge-danger">Delete</span>
-            </button> --}}
-        {{-- </form> --}}
-        {{-- <a class="btn btn-danger" href="{{ URL::route('event.destroy') }}">delete</a> --}}
-    {{-- </div> --}}
 </div>
 </form>
 <div class="col float-right text-right">
@@ -268,6 +339,7 @@
     <script src="{{ asset('js/admin/i18n/datepicker.en.js') }}">
     </script>
     <script>
+
         $('#start-date').datepicker({
             language: 'en',
             minDate: new Date() // Now can select only dates, which goes after today
@@ -294,6 +366,17 @@
         function myFunction1() {
             var x = document.getElementById("fee_paid");
             x.readOnly = false;
+        }
+
+        function bracketType(){
+            var x = document.getElementById("bracket_type").value;
+            var y = document.getElementById("comeback");
+            if (x === "1") {
+                y.disabled = true;
+                y.checked = false;
+            } else {
+                y.disabled = false;
+            }
         }
 
     </script>

@@ -50,7 +50,7 @@
                                                 <div class="round-img">
                                                     <img class="rounded-circle"
                                                         src="{{ URL::asset('images/game_icon/'. $games->icon_url) }}"
-                                                        alt="game_icon">
+                                                        alt="{{ $games->icon_url }}">
                                                 </div>
                                             </td>
                                             <td>{{ $games->name }}</td>
