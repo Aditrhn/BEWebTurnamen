@@ -3,9 +3,9 @@
 <div class="main">
     <div class="main-content">
         <div class="container-fluid">
-            {{-- <form action="{{ URL::route('tournament.payment') }}" method="POST">
+            <form action="{{ URL::route('checkout',$detail_payment->id) }}" method="GET">
                 @csrf
-                {{ csrf_field() }} --}}
+                {{ csrf_field() }}
                 <div class="col-md-12">
                     <!-- PANEL HEADLINE -->
                     <div class="panel panel-headline">
@@ -17,32 +17,21 @@
                         </div>
                     </div>
                 </div>
-                @if ($team != null)
-                    @if ($team->status == "0")
-                        <div class="col-md-4">
-                            <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
-                        </div>
-                    @else
-                        <div class="col-md-4">
-                            <button class="col-md-12 btn btn-success btn-block btn-lg" type="button" disabled>Joined</a>
-                        </div>
-                    @endif
-                @else
-                    <div class="col-md-4">
-                        <button class="col-md-12 btn btn-success btn-block btn-lg" type="button"  id="pay-button">Pay Now</a>
-                    </div>
-                @endif
-            {{-- </form> --}}
+                <div class="col-md-4">
+                    <button class="col-md-12 btn btn-success btn-block btn-lg" type="submit"  id="pay-button">Pay Now</button>
+                    {{-- <a href="{{ URL::route('checkout',$detail_payment->id) }}" class="col-md-12 btn btn-success btn-block btn-lg">Pay Now</a> --}}
+                </div>
+            </form>
         </div>
     </div>
 </div>
 @endsection
 @push('wizard')
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-dvB9iWeAP20Q61Ip"></script>
-<script type="text/javascript">
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ \env('MIDTRANS_CLIENTKEY') }}"></script>
+{{-- <script type="text/javascript">
     document.getElementById('pay-button').onclick = function(){
         // SnapToken acquired from previous step
-        snap.pay('<?=$snapToken?>', {
+        snap.pay('', {
           // Optional
             onSuccess: function(result){
                 /* You may add your own js here, this is just example */ window.location = "../payment-success"; document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
@@ -57,5 +46,5 @@
             }
         });
     };
-</script>
+</script> --}}
 @endpush

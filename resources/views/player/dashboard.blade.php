@@ -77,7 +77,7 @@
 											@endforelse
 										</div>
 									</div>
-									
+
 									@if ($count > 3)
 										<?php $sum = ceil($count/3); $k = 2 ?>
 										@for ($i = 1; $i < $sum; $i++)
@@ -89,8 +89,8 @@
 															<?php continue; ?>
 														@endif
 														<div class="col-md-4">
-															<div class="case-landing landing2" 
-															style="background-image: url('{{ URL::asset('images/game_icon/'. $games->icon_url) }}'); 
+															<div class="case-landing landing2"
+															style="background-image: url('{{ URL::asset('images/game_icon/'. $games->icon_url) }}');
 															background-color: black;">
 																<div class="case-landing__overlay">
 																	<h2 class="case-landing__title">{{ $games->name }}</h2>
@@ -106,7 +106,7 @@
 											</div>
 										@endfor
 									@endif
-									
+
 								</div>
 							</div>
 						</div>
@@ -143,7 +143,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="col-md-4">
 													<div class="case-landing landing2" style="background-image: url('https://id-test-11.slatic.net/p/88cd68df4f9451f7febafdc3543459e6.png');">
 														<div class="case-landing__overlay">
@@ -172,7 +172,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="col-md-4">
 													<div class="case-landing landing2" style="background-image: url('https://id-test-11.slatic.net/p/88cd68df4f9451f7febafdc3543459e6.png');">
 														<div class="case-landing__overlay">

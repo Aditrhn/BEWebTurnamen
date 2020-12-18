@@ -9,6 +9,7 @@ use App\Model\Join;
 use App\Model\Payment;
 use App\Model\Game;
 use App\Model\HistoryTournament;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +74,7 @@ class TournamentController extends Controller
                 ->join('teams', 'teams.id', '=', 'contracts.teams_id')
                 ->join('games', 'games.id', '=', 'teams.games_id')
                 ->where('players.id', Auth::guard('player')->user()->id)
-                ->select('players.name', 'players.email', 'teams.id as team_id', 'teams.name as name_team', 'games.name as name_game', 'contracts.id')
+                ->select('players.name', 'players.email', 'players.contact', 'teams.id as team_id', 'teams.name as name_team', 'games.name as name_game', 'contracts.id')
                 ->first();
             // dd($contract);
 
@@ -92,13 +93,22 @@ class TournamentController extends Controller
             // dd($check_team);
 
             if ($check_team == null) {
+                $phone = null;
+                if (!empty($contract->contact)) {
+                    $phone = $contract->contact;
+                }
+                $code = Join::JOINCODE . \uniqid() . '-' . \rand() . '-' ./*gross_amount*/ $event->fee . /*team_id*/ $contract->team_id ./*event_id*/ $id ./*approved_by*/ Auth::guard('player')->user()->id;
+                // \dd($code);
                 $join = Join::create([
                     'team_id' => $contract->team_id,
                     'event_id' => $id,
                     'join_date' => \now(),
-                    'payment_due' => \now(),
+                    'payment_duration' => Join::EXPIRY,
+                    'phone' => $phone,
+                    'approved_by' => $contract->name,
+                    'approved_at' => \now(),
                     'gross_amount' => $event->fee,
-                    'cancellation_note' => 'none'
+                    'code_order_id' => "$code",
                 ]);
                 $history = HistoryTournament::create([
                     'game' => $contract->name_game,
@@ -108,61 +118,33 @@ class TournamentController extends Controller
                     'participant' => $event->participant,
                     'status' => 'kosong',
                 ]);
-                //    dd($join);
+                $detail_payment = DB::table('joins')
+                    ->join('teams', 'teams.id', '=', 'joins.team_id')
+                    ->join('events', 'events.id', '=', 'joins.event_id')
+                    ->join('contracts', 'contracts.teams_id', '=', 'joins.team_id')
+                    ->join('players', 'players.id', '=', 'contracts.players_id')
+                    ->select('joins.id', 'teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
+                    ->where([
+                        ['players.id', '=', Auth::guard('player')->user()->id],
+                        ['teams.id', '=', $contract->team_id],
+                        ['events.id', '=', $id]
+                    ])->first();
+                // dd($detail_payment);
+                return \view('tournament.checkout', \compact('contract', 'detail_payment', 'team'));
             }
-
-
-            // $detail_payment = DB::table('joins')
-            //     ->join('contracts', 'contracts.id', '=', 'joins.team_id')
-            //     ->join('teams', 'teams.id', '=', 'contracts.teams_id')
-            //     ->join('events', 'events.id', '=', 'joins.event_id')
-            //     ->join('players', 'players.id', '=', 'contracts.players_id')
-            //     ->select('teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
-            //     ->where('players.id', Auth::guard('player')->user()->id)->first();
             $detail_payment = DB::table('joins')
                 ->join('teams', 'teams.id', '=', 'joins.team_id')
                 ->join('events', 'events.id', '=', 'joins.event_id')
                 ->join('contracts', 'contracts.teams_id', '=', 'joins.team_id')
                 ->join('players', 'players.id', '=', 'contracts.players_id')
-                ->select('teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
+                ->select('joins.id', 'teams.name as team_name', 'teams.id as team_id', 'events.id as event_id', 'events.title as event_title', 'events.fee as price', 'players.name as captain', 'players.email as mail', 'players.contact as telp')
                 ->where([
                     ['players.id', '=', Auth::guard('player')->user()->id],
                     ['teams.id', '=', $contract->team_id],
                     ['events.id', '=', $id]
                 ])->first();
-            // dd($detail_payment);
-            $this->initPaymentGateway();
-            $params = array(
-                'enable_payments' => Payment::PAYMENT_CHANNELS,
-                'transaction_details' => array(
-                    'order_id' => rand() . '_from_' . $detail_payment->captain,
-                    'gross_amount' => $detail_payment->price,
-                ),
-                'customer_details' => array(
-                    'first_name' => $detail_payment->captain,
-                    'last_name' => $detail_payment->team_name,
-                    'email' => $detail_payment->mail,
-                    'phone' => $detail_payment->telp,
-                ),
-                'expiry' => array(
-                    'start_time' => date('Y-m-d H:i:s T'),
-                    'unit' => \App\Model\Payment::EXPIRY_UNIT,
-                    'duration' => \App\Model\Payment::EXPIRY_DURATION,
-                ),
-            );
-            // \dd($params['transaction_details']['order_id']);
-            // $snap = \Midtrans\Snap::createTransaction($params);
-            $snapToken = \Midtrans\Snap::getSnapToken($params);
-            // $midtrans = \json_encode($snapToken);
-            // \dd($snap);
-
-            // \dd($midtrans);
-            // $payment = Payment::create([
-            //     'order_id' => $params['transaction_details']['order_id'],
-            //     'gross_amount' => $params['transaction_details']['gross_amount'],
-            //     // 'status_code'=>
-            // ]);
-            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'snapToken', 'team'));
+            // dd($event);
+            return \view('tournament.checkout', \compact('contract', 'detail_payment', 'team'));
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
@@ -231,6 +213,53 @@ class TournamentController extends Controller
                 ->first();
             // dd($tournament);
             return \view('tournament.success', \compact('tournament'));
+        } else {
+            return Redirect('login')->with('msg', 'Anda harus login'); //routing login
+        }
+    }
+    public function checkout($id)
+    {
+        if (Auth::guard('player')->check()) {
+            $contract = DB::table('contracts')
+                ->join('players', 'players.id', '=', 'contracts.players_id')
+                ->join('teams', 'teams.id', '=', 'contracts.teams_id')
+                ->join('games', 'games.id', '=', 'teams.games_id')
+                ->where('players.id', Auth::guard('player')->user()->id)
+                ->select('players.name', 'players.email', 'players.contact as telp', 'teams.id as team_id', 'teams.name as name_team', 'games.name as name_game', 'contracts.id')
+                ->first();
+            $join = Join::find($id);
+            // \dd($join);
+            $this->initPaymentGateway();
+            $customerDetails = [
+                'first_name' => $join->approved_by,
+                'last_name' => $contract->name_team,
+                'email' => $contract->email,
+                'phone' => $contract->telp,
+            ];
+
+            $params = [
+                'enable_payments' => Payment::PAYMENT_CHANNELS,
+                'transaction_details' => [
+                    'order_id' => $join->code_order_id,
+                    'gross_amount' => $join->gross_amount,
+                ],
+                'customer_details' => $customerDetails,
+                'expiry' => [
+                    "unit" => "days",
+                    'duration' => Join::EXPIRY,
+                ],
+            ];
+            try {
+                $response_midtrans = \Midtrans\Snap::createTransaction($params);
+                $join->_token = $response_midtrans->token;
+                $join->redirect_url = $response_midtrans->redirect_url;
+                $join->save();
+                // \dd($join);
+                return \redirect($response_midtrans->redirect_url);
+            } catch (Exception $e) {
+                $message = $e->getMessage();
+                return \redirect()->back()->with($message);
+            }
         } else {
             return Redirect('login')->with('msg', 'Anda harus login'); //routing login
         }
