@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
         // $this->call(GameSeeder::class);
         // $this->call(PlayerSeeder::class);
         $this->call([
-            PlayerSeeder::class,
+            // PlayerSeeder::class,
             AdminSeeder::class,
             GameSeeder::class,
             // FriendSeeder::class,
-            TeamSeeder::class,
+            // TeamSeeder::class,
             EventSeeder::class,
-            JoinSeeder::class,
+            // JoinSeeder::class,
         ]);
     }
 }
