@@ -22,14 +22,13 @@
         </div>
         <div class="col-md-4">
             <h4 style="font-weight: bold;">About Us</h4>
-            <p style="text-align: justify;">Gameskii adalah sebuah platform turnamen gaming yang dikembangkan dengan tujuan 
-             untuk membantu memajukan industri esports, khususnya di Indonesia, dengan cara memberikan kesempatan bagi 
-             para gamer untuk merasakan nuansa bertanding secara profesional melalui berbagai turnamen-turnamen pilihan, 
-             serta menyediakan fitur-fitur yang dapat memudahkan para penyelenggara turnamen untuk mengadakan event mereka sendiri.
+            <p style="text-align: justify;">Gameskii adalah sebuah platform turnamen esports yang didesain untuk membawa pengalaman 
+            bermain game-mu ke level yang lebih tinggi. Disini kamu tidak hanya bisa berpartisipasi di turnamen-turnamen pilihan, 
+            tetapi juga membangun profil esports-mu, bergabung dengan tim yang berbagi visi denganmu, 
+            serta memenangkan hadiah-hadiah menarik.
             </p>
             <p style="text-align: justify; padding-top : 20px;">
-             Gameskii merupakan hak milik dari CV. Nongskii Class. Akan tetapi, aset-aset yang berasosiasi dengan game-game yang 
-             ada di website ini, adalah hak milik dari masing-masing developer.
+             
             </p>
         </div>
         <div class="col-md-4">

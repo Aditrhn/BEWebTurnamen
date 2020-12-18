@@ -1156,10 +1156,10 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       letter-spacing: 2px;
     }
     .container-fluid .product .product-info .product-content .table{
-      margin-top: 100px;
+      margin-top: 70px;
     }
     .container-fluid .product .product-info .product-content .buttons {
-      margin-top: 120px;
+      margin-top: 90px;
       text-align: end;
       padding-top: .4em;
     }
@@ -1197,7 +1197,7 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
       opacity: 0.8;
     }
     .container-fluid .product .product-info .product-content .table{
-      margin-top: 60px;
+      margin-top: 40px;
     }
     .container-fluid .product .product-info .product-content .buttons{
       display: block;
@@ -1261,7 +1261,6 @@ section .container-fluid {margin: 0 auto;display:block;display: -webkit-box;disp
     }
     .details table, .details > table > thead > tr > th, .details > table > tbody > tr > td{
       font-size: small;
-      border: 1px #fff solid;
       border-collapse: collapse;
     }
     .container-fluid .product {

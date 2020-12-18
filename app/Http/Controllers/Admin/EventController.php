@@ -144,7 +144,7 @@ class EventController extends Controller
                 // $tempevent->save();
                 return redirect()->back()->with(['msg' => 'turnament berhasil diubah!!']); //save and go back to card
             } else if ($request->input('action') == 'publish') {
-                dd($request->all());
+                // dd($request->all());
                 $this->validate($request, [
                     'title' => 'required',
                     'participant' => 'required',
