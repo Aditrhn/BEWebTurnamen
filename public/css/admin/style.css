@@ -2,12 +2,12 @@
 --------------------------------------------------------- /
 * Theme Name: Nongski.i
 --------------------------------------------------------- */
-/* 
+/*
 
 
 Googel Fonts  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
@@ -125,11 +125,11 @@ Googel Fonts  */
 .mb-15 {
   margin-bottom: 15px; }
 
-/* 
+/*
 
 
 Googel Fonts  */
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 .bg-flat-color-1 {
@@ -1923,7 +1923,7 @@ header .form-inline {
     border-color: #212529;
     color: #fff; }
 
-/*    Widget One
+/*    Widget One Develop by Sanity Creativ, include team (A,I,F,K,H,F,W);
 ---------------------------*/
 .dib {
   display: inline-block; }
@@ -2454,6 +2454,6 @@ footer.site-footer {
     padding-bottom: 5px; }
   .right-panel .menutoggle {
     width: 20px; } }
-   
+
 
 /*# sourceMappingURL=style.css.map */

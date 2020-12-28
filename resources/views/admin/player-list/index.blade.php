@@ -65,7 +65,7 @@
         </div>
     </div>
 
-</div><!-- .content -->
+</div><!-- .content Develop by Sanity Creativ, include team (A,I,F,K,H,F,W)-->
 
 @endsection
 @push('tooltip')
